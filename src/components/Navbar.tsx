@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { PlusCircle, LogIn, LogOut, Menu, X } from 'lucide-react';
+import { PlusCircle, LogIn, LogOut, Menu, X, Layers } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 
 export const Navbar: React.FC = () => {
@@ -33,6 +33,20 @@ export const Navbar: React.FC = () => {
           >
             Danh sách đề
           </Link>
+
+          {/* Admin / Quản lý link if logged in */}
+          {user && (
+            <Link
+              to="/manage"
+              className={`px-3 py-1.5 rounded-xl text-sm font-medium transition-colors ${
+                location.pathname.startsWith('/manage')
+                  ? 'bg-gray-100 text-gray-900 font-semibold'
+                  : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
+              }`}
+            >
+              Quản lý
+            </Link>
+          )}
 
           {/* Only logged in user can create exam */}
           {user ? (
@@ -121,6 +135,14 @@ export const Navbar: React.FC = () => {
 
           {user ? (
             <>
+              <Link
+                to="/manage"
+                onClick={() => setMobileMenuOpen(false)}
+                className="flex items-center gap-2 py-2 text-sm font-medium text-gray-900"
+              >
+                <Layers className="w-4 h-4" />
+                <span>Quản lý đề & Lịch sử</span>
+              </Link>
               <Link
                 to="/create"
                 onClick={() => setMobileMenuOpen(false)}

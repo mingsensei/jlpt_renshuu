@@ -7,6 +7,8 @@ import { CreateExam } from './pages/CreateExam';
 import { ExamPage } from './pages/Exam';
 import { Result } from './pages/Result';
 import { Login } from './pages/Login';
+import { AdminManage } from './pages/AdminManage';
+import { EditExam } from './pages/EditExam';
 
 export function App() {
   return (
@@ -19,6 +21,22 @@ export function App() {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/login" element={<Login />} />
+              <Route
+                path="/manage"
+                element={
+                  <ProtectedRoute>
+                    <AdminManage />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/manage/edit/:id"
+                element={
+                  <ProtectedRoute>
+                    <EditExam />
+                  </ProtectedRoute>
+                }
+              />
               <Route
                 path="/create"
                 element={

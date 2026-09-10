@@ -341,5 +341,151 @@ export const examService = {
 
     const localResults = getLocalResults();
     return localResults.find((r) => r.id === id) || null;
+  },
+
+  /**
+   * Update an existing exam and its questions
+   */
+  async updateExam(
+    id: string,
+    title: string,
+    description: string,
+    timeLimitSeconds: number | null,
+    rawQuestions: RawQuestionInput[],
+    shuffleQuestions: boolean = false,
+    shuffleOptions: boolean = false
+  ): Promise<boolean> {
+    if (isSupabaseConfigured()) {
+      try {
+        // 1. Update exams row
+        const { error: examError } = await supabase
+          .from('exams')
+          .update({
+            title,
+            description: description || null,
+            time_limit: timeLimitSeconds,
+            shuffle_questions: shuffleQuestions,
+            shuffle_options: shuffleOptions
+          })
+          .eq('id', id);
+
+        if (!examError) {
+          // 2. Delete old questions and insert new ones
+          await supabase.from('questions').delete().eq('exam_id', id);
+
+          const questionsPayload = rawQuestions.map((q, idx) => ({
+            exam_id: id,
+            question: q.question,
+            option_a: q.options[0] || '',
+            option_b: q.options[1] || '',
+            option_c: q.options[2] || '',
+            option_d: q.options[3] || '',
+            correct_answer: q.answer,
+            explanation: q.explanation || null,
+            order_index: idx + 1
+          }));
+
+          const { error: questionsError } = await supabase
+            .from('questions')
+            .insert(questionsPayload);
+
+          if (!questionsError) {
+            return true;
+          } else {
+            console.error('Failed to update questions in Supabase:', questionsError);
+          }
+        } else {
+          console.error('Failed to update exam in Supabase:', examError);
+        }
+      } catch (err) {
+        console.warn('Supabase updateExam error, falling back to local storage:', err);
+      }
+    }
+
+    // Local fallback
+    const currentExams = getLocalExams();
+    const idx = currentExams.findIndex((e) => e.id === id);
+    if (idx !== -1) {
+      currentExams[idx] = {
+        ...currentExams[idx],
+        title,
+        description: description || null,
+        time_limit: timeLimitSeconds,
+        shuffle_questions: shuffleQuestions,
+        shuffle_options: shuffleOptions,
+        questions_count: rawQuestions.length
+      };
+      saveLocalExams(currentExams);
+    }
+
+    const newQuestions: Question[] = rawQuestions.map((q, qIdx) => ({
+      id: `q-${id}-${qIdx + 1}`,
+      exam_id: id,
+      question: q.question,
+      option_a: q.options[0] || '',
+      option_b: q.options[1] || '',
+      option_c: q.options[2] || '',
+      option_d: q.options[3] || '',
+      correct_answer: q.answer,
+      explanation: q.explanation || null,
+      order_index: qIdx + 1
+    }));
+    saveLocalQuestions(id, newQuestions);
+
+    return true;
+  },
+
+  /**
+   * Get all exam results (for history)
+   */
+  async getAllResults(): Promise<ExamResult[]> {
+    if (isSupabaseConfigured()) {
+      try {
+        const { data, error } = await supabase
+          .from('exam_results')
+          .select('*, exams(title)')
+          .order('created_at', { ascending: false });
+
+        if (!error && data) {
+          return data.map((item: any) => ({
+            id: item.id,
+            exam_id: item.exam_id,
+            score: item.score,
+            total: item.total,
+            percentage: item.percentage,
+            time_spent: item.time_spent,
+            answers: item.answers,
+            created_at: item.created_at,
+            exam_title: item.exams?.title || 'Bài thi JLPT'
+          }));
+        }
+      } catch (err) {
+        console.warn('Supabase getAllResults error:', err);
+      }
+    }
+
+    return getLocalResults();
+  },
+
+  /**
+   * Delete an exam result
+   */
+  async deleteResult(id: string): Promise<boolean> {
+    if (isSupabaseConfigured()) {
+      try {
+        const { error } = await supabase.from('exam_results').delete().eq('id', id);
+        if (!error) return true;
+      } catch (err) {
+        console.warn('Supabase deleteResult error:', err);
+      }
+    }
+
+    const currentResults = getLocalResults().filter((r) => r.id !== id);
+    try {
+      localStorage.setItem(LOCAL_STORAGE_RESULTS_KEY, JSON.stringify(currentResults));
+    } catch {
+      // ignore
+    }
+    return true;
   }
 };

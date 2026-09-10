@@ -473,9 +473,15 @@ export const ExamPage: React.FC = () => {
       {/* Quick Question Navigation Palette */}
       <div className="mt-6 sm:mt-10 p-4 sm:p-5 bg-white border border-gray-200 rounded-2xl shadow-xs">
         <div className="flex items-center justify-between mb-3">
-          <span className="text-[11px] sm:text-xs font-bold text-gray-500 uppercase tracking-wider">
-            Bảng câu hỏi
-          </span>
+          <div className="flex items-center gap-2">
+            <span className="text-[11px] sm:text-xs font-bold text-gray-500 uppercase tracking-wider">
+              Bảng câu hỏi
+            </span>
+            <div className="flex items-center gap-2 text-[10px] text-gray-500 hidden sm:flex">
+              <span className="inline-flex items-center gap-1"><span className="w-2.5 h-2.5 rounded-full bg-gray-900"></span> Đã làm</span>
+              <span className="inline-flex items-center gap-1"><span className="w-2.5 h-2.5 rounded-full bg-white border border-gray-300"></span> Chưa làm</span>
+            </div>
+          </div>
           <span className="text-xs text-gray-500">
             <strong className="text-gray-900">{answeredCount}</strong>/{total} đã làm
           </span>
@@ -485,11 +491,13 @@ export const ExamPage: React.FC = () => {
             const isAnswered = userAnswers[idx] !== undefined;
             const isCurrent = idx === currentIndex;
 
-            let badgeStyle = 'bg-gray-50 text-gray-600 border-gray-200 hover:bg-gray-100';
-            if (isCurrent) {
-              badgeStyle = 'bg-gray-900 text-white border-gray-900 ring-2 ring-gray-900 ring-offset-1 font-bold shadow-xs';
+            let badgeStyle = 'bg-white text-gray-500 border-gray-200 hover:border-gray-400 hover:bg-gray-50';
+            if (isCurrent && isAnswered) {
+              badgeStyle = 'bg-gray-900 text-white border-gray-900 ring-2 ring-gray-900 ring-offset-2 font-bold shadow-sm';
+            } else if (isCurrent && !isAnswered) {
+              badgeStyle = 'bg-white text-gray-900 border-2 border-gray-900 ring-2 ring-gray-900/20 font-bold';
             } else if (isAnswered) {
-              badgeStyle = 'bg-gray-100 text-gray-900 border-gray-300 font-semibold';
+              badgeStyle = 'bg-gray-900 text-white border-gray-900 font-bold shadow-xs';
             }
 
             return (
