@@ -1,0 +1,57 @@
+[
+  {
+    "question": "「食べます」のて形はどれですか？",
+    "options": [
+      "食べて",
+      "食べた",
+      "食べる",
+      "食べない"
+    ],
+    "answer": 0,
+    "explanation": "食べます là động từ nhóm 2 (一段動詞). Bỏ ます thêm て ta được 食べて."
+  },
+  {
+    "question": "日本の首都はどこですか？",
+    "options": [
+      "大阪",
+      "京都",
+      "東京",
+      "北海道"
+    ],
+    "answer": 2,
+    "explanation": "Thủ đô của Nhật Bản là Tokyo (東京)."
+  },
+  {
+    "question": "日本語で「book」は何と言いますか？",
+    "options": [
+      "本",
+      "車",
+      "水",
+      "山"
+    ],
+    "answer": 0,
+    "explanation": "「本」(ほん - hon) trong tiếng Nhật có nghĩa là sách (book)."
+  },
+  {
+    "question": "わたしはまいあさコーヒーを＿＿＿。",
+    "options": [
+      "のみます",
+      "たべます",
+      "みます",
+      "ききます"
+    ],
+    "answer": 0,
+    "explanation": "Đồ uống như cà phê (コーヒー) đi kèm động từ uống のみます."
+  },
+  {
+    "question": "きのう、ともだち＿＿えいがをみました。",
+    "options": [
+      "に",
+      "と",
+      "で",
+      "を"
+    ],
+    "answer": 1,
+    "explanation": "Trợ từ と dùng để chỉ cùng thực hiện hành động với ai đó: ともだちと (cùng với bạn)."
+  }
+]
