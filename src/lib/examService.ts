@@ -159,7 +159,7 @@ export const examService = {
   },
 
   /**
-   * Create a new lesson
+   * Create a lesson in all 3 categories simultaneously (Vocabulary, Kanji, Grammar)
    */
   async createLesson(
     category: ExamCategory,
@@ -167,44 +167,104 @@ export const examService = {
     description?: string,
     orderIndex?: number
   ): Promise<Lesson> {
-    const lessonId = crypto.randomUUID ? crypto.randomUUID() : `lesson-${Date.now()}`;
-    const newLesson: Lesson = {
-      id: lessonId,
-      category,
+    const created = await this.createLessonForAllCategories(title, description, orderIndex);
+    return created.find((l) => l.category === category) || created[0];
+  },
+
+  /**
+   * Create lesson across all 3 categories simultaneously
+   */
+  async createLessonForAllCategories(
+    title: string,
+    description?: string,
+    orderIndex?: number
+  ): Promise<Lesson[]> {
+    const categories: ExamCategory[] = ['vocabulary', 'kanji', 'grammar'];
+    const payloads = categories.map((cat) => ({
+      id: crypto.randomUUID ? crypto.randomUUID() : `lesson-${cat}-${Date.now()}-${Math.random().toString(36).substring(2, 6)}`,
+      category: cat,
       title: title.trim(),
       description: description?.trim() || null,
-      order_index: orderIndex ?? 0,
-      created_at: new Date().toISOString(),
-      exams: [],
-      exams_count: 0
-    };
+      order_index: orderIndex ?? 1
+    }));
 
     if (isSupabaseConfigured()) {
       try {
         const { data, error } = await supabase
           .from('lessons')
-          .insert({
-            id: lessonId,
-            category,
-            title: title.trim(),
-            description: description?.trim() || null,
-            order_index: orderIndex ?? 0
-          })
-          .select('*')
-          .single();
+          .insert(payloads)
+          .select('*');
 
         if (!error && data) {
-          return { ...data, exams: [], exams_count: 0 };
+          return data.map((d: any) => ({ ...d, exams: [], exams_count: 0 }));
+        } else if (error) {
+          console.warn('Supabase createLessonForAllCategories error, using local fallback:', error.message);
         }
       } catch (err) {
-        console.warn('Supabase createLesson error, using local fallback:', err);
+        console.warn('Supabase createLessonForAllCategories error:', err);
       }
     }
 
     const currentLessons = getLocalLessons();
-    currentLessons.push(newLesson);
+    const createdList: Lesson[] = [];
+    payloads.forEach((p) => {
+      const l: Lesson = {
+        ...p,
+        created_at: new Date().toISOString(),
+        exams: [],
+        exams_count: 0
+      };
+      currentLessons.push(l);
+      createdList.push(l);
+    });
     saveLocalLessons(currentLessons);
-    return newLesson;
+    return createdList;
+  },
+
+  /**
+   * Update a lesson
+   */
+  async updateLesson(
+    id: string,
+    updates: {
+      title?: string;
+      description?: string;
+      order_index?: number;
+      category?: ExamCategory;
+    }
+  ): Promise<boolean> {
+    if (isSupabaseConfigured()) {
+      try {
+        const payload: any = {};
+        if (updates.title !== undefined) payload.title = updates.title.trim();
+        if (updates.description !== undefined) payload.description = updates.description.trim() || null;
+        if (updates.order_index !== undefined) payload.order_index = updates.order_index;
+        if (updates.category !== undefined) payload.category = updates.category;
+
+        const { error } = await supabase
+          .from('lessons')
+          .update(payload)
+          .eq('id', id);
+
+        if (!error) return true;
+      } catch (err) {
+        console.warn('Supabase updateLesson error:', err);
+      }
+    }
+
+    const currentLessons = getLocalLessons();
+    const idx = currentLessons.findIndex((l) => l.id === id);
+    if (idx !== -1) {
+      currentLessons[idx] = {
+        ...currentLessons[idx],
+        ...(updates.title !== undefined ? { title: updates.title.trim() } : {}),
+        ...(updates.description !== undefined ? { description: updates.description.trim() || null } : {}),
+        ...(updates.order_index !== undefined ? { order_index: updates.order_index } : {}),
+        ...(updates.category !== undefined ? { category: updates.category } : {})
+      };
+      saveLocalLessons(currentLessons);
+    }
+    return true;
   },
 
   /**
@@ -213,14 +273,59 @@ export const examService = {
   async deleteLesson(id: string): Promise<boolean> {
     if (isSupabaseConfigured()) {
       try {
+        // Unlink exams belonging to this lesson
+        await supabase.from('exams').update({ lesson_id: null }).eq('lesson_id', id);
         const { error } = await supabase.from('lessons').delete().eq('id', id);
         if (!error) return true;
       } catch (err) {
         console.warn('Supabase deleteLesson error:', err);
       }
     }
+
     const current = getLocalLessons().filter((l) => l.id !== id);
     saveLocalLessons(current);
+
+    // Unlink in local exams
+    const localExams = getLocalExams();
+    let changed = false;
+    localExams.forEach((e) => {
+      if (e.lesson_id === id) {
+        e.lesson_id = null;
+        changed = true;
+      }
+    });
+    if (changed) saveLocalExams(localExams);
+
+    return true;
+  },
+
+  /**
+   * Delete multiple lessons by id (e.g. across categories)
+   */
+  async deleteLessons(ids: string[]): Promise<boolean> {
+    if (ids.length === 0) return true;
+    for (const id of ids) {
+      await this.deleteLesson(id);
+    }
+    return true;
+  },
+
+  /**
+   * Update all lessons with the same title across categories
+   */
+  async updateLessonAcrossCategories(
+    oldTitle: string,
+    updates: {
+      title?: string;
+      description?: string;
+      order_index?: number;
+    }
+  ): Promise<boolean> {
+    const all = await this.getLessons();
+    const matching = all.filter((l) => l.title.trim().toLowerCase() === oldTitle.trim().toLowerCase());
+    for (const lesson of matching) {
+      await this.updateLesson(lesson.id, updates);
+    }
     return true;
   },
 

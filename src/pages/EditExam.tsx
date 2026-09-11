@@ -221,13 +221,13 @@ export const EditExam: React.FC = () => {
 
     setIsCreatingLesson(true);
     try {
-      const created = await examService.createLesson(
-        selectedCategory,
+      const createdList = await examService.createLessonForAllCategories(
         newLessonTitle.trim(),
         newLessonDesc.trim()
       );
-      setAllLessons((prev) => [...prev, created]);
-      setSelectedLessonId(created.id);
+      setAllLessons((prev) => [...prev, ...createdList]);
+      const currentCatLesson = createdList.find((l) => l.category === selectedCategory) || createdList[0];
+      setSelectedLessonId(currentCatLesson.id);
       setNewLessonTitle('');
       setNewLessonDesc('');
       setShowNewLessonForm(false);
@@ -413,7 +413,12 @@ export const EditExam: React.FC = () => {
 
             {showNewLessonForm ? (
               <div className="p-3.5 bg-gray-50 border border-gray-200 rounded-xl space-y-3 mb-3">
-                <p className="text-xs font-bold text-gray-800">Tạo nhanh bài học mới:</p>
+                <div>
+                  <p className="text-xs font-bold text-gray-800">Tạo nhanh bài học mới:</p>
+                  <p className="text-[11px] text-gray-500 mt-0.5">
+                    ✨ Tự động tạo đồng bộ trên cả 3 chuyên mục (Từ vựng, Kanji, Ngữ pháp)
+                  </p>
+                </div>
                 <input
                   type="text"
                   value={newLessonTitle}
