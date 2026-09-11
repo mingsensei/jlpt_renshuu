@@ -1,5 +1,25 @@
+export type ExamCategory = 'vocabulary' | 'kanji' | 'grammar';
+
+export interface Lesson {
+  id: string;
+  category: ExamCategory;
+  title: string;
+  description: string | null;
+  order_index?: number;
+  created_at?: string;
+  exams?: Exam[];
+  exams_count?: number;
+}
+
+export const CATEGORY_TABS: { id: ExamCategory; label: string; subLabel: string; kanji: string }[] = [
+  { id: 'vocabulary', label: 'Từ vựng', subLabel: 'Goi', kanji: '語彙' },
+  { id: 'kanji', label: 'Kanji', subLabel: 'Kanji', kanji: '漢字' },
+  { id: 'grammar', label: 'Ngữ pháp', subLabel: 'Bunpou', kanji: '文法' },
+];
+
 export interface Exam {
   id: string;
+  lesson_id?: string | null;
   title: string;
   description: string | null;
   time_limit: number | null; // in seconds: null = unlimited, e.g. 1800 for 30 minutes
@@ -7,6 +27,7 @@ export interface Exam {
   shuffle_options?: boolean;
   created_at?: string;
   questions_count?: number;
+  lesson?: Lesson | null;
 }
 
 export interface Question {

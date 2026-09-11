@@ -7,9 +7,20 @@
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 CREATE EXTENSION IF NOT EXISTS "pgcrypto";
 
--- 2. Create 'exams' table
+-- 2. Create 'lessons' table (Vocabulary, Kanji, Grammar)
+CREATE TABLE IF NOT EXISTS public.lessons (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  category TEXT NOT NULL CHECK (category IN ('vocabulary', 'kanji', 'grammar')),
+  title TEXT NOT NULL,
+  description TEXT,
+  order_index INTEGER DEFAULT 0,
+  created_at TIMESTAMPTZ DEFAULT TIMEZONE('utc'::text, NOW()) NOT NULL
+);
+
+-- 3. Create 'exams' table
 CREATE TABLE IF NOT EXISTS public.exams (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  lesson_id UUID REFERENCES public.lessons(id) ON DELETE SET NULL,
   title TEXT NOT NULL,
   description TEXT,
   time_limit INTEGER DEFAULT NULL, -- null = unlimited, integer = time limit in seconds
@@ -46,15 +57,29 @@ CREATE TABLE IF NOT EXISTS public.exam_results (
 );
 
 -- 5. Indexes for performance
+CREATE INDEX IF NOT EXISTS idx_lessons_category ON public.lessons(category);
+CREATE INDEX IF NOT EXISTS idx_lessons_order_index ON public.lessons(order_index ASC);
+CREATE INDEX IF NOT EXISTS idx_exams_lesson_id ON public.exams(lesson_id);
 CREATE INDEX IF NOT EXISTS idx_questions_exam_id ON public.questions(exam_id);
 CREATE INDEX IF NOT EXISTS idx_exam_results_exam_id ON public.exam_results(exam_id);
 CREATE INDEX IF NOT EXISTS idx_exams_created_at ON public.exams(created_at DESC);
 
 -- 6. Configure Row Level Security (RLS)
--- Since Auth is not required yet, allow anonymous access to select, insert, update and delete
+ALTER TABLE public.lessons ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.exams ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.questions ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.exam_results ENABLE ROW LEVEL SECURITY;
+
+-- Lessons Policies
+DROP POLICY IF EXISTS "Lessons are viewable by everyone" ON public.lessons;
+DROP POLICY IF EXISTS "Lessons can be inserted by everyone" ON public.lessons;
+DROP POLICY IF EXISTS "Lessons can be updated by everyone" ON public.lessons;
+DROP POLICY IF EXISTS "Lessons can be deleted by everyone" ON public.lessons;
+
+CREATE POLICY "Lessons are viewable by everyone" ON public.lessons FOR SELECT USING (true);
+CREATE POLICY "Lessons can be inserted by everyone" ON public.lessons FOR INSERT WITH CHECK (true);
+CREATE POLICY "Lessons can be updated by everyone" ON public.lessons FOR UPDATE USING (true);
+CREATE POLICY "Lessons can be deleted by everyone" ON public.lessons FOR DELETE USING (true);
 
 -- Drop existing policies if any
 DROP POLICY IF EXISTS "Public exams are viewable by everyone" ON public.exams;

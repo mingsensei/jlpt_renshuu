@@ -1,4 +1,4 @@
-import type { Exam, Question, RawQuestionInput } from '../types/exam';
+import type { Exam, Question, RawQuestionInput, Lesson } from '../types/exam';
 
 export const SAMPLE_JSON_INPUT: RawQuestionInput[] = [
   {
@@ -58,9 +58,72 @@ export const SAMPLE_JSON_INPUT: RawQuestionInput[] = [
   }
 ];
 
+export const DEMO_LESSONS: Lesson[] = [
+  // Vocabulary
+  {
+    id: "lesson-vocab-1",
+    category: "vocabulary",
+    title: "Bài 1: Từ vựng Nhập môn & Chào hỏi",
+    description: "Từ vựng cơ bản về chào hỏi, giới thiệu bản thân, quốc tịch và nghề nghiệp.",
+    order_index: 1,
+    created_at: new Date().toISOString()
+  },
+  {
+    id: "lesson-vocab-2",
+    category: "vocabulary",
+    title: "Bài 2: Đồ vật & Đời sống hàng ngày",
+    description: "Từ vựng đồ dùng cá nhân, đồ vật trong phòng, vị trí và giá cả.",
+    order_index: 2,
+    created_at: new Date().toISOString()
+  },
+  {
+    id: "lesson-vocab-3",
+    category: "vocabulary",
+    title: "Bài 3: Địa điểm & Phương hướng",
+    description: "Địa điểm công cộng, phương tiện giao thông và cách hỏi đường.",
+    order_index: 3,
+    created_at: new Date().toISOString()
+  },
+  // Kanji
+  {
+    id: "lesson-kanji-1",
+    category: "kanji",
+    title: "Bài 1: Chữ số & Thời gian",
+    description: "Hán tự căn bản: 一, 二, 三, 四, 五, 六, 七, 八, 九, 十, 日, 月, 年, 時.",
+    order_index: 1,
+    created_at: new Date().toISOString()
+  },
+  {
+    id: "lesson-kanji-2",
+    category: "kanji",
+    title: "Bài 2: Con người & Tự nhiên",
+    description: "Hán tự chỉ người và thiên nhiên: 人, 男, 女, 子, 父, 母, 山, 川, 木.",
+    order_index: 2,
+    created_at: new Date().toISOString()
+  },
+  // Grammar
+  {
+    id: "lesson-grammar-1",
+    category: "grammar",
+    title: "Bài 1: Trợ từ căn bản & Câu khẳng định / phủ định",
+    description: "Trọng điểm cấu trúc N5: N1 は N2 です / ではありません, trợ từ の, も.",
+    order_index: 1,
+    created_at: new Date().toISOString()
+  },
+  {
+    id: "lesson-grammar-2",
+    category: "grammar",
+    title: "Bài 2: Trợ từ nơi chốn & hành động (で, に, へ, を)",
+    description: "Diễn đạt hành động tại địa điểm (で), di chuyển đến đâu (へ/に), và tân ngữ (を).",
+    order_index: 2,
+    created_at: new Date().toISOString()
+  }
+];
+
 export const DEMO_EXAMS: Exam[] = [
   {
     id: "demo-exam-1",
+    lesson_id: "lesson-grammar-1",
     title: "JLPT N5 Vocabulary & Grammar Starter",
     description: "Bộ đề trắc nghiệm N5 căn bản kiểm tra ngữ pháp thể て, trợ từ và từ vựng thông dụng.",
     time_limit: 900, // 15 mins
@@ -71,6 +134,7 @@ export const DEMO_EXAMS: Exam[] = [
   },
   {
     id: "demo-exam-2",
+    lesson_id: "lesson-kanji-1",
     title: "JLPT N5 Kanji Quick Test (Kanji Đọc & Viết)",
     description: "Luyện tập nhận diện Hán tự căn bản cấp độ N5 với chế độ không giới hạn thời gian.",
     time_limit: null, // unlimited
@@ -78,6 +142,17 @@ export const DEMO_EXAMS: Exam[] = [
     shuffle_options: true,
     created_at: new Date(Date.now() - 86400000).toISOString(),
     questions_count: 3
+  },
+  {
+    id: "demo-exam-3",
+    lesson_id: "lesson-vocab-1",
+    title: "Từ vựng Bài 1: Chào hỏi & Đại từ căn bản",
+    description: "Kiểm tra nhanh các câu chào hỏi thường ngày và đại từ nhân xưng tiếng Nhật.",
+    time_limit: 600, // 10 mins
+    shuffle_questions: true,
+    shuffle_options: false,
+    created_at: new Date(Date.now() - 43200000).toISOString(),
+    questions_count: 2
   }
 ];
 
@@ -180,6 +255,32 @@ export const DEMO_QUESTIONS: Record<string, Question[]> = {
       correct_answer: 0,
       explanation: "「車」 đọc là くるま (kuruma - xe hơi/ô tô).",
       order_index: 3
+    }
+  ],
+  "demo-exam-3": [
+    {
+      id: "q3-1",
+      exam_id: "demo-exam-3",
+      question: "Buổi sáng khi gặp nhau, người Nhật thường chào là gì?",
+      option_a: "おはようございます",
+      option_b: "こんにちは",
+      option_c: "こんばんは",
+      option_d: "さようなら",
+      correct_answer: 0,
+      explanation: "おはようございます (Ohayou gozaimasu) là lời chào buổi sáng lịch sự.",
+      order_index: 1
+    },
+    {
+      id: "q3-2",
+      exam_id: "demo-exam-3",
+      question: "Đại từ nhân xưng ngôi thứ nhất 「Tôi」 trong tiếng Nhật là gì?",
+      option_a: "わたし",
+      option_b: "あなた",
+      option_c: "あのひと",
+      option_d: "だれ",
+      correct_answer: 0,
+      explanation: "わたし (watashi) nghĩa là Tôi (ngôi thứ nhất).",
+      order_index: 2
     }
   ]
 };

@@ -13,10 +13,12 @@ import {
   Check,
   Save,
   Loader2,
-  AlertTriangle
+  AlertTriangle,
+  FolderPlus
 } from 'lucide-react';
 import { examService } from '../lib/examService';
-import type { RawQuestionInput } from '../types/exam';
+import type { RawQuestionInput, Lesson, ExamCategory } from '../types/exam';
+import { CATEGORY_TABS } from '../types/exam';
 
 export const EditExam: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -32,6 +34,15 @@ export const EditExam: React.FC = () => {
   const [timeLimitMinutes, setTimeLimitMinutes] = useState<number>(30);
   const [shuffleQuestions, setShuffleQuestions] = useState(false);
   const [shuffleOptions, setShuffleOptions] = useState(false);
+
+  // Category and Lesson states
+  const [allLessons, setAllLessons] = useState<Lesson[]>([]);
+  const [selectedCategory, setSelectedCategory] = useState<ExamCategory>('vocabulary');
+  const [selectedLessonId, setSelectedLessonId] = useState<string>('');
+  const [showNewLessonForm, setShowNewLessonForm] = useState(false);
+  const [newLessonTitle, setNewLessonTitle] = useState('');
+  const [newLessonDesc, setNewLessonDesc] = useState('');
+  const [isCreatingLesson, setIsCreatingLesson] = useState(false);
 
   const [validationError, setValidationError] = useState<string | null>(null);
   const [parsedQuestions, setParsedQuestions] = useState<RawQuestionInput[] | null>(null);
@@ -134,15 +145,33 @@ export const EditExam: React.FC = () => {
     const loadExamData = async () => {
       setIsLoading(true);
       try {
-        const data = await examService.getExamById(id);
+        const [data, lessonsData] = await Promise.all([
+          examService.getExamById(id),
+          examService.getLessons()
+        ]);
+
         if (!data || !data.exam) {
           setLoadError('Bài thi không tồn tại hoặc đã bị xóa.');
           return;
         }
 
+        setAllLessons(lessonsData);
         const { exam, questions } = data;
         setTitle(exam.title);
         setDescription(exam.description || '');
+
+        if (exam.lesson_id) {
+          setSelectedLessonId(exam.lesson_id);
+          const found = lessonsData.find((l) => l.id === exam.lesson_id);
+          if (found) {
+            setSelectedCategory(found.category);
+          }
+        } else {
+          const vocabLessons = lessonsData.filter((l) => l.category === 'vocabulary');
+          if (vocabLessons.length > 0) {
+            setSelectedLessonId(vocabLessons[0].id);
+          }
+        }
 
         if (exam.time_limit && exam.time_limit > 0) {
           setTimeMode('limited');
@@ -175,6 +204,39 @@ export const EditExam: React.FC = () => {
 
     loadExamData();
   }, [id]);
+
+  const handleCategoryChange = (cat: ExamCategory) => {
+    setSelectedCategory(cat);
+    const inCategory = allLessons.filter((l) => l.category === cat);
+    if (inCategory.length > 0) {
+      setSelectedLessonId(inCategory[0].id);
+    } else {
+      setSelectedLessonId('');
+    }
+  };
+
+  const handleCreateNewLesson = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!newLessonTitle.trim()) return;
+
+    setIsCreatingLesson(true);
+    try {
+      const created = await examService.createLesson(
+        selectedCategory,
+        newLessonTitle.trim(),
+        newLessonDesc.trim()
+      );
+      setAllLessons((prev) => [...prev, created]);
+      setSelectedLessonId(created.id);
+      setNewLessonTitle('');
+      setNewLessonDesc('');
+      setShowNewLessonForm(false);
+    } catch (err: any) {
+      alert('Không thể tạo bài học mới: ' + (err.message || err));
+    } finally {
+      setIsCreatingLesson(false);
+    }
+  };
 
   const handleCopyCurrent = async () => {
     try {
@@ -240,7 +302,8 @@ export const EditExam: React.FC = () => {
         timeLimitSeconds,
         result.questions,
         shuffleQuestions,
-        shuffleOptions
+        shuffleOptions,
+        selectedLessonId || null
       );
 
       if (success) {
@@ -304,11 +367,115 @@ export const EditExam: React.FC = () => {
           Chỉnh sửa nội dung bài thi
         </h1>
         <p className="text-gray-500 text-xs sm:text-sm mt-1">
-          Cập nhật tiêu đề, thời gian làm bài và danh sách câu hỏi qua định dạng JSON.
+          Cập nhật nhóm chuyên đề, bài học, tiêu đề, thời gian làm bài và danh sách câu hỏi.
         </p>
       </div>
 
       <form onSubmit={handleSubmit} className="space-y-6 sm:space-y-8">
+        {/* Category & Lesson Selector */}
+        <div className="bg-white border border-gray-200 rounded-2xl p-4 sm:p-6 shadow-xs space-y-4">
+          <div>
+            <label className="block text-xs sm:text-sm font-bold text-gray-900 mb-2">
+              Nhóm chuyên đề <span className="text-rose-500">*</span>
+            </label>
+            <div className="grid grid-cols-3 gap-2">
+              {CATEGORY_TABS.map((cat) => (
+                <button
+                  key={cat.id}
+                  type="button"
+                  onClick={() => handleCategoryChange(cat.id)}
+                  className={`py-2 px-3 rounded-xl border text-xs sm:text-sm font-semibold transition-all cursor-pointer text-center ${
+                    selectedCategory === cat.id
+                      ? 'bg-gray-900 text-white border-gray-900 shadow-xs'
+                      : 'bg-gray-50 text-gray-700 border-gray-200 hover:bg-gray-100'
+                  }`}
+                >
+                  {cat.label} ({cat.kanji})
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <div>
+            <div className="flex items-center justify-between mb-2">
+              <label className="block text-xs sm:text-sm font-bold text-gray-900">
+                Thuộc bài học <span className="text-rose-500">*</span>
+              </label>
+              <button
+                type="button"
+                onClick={() => setShowNewLessonForm(!showNewLessonForm)}
+                className="text-xs font-semibold text-gray-900 hover:underline inline-flex items-center gap-1 cursor-pointer"
+              >
+                <FolderPlus className="w-3.5 h-3.5" />
+                <span>{showNewLessonForm ? 'Đóng tạo bài' : '+ Tạo bài học mới'}</span>
+              </button>
+            </div>
+
+            {showNewLessonForm ? (
+              <div className="p-3.5 bg-gray-50 border border-gray-200 rounded-xl space-y-3 mb-3">
+                <p className="text-xs font-bold text-gray-800">Tạo nhanh bài học mới:</p>
+                <input
+                  type="text"
+                  value={newLessonTitle}
+                  onChange={(e) => setNewLessonTitle(e.target.value)}
+                  placeholder="Tên bài học (ví dụ: Bài 5: Thời gian & Lịch trình)"
+                  className="w-full px-3 py-2 bg-white border border-gray-300 rounded-lg text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-gray-900"
+                />
+                <input
+                  type="text"
+                  value={newLessonDesc}
+                  onChange={(e) => setNewLessonDesc(e.target.value)}
+                  placeholder="Mô tả tóm tắt (không bắt buộc)"
+                  className="w-full px-3 py-2 bg-white border border-gray-300 rounded-lg text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-gray-900"
+                />
+                <div className="flex justify-end gap-2">
+                  <button
+                    type="button"
+                    onClick={() => setShowNewLessonForm(false)}
+                    className="px-3 py-1.5 text-xs text-gray-600 hover:bg-gray-200 rounded-lg cursor-pointer"
+                  >
+                    Hủy
+                  </button>
+                  <button
+                    type="button"
+                    disabled={isCreatingLesson || !newLessonTitle.trim()}
+                    onClick={handleCreateNewLesson}
+                    className="px-3.5 py-1.5 text-xs font-semibold bg-gray-900 text-white rounded-lg hover:bg-black disabled:opacity-50 cursor-pointer"
+                  >
+                    {isCreatingLesson ? 'Đang tạo...' : 'Lưu bài học'}
+                  </button>
+                </div>
+              </div>
+            ) : allLessons.filter((l) => l.category === selectedCategory).length > 0 ? (
+              <select
+                value={selectedLessonId}
+                onChange={(e) => setSelectedLessonId(e.target.value)}
+                required
+                className="w-full px-3.5 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-gray-900 text-xs sm:text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-gray-900 cursor-pointer"
+              >
+                {allLessons
+                  .filter((l) => l.category === selectedCategory)
+                  .map((l) => (
+                    <option key={l.id} value={l.id}>
+                      {l.title}
+                    </option>
+                  ))}
+              </select>
+            ) : (
+              <div className="p-3 bg-amber-50 border border-amber-200 rounded-xl text-xs text-amber-800 flex items-center justify-between">
+                <span>Chưa có bài học nào trong nhóm này. Hãy tạo bài học đầu tiên.</span>
+                <button
+                  type="button"
+                  onClick={() => setShowNewLessonForm(true)}
+                  className="font-bold underline ml-2"
+                >
+                  Tạo bài học
+                </button>
+              </div>
+            )}
+          </div>
+        </div>
+
         {/* 1. Exam Name & Description */}
         <div className="bg-white border border-gray-200 rounded-2xl p-4 sm:p-6 shadow-xs">
           <label className="block text-xs sm:text-sm font-bold text-gray-900 mb-2">
