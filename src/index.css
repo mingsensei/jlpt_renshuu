@@ -38,3 +38,31 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: #9ca3af;
 }
+
+/* Japanese typography styles */
+.font-japanese-mincho {
+  font-family: "Hiragino Mincho ProN", "Yu Mincho", "YuMincho", "MS PMincho", "Noto Serif JP", Georgia, serif;
+}
+
+.font-japanese-gothic {
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo", "Noto Sans JP", sans-serif;
+}
+
+/* Ruby Furigana styling */
+ruby {
+  ruby-position: over;
+  ruby-align: center;
+}
+
+rt {
+  font-size: 0.62em;
+  line-height: 1;
+  user-select: none;
+  color: #4338ca; /* indigo-700 */
+  font-weight: 600;
+  padding-bottom: 2px;
+}
+
+.hide-furigana rt {
+  display: none !important;
+}

@@ -16,12 +16,11 @@ import {
   AlertTriangle,
   FolderPlus,
   BookMarked,
-  Eye,
-  EyeOff,
   Edit3,
   CheckSquare
 } from 'lucide-react';
 import { examService } from '../lib/examService';
+import { JapanesePassageReader } from '../components/JapanesePassageReader';
 import type { RawQuestionInput, Lesson, ExamCategory, JLPTLevel } from '../types/exam';
 import { CATEGORY_TABS, JLPT_LEVELS } from '../types/exam';
 
@@ -44,7 +43,6 @@ export const EditExam: React.FC = () => {
   const [passage, setPassage] = useState('');
   const [passageTranslation, setPassageTranslation] = useState('');
   const [level, setLevel] = useState<JLPTLevel>('N3');
-  const [showTranslationPreview, setShowTranslationPreview] = useState(false);
 
   // Category and Lesson states
   const [allLessons, setAllLessons] = useState<Lesson[]>([]);
@@ -671,8 +669,12 @@ export const EditExam: React.FC = () => {
                 required={selectedCategory === 'reading'}
                 className="w-full p-3.5 bg-gray-50 border border-gray-200 rounded-xl text-xs sm:text-sm text-gray-900 placeholder-gray-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all leading-relaxed font-sans"
               />
-              <p className="text-[11px] text-gray-500 mt-1">
-                💡 <strong>Mẹo:</strong> Đánh dấu các vị trí cần điền như <code className="bg-gray-100 px-1 py-0.5 rounded font-mono text-gray-800">( 1 )</code>, <code className="bg-gray-100 px-1 py-0.5 rounded font-mono text-gray-800">( 2 )</code> trong văn bản.
+              <p className="text-[11px] text-gray-600 mt-2 space-y-1 bg-indigo-50/60 p-2.5 rounded-xl border border-indigo-100">
+                <span className="block font-semibold text-indigo-900">💡 Hỗ trợ định dạng tiếng Nhật thông minh:</span>
+                <span className="block">• <strong>Chỗ trống câu hỏi:</strong> Đánh số <code className="bg-white px-1.5 py-0.5 rounded font-mono text-indigo-800 border border-indigo-200">( 1 )</code>, <code className="bg-white px-1.5 py-0.5 rounded font-mono text-indigo-800 border border-indigo-200">( 2 )</code> hoặc <code className="bg-white px-1.5 py-0.5 rounded font-mono text-indigo-800 border border-indigo-200">（ 1 ）</code> để tự động tạo huy hiệu tương tác.</span>
+                <span className="block">• <strong>Phiên âm Furigana:</strong> Viết dạng <code className="bg-white px-1.5 py-0.5 rounded font-mono text-indigo-800 border border-indigo-200">漢字[かんじ]</code> (ví dụ: <code className="bg-white px-1.5 py-0.5 rounded font-mono text-indigo-800 border border-indigo-200">読書[どくしょ]</code>) để hỗ trợ bật/tắt furigana.</span>
+                <span className="block">• <strong>Gạch chân trọng tâm:</strong> Sử dụng thẻ <code className="bg-white px-1.5 py-0.5 rounded font-mono text-indigo-800 border border-indigo-200">&lt;u&gt;văn bản&lt;/u&gt;</code> cho các câu hỏi hỏi về phần gạch chân.</span>
+                <span className="block">• <strong>Giọng đọc phát âm:</strong> Tự động tích hợp Text-to-Speech (TTS) đọc bài đọc với giọng chuẩn Nhật Bản.</span>
               </p>
             </div>
 
@@ -812,101 +814,75 @@ export const EditExam: React.FC = () => {
 
               {/* Reading Preview Box */}
               {selectedCategory === 'reading' && passage.trim() && (
-                <div className="p-4 bg-gray-50 border border-gray-200 rounded-xl space-y-3 text-xs sm:text-sm">
-                  <div className="flex items-center justify-between">
-                    <span className="font-bold text-gray-800 flex items-center gap-1.5">
-                      <BookMarked className="w-4 h-4 text-indigo-600" />
-                      <span>Xem trước bài đọc ({level})</span>
-                    </span>
-                    {passageTranslation.trim() && (
-                      <button
-                        type="button"
-                        onClick={() => setShowTranslationPreview(!showTranslationPreview)}
-                        className="inline-flex items-center gap-1 text-xs text-indigo-600 hover:text-indigo-800 font-semibold cursor-pointer"
-                      >
-                        {showTranslationPreview ? (
-                          <>
-                            <EyeOff className="w-3.5 h-3.5" />
-                            <span>Ẩn bản dịch</span>
-                          </>
-                        ) : (
-                          <>
-                            <Eye className="w-3.5 h-3.5" />
-                            <span>Xem bản dịch TV</span>
-                          </>
-                        )}
-                      </button>
-                    )}
+                <div className="space-y-3">
+                  <div className="flex items-center gap-1.5 text-xs font-bold text-gray-800">
+                    <BookMarked className="w-4 h-4 text-indigo-600" />
+                    <span>Xem trước giao diện bài đọc tiếng Nhật:</span>
                   </div>
-
-                  <div className="p-3 bg-white border border-gray-200 rounded-lg text-gray-800 leading-relaxed font-sans max-h-48 overflow-y-auto whitespace-pre-wrap">
-                    {passage}
-                  </div>
-
-                  {showTranslationPreview && passageTranslation.trim() && (
-                    <div className="p-3 bg-indigo-50/50 border border-indigo-100 rounded-lg text-indigo-900 leading-relaxed max-h-48 overflow-y-auto whitespace-pre-wrap">
-                      <p className="text-[11px] font-bold text-indigo-700 uppercase tracking-wider mb-1">
-                        Bản dịch tiếng Việt:
-                      </p>
-                      {passageTranslation}
-                    </div>
-                  )}
-
-                  <div className="pt-2 border-t border-gray-200">
-                    <p className="text-xs font-bold text-gray-700 mb-2">
-                      Danh sách câu hỏi ({parsedQuestions.length} câu):
-                    </p>
-                    <div className="space-y-2 max-h-56 overflow-y-auto pr-1">
-                      {parsedQuestions.map((q, idx) => {
-                        const isFillBlank = (q.question_type || q.type) === 'fill_blank';
-                        return (
-                          <div key={idx} className="p-2.5 bg-white border border-gray-200 rounded-lg text-xs space-y-1">
-                            <div className="flex items-center justify-between gap-2">
-                              <span className="font-bold text-gray-900">
-                                Câu {idx + 1}: {q.question}
-                              </span>
-                              <span className={`inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[10px] font-bold flex-shrink-0 ${
-                                isFillBlank
-                                  ? 'bg-amber-100 text-amber-800'
-                                  : 'bg-blue-100 text-blue-800'
-                              }`}>
-                                {isFillBlank ? (
-                                  <>
-                                    <Edit3 className="w-2.5 h-2.5" />
-                                    Điền chỗ trống
-                                  </>
-                                ) : (
-                                  <>
-                                    <CheckSquare className="w-2.5 h-2.5" />
-                                    Chọn đáp án
-                                  </>
-                                )}
-                              </span>
-                            </div>
-                            <div className="grid grid-cols-2 gap-1 text-[11px] text-gray-600">
-                              {q.options.map((opt, optIdx) => (
-                                <div
-                                  key={optIdx}
-                                  className={`px-1.5 py-0.5 rounded ${
-                                    optIdx === q.answer ? 'bg-emerald-50 text-emerald-800 font-bold' : ''
-                                  }`}
-                                >
-                                  {['A', 'B', 'C', 'D'][optIdx]}. {opt}
-                                </div>
-                              ))}
-                            </div>
-                            {q.explanation && (
-                              <p className="text-[11px] text-gray-500 italic pt-1 border-t border-gray-50">
-                                💡 Giải thích: {q.explanation}
-                              </p>
-                            )}
-                          </div>
-                        );
-                      })}
-                    </div>
-                  </div>
+                  <JapanesePassageReader
+                    passage={passage}
+                    translation={passageTranslation}
+                    level={level}
+                    isReviewMode={true}
+                    defaultShowTranslation={false}
+                  />
                 </div>
               )}
+
+              {/* Questions Preview Box */}
+              <div className="p-4 bg-gray-50 border border-gray-200 rounded-xl space-y-3 text-xs sm:text-sm">
+                <p className="text-xs font-bold text-gray-700">
+                  Danh sách câu hỏi ({parsedQuestions.length} câu):
+                </p>
+                <div className="space-y-2 max-h-56 overflow-y-auto pr-1">
+                  {parsedQuestions.map((q, idx) => {
+                    const isFillBlank = (q.question_type || q.type) === 'fill_blank';
+                    return (
+                      <div key={idx} className="p-2.5 bg-white border border-gray-200 rounded-lg text-xs space-y-1">
+                        <div className="flex items-center justify-between gap-2">
+                          <span className="font-bold text-gray-900">
+                            Câu {idx + 1}: {q.question}
+                          </span>
+                          <span className={`inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[10px] font-bold flex-shrink-0 ${
+                            isFillBlank
+                              ? 'bg-amber-100 text-amber-800'
+                              : 'bg-blue-100 text-blue-800'
+                          }`}>
+                            {isFillBlank ? (
+                              <>
+                                <Edit3 className="w-2.5 h-2.5" />
+                                Điền chỗ trống
+                              </>
+                            ) : (
+                              <>
+                                <CheckSquare className="w-2.5 h-2.5" />
+                                Chọn đáp án
+                              </>
+                            )}
+                          </span>
+                        </div>
+                        <div className="grid grid-cols-2 gap-1 text-[11px] text-gray-600">
+                          {q.options.map((opt, optIdx) => (
+                            <div
+                              key={optIdx}
+                              className={`px-1.5 py-0.5 rounded ${
+                                optIdx === q.answer ? 'bg-emerald-50 text-emerald-800 font-bold' : ''
+                              }`}
+                            >
+                              {['A', 'B', 'C', 'D'][optIdx]}. {opt}
+                            </div>
+                          ))}
+                        </div>
+                        {q.explanation && (
+                          <p className="text-[11px] text-gray-500 italic pt-1 border-t border-gray-50">
+                            💡 Giải thích: {q.explanation}
+                          </p>
+                        )}
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
             </div>
           )}
         </div>

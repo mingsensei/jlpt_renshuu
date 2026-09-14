@@ -10,14 +10,11 @@ import {
   AlertTriangle,
   CheckCircle2,
   Zap,
-  BookMarked,
-  Eye,
-  EyeOff,
-  ChevronDown,
-  ChevronUp
+  BookMarked
 } from 'lucide-react';
 import { QuestionCard } from '../components/QuestionCard';
 import { Timer } from '../components/Timer';
+import { JapanesePassageReader } from '../components/JapanesePassageReader';
 import { examService } from '../lib/examService';
 import type { Exam, Question, UserAnswerReview } from '../types/exam';
 
@@ -42,11 +39,6 @@ export const ExamPage: React.FC = () => {
   const [userAnswers, setUserAnswers] = useState<Record<number, number>>({}); // index -> selected option index
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [startTime, setStartTime] = useState<number>(0);
-
-  // Reading-specific states
-  const [showTranslation, setShowTranslation] = useState(false);
-  const [isPassageExpandedMobile, setIsPassageExpandedMobile] = useState(true);
-  const [fontSize, setFontSize] = useState<'normal' | 'large'>('normal');
 
   // Shuffled options / questions configuration
   const [shuffleQuestions, setShuffleQuestions] = useState(false);
@@ -408,114 +400,19 @@ export const ExamPage: React.FC = () => {
     if (!exam.passage) return null;
 
     return (
-      <div className={`bg-white border border-gray-200 rounded-2xl shadow-xs overflow-hidden ${
-        isMobile ? 'mb-4' : 'sticky top-4'
-      }`}>
-        {/* Header */}
-        <div className="flex items-center justify-between p-3.5 sm:p-4 bg-gray-50/90 border-b border-gray-200 gap-2">
-          <div className="flex items-center gap-2 min-w-0">
-            <div className="w-7 h-7 rounded-lg bg-indigo-100 text-indigo-700 flex items-center justify-center flex-shrink-0">
-              <BookMarked className="w-4 h-4" />
-            </div>
-            <div className="min-w-0">
-              <div className="flex items-center gap-1.5 flex-wrap">
-                <span className="text-xs sm:text-sm font-bold text-gray-900">
-                  Đoạn văn đọc hiểu
-                </span>
-                {exam.level && (
-                  <span className="text-[10px] font-bold bg-indigo-600 text-white px-1.5 py-0.2 rounded">
-                    {exam.level}
-                  </span>
-                )}
-              </div>
-              <p className="text-[10px] text-gray-500 truncate hidden sm:block">
-                Đọc bài văn để điền từ và trả lời các câu hỏi
-              </p>
-            </div>
-          </div>
-
-          {/* Action buttons: Font size & Translation */}
-          <div className="flex items-center gap-1.5 flex-shrink-0">
-            <div className="inline-flex rounded-lg border border-gray-200 bg-white p-0.5 text-[11px]">
-              <button
-                type="button"
-                onClick={() => setFontSize('normal')}
-                className={`px-1.5 py-0.5 rounded font-semibold cursor-pointer ${
-                  fontSize === 'normal' ? 'bg-gray-900 text-white' : 'text-gray-600 hover:text-gray-900'
-                }`}
-                title="Cỡ chữ tiêu chuẩn"
-              >
-                A
-              </button>
-              <button
-                type="button"
-                onClick={() => setFontSize('large')}
-                className={`px-1.5 py-0.5 rounded font-semibold cursor-pointer ${
-                  fontSize === 'large' ? 'bg-gray-900 text-white' : 'text-gray-600 hover:text-gray-900'
-                }`}
-                title="Cỡ chữ lớn"
-              >
-                A+
-              </button>
-            </div>
-
-            {exam.passage_translation && (
-              <button
-                type="button"
-                onClick={() => setShowTranslation(!showTranslation)}
-                className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-semibold transition-colors cursor-pointer ${
-                  showTranslation
-                    ? 'bg-indigo-600 text-white shadow-xs'
-                    : 'bg-white border border-gray-200 text-indigo-700 hover:bg-indigo-50'
-                }`}
-                title="Xem / Ẩn bản dịch tiếng Việt"
-              >
-                {showTranslation ? <EyeOff className="w-3.5 h-3.5" /> : <Eye className="w-3.5 h-3.5" />}
-                <span className="hidden sm:inline">{showTranslation ? 'Ẩn dịch' : 'Dịch TV'}</span>
-              </button>
-            )}
-
-            {isMobile && (
-              <button
-                type="button"
-                onClick={() => setIsPassageExpandedMobile(!isPassageExpandedMobile)}
-                className="p-1 rounded-lg text-gray-500 hover:text-gray-900 hover:bg-gray-100 cursor-pointer"
-              >
-                {isPassageExpandedMobile ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
-              </button>
-            )}
-          </div>
-        </div>
-
-        {/* Content */}
-        {(!isMobile || isPassageExpandedMobile) && (
-          <div className="p-4 sm:p-5 space-y-4 max-h-[55vh] lg:max-h-[calc(100vh-210px)] overflow-y-auto">
-            <div
-              className={`font-sans text-gray-800 leading-relaxed sm:leading-loose whitespace-pre-wrap text-justify ${
-                fontSize === 'large' ? 'text-base sm:text-lg' : 'text-xs sm:text-sm'
-              }`}
-            >
-              {exam.passage}
-            </div>
-
-            {/* Vietnamese Translation (Toggleable) */}
-            {showTranslation && exam.passage_translation && (
-              <div className="pt-3 border-t border-indigo-100 bg-indigo-50/60 -mx-4 sm:-mx-5 -mb-4 sm:-mb-5 p-4 sm:p-5 rounded-b-2xl">
-                <div className="flex items-center gap-1.5 text-indigo-900 font-bold text-xs uppercase tracking-wider mb-2">
-                  <BookMarked className="w-3.5 h-3.5 text-indigo-600" />
-                  <span>Bản dịch tiếng Việt:</span>
-                </div>
-                <div
-                  className={`text-indigo-950 leading-relaxed whitespace-pre-wrap ${
-                    fontSize === 'large' ? 'text-sm sm:text-base' : 'text-xs sm:text-sm'
-                  }`}
-                >
-                  {exam.passage_translation}
-                </div>
-              </div>
-            )}
-          </div>
-        )}
+      <div className={isMobile ? 'mb-4' : 'sticky top-4'}>
+        <JapanesePassageReader
+          passage={exam.passage}
+          translation={exam.passage_translation}
+          level={exam.level}
+          currentQuestionIndex={currentIndex}
+          onSelectQuestion={(targetIdx) => {
+            if (targetIdx >= 0 && targetIdx < sessionQuestions.length) {
+              setCurrentIndex(targetIdx);
+            }
+          }}
+          isMobile={isMobile}
+        />
       </div>
     );
   };

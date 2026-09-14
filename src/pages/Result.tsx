@@ -7,13 +7,11 @@ import {
   CheckCircle2,
   XCircle,
   Clock,
-  ArrowLeft,
-  BookMarked,
-  Eye,
-  EyeOff
+  ArrowLeft
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { QuestionCard } from '../components/QuestionCard';
+import { JapanesePassageReader } from '../components/JapanesePassageReader';
 import { examService } from '../lib/examService';
 import type { ExamResult } from '../types/exam';
 
@@ -27,7 +25,6 @@ export const Result: React.FC = () => {
   const [result, setResult] = useState<ExamResult | null>(stateResult || null);
   const [isLoading, setIsLoading] = useState(!stateResult);
   const [activeFilter, setActiveFilter] = useState<'all' | 'wrong' | 'correct'>('all');
-  const [showPassageTranslation, setShowPassageTranslation] = useState(false);
 
   useEffect(() => {
     if (result) {
@@ -203,67 +200,14 @@ export const Result: React.FC = () => {
 
       {/* Reading Passage Review Box */}
       {result.passage && (
-        <div className="bg-white border border-gray-200 rounded-3xl p-5 sm:p-7 shadow-xs mb-8 space-y-4">
-          <div className="flex items-center justify-between pb-3 border-b border-gray-100 flex-wrap gap-2">
-            <div className="flex items-center gap-2">
-              <div className="w-8 h-8 rounded-xl bg-indigo-50 text-indigo-700 flex items-center justify-center">
-                <BookMarked className="w-4 h-4" />
-              </div>
-              <div>
-                <div className="flex items-center gap-1.5">
-                  <h3 className="text-base font-bold text-gray-900">
-                    Đoạn văn đọc hiểu
-                  </h3>
-                  {result.level && (
-                    <span className="text-[10px] font-bold bg-indigo-600 text-white px-1.5 py-0.5 rounded">
-                      {result.level}
-                    </span>
-                  )}
-                </div>
-                <p className="text-xs text-gray-500">
-                  Đối chiếu bài đọc với các câu trả lời và lời giải thích bên dưới
-                </p>
-              </div>
-            </div>
-
-            {result.passage_translation && (
-              <button
-                type="button"
-                onClick={() => setShowPassageTranslation(!showPassageTranslation)}
-                className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold transition-all cursor-pointer ${
-                  showPassageTranslation
-                    ? 'bg-indigo-600 text-white shadow-xs'
-                    : 'bg-indigo-50 text-indigo-700 hover:bg-indigo-100'
-                }`}
-              >
-                {showPassageTranslation ? (
-                  <>
-                    <EyeOff className="w-3.5 h-3.5" />
-                    <span>Ẩn bản dịch</span>
-                  </>
-                ) : (
-                  <>
-                    <Eye className="w-3.5 h-3.5" />
-                    <span>Xem bản dịch tiếng Việt</span>
-                  </>
-                )}
-              </button>
-            )}
-          </div>
-
-          <div className="p-4 bg-gray-50/70 rounded-2xl text-xs sm:text-sm text-gray-800 leading-relaxed sm:leading-loose whitespace-pre-wrap font-sans text-justify max-h-72 overflow-y-auto">
-            {result.passage}
-          </div>
-
-          {showPassageTranslation && result.passage_translation && (
-            <div className="p-4 bg-indigo-50/60 border border-indigo-100 rounded-2xl text-xs sm:text-sm text-indigo-950 leading-relaxed whitespace-pre-wrap">
-              <p className="text-xs font-bold text-indigo-700 uppercase tracking-wider mb-1.5 flex items-center gap-1">
-                <BookMarked className="w-3.5 h-3.5 text-indigo-600" />
-                <span>Bản dịch tiếng Việt tham khảo:</span>
-              </p>
-              {result.passage_translation}
-            </div>
-          )}
+        <div className="mb-8">
+          <JapanesePassageReader
+            passage={result.passage}
+            translation={result.passage_translation}
+            level={result.level}
+            isReviewMode={true}
+            defaultShowTranslation={false}
+          />
         </div>
       )}
 
