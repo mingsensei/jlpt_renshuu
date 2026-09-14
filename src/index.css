@@ -58,6 +58,9 @@ rt {
   font-size: 0.62em;
   line-height: 1;
   user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
   color: #4338ca; /* indigo-700 */
   font-weight: 600;
   padding-bottom: 2px;

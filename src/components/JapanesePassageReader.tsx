@@ -56,6 +56,7 @@ export const JapanesePassageReader: React.FC<JapanesePassageReaderProps> = ({
   const [popupPosition, setPopupPosition] = useState<{
     x: number;
     y: number;
+    width: number;
     arrowOffset: number;
     placeBelow: boolean;
   } | null>(null);
@@ -104,18 +105,32 @@ export const JapanesePassageReader: React.FC<JapanesePassageReaderProps> = ({
     };
   }, []);
 
+  // Helper to cleanly extract text from selection Range without <rt> Furigana tags
+  const getCleanTextFromRange = (range: Range): string => {
+    try {
+      const clone = range.cloneContents();
+      // Remove all <rt> elements completely so Furigana text is never concatenated into sentences!
+      clone.querySelectorAll('rt').forEach((el) => el.remove());
+      let str = clone.textContent || '';
+      // Remove furigana bracket notation if present: 漢字[かんじ] -> 漢字
+      str = str.replace(/([一-龯々仝〆〇]+)\[(.*?)\]/g, '$1');
+      str = str.replace(/\[([一-龯々仝〆〇]+)\|.*?\]/g, '$1');
+      // Normalize whitespace and newlines
+      str = str.replace(/\s+/g, ' ').trim();
+      return str;
+    } catch {
+      return (window.getSelection()?.toString() || '')
+        .replace(/([一-龯々仝〆〇]+)\[(.*?)\]/g, '$1')
+        .replace(/\[([一-龯々仝〆〇]+)\|.*?\]/g, '$1')
+        .replace(/\s+/g, ' ')
+        .trim();
+    }
+  };
+
   // Handle Text Selection within passage (Mouse or Touch)
   const handleSelection = useCallback(() => {
     const selection = window.getSelection();
     if (!selection || selection.isCollapsed) {
-      setPopupPosition(null);
-      setLookupData(null);
-      setSelectedText('');
-      return;
-    }
-
-    const text = selection.toString().trim();
-    if (!text || text.length > 250) {
       setPopupPosition(null);
       setLookupData(null);
       setSelectedText('');
@@ -133,11 +148,20 @@ export const JapanesePassageReader: React.FC<JapanesePassageReaderProps> = ({
     }
 
     const range = selection.getRangeAt(0);
+    const cleanText = getCleanTextFromRange(range);
+
+    if (!cleanText || cleanText.length > 600) {
+      setPopupPosition(null);
+      setLookupData(null);
+      setSelectedText('');
+      return;
+    }
+
     const rect = range.getBoundingClientRect();
     const containerRect = containerRef.current.getBoundingClientRect();
 
-    // Popup card dimensions & center calculation
-    const popupWidth = Math.min(340, containerRect.width - 24);
+    // Popup card dimensions & center calculation (wider 380px for comfortable sentence reading)
+    const popupWidth = Math.min(380, containerRect.width - 24);
     const centerSelectionX = rect.left - containerRect.left + rect.width / 2;
 
     // Clamp horizontal position so popup stays neatly inside container bounds
@@ -152,15 +176,16 @@ export const JapanesePassageReader: React.FC<JapanesePassageReaderProps> = ({
     );
 
     // If rect is close to top of container, place popup below selection; otherwise above
-    const placeBelow = rect.top - containerRect.top < 150;
+    const placeBelow = rect.top - containerRect.top < 160;
     const posY = placeBelow
       ? rect.bottom - containerRect.top + 8
       : rect.top - containerRect.top - 8;
 
-    setSelectedText(text);
+    setSelectedText(cleanText);
     setPopupPosition({
       x: clampedCenterX,
       y: posY,
+      width: popupWidth,
       arrowOffset,
       placeBelow
     });
@@ -175,7 +200,7 @@ export const JapanesePassageReader: React.FC<JapanesePassageReaderProps> = ({
     setIsLoadingLookup(true);
     setLookupData(null);
 
-    lookupJapaneseText(text, controller.signal)
+    lookupJapaneseText(cleanText, controller.signal, passage)
       .then((data) => {
         setLookupData(data);
         setIsLoadingLookup(false);
@@ -183,14 +208,14 @@ export const JapanesePassageReader: React.FC<JapanesePassageReaderProps> = ({
       .catch((err) => {
         if (err.name !== 'AbortError') {
           setLookupData({
-            text,
-            meaning: 'Không tìm thấy định nghĩa cho đoạn này.',
+            text: cleanText,
+            meaning: 'Không thể tải bản dịch lúc này. Vui lòng thử lại.',
             reading: null
           });
           setIsLoadingLookup(false);
         }
       });
-  }, []);
+  }, [passage]);
 
   // Handle TTS Play
   const handlePlayTTS = () => {
@@ -284,7 +309,7 @@ export const JapanesePassageReader: React.FC<JapanesePassageReaderProps> = ({
       // - Furigana: ([一-龯々仝〆〇]+\[[^\]]+\]|\[[一-龯々仝〆〇]+\|[^\]]+\])
       // - Circle numbers: ([①②③④⑤⑥⑦⑧⑨⑩])
       // - Underline: (<u>.*?<\/u>)
-      const tokenRegex = /([（(【\[]\s*(?:\d+|[A-Za-z])\s*[）)】\]]|[①②③④⑤⑥⑦⑧⑨⑩]|[一-龯々仝〆〇]+\[[^\]]+\]|\[[一-龯々仝〆〇]+\|[^\]]+\]|<u>.*?<\/u>)/g;
+      const tokenRegex = /([（(【[]\s*(?:\d+|[A-Za-z])\s*[）)】\]]|[①②③④⑤⑥⑦⑧⑨⑩]|[一-龯々仝〆〇]+\[[^\]]+\]|\[[一-龯々仝〆〇]+\|[^\]]+\]|<u>.*?<\/u>)/g;
       const parts = paragraph.split(tokenRegex);
 
       return (
@@ -297,7 +322,7 @@ export const JapanesePassageReader: React.FC<JapanesePassageReaderProps> = ({
             if (!part) return null;
 
             // 1. Check if it's a Cloze Marker
-            const clozeMatch = part.match(/^[（(【\[]\s*(\d+|[A-Za-z])\s*[）)】\]]$/);
+            const clozeMatch = part.match(/^[（(【[]\s*(\d+|[A-Za-z])\s*[）)】\]]$/);
             const circleNumberMap: Record<string, number> = {
               '①': 1, '②': 2, '③': 3, '④': 4, '⑤': 5,
               '⑥': 6, '⑦': 7, '⑧': 8, '⑨': 9, '⑩': 10
@@ -631,9 +656,10 @@ export const JapanesePassageReader: React.FC<JapanesePassageReaderProps> = ({
           style={{
             left: `${popupPosition.x}px`,
             top: `${popupPosition.y}px`,
+            width: `${popupPosition.width}px`,
             transform: `translateX(-50%) ${popupPosition.placeBelow ? '' : 'translateY(-100%)'}`
           }}
-          className="absolute z-50 w-72 sm:w-84 max-w-[calc(100vw-32px)] bg-white text-gray-900 border border-indigo-200 shadow-2xl rounded-2xl p-3.5 sm:p-4 text-xs animate-in fade-in zoom-in-95 duration-150"
+          className="absolute z-50 max-w-[calc(100vw-32px)] bg-white text-gray-900 border border-indigo-200 shadow-2xl rounded-2xl p-3.5 sm:p-4 text-xs animate-in fade-in zoom-in-95 duration-150"
         >
           {/* Arrow Pointer */}
           <div
