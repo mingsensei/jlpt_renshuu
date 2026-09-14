@@ -12,12 +12,17 @@ import {
   Upload,
   Copy,
   Check,
-  FolderPlus
+  FolderPlus,
+  BookMarked,
+  Eye,
+  EyeOff,
+  Edit3,
+  CheckSquare
 } from 'lucide-react';
 import { examService } from '../lib/examService';
-import type { RawQuestionInput, Lesson, ExamCategory } from '../types/exam';
-import { CATEGORY_TABS } from '../types/exam';
-import { SAMPLE_JSON_INPUT } from '../data/sampleExams';
+import type { RawQuestionInput, Lesson, ExamCategory, JLPTLevel } from '../types/exam';
+import { CATEGORY_TABS, JLPT_LEVELS } from '../types/exam';
+import { SAMPLE_JSON_INPUT, SAMPLE_READING_JSON_INPUT } from '../data/sampleExams';
 
 export const CreateExam: React.FC = () => {
   const navigate = useNavigate();
@@ -32,6 +37,12 @@ export const CreateExam: React.FC = () => {
   const [shuffleQuestions, setShuffleQuestions] = useState(false);
   const [shuffleOptions, setShuffleOptions] = useState(false);
 
+  // Reading-specific states
+  const [passage, setPassage] = useState('');
+  const [passageTranslation, setPassageTranslation] = useState('');
+  const [level, setLevel] = useState<JLPTLevel>('N3');
+  const [showTranslationPreview, setShowTranslationPreview] = useState(false);
+
   // Category and Lesson states
   const [allLessons, setAllLessons] = useState<Lesson[]>([]);
   const [selectedCategory, setSelectedCategory] = useState<ExamCategory>('vocabulary');
@@ -39,6 +50,7 @@ export const CreateExam: React.FC = () => {
   const [showNewLessonForm, setShowNewLessonForm] = useState(false);
   const [newLessonTitle, setNewLessonTitle] = useState('');
   const [newLessonDesc, setNewLessonDesc] = useState('');
+  const [newLessonLevel, setNewLessonLevel] = useState<JLPTLevel>('N3');
   const [isCreatingLesson, setIsCreatingLesson] = useState(false);
 
   const [validationError, setValidationError] = useState<string | null>(null);
@@ -60,6 +72,7 @@ export const CreateExam: React.FC = () => {
           if (matched) {
             setSelectedCategory(matched.category);
             setSelectedLessonId(matched.id);
+            if (matched.level) setLevel(matched.level);
             return;
           }
         }
@@ -91,13 +104,25 @@ export const CreateExam: React.FC = () => {
 
     setIsCreatingLesson(true);
     try {
-      const createdList = await examService.createLessonForAllCategories(
-        newLessonTitle.trim(),
-        newLessonDesc.trim()
-      );
-      setAllLessons((prev) => [...prev, ...createdList]);
-      const currentCatLesson = createdList.find((l) => l.category === selectedCategory) || createdList[0];
-      setSelectedLessonId(currentCatLesson.id);
+      if (selectedCategory === 'reading') {
+        const newLesson = await examService.createLesson(
+          'reading',
+          newLessonTitle.trim(),
+          newLessonDesc.trim(),
+          undefined,
+          newLessonLevel
+        );
+        setAllLessons((prev) => [...prev, newLesson]);
+        setSelectedLessonId(newLesson.id);
+      } else {
+        const createdList = await examService.createLessonForAllCategories(
+          newLessonTitle.trim(),
+          newLessonDesc.trim()
+        );
+        setAllLessons((prev) => [...prev, ...createdList]);
+        const currentCatLesson = createdList.find((l) => l.category === selectedCategory) || createdList[0];
+        setSelectedLessonId(currentCatLesson.id);
+      }
       setNewLessonTitle('');
       setNewLessonDesc('');
       setShowNewLessonForm(false);
@@ -108,7 +133,7 @@ export const CreateExam: React.FC = () => {
     }
   };
 
-  // Validate JSON string
+  // Validate JSON string (supports array of questions OR full reading object)
   const validateJson = (content: string): { isValid: boolean; questions: RawQuestionInput[] | null; error: string | null } => {
     if (!content.trim()) {
       return { isValid: false, questions: null, error: 'Vui lòng nhập chuỗi JSON danh sách câu hỏi.' };
@@ -121,16 +146,25 @@ export const CreateExam: React.FC = () => {
       return { isValid: false, questions: null, error: `Lỗi cú pháp JSON: ${err.message}` };
     }
 
-    if (!Array.isArray(parsed)) {
-      return { isValid: false, questions: null, error: 'Dữ liệu JSON phải là một mảng [] danh sách câu hỏi.' };
+    let questionsArray: any[];
+    if (Array.isArray(parsed)) {
+      questionsArray = parsed;
+    } else if (parsed && typeof parsed === 'object' && Array.isArray(parsed.questions)) {
+      questionsArray = parsed.questions;
+    } else {
+      return {
+        isValid: false,
+        questions: null,
+        error: 'Dữ liệu JSON phải là một mảng câu hỏi [...] hoặc một đối tượng {} có trường "questions": [...]'
+      };
     }
 
-    if (parsed.length === 0) {
-      return { isValid: false, questions: null, error: 'Mảng JSON câu hỏi không được rỗng.' };
+    if (questionsArray.length === 0) {
+      return { isValid: false, questions: null, error: 'Danh sách câu hỏi trong JSON không được rỗng.' };
     }
 
-    for (let i = 0; i < parsed.length; i++) {
-      const item = parsed[i];
+    for (let i = 0; i < questionsArray.length; i++) {
+      const item = questionsArray[i];
       const qNum = i + 1;
 
       if (!item || typeof item !== 'object') {
@@ -173,7 +207,7 @@ export const CreateExam: React.FC = () => {
       }
     }
 
-    return { isValid: true, questions: parsed as RawQuestionInput[], error: null };
+    return { isValid: true, questions: questionsArray as RawQuestionInput[], error: null };
   };
 
   const handleJsonChange = (value: string) => {
@@ -183,6 +217,35 @@ export const CreateExam: React.FC = () => {
       if (result.isValid) {
         setValidationError(null);
         setParsedQuestions(result.questions);
+
+        // Auto-extract Reading attributes if user pasted full reading JSON object
+        try {
+          const parsed = JSON.parse(value);
+          if (!Array.isArray(parsed) && typeof parsed === 'object') {
+            if (parsed.passage !== undefined && typeof parsed.passage === 'string') {
+              setPassage(parsed.passage);
+              setSelectedCategory('reading');
+            }
+            if (parsed.passage_translation !== undefined && typeof parsed.passage_translation === 'string') {
+              setPassageTranslation(parsed.passage_translation);
+            }
+            if (parsed.title && typeof parsed.title === 'string' && !title) {
+              setTitle(parsed.title);
+            }
+            if (parsed.description && typeof parsed.description === 'string' && !description) {
+              setDescription(parsed.description);
+            }
+            if (parsed.level && ['N5', 'N4', 'N3', 'N2', 'N1'].includes(parsed.level)) {
+              setLevel(parsed.level as JLPTLevel);
+            }
+            if (parsed.time_limit && typeof parsed.time_limit === 'number') {
+              setTimeMode('limited');
+              setTimeLimitMinutes(Math.max(1, Math.round(parsed.time_limit / 60)));
+            }
+          }
+        } catch {
+          // ignore
+        }
       } else {
         setValidationError(result.error);
         setParsedQuestions(null);
@@ -194,19 +257,37 @@ export const CreateExam: React.FC = () => {
   };
 
   const handlePasteSample = () => {
-    const formatted = JSON.stringify(SAMPLE_JSON_INPUT, null, 2);
-    setJsonString(formatted);
-    handleJsonChange(formatted);
-    if (!title) {
-      setTitle('JLPT N5 Ngữ pháp & Từ vựng mẫu');
+    if (selectedCategory === 'reading') {
+      const formatted = JSON.stringify(SAMPLE_READING_JSON_INPUT, null, 2);
+      setJsonString(formatted);
+      setTitle(SAMPLE_READING_JSON_INPUT.title || '');
+      setDescription(SAMPLE_READING_JSON_INPUT.description || '');
+      setPassage(SAMPLE_READING_JSON_INPUT.passage);
+      setPassageTranslation(SAMPLE_READING_JSON_INPUT.passage_translation || '');
+      if (SAMPLE_READING_JSON_INPUT.level) setLevel(SAMPLE_READING_JSON_INPUT.level);
+      if (SAMPLE_READING_JSON_INPUT.time_limit) {
+        setTimeMode('limited');
+        setTimeLimitMinutes(Math.round(SAMPLE_READING_JSON_INPUT.time_limit / 60));
+      }
+      handleJsonChange(formatted);
+    } else {
+      const formatted = JSON.stringify(SAMPLE_JSON_INPUT, null, 2);
+      setJsonString(formatted);
+      handleJsonChange(formatted);
+      if (!title) {
+        setTitle('JLPT N5 Ngữ pháp & Từ vựng mẫu');
+      }
     }
   };
 
   const handleDownloadTemplate = () => {
-    const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(SAMPLE_JSON_INPUT, null, 2));
+    const isReading = selectedCategory === 'reading';
+    const dataObj = isReading ? SAMPLE_READING_JSON_INPUT : SAMPLE_JSON_INPUT;
+    const filename = isReading ? "reading_template.json" : "exam_template.json";
+    const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(dataObj, null, 2));
     const downloadAnchor = document.createElement('a');
     downloadAnchor.setAttribute("href", dataStr);
-    downloadAnchor.setAttribute("download", "exam_template.json");
+    downloadAnchor.setAttribute("download", filename);
     document.body.appendChild(downloadAnchor);
     downloadAnchor.click();
     downloadAnchor.remove();
@@ -214,7 +295,8 @@ export const CreateExam: React.FC = () => {
 
   const handleCopyTemplate = async () => {
     try {
-      await navigator.clipboard.writeText(JSON.stringify(SAMPLE_JSON_INPUT, null, 2));
+      const dataObj = selectedCategory === 'reading' ? SAMPLE_READING_JSON_INPUT : SAMPLE_JSON_INPUT;
+      await navigator.clipboard.writeText(JSON.stringify(dataObj, null, 2));
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     } catch {
@@ -246,6 +328,11 @@ export const CreateExam: React.FC = () => {
       return;
     }
 
+    if (selectedCategory === 'reading' && !passage.trim()) {
+      alert('Chuyên đề Đọc hiểu yêu cầu phải có nội dung đoạn văn (~500 từ). Vui lòng nhập hoặc dán đoạn văn.');
+      return;
+    }
+
     const result = validateJson(jsonString);
     if (!result.isValid || !result.questions) {
       setValidationError(result.error);
@@ -257,6 +344,12 @@ export const CreateExam: React.FC = () => {
       const timeLimitSeconds =
         timeMode === 'limited' ? Math.max(1, timeLimitMinutes) * 60 : null;
 
+      const readingOptions = selectedCategory === 'reading' ? {
+        passage: passage.trim() || null,
+        passage_translation: passageTranslation.trim() || null,
+        level: level
+      } : undefined;
+
       const newId = await examService.createExam(
         title.trim(),
         description.trim(),
@@ -264,7 +357,8 @@ export const CreateExam: React.FC = () => {
         result.questions,
         shuffleQuestions,
         shuffleOptions,
-        selectedLessonId || null
+        selectedLessonId || null,
+        readingOptions
       );
 
       navigate(`/exam/${newId}`);
@@ -276,7 +370,13 @@ export const CreateExam: React.FC = () => {
     }
   };
 
-  const currentCategoryLessons = allLessons.filter((l) => l.category === selectedCategory);
+  const currentCategoryLessons = allLessons.filter((l) => {
+    if (l.category !== selectedCategory) return false;
+    if (selectedCategory === 'reading' && l.level && level) {
+      return l.level === level;
+    }
+    return true;
+  });
 
   return (
     <div className="max-w-3xl mx-auto px-3.5 sm:px-6 py-6 sm:py-10">
@@ -307,7 +407,7 @@ export const CreateExam: React.FC = () => {
             <label className="block text-xs sm:text-sm font-bold text-gray-900 mb-2">
               Nhóm chuyên đề <span className="text-rose-500">*</span>
             </label>
-            <div className="grid grid-cols-3 gap-2">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
               {CATEGORY_TABS.map((cat) => (
                 <button
                   key={cat.id}
@@ -324,6 +424,45 @@ export const CreateExam: React.FC = () => {
               ))}
             </div>
           </div>
+
+          {/* JLPT Level Selector (Specific to Reading) */}
+          {selectedCategory === 'reading' && (
+            <div className="pt-3 border-t border-gray-100">
+              <label className="block text-xs sm:text-sm font-bold text-gray-900 mb-2">
+                Cấp độ JLPT Đọc hiểu <span className="text-rose-500">*</span>
+              </label>
+              <div className="grid grid-cols-5 gap-1.5 sm:gap-2">
+                {JLPT_LEVELS.map((lvl) => {
+                  const isSelected = level === lvl.id;
+                  return (
+                    <button
+                      key={lvl.id}
+                      type="button"
+                      onClick={() => {
+                        setLevel(lvl.id);
+                        const matchLesson = allLessons.find(
+                          (l) => l.category === 'reading' && l.level === lvl.id
+                        );
+                        if (matchLesson) {
+                          setSelectedLessonId(matchLesson.id);
+                        }
+                      }}
+                      className={`py-2 px-2 rounded-xl border text-xs sm:text-sm font-bold transition-all cursor-pointer text-center flex flex-col items-center justify-center ${
+                        isSelected
+                          ? 'bg-gray-900 text-white border-gray-900 shadow-xs ring-2 ring-gray-900/20'
+                          : 'bg-gray-50 text-gray-700 border-gray-200 hover:bg-gray-100'
+                      }`}
+                    >
+                      <span className="text-sm sm:text-base font-extrabold">{lvl.label}</span>
+                      <span className={`text-[10px] font-normal ${isSelected ? 'text-gray-300' : 'text-gray-500'}`}>
+                        {lvl.name}
+                      </span>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+          )}
 
           <div>
             <div className="flex items-center justify-between mb-2">
@@ -345,14 +484,36 @@ export const CreateExam: React.FC = () => {
                 <div>
                   <p className="text-xs font-bold text-gray-800">Tạo nhanh bài học mới:</p>
                   <p className="text-[11px] text-gray-500 mt-0.5">
-                    ✨ Tự động tạo đồng bộ trên cả 3 chuyên mục (Từ vựng, Kanji, Ngữ pháp)
+                    {selectedCategory === 'reading'
+                      ? `✨ Tạo bài học chuyên đề Đọc hiểu cấp độ ${level}`
+                      : '✨ Tự động tạo đồng bộ trên cả 3 chuyên mục (Từ vựng, Kanji, Ngữ pháp)'}
                   </p>
                 </div>
+                {selectedCategory === 'reading' && (
+                  <div className="flex items-center gap-2">
+                    <span className="text-xs font-semibold text-gray-700">Cấp độ bài:</span>
+                    <select
+                      value={newLessonLevel}
+                      onChange={(e) => setNewLessonLevel(e.target.value as JLPTLevel)}
+                      className="px-2 py-1 bg-white border border-gray-300 rounded-lg text-xs font-bold"
+                    >
+                      {JLPT_LEVELS.map((lvl) => (
+                        <option key={lvl.id} value={lvl.id}>
+                          {lvl.label} - {lvl.name}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                )}
                 <input
                   type="text"
                   value={newLessonTitle}
                   onChange={(e) => setNewLessonTitle(e.target.value)}
-                  placeholder="Tên bài học (ví dụ: Bài 4: Mua sắm & Ăn uống)"
+                  placeholder={
+                    selectedCategory === 'reading'
+                      ? `Ví dụ: Đọc hiểu ${level} - Bài 1: Cuộc sống hàng ngày`
+                      : 'Tên bài học (ví dụ: Bài 4: Mua sắm & Ăn uống)'
+                  }
                   className="w-full px-3 py-2 bg-white border border-gray-300 rounded-lg text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-gray-900"
                 />
                 <input
@@ -389,7 +550,7 @@ export const CreateExam: React.FC = () => {
               >
                 {currentCategoryLessons.map((l) => (
                   <option key={l.id} value={l.id}>
-                    {l.title}
+                    {l.title} {l.level ? `(${l.level})` : ''}
                   </option>
                 ))}
               </select>
@@ -399,7 +560,7 @@ export const CreateExam: React.FC = () => {
                 <button
                   type="button"
                   onClick={() => setShowNewLessonForm(true)}
-                  className="font-bold underline ml-2"
+                  className="font-bold underline ml-2 cursor-pointer"
                 >
                   Tạo bài học
                 </button>
@@ -407,6 +568,69 @@ export const CreateExam: React.FC = () => {
             )}
           </div>
         </div>
+
+        {/* Reading Passage & Translation Input (Shown when Reading category is selected) */}
+        {selectedCategory === 'reading' && (
+          <div className="bg-white border-2 border-indigo-100 rounded-2xl p-4 sm:p-6 shadow-xs space-y-4">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <div className="w-8 h-8 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center">
+                  <BookMarked className="w-4 h-4" />
+                </div>
+                <div>
+                  <h3 className="text-sm sm:text-base font-bold text-gray-900">
+                    Đoạn văn đọc hiểu (~500 từ)
+                  </h3>
+                  <p className="text-[11px] sm:text-xs text-gray-500">
+                    Nội dung bài đọc chính bằng tiếng Nhật, phân cấp độ {level}
+                  </p>
+                </div>
+              </div>
+
+              <div className="text-right">
+                <span className={`text-xs font-mono font-bold px-2.5 py-1 rounded-lg ${
+                  passage.length > 300 && passage.length < 1200
+                    ? 'bg-emerald-50 text-emerald-700 border border-emerald-200'
+                    : 'bg-gray-100 text-gray-700'
+                }`}>
+                  {passage.length} ký tự (~{passage.trim() ? passage.trim().split(/\s+/).length : 0} từ)
+                </span>
+              </div>
+            </div>
+
+            <div>
+              <label className="block text-xs font-bold text-gray-700 mb-1.5">
+                Đoạn văn tiếng Nhật (Passage) <span className="text-rose-500">*</span>
+              </label>
+              <textarea
+                rows={9}
+                value={passage}
+                onChange={(e) => setPassage(e.target.value)}
+                placeholder="Dán đoạn văn tiếng Nhật khoảng 500 từ tại đây. Đối với các câu hỏi điền vào chỗ trống, bạn có thể đánh số như ( 1 ), ( 2 ) hoặc [ 1 ], [ 2 ] trong bài đọc..."
+                required={selectedCategory === 'reading'}
+                className="w-full p-3.5 bg-gray-50 border border-gray-200 rounded-xl text-xs sm:text-sm text-gray-900 placeholder-gray-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all leading-relaxed font-sans"
+              />
+              <p className="text-[11px] text-gray-500 mt-1">
+                💡 <strong>Mẹo:</strong> Đánh dấu các vị trí cần điền như <code className="bg-gray-100 px-1 py-0.5 rounded font-mono text-gray-800">( 1 )</code>, <code className="bg-gray-100 px-1 py-0.5 rounded font-mono text-gray-800">( 2 )</code> trong văn bản để người học dễ dàng đối chiếu câu hỏi điền chỗ trống.
+              </p>
+            </div>
+
+            <div className="pt-2 border-t border-gray-100">
+              <label className="block text-xs font-bold text-gray-700 mb-1.5 flex items-center justify-between">
+                <span>Bản dịch tiếng Việt (Passage Translation)</span>
+                <span className="text-[11px] font-normal text-gray-400">Hiển thị khi học viên xem giải thích hoặc tra cứu</span>
+              </label>
+              <textarea
+                rows={6}
+                value={passageTranslation}
+                onChange={(e) => setPassageTranslation(e.target.value)}
+                placeholder="Nhập hoặc dán bản dịch tiếng Việt của bài đọc để người học đối chiếu và ôn tập kiến thức..."
+                className="w-full p-3.5 bg-gray-50 border border-gray-200 rounded-xl text-xs sm:text-sm text-gray-900 placeholder-gray-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all leading-relaxed font-sans"
+              />
+            </div>
+          </div>
+        )}
+
         <div className="bg-white border border-gray-200 rounded-2xl p-4 sm:p-6 shadow-xs">
           <label className="block text-xs sm:text-sm font-bold text-gray-900 mb-2">
             Tên bài kiểm tra <span className="text-rose-500">*</span>
@@ -415,7 +639,11 @@ export const CreateExam: React.FC = () => {
             type="text"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
-            placeholder="Ví dụ: JLPT N5 Vocabulary - Bài 1 đến 5"
+            placeholder={
+              selectedCategory === 'reading'
+                ? `Ví dụ: JLPT ${level} Đọc hiểu - Bài 1: Thói quen ăn uống`
+                : 'Ví dụ: JLPT N5 Vocabulary - Bài 1 đến 5'
+            }
             required
             className="w-full px-3.5 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-gray-900 placeholder-gray-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-transparent transition-all text-sm sm:text-base"
           />
@@ -427,7 +655,7 @@ export const CreateExam: React.FC = () => {
             type="text"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
-            placeholder="Ví dụ: Kiểm tra trợ từ, thể Te và từ vựng chào hỏi hàng ngày"
+            placeholder="Ví dụ: Luyện đọc hiểu trung cấp kèm dạng điền từ và câu hỏi nội dung"
             className="w-full px-3.5 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-gray-900 placeholder-gray-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-transparent transition-all text-xs sm:text-sm"
           />
         </div>
@@ -493,19 +721,40 @@ export const CreateExam: React.FC = () => {
             </div>
           </div>
 
-          <p className="text-[11px] sm:text-xs text-gray-500 mb-3 leading-relaxed">
-            Format: Mảng các câu hỏi với <code className="font-mono text-gray-700">question</code>,{' '}
-            <code className="font-mono text-gray-700">options</code> (4 lựa chọn),{' '}
-            <code className="font-mono text-gray-700">answer</code> (0..3), và{' '}
-            <code className="font-mono text-gray-700">explanation</code>.
-          </p>
+          <div className="text-[11px] sm:text-xs text-gray-500 mb-3 leading-relaxed">
+            {selectedCategory === 'reading' ? (
+              <div className="bg-indigo-50/70 border border-indigo-100 rounded-xl p-3 text-indigo-900 space-y-1">
+                <p className="font-semibold flex items-center gap-1.5 text-indigo-950">
+                  <BookMarked className="w-3.5 h-3.5" />
+                  <span>Hỗ trợ 2 định dạng JSON Đọc hiểu:</span>
+                </p>
+                <p>
+                  1. <strong>Full Test Object:</strong> Đối tượng chứa <code className="font-mono text-indigo-800 font-semibold">{"{ title, level, passage, passage_translation, questions: [...] }"}</code>. Tự động điền bài đọc và cấp độ!
+                </p>
+                <p>
+                  2. <strong>Mảng câu hỏi:</strong> <code className="font-mono text-indigo-800 font-semibold">{"[ { question, question_type, options, answer, explanation } ]"}</code> với <code className="font-mono text-indigo-800 font-semibold">question_type: "fill_blank" | "multiple_choice"</code>.
+                </p>
+              </div>
+            ) : (
+              <p>
+                Format: Mảng các câu hỏi với <code className="font-mono text-gray-700">question</code>,{' '}
+                <code className="font-mono text-gray-700">options</code> (4 lựa chọn),{' '}
+                <code className="font-mono text-gray-700">answer</code> (0..3), và{' '}
+                <code className="font-mono text-gray-700">explanation</code>.
+              </p>
+            )}
+          </div>
 
           <div className="relative">
             <textarea
               rows={12}
               value={jsonString}
               onChange={(e) => handleJsonChange(e.target.value)}
-              placeholder={`[\n  {\n    "question": "「食べます」のて形はどれですか？",\n    "options": ["食べて", "食べた", "食べる", "食べない"],\n    "answer": 0,\n    "explanation": "食べます is group 2 verb..."\n  }\n]`}
+              placeholder={
+                selectedCategory === 'reading'
+                  ? `{\n  "title": "JLPT N3 Đọc hiểu - Bài đọc mẫu",\n  "level": "N3",\n  "passage": "日本語の文章...",\n  "passage_translation": "Bản dịch tiếng Việt...",\n  "questions": [\n    {\n      "question": "( 1 ) に入る最も適切なものはどれですか。",\n      "question_type": "fill_blank",\n      "options": ["...", "...", "...", "..."],\n      "answer": 0,\n      "explanation": "Giải thích chi tiết..."\n    }\n  ]\n}`
+                  : `[\n  {\n    "question": "「食べます」のて形はどれですか？",\n    "options": ["食べて", "食べた", "食べる", "食べない"],\n    "answer": 0,\n    "explanation": "食べます is group 2 verb..."\n  }\n]`
+              }
               className="w-full p-3 sm:p-4 bg-gray-50 border border-gray-200 rounded-xl font-mono text-xs sm:text-sm text-gray-800 placeholder-gray-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-transparent transition-all leading-relaxed"
             />
           </div>
@@ -519,14 +768,122 @@ export const CreateExam: React.FC = () => {
           )}
 
           {parsedQuestions && (
-            <div className="mt-3 p-3 bg-emerald-50 border border-emerald-200 rounded-xl flex items-center justify-between text-emerald-800 text-xs sm:text-sm">
-              <div className="flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-emerald-600" />
-                <span>JSON hợp lệ: Phát hiện <strong>{parsedQuestions.length} câu hỏi</strong></span>
+            <div className="mt-3 space-y-3">
+              <div className="p-3 bg-emerald-50 border border-emerald-200 rounded-xl flex items-center justify-between text-emerald-800 text-xs sm:text-sm">
+                <div className="flex items-center gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+                  <span>
+                    JSON hợp lệ: Phát hiện <strong>{parsedQuestions.length} câu hỏi</strong>
+                    {selectedCategory === 'reading' && (
+                      <span className="text-xs text-emerald-700 ml-1.5 font-normal">
+                        ({parsedQuestions.filter((q) => (q.question_type || q.type) === 'fill_blank').length} câu điền từ,{' '}
+                        {parsedQuestions.filter((q) => (q.question_type || q.type) !== 'fill_blank').length} câu chọn đáp án)
+                      </span>
+                    )}
+                  </span>
+                </div>
+                <span className="text-[11px] font-mono bg-emerald-100 text-emerald-900 px-2 py-0.5 rounded-full font-bold">
+                  Sẵn sàng tạo
+                </span>
               </div>
-              <span className="text-[11px] font-mono bg-emerald-100 text-emerald-900 px-2 py-0.5 rounded-full">
-                Sẵn sàng tạo
-              </span>
+
+              {/* Reading Preview Box */}
+              {selectedCategory === 'reading' && passage.trim() && (
+                <div className="p-4 bg-gray-50 border border-gray-200 rounded-xl space-y-3 text-xs sm:text-sm">
+                  <div className="flex items-center justify-between">
+                    <span className="font-bold text-gray-800 flex items-center gap-1.5">
+                      <BookMarked className="w-4 h-4 text-indigo-600" />
+                      <span>Xem trước bài đọc ({level})</span>
+                    </span>
+                    {passageTranslation.trim() && (
+                      <button
+                        type="button"
+                        onClick={() => setShowTranslationPreview(!showTranslationPreview)}
+                        className="inline-flex items-center gap-1 text-xs text-indigo-600 hover:text-indigo-800 font-semibold cursor-pointer"
+                      >
+                        {showTranslationPreview ? (
+                          <>
+                            <EyeOff className="w-3.5 h-3.5" />
+                            <span>Ẩn bản dịch</span>
+                          </>
+                        ) : (
+                          <>
+                            <Eye className="w-3.5 h-3.5" />
+                            <span>Xem bản dịch TV</span>
+                          </>
+                        )}
+                      </button>
+                    )}
+                  </div>
+
+                  <div className="p-3 bg-white border border-gray-200 rounded-lg text-gray-800 leading-relaxed font-sans max-h-48 overflow-y-auto whitespace-pre-wrap">
+                    {passage}
+                  </div>
+
+                  {showTranslationPreview && passageTranslation.trim() && (
+                    <div className="p-3 bg-indigo-50/50 border border-indigo-100 rounded-lg text-indigo-900 leading-relaxed max-h-48 overflow-y-auto whitespace-pre-wrap">
+                      <p className="text-[11px] font-bold text-indigo-700 uppercase tracking-wider mb-1">
+                        Bản dịch tiếng Việt:
+                      </p>
+                      {passageTranslation}
+                    </div>
+                  )}
+
+                  <div className="pt-2 border-t border-gray-200">
+                    <p className="text-xs font-bold text-gray-700 mb-2">
+                      Danh sách câu hỏi đính kèm ({parsedQuestions.length} câu):
+                    </p>
+                    <div className="space-y-2 max-h-56 overflow-y-auto pr-1">
+                      {parsedQuestions.map((q, idx) => {
+                        const isFillBlank = (q.question_type || q.type) === 'fill_blank';
+                        return (
+                          <div key={idx} className="p-2.5 bg-white border border-gray-200 rounded-lg text-xs space-y-1">
+                            <div className="flex items-center justify-between gap-2">
+                              <span className="font-bold text-gray-900">
+                                Câu {idx + 1}: {q.question}
+                              </span>
+                              <span className={`inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[10px] font-bold flex-shrink-0 ${
+                                isFillBlank
+                                  ? 'bg-amber-100 text-amber-800'
+                                  : 'bg-blue-100 text-blue-800'
+                              }`}>
+                                {isFillBlank ? (
+                                  <>
+                                    <Edit3 className="w-2.5 h-2.5" />
+                                    Điền chỗ trống
+                                  </>
+                                ) : (
+                                  <>
+                                    <CheckSquare className="w-2.5 h-2.5" />
+                                    Chọn đáp án
+                                  </>
+                                )}
+                              </span>
+                            </div>
+                            <div className="grid grid-cols-2 gap-1 text-[11px] text-gray-600">
+                              {q.options.map((opt, optIdx) => (
+                                <div
+                                  key={optIdx}
+                                  className={`px-1.5 py-0.5 rounded ${
+                                    optIdx === q.answer ? 'bg-emerald-50 text-emerald-800 font-bold' : ''
+                                  }`}
+                                >
+                                  {['A', 'B', 'C', 'D'][optIdx]}. {opt}
+                                </div>
+                              ))}
+                            </div>
+                            {q.explanation && (
+                              <p className="text-[11px] text-gray-500 italic pt-1 border-t border-gray-50">
+                                💡 Giải thích: {q.explanation}
+                              </p>
+                            )}
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
           )}
         </div>

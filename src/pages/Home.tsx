@@ -17,15 +17,17 @@ import {
   Edit,
   Trash2,
   Layers,
-  ChevronRight
+  ChevronRight,
+  BookMarked
 } from 'lucide-react';
 import { examService } from '../lib/examService';
 import { useAuth } from '../context/AuthContext';
-import type { Lesson, ExamCategory } from '../types/exam';
-import { CATEGORY_TABS } from '../types/exam';
+import type { Lesson, ExamCategory, JLPTLevel } from '../types/exam';
+import { CATEGORY_TABS, JLPT_LEVELS } from '../types/exam';
 
 export const Home: React.FC = () => {
   const [activeCategory, setActiveCategory] = useState<ExamCategory>('vocabulary');
+  const [selectedLevelFilter, setSelectedLevelFilter] = useState<'all' | JLPTLevel>('all');
   const [lessons, setLessons] = useState<Lesson[]>([]);
   const [allLessons, setAllLessons] = useState<Lesson[]>([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -35,11 +37,12 @@ export const Home: React.FC = () => {
   // Selected lesson to view its exams in a modal
   const [selectedLessonForExams, setSelectedLessonForExams] = useState<Lesson | null>(null);
 
-  // Quick Create Lesson Modal state (creates for all 3 categories)
+  // Quick Create Lesson Modal state
   const [isAddLessonModalOpen, setIsAddLessonModalOpen] = useState(false);
   const [newLessonTitle, setNewLessonTitle] = useState('');
   const [newLessonDesc, setNewLessonDesc] = useState('');
   const [newLessonOrder, setNewLessonOrder] = useState<number>(1);
+  const [newLessonLevel, setNewLessonLevel] = useState<JLPTLevel>('N3');
   const [isCreatingLesson, setIsCreatingLesson] = useState(false);
 
   // Edit Lesson Modal state
@@ -47,6 +50,7 @@ export const Home: React.FC = () => {
   const [editLessonTitle, setEditLessonTitle] = useState('');
   const [editLessonDesc, setEditLessonDesc] = useState('');
   const [editLessonOrder, setEditLessonOrder] = useState<number>(1);
+  const [editLessonLevel, setEditLessonLevel] = useState<JLPTLevel>('N3');
   const [editSyncAcrossAll, setEditSyncAcrossAll] = useState(true);
   const [isUpdatingLesson, setIsUpdatingLesson] = useState(false);
 
@@ -84,6 +88,7 @@ export const Home: React.FC = () => {
   const handleCategoryChange = (category: ExamCategory) => {
     setActiveCategory(category);
     setSearchQuery('');
+    setSelectedLevelFilter('all');
   };
 
   const handleDeleteExam = async (examId: string, examTitle: string) => {
@@ -114,7 +119,8 @@ export const Home: React.FC = () => {
     setEditLessonTitle(lesson.title);
     setEditLessonDesc(lesson.description || '');
     setEditLessonOrder(lesson.order_index ?? 1);
-    setEditSyncAcrossAll(true);
+    setEditLessonLevel(lesson.level || 'N3');
+    setEditSyncAcrossAll(lesson.category !== 'reading');
   };
 
   // Handle Edit Lesson Submission
@@ -127,7 +133,7 @@ export const Home: React.FC = () => {
 
     setIsUpdatingLesson(true);
     try {
-      if (editSyncAcrossAll) {
+      if (editSyncAcrossAll && editingLesson.category !== 'reading') {
         await examService.updateLessonAcrossCategories(editingLesson.title, {
           title: editLessonTitle.trim(),
           description: editLessonDesc.trim() || undefined,
@@ -137,7 +143,8 @@ export const Home: React.FC = () => {
         await examService.updateLesson(editingLesson.id, {
           title: editLessonTitle.trim(),
           description: editLessonDesc.trim() || undefined,
-          order_index: editLessonOrder
+          order_index: editLessonOrder,
+          level: editingLesson.category === 'reading' ? editLessonLevel : undefined
         });
       }
       setEditingLesson(null);
@@ -179,7 +186,7 @@ export const Home: React.FC = () => {
     }
   };
 
-  // Handle Create Lesson (Automatically created in all 3 categories)
+  // Handle Create Lesson
   const handleCreateLesson = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!newLessonTitle.trim()) {
@@ -189,11 +196,21 @@ export const Home: React.FC = () => {
 
     setIsCreatingLesson(true);
     try {
-      await examService.createLessonForAllCategories(
-        newLessonTitle.trim(),
-        newLessonDesc.trim(),
-        newLessonOrder
-      );
+      if (activeCategory === 'reading') {
+        await examService.createLesson(
+          'reading',
+          newLessonTitle.trim(),
+          newLessonDesc.trim(),
+          newLessonOrder,
+          newLessonLevel
+        );
+      } else {
+        await examService.createLessonForAllCategories(
+          newLessonTitle.trim(),
+          newLessonDesc.trim(),
+          newLessonOrder
+        );
+      }
       setNewLessonTitle('');
       setNewLessonDesc('');
       setIsAddLessonModalOpen(false);
@@ -212,8 +229,16 @@ export const Home: React.FC = () => {
     return `${mins} phút`;
   };
 
-  // Filter lessons based on search query
+  // Filter lessons based on search query and level filter
   const filteredLessons = lessons.filter((lesson) => {
+    if (activeCategory === 'reading' && selectedLevelFilter !== 'all') {
+      const matchLevel =
+        lesson.level === selectedLevelFilter ||
+        lesson.title.toLowerCase().includes(selectedLevelFilter.toLowerCase()) ||
+        lesson.exams?.some((e) => e.level === selectedLevelFilter);
+      if (!matchLevel) return false;
+    }
+
     if (!searchQuery.trim()) return true;
     const query = searchQuery.toLowerCase();
     const matchLesson =
@@ -303,9 +328,9 @@ export const Home: React.FC = () => {
       </div>
 
       {/* ========================================================= */}
-      {/* 3 CATEGORY TABS (TỪ VỰNG, KANJI, NGỮ PHÁP) */}
+      {/* 4 CATEGORY TABS (TỪ VỰNG, KANJI, NGỮ PHÁP, ĐỌC HIỂU) */}
       {/* ========================================================= */}
-      <div className="grid grid-cols-3 gap-2 sm:gap-3 mb-6 sm:mb-8">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-3 mb-6 sm:mb-8">
         {CATEGORY_TABS.map((tab) => {
           const isActive = activeCategory === tab.id;
           const stats = getCategoryStats(tab.id);
@@ -313,6 +338,7 @@ export const Home: React.FC = () => {
           let IconComponent = BookOpen;
           if (tab.id === 'kanji') IconComponent = Languages;
           if (tab.id === 'grammar') IconComponent = Sparkles;
+          if (tab.id === 'reading') IconComponent = BookMarked;
 
           return (
             <button
@@ -364,6 +390,71 @@ export const Home: React.FC = () => {
           );
         })}
       </div>
+
+      {/* JLPT Level Filter Bar for Reading */}
+      {activeCategory === 'reading' && (
+        <div className="mb-6 p-3.5 sm:p-4 bg-white border border-gray-200 rounded-2xl shadow-xs">
+          <div className="flex items-center justify-between gap-3 mb-2.5 flex-wrap">
+            <div className="flex items-center gap-2">
+              <BookMarked className="w-4 h-4 text-gray-900" />
+              <span className="text-xs font-bold text-gray-900 uppercase tracking-wider">
+                Phân loại cấp độ Đọc hiểu (N5 ~ N1):
+              </span>
+            </div>
+            <span className="text-[11px] text-gray-500">
+              Mỗi bài đọc dài ~500 từ kèm bản dịch tiếng Việt và câu hỏi điền từ / chọn đáp án
+            </span>
+          </div>
+
+          <div className="flex items-center gap-1.5 sm:gap-2 flex-wrap">
+            <button
+              type="button"
+              onClick={() => setSelectedLevelFilter('all')}
+              className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
+                selectedLevelFilter === 'all'
+                  ? 'bg-gray-900 text-white shadow-xs'
+                  : 'bg-gray-100 text-gray-700 hover:bg-gray-200/80'
+              }`}
+            >
+              Tất cả cấp độ
+            </button>
+
+            {JLPT_LEVELS.map((lvl) => {
+              const isLvlActive = selectedLevelFilter === lvl.id;
+              const countForLvl = lessons.filter(
+                (l) => l.level === lvl.id || l.title.includes(lvl.id) || l.exams?.some((e) => e.level === lvl.id)
+              ).length;
+
+              return (
+                <button
+                  key={lvl.id}
+                  type="button"
+                  onClick={() => setSelectedLevelFilter(lvl.id)}
+                  className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold border transition-all cursor-pointer ${
+                    isLvlActive
+                      ? `${lvl.badgeBg} text-white border-transparent shadow-xs ring-2 ring-gray-900/10`
+                      : 'bg-white border-gray-200 text-gray-700 hover:border-gray-300 hover:bg-gray-50'
+                  }`}
+                >
+                  <span>{lvl.label}</span>
+                  <span
+                    className={`text-[10px] font-normal px-1 py-0.2 rounded ${
+                      isLvlActive ? 'bg-black/20 text-white' : 'bg-gray-100 text-gray-500'
+                    }`}
+                  >
+                    {lvl.name}
+                  </span>
+                  {countForLvl > 0 && (
+                    <span className={`text-[10px] font-bold ${isLvlActive ? 'text-white/80' : 'text-gray-400'}`}>
+                      ({countForLvl})
+                    </span>
+                  )}
+                </button>
+              );
+            })}
+          </div>
+        </div>
+      )}
 
       {/* Search Bar within Active Group */}
       <div className="relative mb-6 sm:mb-8">
@@ -435,15 +526,20 @@ export const Home: React.FC = () => {
                 className="bg-white border border-gray-200 hover:border-gray-900 rounded-3xl p-5 transition-all shadow-xs hover:shadow-md cursor-pointer flex flex-col justify-between group relative"
               >
                 <div>
-                  {/* Lesson Card Header */}
+                    {/* Lesson Card Header */}
                   <div className="flex items-start justify-between gap-2 mb-3">
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-2 flex-wrap">
                       <div className="w-8 h-8 rounded-xl bg-gray-900 text-white font-black text-xs flex items-center justify-center shadow-xs">
                         {lesson.order_index ?? lessonIdx + 1}
                       </div>
                       <span className="text-[11px] font-semibold text-gray-500 uppercase tracking-wider">
                         {activeTabConfig?.label}
                       </span>
+                      {lesson.level && (
+                        <span className="px-2 py-0.5 rounded text-[10px] font-black uppercase tracking-wider bg-blue-100 text-blue-800 border border-blue-200">
+                          {lesson.level}
+                        </span>
+                      )}
                     </div>
 
                     {/* Admin Actions on Lesson */}
@@ -521,7 +617,9 @@ export const Home: React.FC = () => {
             {searchQuery
               ? 'Thử tìm kiếm với từ khóa khác hoặc xóa bộ lọc.'
               : user
-              ? 'Bạn có thể bấm "Thêm bài học" để tạo bài học đầu tiên (tự động tạo đồng bộ cho cả 3 chuyên mục).'
+              ? activeCategory === 'reading'
+                ? 'Bạn có thể bấm "Thêm bài học" để tạo bài học Đọc hiểu theo cấp độ mong muốn.'
+                : 'Bạn có thể bấm "Thêm bài học" để tạo bài học đầu tiên (tự động tạo đồng bộ cho cả 3 chuyên mục).'
               : 'Nội dung bài tập đang được biên soạn.'}
           </p>
           {user && (
@@ -530,7 +628,9 @@ export const Home: React.FC = () => {
               className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-gray-900 text-white hover:bg-black transition-all shadow-xs cursor-pointer"
             >
               <FolderPlus className="w-4 h-4" />
-              <span>Thêm bài học mới (đồng bộ 3 chuyên mục)</span>
+              <span>
+                {activeCategory === 'reading' ? 'Thêm bài đọc hiểu' : 'Thêm bài học mới (đồng bộ 3 chuyên mục)'}
+              </span>
             </button>
           )}
         </div>
@@ -552,6 +652,11 @@ export const Home: React.FC = () => {
                   <span className="text-xs font-semibold text-gray-500 uppercase tracking-wider">
                     {CATEGORY_TABS.find((t) => t.id === selectedLessonForExams.category)?.label || ''}
                   </span>
+                  {selectedLessonForExams.level && (
+                    <span className="px-2 py-0.5 rounded text-[10px] font-black uppercase tracking-wider bg-blue-100 text-blue-800 border border-blue-200">
+                      {selectedLessonForExams.level}
+                    </span>
+                  )}
                   <span className="text-gray-300">•</span>
                   <span className="inline-flex items-center gap-1 text-xs font-semibold text-gray-700 bg-gray-100 px-2 py-0.5 rounded-md">
                     <Layers className="w-3 h-3 text-gray-500" />
@@ -588,6 +693,11 @@ export const Home: React.FC = () => {
                   >
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-2 mb-1.5 flex-wrap">
+                        {exam.level && (
+                          <span className="inline-flex items-center text-[11px] font-black bg-blue-100 text-blue-800 px-2 py-0.5 rounded-md border border-blue-200">
+                            {exam.level}
+                          </span>
+                        )}
                         <span className="inline-flex items-center gap-1 text-[11px] font-semibold bg-white border border-gray-200 text-gray-700 px-2 py-0.5 rounded-md">
                           <HelpCircle className="w-3 h-3 text-gray-400" />
                           {exam.questions_count ?? 0} câu
@@ -596,6 +706,17 @@ export const Home: React.FC = () => {
                           <Clock className="w-3 h-3 text-gray-400" />
                           {formatTimeLimit(exam.time_limit)}
                         </span>
+                        {exam.passage && (
+                          <span className="inline-flex items-center gap-1 text-[11px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200 px-2 py-0.5 rounded-md">
+                            <BookMarked className="w-3 h-3 text-emerald-600" />
+                            Đoạn văn ~500 từ
+                          </span>
+                        )}
+                        {exam.passage_translation && (
+                          <span className="inline-flex items-center text-[11px] font-semibold bg-amber-50 text-amber-700 border border-amber-200 px-2 py-0.5 rounded-md">
+                            Có dịch TV
+                          </span>
+                        )}
                       </div>
 
                       <h4 className="text-sm sm:text-base font-bold text-gray-900 group-hover:text-black">
@@ -687,7 +808,7 @@ export const Home: React.FC = () => {
       )}
 
       {/* ========================================================= */}
-      {/* QUICK CREATE LESSON MODAL (AUTOMATICALLY 3 CATEGORIES) */}
+      {/* QUICK CREATE LESSON MODAL */}
       {/* ========================================================= */}
       {isAddLessonModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4 animate-in fade-in duration-150">
@@ -696,7 +817,7 @@ export const Home: React.FC = () => {
               <div className="flex items-center gap-2">
                 <FolderPlus className="w-5 h-5 text-gray-800" />
                 <h3 className="font-bold text-base sm:text-lg text-gray-900">
-                  Thêm bài học mới
+                  {activeCategory === 'reading' ? 'Thêm bài đọc hiểu mới' : 'Thêm bài học mới'}
                 </h3>
               </div>
               <button
@@ -708,14 +829,47 @@ export const Home: React.FC = () => {
             </div>
 
             {/* Notification explaining the automatic 3 categories generation */}
-            <div className="p-3 bg-gray-50 border border-gray-200 rounded-2xl flex items-start gap-2.5 text-xs text-gray-600">
-              <Sparkles className="w-4 h-4 text-amber-600 flex-shrink-0 mt-0.5" />
-              <p>
-                <strong>Tự động đồng bộ 3 chuyên mục:</strong> Bài học tạo mới sẽ được tạo đồng thời trên cả 3 nhóm: <strong>Từ vựng</strong>, <strong>Kanji</strong> và <strong>Ngữ pháp</strong>.
-              </p>
-            </div>
+            {activeCategory === 'reading' ? (
+              <div className="p-3 bg-blue-50 border border-blue-200 rounded-2xl flex items-start gap-2.5 text-xs text-blue-900">
+                <BookMarked className="w-4 h-4 text-blue-600 flex-shrink-0 mt-0.5" />
+                <p>
+                  <strong>Chuyên đề Đọc hiểu:</strong> Bài học sẽ được phân theo cấp độ JLPT từ N5 đến N1 để bạn gom nhóm các bài đọc ~500 từ tương ứng.
+                </p>
+              </div>
+            ) : (
+              <div className="p-3 bg-gray-50 border border-gray-200 rounded-2xl flex items-start gap-2.5 text-xs text-gray-600">
+                <Sparkles className="w-4 h-4 text-amber-600 flex-shrink-0 mt-0.5" />
+                <p>
+                  <strong>Tự động đồng bộ 3 chuyên mục:</strong> Bài học tạo mới sẽ được tạo đồng thời trên cả 3 nhóm: <strong>Từ vựng</strong>, <strong>Kanji</strong> và <strong>Ngữ pháp</strong>.
+                </p>
+              </div>
+            )}
 
             <form onSubmit={handleCreateLesson} className="space-y-4">
+              {activeCategory === 'reading' && (
+                <div>
+                  <label className="block text-xs font-bold text-gray-700 mb-1.5">
+                    Cấp độ JLPT <span className="text-rose-500">*</span>
+                  </label>
+                  <div className="grid grid-cols-5 gap-1.5">
+                    {JLPT_LEVELS.map((lvl) => (
+                      <button
+                        key={lvl.id}
+                        type="button"
+                        onClick={() => setNewLessonLevel(lvl.id)}
+                        className={`py-1.5 text-xs font-bold rounded-xl border text-center transition-all cursor-pointer ${
+                          newLessonLevel === lvl.id
+                            ? `${lvl.badgeBg} text-white border-transparent shadow-xs`
+                            : 'bg-gray-50 border-gray-200 text-gray-700 hover:bg-gray-100'
+                        }`}
+                      >
+                        {lvl.label}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              )}
+
               <div>
                 <label className="block text-xs font-bold text-gray-700 mb-1">
                   Tên bài học <span className="text-rose-500">*</span>
@@ -724,7 +878,11 @@ export const Home: React.FC = () => {
                   type="text"
                   value={newLessonTitle}
                   onChange={(e) => setNewLessonTitle(e.target.value)}
-                  placeholder="Ví dụ: Bài 4: Mua sắm & Ăn uống"
+                  placeholder={
+                    activeCategory === 'reading'
+                      ? 'Ví dụ: Đọc hiểu N3 - Văn hóa & Lối sống'
+                      : 'Ví dụ: Bài 4: Mua sắm & Ăn uống'
+                  }
                   required
                   className="w-full px-3.5 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-xs sm:text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-gray-900"
                 />
@@ -738,7 +896,11 @@ export const Home: React.FC = () => {
                   type="text"
                   value={newLessonDesc}
                   onChange={(e) => setNewLessonDesc(e.target.value)}
-                  placeholder="Ví dụ: Trọng tâm từ vựng món ăn, giá tiền, ngữ pháp mua sắm..."
+                  placeholder={
+                    activeCategory === 'reading'
+                      ? 'Ví dụ: Tập hợp các bài đọc ngắn và trung văn ~500 từ về xã hội...'
+                      : 'Ví dụ: Trọng tâm từ vựng món ăn, giá tiền, ngữ pháp mua sắm...'
+                  }
                   className="w-full px-3.5 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-xs sm:text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-gray-900"
                 />
               </div>
@@ -769,7 +931,11 @@ export const Home: React.FC = () => {
                   disabled={isCreatingLesson || !newLessonTitle.trim()}
                   className="px-4 py-2 rounded-xl bg-gray-900 text-white text-xs font-bold hover:bg-black disabled:opacity-50 cursor-pointer"
                 >
-                  {isCreatingLesson ? 'Đang tạo...' : 'Tạo bài học (cả 3 nhóm)'}
+                  {isCreatingLesson
+                    ? 'Đang tạo...'
+                    : activeCategory === 'reading'
+                    ? 'Tạo bài đọc hiểu'
+                    : 'Tạo bài học (cả 3 nhóm)'}
                 </button>
               </div>
             </form>
@@ -839,20 +1005,44 @@ export const Home: React.FC = () => {
                 />
               </div>
 
-              {/* Checkbox to sync across all categories */}
-              <div className="p-3 bg-gray-50 rounded-xl border border-gray-200">
-                <label className="flex items-center gap-2.5 cursor-pointer select-none">
-                  <input
-                    type="checkbox"
-                    checked={editSyncAcrossAll}
-                    onChange={(e) => setEditSyncAcrossAll(e.target.checked)}
-                    className="w-4 h-4 rounded text-gray-900 focus:ring-gray-900 cursor-pointer"
-                  />
-                  <span className="text-xs font-medium text-gray-700">
-                    Đồng bộ thay đổi tên & thứ tự cho cả 3 chuyên mục (Từ vựng, Kanji, Ngữ pháp)
-                  </span>
-                </label>
-              </div>
+              {editingLesson.category === 'reading' ? (
+                <div>
+                  <label className="block text-xs font-bold text-gray-700 mb-1.5">
+                    Cấp độ JLPT <span className="text-rose-500">*</span>
+                  </label>
+                  <div className="grid grid-cols-5 gap-1.5">
+                    {JLPT_LEVELS.map((lvl) => (
+                      <button
+                        key={lvl.id}
+                        type="button"
+                        onClick={() => setEditLessonLevel(lvl.id)}
+                        className={`py-1.5 text-xs font-bold rounded-xl border text-center transition-all cursor-pointer ${
+                          editLessonLevel === lvl.id
+                            ? `${lvl.badgeBg} text-white border-transparent shadow-xs`
+                            : 'bg-gray-50 border-gray-200 text-gray-700 hover:bg-gray-100'
+                        }`}
+                      >
+                        {lvl.label}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              ) : (
+                /* Checkbox to sync across all categories */
+                <div className="p-3 bg-gray-50 rounded-xl border border-gray-200">
+                  <label className="flex items-center gap-2.5 cursor-pointer select-none">
+                    <input
+                      type="checkbox"
+                      checked={editSyncAcrossAll}
+                      onChange={(e) => setEditSyncAcrossAll(e.target.checked)}
+                      className="w-4 h-4 rounded text-gray-900 focus:ring-gray-900 cursor-pointer"
+                    />
+                    <span className="text-xs font-medium text-gray-700">
+                      Đồng bộ thay đổi tên & thứ tự cho cả 3 chuyên mục (Từ vựng, Kanji, Ngữ pháp)
+                    </span>
+                  </label>
+                </div>
+              )}
 
               <div className="flex items-center justify-end gap-2 pt-2">
                 <button

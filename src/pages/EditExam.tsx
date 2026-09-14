@@ -14,11 +14,16 @@ import {
   Save,
   Loader2,
   AlertTriangle,
-  FolderPlus
+  FolderPlus,
+  BookMarked,
+  Eye,
+  EyeOff,
+  Edit3,
+  CheckSquare
 } from 'lucide-react';
 import { examService } from '../lib/examService';
-import type { RawQuestionInput, Lesson, ExamCategory } from '../types/exam';
-import { CATEGORY_TABS } from '../types/exam';
+import type { RawQuestionInput, Lesson, ExamCategory, JLPTLevel } from '../types/exam';
+import { CATEGORY_TABS, JLPT_LEVELS } from '../types/exam';
 
 export const EditExam: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -35,6 +40,12 @@ export const EditExam: React.FC = () => {
   const [shuffleQuestions, setShuffleQuestions] = useState(false);
   const [shuffleOptions, setShuffleOptions] = useState(false);
 
+  // Reading-specific states
+  const [passage, setPassage] = useState('');
+  const [passageTranslation, setPassageTranslation] = useState('');
+  const [level, setLevel] = useState<JLPTLevel>('N3');
+  const [showTranslationPreview, setShowTranslationPreview] = useState(false);
+
   // Category and Lesson states
   const [allLessons, setAllLessons] = useState<Lesson[]>([]);
   const [selectedCategory, setSelectedCategory] = useState<ExamCategory>('vocabulary');
@@ -42,6 +53,7 @@ export const EditExam: React.FC = () => {
   const [showNewLessonForm, setShowNewLessonForm] = useState(false);
   const [newLessonTitle, setNewLessonTitle] = useState('');
   const [newLessonDesc, setNewLessonDesc] = useState('');
+  const [newLessonLevel, setNewLessonLevel] = useState<JLPTLevel>('N3');
   const [isCreatingLesson, setIsCreatingLesson] = useState(false);
 
   const [validationError, setValidationError] = useState<string | null>(null);
@@ -63,16 +75,25 @@ export const EditExam: React.FC = () => {
       return { isValid: false, questions: null, error: `Lỗi cú pháp JSON: ${err.message}` };
     }
 
-    if (!Array.isArray(parsed)) {
-      return { isValid: false, questions: null, error: 'Dữ liệu JSON phải là một mảng [] danh sách câu hỏi.' };
+    let questionsArray: any[];
+    if (Array.isArray(parsed)) {
+      questionsArray = parsed;
+    } else if (parsed && typeof parsed === 'object' && Array.isArray(parsed.questions)) {
+      questionsArray = parsed.questions;
+    } else {
+      return {
+        isValid: false,
+        questions: null,
+        error: 'Dữ liệu JSON phải là một mảng câu hỏi [...] hoặc một đối tượng {} có trường "questions": [...]'
+      };
     }
 
-    if (parsed.length === 0) {
+    if (questionsArray.length === 0) {
       return { isValid: false, questions: null, error: 'Mảng JSON câu hỏi không được rỗng.' };
     }
 
-    for (let i = 0; i < parsed.length; i++) {
-      const item = parsed[i];
+    for (let i = 0; i < questionsArray.length; i++) {
+      const item = questionsArray[i];
       const qNum = i + 1;
 
       if (!item || typeof item !== 'object') {
@@ -115,7 +136,7 @@ export const EditExam: React.FC = () => {
       }
     }
 
-    return { isValid: true, questions: parsed as RawQuestionInput[], error: null };
+    return { isValid: true, questions: questionsArray as RawQuestionInput[], error: null };
   };
 
   const handleJsonChange = (value: string) => {
@@ -125,6 +146,31 @@ export const EditExam: React.FC = () => {
       if (result.isValid) {
         setValidationError(null);
         setParsedQuestions(result.questions);
+
+        // Auto-extract Reading attributes if user pasted full reading JSON object
+        try {
+          const parsed = JSON.parse(value);
+          if (!Array.isArray(parsed) && typeof parsed === 'object') {
+            if (parsed.passage !== undefined && typeof parsed.passage === 'string') {
+              setPassage(parsed.passage);
+              setSelectedCategory('reading');
+            }
+            if (parsed.passage_translation !== undefined && typeof parsed.passage_translation === 'string') {
+              setPassageTranslation(parsed.passage_translation);
+            }
+            if (parsed.title && typeof parsed.title === 'string' && !title) {
+              setTitle(parsed.title);
+            }
+            if (parsed.description && typeof parsed.description === 'string' && !description) {
+              setDescription(parsed.description);
+            }
+            if (parsed.level && ['N5', 'N4', 'N3', 'N2', 'N1'].includes(parsed.level)) {
+              setLevel(parsed.level as JLPTLevel);
+            }
+          }
+        } catch {
+          // ignore
+        }
       } else {
         setValidationError(result.error);
         setParsedQuestions(null);
@@ -160,16 +206,25 @@ export const EditExam: React.FC = () => {
         setTitle(exam.title);
         setDescription(exam.description || '');
 
+        if (exam.passage) setPassage(exam.passage);
+        if (exam.passage_translation) setPassageTranslation(exam.passage_translation);
+        if (exam.level) setLevel(exam.level);
+
         if (exam.lesson_id) {
           setSelectedLessonId(exam.lesson_id);
           const found = lessonsData.find((l) => l.id === exam.lesson_id);
           if (found) {
             setSelectedCategory(found.category);
+            if (found.level) setLevel(found.level);
           }
         } else {
-          const vocabLessons = lessonsData.filter((l) => l.category === 'vocabulary');
-          if (vocabLessons.length > 0) {
-            setSelectedLessonId(vocabLessons[0].id);
+          if (exam.passage) {
+            setSelectedCategory('reading');
+          } else {
+            const vocabLessons = lessonsData.filter((l) => l.category === 'vocabulary');
+            if (vocabLessons.length > 0) {
+              setSelectedLessonId(vocabLessons[0].id);
+            }
           }
         }
 
@@ -186,6 +241,7 @@ export const EditExam: React.FC = () => {
         // Convert questions to RawQuestionInput[]
         const rawList: RawQuestionInput[] = questions.map((q) => ({
           question: q.question,
+          question_type: q.question_type,
           options: [q.option_a, q.option_b, q.option_c, q.option_d],
           answer: q.correct_answer,
           explanation: q.explanation || ''
@@ -207,7 +263,11 @@ export const EditExam: React.FC = () => {
 
   const handleCategoryChange = (cat: ExamCategory) => {
     setSelectedCategory(cat);
-    const inCategory = allLessons.filter((l) => l.category === cat);
+    const inCategory = allLessons.filter((l) => {
+      if (l.category !== cat) return false;
+      if (cat === 'reading' && l.level && level) return l.level === level;
+      return true;
+    });
     if (inCategory.length > 0) {
       setSelectedLessonId(inCategory[0].id);
     } else {
@@ -221,13 +281,25 @@ export const EditExam: React.FC = () => {
 
     setIsCreatingLesson(true);
     try {
-      const createdList = await examService.createLessonForAllCategories(
-        newLessonTitle.trim(),
-        newLessonDesc.trim()
-      );
-      setAllLessons((prev) => [...prev, ...createdList]);
-      const currentCatLesson = createdList.find((l) => l.category === selectedCategory) || createdList[0];
-      setSelectedLessonId(currentCatLesson.id);
+      if (selectedCategory === 'reading') {
+        const newLesson = await examService.createLesson(
+          'reading',
+          newLessonTitle.trim(),
+          newLessonDesc.trim(),
+          undefined,
+          newLessonLevel
+        );
+        setAllLessons((prev) => [...prev, newLesson]);
+        setSelectedLessonId(newLesson.id);
+      } else {
+        const createdList = await examService.createLessonForAllCategories(
+          newLessonTitle.trim(),
+          newLessonDesc.trim()
+        );
+        setAllLessons((prev) => [...prev, ...createdList]);
+        const currentCatLesson = createdList.find((l) => l.category === selectedCategory) || createdList[0];
+        setSelectedLessonId(currentCatLesson.id);
+      }
       setNewLessonTitle('');
       setNewLessonDesc('');
       setShowNewLessonForm(false);
@@ -284,6 +356,11 @@ export const EditExam: React.FC = () => {
       return;
     }
 
+    if (selectedCategory === 'reading' && !passage.trim()) {
+      alert('Chuyên đề Đọc hiểu yêu cầu phải có nội dung đoạn văn (~500 từ).');
+      return;
+    }
+
     const result = validateJson(jsonString);
     if (!result.isValid || !result.questions) {
       setValidationError(result.error);
@@ -295,6 +372,12 @@ export const EditExam: React.FC = () => {
       const timeLimitSeconds =
         timeMode === 'limited' ? Math.max(1, timeLimitMinutes) * 60 : null;
 
+      const readingOptions = selectedCategory === 'reading' ? {
+        passage: passage.trim() || null,
+        passage_translation: passageTranslation.trim() || null,
+        level: level
+      } : undefined;
+
       const success = await examService.updateExam(
         id,
         title.trim(),
@@ -303,7 +386,8 @@ export const EditExam: React.FC = () => {
         result.questions,
         shuffleQuestions,
         shuffleOptions,
-        selectedLessonId || null
+        selectedLessonId || null,
+        readingOptions
       );
 
       if (success) {
@@ -378,7 +462,7 @@ export const EditExam: React.FC = () => {
             <label className="block text-xs sm:text-sm font-bold text-gray-900 mb-2">
               Nhóm chuyên đề <span className="text-rose-500">*</span>
             </label>
-            <div className="grid grid-cols-3 gap-2">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
               {CATEGORY_TABS.map((cat) => (
                 <button
                   key={cat.id}
@@ -395,6 +479,45 @@ export const EditExam: React.FC = () => {
               ))}
             </div>
           </div>
+
+          {/* JLPT Level Selector (Specific to Reading) */}
+          {selectedCategory === 'reading' && (
+            <div className="pt-3 border-t border-gray-100">
+              <label className="block text-xs sm:text-sm font-bold text-gray-900 mb-2">
+                Cấp độ JLPT Đọc hiểu <span className="text-rose-500">*</span>
+              </label>
+              <div className="grid grid-cols-5 gap-1.5 sm:gap-2">
+                {JLPT_LEVELS.map((lvl) => {
+                  const isSelected = level === lvl.id;
+                  return (
+                    <button
+                      key={lvl.id}
+                      type="button"
+                      onClick={() => {
+                        setLevel(lvl.id);
+                        const matchLesson = allLessons.find(
+                          (l) => l.category === 'reading' && l.level === lvl.id
+                        );
+                        if (matchLesson) {
+                          setSelectedLessonId(matchLesson.id);
+                        }
+                      }}
+                      className={`py-2 px-2 rounded-xl border text-xs sm:text-sm font-bold transition-all cursor-pointer text-center flex flex-col items-center justify-center ${
+                        isSelected
+                          ? 'bg-gray-900 text-white border-gray-900 shadow-xs ring-2 ring-gray-900/20'
+                          : 'bg-gray-50 text-gray-700 border-gray-200 hover:bg-gray-100'
+                      }`}
+                    >
+                      <span className="text-sm sm:text-base font-extrabold">{lvl.label}</span>
+                      <span className={`text-[10px] font-normal ${isSelected ? 'text-gray-300' : 'text-gray-500'}`}>
+                        {lvl.name}
+                      </span>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+          )}
 
           <div>
             <div className="flex items-center justify-between mb-2">
@@ -416,14 +539,36 @@ export const EditExam: React.FC = () => {
                 <div>
                   <p className="text-xs font-bold text-gray-800">Tạo nhanh bài học mới:</p>
                   <p className="text-[11px] text-gray-500 mt-0.5">
-                    ✨ Tự động tạo đồng bộ trên cả 3 chuyên mục (Từ vựng, Kanji, Ngữ pháp)
+                    {selectedCategory === 'reading'
+                      ? `✨ Tạo bài học chuyên đề Đọc hiểu cấp độ ${level}`
+                      : '✨ Tự động tạo đồng bộ trên cả 3 chuyên mục (Từ vựng, Kanji, Ngữ pháp)'}
                   </p>
                 </div>
+                {selectedCategory === 'reading' && (
+                  <div className="flex items-center gap-2">
+                    <span className="text-xs font-semibold text-gray-700">Cấp độ bài:</span>
+                    <select
+                      value={newLessonLevel}
+                      onChange={(e) => setNewLessonLevel(e.target.value as JLPTLevel)}
+                      className="px-2 py-1 bg-white border border-gray-300 rounded-lg text-xs font-bold"
+                    >
+                      {JLPT_LEVELS.map((lvl) => (
+                        <option key={lvl.id} value={lvl.id}>
+                          {lvl.label} - {lvl.name}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                )}
                 <input
                   type="text"
                   value={newLessonTitle}
                   onChange={(e) => setNewLessonTitle(e.target.value)}
-                  placeholder="Tên bài học (ví dụ: Bài 5: Thời gian & Lịch trình)"
+                  placeholder={
+                    selectedCategory === 'reading'
+                      ? `Ví dụ: Đọc hiểu ${level} - Bài 1: Cuộc sống hàng ngày`
+                      : 'Tên bài học (ví dụ: Bài 5: Thời gian & Lịch trình)'
+                  }
                   className="w-full px-3 py-2 bg-white border border-gray-300 rounded-lg text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-gray-900"
                 />
                 <input
@@ -459,10 +604,14 @@ export const EditExam: React.FC = () => {
                 className="w-full px-3.5 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-gray-900 text-xs sm:text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-gray-900 cursor-pointer"
               >
                 {allLessons
-                  .filter((l) => l.category === selectedCategory)
+                  .filter((l) => {
+                    if (l.category !== selectedCategory) return false;
+                    if (selectedCategory === 'reading' && l.level && level) return l.level === level;
+                    return true;
+                  })
                   .map((l) => (
                     <option key={l.id} value={l.id}>
-                      {l.title}
+                      {l.title} {l.level ? `(${l.level})` : ''}
                     </option>
                   ))}
               </select>
@@ -472,7 +621,7 @@ export const EditExam: React.FC = () => {
                 <button
                   type="button"
                   onClick={() => setShowNewLessonForm(true)}
-                  className="font-bold underline ml-2"
+                  className="font-bold underline ml-2 cursor-pointer"
                 >
                   Tạo bài học
                 </button>
@@ -480,6 +629,68 @@ export const EditExam: React.FC = () => {
             )}
           </div>
         </div>
+
+        {/* Reading Passage & Translation Input (Shown when Reading category is selected) */}
+        {selectedCategory === 'reading' && (
+          <div className="bg-white border-2 border-indigo-100 rounded-2xl p-4 sm:p-6 shadow-xs space-y-4">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <div className="w-8 h-8 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center">
+                  <BookMarked className="w-4 h-4" />
+                </div>
+                <div>
+                  <h3 className="text-sm sm:text-base font-bold text-gray-900">
+                    Đoạn văn đọc hiểu (~500 từ)
+                  </h3>
+                  <p className="text-[11px] sm:text-xs text-gray-500">
+                    Nội dung bài đọc chính bằng tiếng Nhật, phân cấp độ {level}
+                  </p>
+                </div>
+              </div>
+
+              <div className="text-right">
+                <span className={`text-xs font-mono font-bold px-2.5 py-1 rounded-lg ${
+                  passage.length > 300 && passage.length < 1200
+                    ? 'bg-emerald-50 text-emerald-700 border border-emerald-200'
+                    : 'bg-gray-100 text-gray-700'
+                }`}>
+                  {passage.length} ký tự (~{passage.trim() ? passage.trim().split(/\s+/).length : 0} từ)
+                </span>
+              </div>
+            </div>
+
+            <div>
+              <label className="block text-xs font-bold text-gray-700 mb-1.5">
+                Đoạn văn tiếng Nhật (Passage) <span className="text-rose-500">*</span>
+              </label>
+              <textarea
+                rows={9}
+                value={passage}
+                onChange={(e) => setPassage(e.target.value)}
+                placeholder="Dán đoạn văn tiếng Nhật khoảng 500 từ tại đây..."
+                required={selectedCategory === 'reading'}
+                className="w-full p-3.5 bg-gray-50 border border-gray-200 rounded-xl text-xs sm:text-sm text-gray-900 placeholder-gray-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all leading-relaxed font-sans"
+              />
+              <p className="text-[11px] text-gray-500 mt-1">
+                💡 <strong>Mẹo:</strong> Đánh dấu các vị trí cần điền như <code className="bg-gray-100 px-1 py-0.5 rounded font-mono text-gray-800">( 1 )</code>, <code className="bg-gray-100 px-1 py-0.5 rounded font-mono text-gray-800">( 2 )</code> trong văn bản.
+              </p>
+            </div>
+
+            <div className="pt-2 border-t border-gray-100">
+              <label className="block text-xs font-bold text-gray-700 mb-1.5 flex items-center justify-between">
+                <span>Bản dịch tiếng Việt (Passage Translation)</span>
+                <span className="text-[11px] font-normal text-gray-400">Hiển thị khi học viên xem giải thích hoặc tra cứu</span>
+              </label>
+              <textarea
+                rows={6}
+                value={passageTranslation}
+                onChange={(e) => setPassageTranslation(e.target.value)}
+                placeholder="Nhập hoặc dán bản dịch tiếng Việt của bài đọc..."
+                className="w-full p-3.5 bg-gray-50 border border-gray-200 rounded-xl text-xs sm:text-sm text-gray-900 placeholder-gray-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all leading-relaxed font-sans"
+              />
+            </div>
+          </div>
+        )}
 
         {/* 1. Exam Name & Description */}
         <div className="bg-white border border-gray-200 rounded-2xl p-4 sm:p-6 shadow-xs">
@@ -559,7 +770,7 @@ export const EditExam: React.FC = () => {
           </div>
 
           <p className="text-[11px] sm:text-xs text-gray-500 mb-3 leading-relaxed">
-            Bạn có thể trực tiếp sửa câu hỏi, đáp án đúng (<code className="font-mono text-gray-700">answer: 0..3</code>), hoặc giải thích tại đây.
+            Bạn có thể trực tiếp sửa câu hỏi, loại câu hỏi (<code className="font-mono text-gray-700">question_type: "fill_blank" | "multiple_choice"</code>), đáp án đúng (<code className="font-mono text-gray-700">answer: 0..3</code>), hoặc giải thích tại đây.
           </p>
 
           <div className="relative">
@@ -580,14 +791,122 @@ export const EditExam: React.FC = () => {
           )}
 
           {parsedQuestions && (
-            <div className="mt-3 p-3 bg-emerald-50 border border-emerald-200 rounded-xl flex items-center justify-between text-emerald-800 text-xs sm:text-sm">
-              <div className="flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-emerald-600" />
-                <span>JSON hợp lệ: Đang có <strong>{parsedQuestions.length} câu hỏi</strong></span>
+            <div className="mt-3 space-y-3">
+              <div className="p-3 bg-emerald-50 border border-emerald-200 rounded-xl flex items-center justify-between text-emerald-800 text-xs sm:text-sm">
+                <div className="flex items-center gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+                  <span>
+                    JSON hợp lệ: Đang có <strong>{parsedQuestions.length} câu hỏi</strong>
+                    {selectedCategory === 'reading' && (
+                      <span className="text-xs text-emerald-700 ml-1.5 font-normal">
+                        ({parsedQuestions.filter((q) => (q.question_type || q.type) === 'fill_blank').length} câu điền từ,{' '}
+                        {parsedQuestions.filter((q) => (q.question_type || q.type) !== 'fill_blank').length} câu chọn đáp án)
+                      </span>
+                    )}
+                  </span>
+                </div>
+                <span className="text-[11px] font-mono bg-emerald-100 text-emerald-900 px-2 py-0.5 rounded-full font-bold">
+                  Hợp lệ
+                </span>
               </div>
-              <span className="text-[11px] font-mono bg-emerald-100 text-emerald-900 px-2 py-0.5 rounded-full">
-                Hợp lệ
-              </span>
+
+              {/* Reading Preview Box */}
+              {selectedCategory === 'reading' && passage.trim() && (
+                <div className="p-4 bg-gray-50 border border-gray-200 rounded-xl space-y-3 text-xs sm:text-sm">
+                  <div className="flex items-center justify-between">
+                    <span className="font-bold text-gray-800 flex items-center gap-1.5">
+                      <BookMarked className="w-4 h-4 text-indigo-600" />
+                      <span>Xem trước bài đọc ({level})</span>
+                    </span>
+                    {passageTranslation.trim() && (
+                      <button
+                        type="button"
+                        onClick={() => setShowTranslationPreview(!showTranslationPreview)}
+                        className="inline-flex items-center gap-1 text-xs text-indigo-600 hover:text-indigo-800 font-semibold cursor-pointer"
+                      >
+                        {showTranslationPreview ? (
+                          <>
+                            <EyeOff className="w-3.5 h-3.5" />
+                            <span>Ẩn bản dịch</span>
+                          </>
+                        ) : (
+                          <>
+                            <Eye className="w-3.5 h-3.5" />
+                            <span>Xem bản dịch TV</span>
+                          </>
+                        )}
+                      </button>
+                    )}
+                  </div>
+
+                  <div className="p-3 bg-white border border-gray-200 rounded-lg text-gray-800 leading-relaxed font-sans max-h-48 overflow-y-auto whitespace-pre-wrap">
+                    {passage}
+                  </div>
+
+                  {showTranslationPreview && passageTranslation.trim() && (
+                    <div className="p-3 bg-indigo-50/50 border border-indigo-100 rounded-lg text-indigo-900 leading-relaxed max-h-48 overflow-y-auto whitespace-pre-wrap">
+                      <p className="text-[11px] font-bold text-indigo-700 uppercase tracking-wider mb-1">
+                        Bản dịch tiếng Việt:
+                      </p>
+                      {passageTranslation}
+                    </div>
+                  )}
+
+                  <div className="pt-2 border-t border-gray-200">
+                    <p className="text-xs font-bold text-gray-700 mb-2">
+                      Danh sách câu hỏi ({parsedQuestions.length} câu):
+                    </p>
+                    <div className="space-y-2 max-h-56 overflow-y-auto pr-1">
+                      {parsedQuestions.map((q, idx) => {
+                        const isFillBlank = (q.question_type || q.type) === 'fill_blank';
+                        return (
+                          <div key={idx} className="p-2.5 bg-white border border-gray-200 rounded-lg text-xs space-y-1">
+                            <div className="flex items-center justify-between gap-2">
+                              <span className="font-bold text-gray-900">
+                                Câu {idx + 1}: {q.question}
+                              </span>
+                              <span className={`inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[10px] font-bold flex-shrink-0 ${
+                                isFillBlank
+                                  ? 'bg-amber-100 text-amber-800'
+                                  : 'bg-blue-100 text-blue-800'
+                              }`}>
+                                {isFillBlank ? (
+                                  <>
+                                    <Edit3 className="w-2.5 h-2.5" />
+                                    Điền chỗ trống
+                                  </>
+                                ) : (
+                                  <>
+                                    <CheckSquare className="w-2.5 h-2.5" />
+                                    Chọn đáp án
+                                  </>
+                                )}
+                              </span>
+                            </div>
+                            <div className="grid grid-cols-2 gap-1 text-[11px] text-gray-600">
+                              {q.options.map((opt, optIdx) => (
+                                <div
+                                  key={optIdx}
+                                  className={`px-1.5 py-0.5 rounded ${
+                                    optIdx === q.answer ? 'bg-emerald-50 text-emerald-800 font-bold' : ''
+                                  }`}
+                                >
+                                  {['A', 'B', 'C', 'D'][optIdx]}. {opt}
+                                </div>
+                              ))}
+                            </div>
+                            {q.explanation && (
+                              <p className="text-[11px] text-gray-500 italic pt-1 border-t border-gray-50">
+                                💡 Giải thích: {q.explanation}
+                              </p>
+                            )}
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
           )}
         </div>

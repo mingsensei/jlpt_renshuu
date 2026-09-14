@@ -18,7 +18,8 @@ import {
   RefreshCw,
   FolderPlus,
   X,
-  Sparkles
+  Sparkles,
+  BookMarked
 } from 'lucide-react';
 import { examService } from '../lib/examService';
 import type { Exam, ExamResult, Lesson, ExamCategory } from '../types/exam';
@@ -387,8 +388,21 @@ export const AdminManage: React.FC = () => {
                 >
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2 mb-1.5 flex-wrap">
+                      {exam.passage && (
+                        <span className="inline-flex items-center gap-1 text-[11px] font-semibold bg-indigo-50 text-indigo-700 border border-indigo-200 px-2 py-0.5 rounded-md">
+                          <BookMarked className="w-3 h-3 text-indigo-600" />
+                          Đọc hiểu
+                        </span>
+                      )}
+
+                      {exam.level && (
+                        <span className="inline-flex items-center text-[11px] font-bold bg-gray-900 text-white px-2 py-0.5 rounded-md">
+                          {exam.level}
+                        </span>
+                      )}
+
                       {exam.lesson && (
-                        <span className="inline-flex items-center gap-1 text-[11px] font-semibold bg-gray-900 text-white px-2 py-0.5 rounded-md">
+                        <span className="inline-flex items-center gap-1 text-[11px] font-semibold bg-gray-100 text-gray-800 px-2 py-0.5 rounded-md">
                           {exam.lesson.title}
                         </span>
                       )}
@@ -566,6 +580,12 @@ export const AdminManage: React.FC = () => {
                           #{lesson.order_index ?? 1}
                         </span>
 
+                        {lesson.level && (
+                          <span className="inline-flex items-center text-[11px] font-bold bg-indigo-600 text-white px-2 py-0.5 rounded-md">
+                            {lesson.level}
+                          </span>
+                        )}
+
                         <span className="inline-flex items-center gap-1 text-[11px] font-semibold bg-gray-100 text-gray-800 px-2.5 py-0.5 rounded-md">
                           {catConfig?.label || lesson.category}
                         </span>
@@ -731,6 +751,19 @@ export const AdminManage: React.FC = () => {
                             </>
                           )}
                         </span>
+
+                        {res.passage && (
+                          <span className="inline-flex items-center gap-1 text-[11px] font-semibold bg-indigo-50 text-indigo-700 border border-indigo-200 px-2 py-0.5 rounded-md">
+                            <BookMarked className="w-3 h-3 text-indigo-600" />
+                            Đọc hiểu
+                          </span>
+                        )}
+
+                        {res.level && (
+                          <span className="inline-flex items-center text-[11px] font-bold bg-gray-900 text-white px-2 py-0.5 rounded-md">
+                            {res.level}
+                          </span>
+                        )}
 
                         <span className="inline-flex items-center gap-1 text-[11px] text-gray-500">
                           <Clock className="w-3 h-3" />

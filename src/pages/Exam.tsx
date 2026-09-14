@@ -9,7 +9,12 @@ import {
   Send,
   AlertTriangle,
   CheckCircle2,
-  Zap
+  Zap,
+  BookMarked,
+  Eye,
+  EyeOff,
+  ChevronDown,
+  ChevronUp
 } from 'lucide-react';
 import { QuestionCard } from '../components/QuestionCard';
 import { Timer } from '../components/Timer';
@@ -37,6 +42,11 @@ export const ExamPage: React.FC = () => {
   const [userAnswers, setUserAnswers] = useState<Record<number, number>>({}); // index -> selected option index
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [startTime, setStartTime] = useState<number>(0);
+
+  // Reading-specific states
+  const [showTranslation, setShowTranslation] = useState(false);
+  const [isPassageExpandedMobile, setIsPassageExpandedMobile] = useState(true);
+  const [fontSize, setFontSize] = useState<'normal' | 'large'>('normal');
 
   // Shuffled options / questions configuration
   const [shuffleQuestions, setShuffleQuestions] = useState(false);
@@ -148,6 +158,7 @@ export const ExamPage: React.FC = () => {
       return {
         questionId: sq.question.id,
         question: sq.question.question,
+        questionType: sq.question.question_type,
         options: sq.displayedOptions,
         userAnswer: userSelected,
         correctAnswer: sq.displayedCorrectIndex,
@@ -167,7 +178,10 @@ export const ExamPage: React.FC = () => {
         percentage,
         timeSpent: elapsed,
         answers: answerReviews,
-        examTitle: exam.title
+        examTitle: exam.title,
+        passage: exam.passage,
+        passage_translation: exam.passage_translation,
+        level: exam.level
       });
 
       navigate(`/result/${resultId}`, {
@@ -181,7 +195,10 @@ export const ExamPage: React.FC = () => {
             percentage,
             time_spent: elapsed,
             answers: answerReviews,
-            created_at: new Date().toISOString()
+            created_at: new Date().toISOString(),
+            passage: exam.passage,
+            passage_translation: exam.passage_translation,
+            level: exam.level
           }
         }
       });
@@ -267,9 +284,25 @@ export const ExamPage: React.FC = () => {
         <div className="bg-white border border-gray-200 rounded-3xl p-5 sm:p-10 shadow-xs">
           {/* Header */}
           <div className="mb-6">
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-gray-100 text-gray-800 mb-3">
-              JLPT Test Mode
-            </span>
+            <div className="flex items-center gap-2 mb-3 flex-wrap">
+              {exam.passage ? (
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-indigo-50 text-indigo-700 border border-indigo-200">
+                  <BookMarked className="w-3.5 h-3.5" />
+                  <span>Chuyên đề: Đọc hiểu (読解)</span>
+                </span>
+              ) : (
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-gray-100 text-gray-800">
+                  JLPT Test Mode
+                </span>
+              )}
+
+              {exam.level && (
+                <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-bold bg-gray-900 text-white">
+                  Cấp độ {exam.level}
+                </span>
+              )}
+            </div>
+
             <h1 className="text-xl sm:text-3xl font-bold text-gray-900 leading-snug">
               {exam.title}
             </h1>
@@ -277,6 +310,20 @@ export const ExamPage: React.FC = () => {
               <p className="text-gray-600 text-xs sm:text-base mt-2 leading-relaxed">
                 {exam.description}
               </p>
+            )}
+
+            {exam.passage && (
+              <div className="mt-3.5 p-3.5 bg-indigo-50/60 border border-indigo-100 rounded-2xl text-xs sm:text-sm text-indigo-900 leading-relaxed">
+                <p className="font-bold flex items-center gap-1.5 mb-1 text-indigo-950">
+                  <BookMarked className="w-4 h-4 text-indigo-600" />
+                  <span>Cấu trúc bài thi Đọc hiểu:</span>
+                </p>
+                <ul className="list-disc list-inside space-y-0.5 text-xs text-indigo-800">
+                  <li>Đoạn văn đọc hiểu (~500 từ) hiển thị song song khi làm bài.</li>
+                  <li>Bao gồm câu hỏi điền vào chỗ trống và câu hỏi chọn đáp án tương ứng.</li>
+                  <li>Hỗ trợ xem bản dịch tiếng Việt và phóng to chữ trong phòng thi.</li>
+                </ul>
+              </div>
             )}
           </div>
 
@@ -350,170 +397,314 @@ export const ExamPage: React.FC = () => {
   }
 
   // -------------------------------------------------------------
-  // VIEW 2: Active Test Taking Mode (Mobile-First)
+  // VIEW 2: Active Test Taking Mode (Responsive Reading Mode)
   // -------------------------------------------------------------
   const currentQuestionData = sessionQuestions[currentIndex];
   const total = sessionQuestions.length;
   const answeredCount = Object.keys(userAnswers).length;
   const progressPercent = total > 0 ? ((currentIndex + 1) / total) * 100 : 0;
 
-  return (
-    <div className="max-w-3xl mx-auto px-3 sm:px-6 py-4 sm:py-8">
-      {/* Top Test Header (Optimized for Mobile) */}
-      <div className="bg-white border border-gray-200 rounded-2xl p-3.5 sm:p-4 mb-4 shadow-xs">
-        <div className="flex items-center justify-between gap-2 mb-2.5">
-          <div className="min-w-0 flex-1">
-            <h1 className="text-xs sm:text-sm font-bold text-gray-900 truncate">
-              {exam.title}
-            </h1>
-            <div className="flex items-center gap-2 mt-0.5">
-              <span className="text-[11px] text-gray-500">
-                Đã làm: <strong className="text-gray-900 font-bold">{answeredCount}</strong>/{total}
-              </span>
-              <span className="inline-flex items-center gap-0.5 text-[10px] font-semibold text-gray-700 bg-gray-100 px-1.5 py-0.5 rounded">
-                <Zap className="w-2.5 h-2.5 text-amber-600" />
-                Auto
-              </span>
+  const renderPassagePanel = (isMobile: boolean = false) => {
+    if (!exam.passage) return null;
+
+    return (
+      <div className={`bg-white border border-gray-200 rounded-2xl shadow-xs overflow-hidden ${
+        isMobile ? 'mb-4' : 'sticky top-4'
+      }`}>
+        {/* Header */}
+        <div className="flex items-center justify-between p-3.5 sm:p-4 bg-gray-50/90 border-b border-gray-200 gap-2">
+          <div className="flex items-center gap-2 min-w-0">
+            <div className="w-7 h-7 rounded-lg bg-indigo-100 text-indigo-700 flex items-center justify-center flex-shrink-0">
+              <BookMarked className="w-4 h-4" />
+            </div>
+            <div className="min-w-0">
+              <div className="flex items-center gap-1.5 flex-wrap">
+                <span className="text-xs sm:text-sm font-bold text-gray-900">
+                  Đoạn văn đọc hiểu
+                </span>
+                {exam.level && (
+                  <span className="text-[10px] font-bold bg-indigo-600 text-white px-1.5 py-0.2 rounded">
+                    {exam.level}
+                  </span>
+                )}
+              </div>
+              <p className="text-[10px] text-gray-500 truncate hidden sm:block">
+                Đọc bài văn để điền từ và trả lời các câu hỏi
+              </p>
             </div>
           </div>
 
-          <div className="flex items-center gap-2 flex-shrink-0">
-            {exam.time_limit && exam.time_limit > 0 && (
-              <Timer
-                initialSeconds={exam.time_limit}
-                onTimeUp={handleTimeUp}
-              />
+          {/* Action buttons: Font size & Translation */}
+          <div className="flex items-center gap-1.5 flex-shrink-0">
+            <div className="inline-flex rounded-lg border border-gray-200 bg-white p-0.5 text-[11px]">
+              <button
+                type="button"
+                onClick={() => setFontSize('normal')}
+                className={`px-1.5 py-0.5 rounded font-semibold cursor-pointer ${
+                  fontSize === 'normal' ? 'bg-gray-900 text-white' : 'text-gray-600 hover:text-gray-900'
+                }`}
+                title="Cỡ chữ tiêu chuẩn"
+              >
+                A
+              </button>
+              <button
+                type="button"
+                onClick={() => setFontSize('large')}
+                className={`px-1.5 py-0.5 rounded font-semibold cursor-pointer ${
+                  fontSize === 'large' ? 'bg-gray-900 text-white' : 'text-gray-600 hover:text-gray-900'
+                }`}
+                title="Cỡ chữ lớn"
+              >
+                A+
+              </button>
+            </div>
+
+            {exam.passage_translation && (
+              <button
+                type="button"
+                onClick={() => setShowTranslation(!showTranslation)}
+                className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-semibold transition-colors cursor-pointer ${
+                  showTranslation
+                    ? 'bg-indigo-600 text-white shadow-xs'
+                    : 'bg-white border border-gray-200 text-indigo-700 hover:bg-indigo-50'
+                }`}
+                title="Xem / Ẩn bản dịch tiếng Việt"
+              >
+                {showTranslation ? <EyeOff className="w-3.5 h-3.5" /> : <Eye className="w-3.5 h-3.5" />}
+                <span className="hidden sm:inline">{showTranslation ? 'Ẩn dịch' : 'Dịch TV'}</span>
+              </button>
             )}
 
-            <button
-              type="button"
-              onClick={() => {
-                if (
-                  answeredCount < total &&
-                  !window.confirm(`Bạn còn ${total - answeredCount} câu chưa trả lời. Bạn có chắc muốn nộp bài?`)
-                ) {
-                  return;
-                }
-                handleSubmitExam();
-              }}
-              disabled={isSubmitting}
-              className="inline-flex items-center gap-1 px-3 py-1.5 rounded-xl text-xs font-semibold bg-gray-900 text-white hover:bg-black transition-all active:scale-95 disabled:opacity-50 cursor-pointer"
-            >
-              <Send className="w-3 h-3" />
-              <span>{isSubmitting ? '...' : 'Nộp'}</span>
-            </button>
+            {isMobile && (
+              <button
+                type="button"
+                onClick={() => setIsPassageExpandedMobile(!isPassageExpandedMobile)}
+                className="p-1 rounded-lg text-gray-500 hover:text-gray-900 hover:bg-gray-100 cursor-pointer"
+              >
+                {isPassageExpandedMobile ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+              </button>
+            )}
           </div>
         </div>
 
-        {/* Progress bar */}
-        <div className="w-full bg-gray-100 rounded-full h-1.5 overflow-hidden">
-          <div
-            className="bg-gray-900 h-1.5 rounded-full transition-all duration-300"
-            style={{ width: `${progressPercent}%` }}
-          />
-        </div>
-      </div>
+        {/* Content */}
+        {(!isMobile || isPassageExpandedMobile) && (
+          <div className="p-4 sm:p-5 space-y-4 max-h-[55vh] lg:max-h-[calc(100vh-210px)] overflow-y-auto">
+            <div
+              className={`font-sans text-gray-800 leading-relaxed sm:leading-loose whitespace-pre-wrap text-justify ${
+                fontSize === 'large' ? 'text-base sm:text-lg' : 'text-xs sm:text-sm'
+              }`}
+            >
+              {exam.passage}
+            </div>
 
-      {/* Current Question Card */}
-      {currentQuestionData && (
-        <QuestionCard
-          questionNumber={currentIndex + 1}
-          totalQuestions={total}
-          questionText={currentQuestionData.question.question}
-          options={currentQuestionData.displayedOptions}
-          selectedAnswer={userAnswers[currentIndex] !== undefined ? userAnswers[currentIndex] : null}
-          onSelectAnswer={handleSelectOption}
-        />
-      )}
-
-      {/* Previous / Next Actions (Thumb friendly on mobile) */}
-      <div className="flex items-center justify-between gap-3 mt-4 sm:mt-6">
-        <button
-          type="button"
-          disabled={currentIndex === 0}
-          onClick={() => {
-            if (autoAdvanceTimerRef.current) clearTimeout(autoAdvanceTimerRef.current);
-            setCurrentIndex((prev) => Math.max(0, prev - 1));
-          }}
-          className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 px-4 py-3 sm:py-2.5 rounded-xl border border-gray-200 text-xs sm:text-sm font-semibold text-gray-700 bg-white hover:bg-gray-50 transition-colors disabled:opacity-30 disabled:cursor-not-allowed active:scale-98 cursor-pointer"
-        >
-          <ArrowLeft className="w-4 h-4" />
-          <span>Trước</span>
-        </button>
-
-        <span className="text-xs text-gray-500 font-mono font-medium px-2 flex-shrink-0">
-          {currentIndex + 1} / {total}
-        </span>
-
-        {currentIndex < total - 1 ? (
-          <button
-            type="button"
-            onClick={() => {
-              if (autoAdvanceTimerRef.current) clearTimeout(autoAdvanceTimerRef.current);
-              setCurrentIndex((prev) => Math.min(total - 1, prev + 1));
-            }}
-            className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 px-4 py-3 sm:py-2.5 rounded-xl border border-gray-300 text-xs sm:text-sm font-semibold text-gray-900 bg-gray-50 hover:bg-gray-100 transition-colors active:scale-98 cursor-pointer"
-          >
-            <span>Tiếp</span>
-            <ArrowRight className="w-4 h-4" />
-          </button>
-        ) : (
-          <button
-            type="button"
-            onClick={handleSubmitExam}
-            disabled={isSubmitting}
-            className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 px-4 py-3 sm:py-2.5 rounded-xl bg-gray-900 text-white text-xs sm:text-sm font-bold hover:bg-black transition-all shadow-xs active:scale-98 cursor-pointer"
-          >
-            <CheckCircle2 className="w-4 h-4" />
-            <span>Nộp bài</span>
-          </button>
+            {/* Vietnamese Translation (Toggleable) */}
+            {showTranslation && exam.passage_translation && (
+              <div className="pt-3 border-t border-indigo-100 bg-indigo-50/60 -mx-4 sm:-mx-5 -mb-4 sm:-mb-5 p-4 sm:p-5 rounded-b-2xl">
+                <div className="flex items-center gap-1.5 text-indigo-900 font-bold text-xs uppercase tracking-wider mb-2">
+                  <BookMarked className="w-3.5 h-3.5 text-indigo-600" />
+                  <span>Bản dịch tiếng Việt:</span>
+                </div>
+                <div
+                  className={`text-indigo-950 leading-relaxed whitespace-pre-wrap ${
+                    fontSize === 'large' ? 'text-sm sm:text-base' : 'text-xs sm:text-sm'
+                  }`}
+                >
+                  {exam.passage_translation}
+                </div>
+              </div>
+            )}
+          </div>
         )}
       </div>
+    );
+  };
 
-      {/* Quick Question Navigation Palette */}
-      <div className="mt-6 sm:mt-10 p-4 sm:p-5 bg-white border border-gray-200 rounded-2xl shadow-xs">
-        <div className="flex items-center justify-between mb-3">
-          <div className="flex items-center gap-2">
-            <span className="text-[11px] sm:text-xs font-bold text-gray-500 uppercase tracking-wider">
-              Bảng câu hỏi
-            </span>
-            <div className="flex items-center gap-2 text-[10px] text-gray-500 hidden sm:flex">
-              <span className="inline-flex items-center gap-1"><span className="w-2.5 h-2.5 rounded-full bg-gray-900"></span> Đã làm</span>
-              <span className="inline-flex items-center gap-1"><span className="w-2.5 h-2.5 rounded-full bg-white border border-gray-300"></span> Chưa làm</span>
+  return (
+    <div className={`mx-auto px-3 sm:px-6 py-4 sm:py-8 ${exam.passage ? 'max-w-6xl' : 'max-w-3xl'}`}>
+      {/* Mobile-only passage accordion (hidden on lg screens) */}
+      {exam.passage && (
+        <div className="lg:hidden">
+          {renderPassagePanel(true)}
+        </div>
+      )}
+
+      <div className={exam.passage ? 'grid grid-cols-1 lg:grid-cols-12 gap-6 items-start' : ''}>
+        {/* Desktop-only Left Column: Sticky Passage Panel */}
+        {exam.passage && (
+          <div className="hidden lg:block lg:col-span-6 xl:col-span-6">
+            {renderPassagePanel(false)}
+          </div>
+        )}
+
+        {/* Questions Panel */}
+        <div className={exam.passage ? 'lg:col-span-6 xl:col-span-6' : ''}>
+          {/* Top Test Header */}
+          <div className="bg-white border border-gray-200 rounded-2xl p-3.5 sm:p-4 mb-4 shadow-xs">
+            <div className="flex items-center justify-between gap-2 mb-2.5">
+              <div className="min-w-0 flex-1">
+                <div className="flex items-center gap-1.5">
+                  <h1 className="text-xs sm:text-sm font-bold text-gray-900 truncate">
+                    {exam.title}
+                  </h1>
+                  {exam.level && (
+                    <span className="text-[10px] font-bold bg-gray-100 text-gray-800 px-1.5 py-0.5 rounded flex-shrink-0">
+                      {exam.level}
+                    </span>
+                  )}
+                </div>
+                <div className="flex items-center gap-2 mt-0.5">
+                  <span className="text-[11px] text-gray-500">
+                    Đã làm: <strong className="text-gray-900 font-bold">{answeredCount}</strong>/{total}
+                  </span>
+                  <span className="inline-flex items-center gap-0.5 text-[10px] font-semibold text-gray-700 bg-gray-100 px-1.5 py-0.5 rounded">
+                    <Zap className="w-2.5 h-2.5 text-amber-600" />
+                    Auto
+                  </span>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-2 flex-shrink-0">
+                {exam.time_limit && exam.time_limit > 0 && (
+                  <Timer
+                    initialSeconds={exam.time_limit}
+                    onTimeUp={handleTimeUp}
+                  />
+                )}
+
+                <button
+                  type="button"
+                  onClick={() => {
+                    if (
+                      answeredCount < total &&
+                      !window.confirm(`Bạn còn ${total - answeredCount} câu chưa trả lời. Bạn có chắc muốn nộp bài?`)
+                    ) {
+                      return;
+                    }
+                    handleSubmitExam();
+                  }}
+                  disabled={isSubmitting}
+                  className="inline-flex items-center gap-1 px-3 py-1.5 rounded-xl text-xs font-semibold bg-gray-900 text-white hover:bg-black transition-all active:scale-95 disabled:opacity-50 cursor-pointer"
+                >
+                  <Send className="w-3 h-3" />
+                  <span>{isSubmitting ? '...' : 'Nộp'}</span>
+                </button>
+              </div>
+            </div>
+
+            {/* Progress bar */}
+            <div className="w-full bg-gray-100 rounded-full h-1.5 overflow-hidden">
+              <div
+                className="bg-gray-900 h-1.5 rounded-full transition-all duration-300"
+                style={{ width: `${progressPercent}%` }}
+              />
             </div>
           </div>
-          <span className="text-xs text-gray-500">
-            <strong className="text-gray-900">{answeredCount}</strong>/{total} đã làm
-          </span>
-        </div>
-        <div className="flex flex-wrap gap-1.5 sm:gap-2">
-          {sessionQuestions.map((_, idx) => {
-            const isAnswered = userAnswers[idx] !== undefined;
-            const isCurrent = idx === currentIndex;
 
-            let badgeStyle = 'bg-white text-gray-500 border-gray-200 hover:border-gray-400 hover:bg-gray-50';
-            if (isCurrent && isAnswered) {
-              badgeStyle = 'bg-gray-900 text-white border-gray-900 ring-2 ring-gray-900 ring-offset-2 font-bold shadow-sm';
-            } else if (isCurrent && !isAnswered) {
-              badgeStyle = 'bg-white text-gray-900 border-2 border-gray-900 ring-2 ring-gray-900/20 font-bold';
-            } else if (isAnswered) {
-              badgeStyle = 'bg-gray-900 text-white border-gray-900 font-bold shadow-xs';
-            }
+          {/* Current Question Card */}
+          {currentQuestionData && (
+            <QuestionCard
+              questionNumber={currentIndex + 1}
+              totalQuestions={total}
+              questionText={currentQuestionData.question.question}
+              options={currentQuestionData.displayedOptions}
+              selectedAnswer={userAnswers[currentIndex] !== undefined ? userAnswers[currentIndex] : null}
+              onSelectAnswer={handleSelectOption}
+              questionType={currentQuestionData.question.question_type}
+            />
+          )}
 
-            return (
+          {/* Previous / Next Actions (Thumb friendly on mobile) */}
+          <div className="flex items-center justify-between gap-3 mt-4 sm:mt-6">
+            <button
+              type="button"
+              disabled={currentIndex === 0}
+              onClick={() => {
+                if (autoAdvanceTimerRef.current) clearTimeout(autoAdvanceTimerRef.current);
+                setCurrentIndex((prev) => Math.max(0, prev - 1));
+              }}
+              className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 px-4 py-3 sm:py-2.5 rounded-xl border border-gray-200 text-xs sm:text-sm font-semibold text-gray-700 bg-white hover:bg-gray-50 transition-colors disabled:opacity-30 disabled:cursor-not-allowed active:scale-98 cursor-pointer"
+            >
+              <ArrowLeft className="w-4 h-4" />
+              <span>Trước</span>
+            </button>
+
+            <span className="text-xs text-gray-500 font-mono font-medium px-2 flex-shrink-0">
+              {currentIndex + 1} / {total}
+            </span>
+
+            {currentIndex < total - 1 ? (
               <button
-                key={idx}
                 type="button"
                 onClick={() => {
                   if (autoAdvanceTimerRef.current) clearTimeout(autoAdvanceTimerRef.current);
-                  setCurrentIndex(idx);
+                  setCurrentIndex((prev) => Math.min(total - 1, prev + 1));
                 }}
-                className={`w-8 h-8 sm:w-9 sm:h-9 rounded-lg sm:rounded-xl border text-xs flex items-center justify-center transition-all cursor-pointer ${badgeStyle}`}
+                className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 px-4 py-3 sm:py-2.5 rounded-xl border border-gray-300 text-xs sm:text-sm font-semibold text-gray-900 bg-gray-50 hover:bg-gray-100 transition-colors active:scale-98 cursor-pointer"
               >
-                {idx + 1}
+                <span>Tiếp</span>
+                <ArrowRight className="w-4 h-4" />
               </button>
-            );
-          })}
+            ) : (
+              <button
+                type="button"
+                onClick={handleSubmitExam}
+                disabled={isSubmitting}
+                className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 px-4 py-3 sm:py-2.5 rounded-xl bg-gray-900 text-white text-xs sm:text-sm font-bold hover:bg-black transition-all shadow-xs active:scale-98 cursor-pointer"
+              >
+                <CheckCircle2 className="w-4 h-4" />
+                <span>Nộp bài</span>
+              </button>
+            )}
+          </div>
+
+          {/* Quick Question Navigation Palette */}
+          <div className="mt-6 sm:mt-10 p-4 sm:p-5 bg-white border border-gray-200 rounded-2xl shadow-xs">
+            <div className="flex items-center justify-between mb-3">
+              <div className="flex items-center gap-2">
+                <span className="text-[11px] sm:text-xs font-bold text-gray-500 uppercase tracking-wider">
+                  Bảng câu hỏi
+                </span>
+                <div className="flex items-center gap-2 text-[10px] text-gray-500 hidden sm:flex">
+                  <span className="inline-flex items-center gap-1"><span className="w-2.5 h-2.5 rounded-full bg-gray-900"></span> Đã làm</span>
+                  <span className="inline-flex items-center gap-1"><span className="w-2.5 h-2.5 rounded-full bg-white border border-gray-300"></span> Chưa làm</span>
+                </div>
+              </div>
+              <span className="text-xs text-gray-500">
+                <strong className="text-gray-900">{answeredCount}</strong>/{total} đã làm
+              </span>
+            </div>
+            <div className="flex flex-wrap gap-1.5 sm:gap-2">
+              {sessionQuestions.map((sq, idx) => {
+                const isAnswered = userAnswers[idx] !== undefined;
+                const isCurrent = idx === currentIndex;
+
+                let badgeStyle = 'bg-white text-gray-500 border-gray-200 hover:border-gray-400 hover:bg-gray-50';
+                if (isCurrent && isAnswered) {
+                  badgeStyle = 'bg-gray-900 text-white border-gray-900 ring-2 ring-gray-900 ring-offset-2 font-bold shadow-sm';
+                } else if (isCurrent && !isAnswered) {
+                  badgeStyle = 'bg-white text-gray-900 border-2 border-gray-900 ring-2 ring-gray-900/20 font-bold';
+                } else if (isAnswered) {
+                  badgeStyle = 'bg-gray-900 text-white border-gray-900 font-bold shadow-xs';
+                }
+
+                return (
+                  <button
+                    key={idx}
+                    type="button"
+                    onClick={() => {
+                      if (autoAdvanceTimerRef.current) clearTimeout(autoAdvanceTimerRef.current);
+                      setCurrentIndex(idx);
+                    }}
+                    className={`w-8 h-8 sm:w-9 sm:h-9 rounded-lg sm:rounded-xl border text-xs flex items-center justify-center transition-all cursor-pointer ${badgeStyle}`}
+                    title={`Câu ${idx + 1}${sq.question.question_type === 'fill_blank' ? ' (Điền từ)' : ''}`}
+                  >
+                    {idx + 1}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
         </div>
       </div>
     </div>

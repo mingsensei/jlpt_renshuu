@@ -7,10 +7,11 @@
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 CREATE EXTENSION IF NOT EXISTS "pgcrypto";
 
--- 2. Create 'lessons' table (Vocabulary, Kanji, Grammar)
+-- 2. Create 'lessons' table (Vocabulary, Kanji, Grammar, Reading)
 CREATE TABLE IF NOT EXISTS public.lessons (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-  category TEXT NOT NULL CHECK (category IN ('vocabulary', 'kanji', 'grammar')),
+  category TEXT NOT NULL CHECK (category IN ('vocabulary', 'kanji', 'grammar', 'reading')),
+  level TEXT CHECK (level IS NULL OR level IN ('N5', 'N4', 'N3', 'N2', 'N1')),
   title TEXT NOT NULL,
   description TEXT,
   order_index INTEGER DEFAULT 0,
@@ -24,16 +25,20 @@ CREATE TABLE IF NOT EXISTS public.exams (
   title TEXT NOT NULL,
   description TEXT,
   time_limit INTEGER DEFAULT NULL, -- null = unlimited, integer = time limit in seconds
+  level TEXT CHECK (level IS NULL OR level IN ('N5', 'N4', 'N3', 'N2', 'N1')),
+  passage TEXT, -- Reading Japanese passage (~500 words)
+  passage_translation TEXT, -- Vietnamese translation
   shuffle_questions BOOLEAN DEFAULT FALSE,
   shuffle_options BOOLEAN DEFAULT FALSE,
   created_at TIMESTAMPTZ DEFAULT TIMEZONE('utc'::text, NOW()) NOT NULL
 );
 
--- 3. Create 'questions' table
+-- 4. Create 'questions' table
 CREATE TABLE IF NOT EXISTS public.questions (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   exam_id UUID NOT NULL REFERENCES public.exams(id) ON DELETE CASCADE,
   question TEXT NOT NULL,
+  question_type TEXT DEFAULT 'multiple_choice', -- 'multiple_choice' or 'fill_blank'
   option_a TEXT NOT NULL,
   option_b TEXT NOT NULL,
   option_c TEXT NOT NULL,
@@ -44,7 +49,7 @@ CREATE TABLE IF NOT EXISTS public.questions (
   created_at TIMESTAMPTZ DEFAULT TIMEZONE('utc'::text, NOW()) NOT NULL
 );
 
--- 4. Create 'exam_results' table
+-- 5. Create 'exam_results' table
 CREATE TABLE IF NOT EXISTS public.exam_results (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   exam_id UUID NOT NULL REFERENCES public.exams(id) ON DELETE CASCADE,
@@ -53,14 +58,20 @@ CREATE TABLE IF NOT EXISTS public.exam_results (
   percentage FLOAT NOT NULL,
   time_spent INTEGER DEFAULT 0, -- seconds spent on the exam
   answers JSONB DEFAULT '[]'::jsonb, -- detailed review data
+  passage TEXT,
+  passage_translation TEXT,
+  level TEXT,
   created_at TIMESTAMPTZ DEFAULT TIMEZONE('utc'::text, NOW()) NOT NULL
 );
 
--- 5. Indexes for performance
+-- 6. Indexes for performance
 CREATE INDEX IF NOT EXISTS idx_lessons_category ON public.lessons(category);
+CREATE INDEX IF NOT EXISTS idx_lessons_level ON public.lessons(level);
 CREATE INDEX IF NOT EXISTS idx_lessons_order_index ON public.lessons(order_index ASC);
 CREATE INDEX IF NOT EXISTS idx_exams_lesson_id ON public.exams(lesson_id);
+CREATE INDEX IF NOT EXISTS idx_exams_level ON public.exams(level);
 CREATE INDEX IF NOT EXISTS idx_questions_exam_id ON public.questions(exam_id);
+CREATE INDEX IF NOT EXISTS idx_questions_question_type ON public.questions(question_type);
 CREATE INDEX IF NOT EXISTS idx_exam_results_exam_id ON public.exam_results(exam_id);
 CREATE INDEX IF NOT EXISTS idx_exams_created_at ON public.exams(created_at DESC);
 

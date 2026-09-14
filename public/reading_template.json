@@ -1,0 +1,58 @@
+{
+  "title": "JLPT N3 Đọc hiểu: Giá trị của việc đọc sách trong thời đại số",
+  "description": "Bài đọc hiểu chuẩn cấp độ N3 dài ~500 từ về thói quen đọc sách và tư duy phản biện. Gồm câu hỏi điền vào chỗ trống và chọn đáp án phù hợp kèm bản dịch tiếng Việt.",
+  "level": "N3",
+  "time_limit": 1200,
+  "passage": "読書は、単に知識を得るためだけのものではない。昔の偉大な思想家や作家たちが、人生の長い時間をかけて考え抜いた結晶を、私たちは本を通じてわずか数時間で追体験することができる。特に現代のように変化が激しい時代においては、日々の仕事や生活に追われ、自分を見失いがちになる。そのようなとき、本を開くことで、日常の喧騒から離れ、静かに自己と向き合う貴重な時間を持つことができるのである。\n\n最近の調査によると、若い世代の「読書離れ」が進んでいると言われている。スマートフォンやSNSの普及により、短時間で手軽に刺激的な情報を手に入れることができるようになったため、長文を読む集中力が低下しているという指摘もある。しかし、（ 1 ）、短時間で消費される情報と、本をじっくり読むことで得られる深い洞察は、本質的に異なるものである。\n\n本を読むということは、著者との「対話」である。ページをめくりながら、「なぜ著者はこのように考えたのだろうか」「自分ならどう判断するだろうか」と問いかけることで、受け身ではない（ 2 ）思考力が養われる。また、異なる視点や価値観に触れることで、自分の狭い視野を広げ、多様な人々に対する寛容さを身につけることができるのだ。\n\nしたがって、忙しい日常の中でも、意識して本を読む時間を確保することが重要である。（ 3 ）、移動時間や寝る前のわずか十五分でも構わない。日々の小さな積み重ねが、やがて豊かな人間性を育み、困難な状況に直面した際の大きな支えとなるだろう。読書を通じて培われた深い思考力と豊かな感受性は、どんな時代になっても色あせることのない、かけがえのない財産となるに違いない。",
+  "passage_translation": "Đọc sách không đơn thuần chỉ là để tiếp thu kiến thức. Thông qua những trang sách, chúng ta có thể trải nghiệm lại chỉ trong vài giờ những kết tinh tư tưởng mà các triết gia, tác giả vĩ đại ngày xưa đã dành cả cuộc đời chiêm nghiệm. Đặc biệt trong thời đại biến đổi chóng mặt như hiện nay, con người rất dễ bị cuốn theo công việc, cuộc sống thường nhật mà đánh mất chính mình. Những lúc như vậy, việc mở một cuốn sách ra sẽ giúp ta tạm rời xa sự ồn ào của đời thường, có được khoảng thời gian quý báu để tĩnh tâm và đối thoại với chính bản thân mình.\n\nTheo các khảo sát gần đây, hiện tượng 'xa rời thói quen đọc sách' ở giới trẻ đang ngày càng gia tăng. Do sự phổ biến của điện thoại thông minh và mạng xã hội, người ta có thể tiếp cận thông tin kích thích một cách nhanh chóng, dẫn đến việc giảm khả năng tập trung khi đọc văn bản dài. Tuy nhiên, rõ ràng là thông tin tiêu thụ chớp nhoáng và sự thấu suốt sâu sắc đạt được nhờ việc nghiền ngẫm một cuốn sách có bản chất hoàn toàn khác nhau.\n\nĐọc sách chính là một 'cuộc đối thoại' với tác giả. Khi vừa lật giở từng trang vừa tự hỏi: 'Tại sao tác giả lại nghĩ như thế này?', 'Nếu là mình thì sẽ phán đoán ra sao?', ta sẽ rèn luyện được năng lực tư duy chủ động chứ không hề thụ động. Hơn nữa, việc tiếp xúc với những góc nhìn và hệ giá trị khác nhau sẽ giúp mở rộng tầm nhìn hạn hẹp của bản thân, đồng thời nuôi dưỡng lòng bao dung với sự đa dạng của mọi người xung quanh.\n\nDo đó, dù trong nhịp sống bận rộn, việc chủ động dành thời gian đọc sách là vô cùng quan trọng. Ví dụ, chỉ cần 15 phút trên đường đi lại hay trước khi đi ngủ cũng là đủ. Sự tích lũy nhỏ bé mỗi ngày đó sẽ dần nuôi dưỡng một nhân cách phong phú, trở thành điểm tựa vững chắc khi ta đối mặt với khó khăn. Năng lực tư duy sâu sắc cùng sự nhạy cảm phong phú được bồi đắp qua việc đọc sách chắc chắn sẽ là tài sản vô giá không bao giờ phai nhạt dù thời đại có đổi thay thế nào.",
+  "questions": [
+    {
+      "type": "fill_blank",
+      "question": "（ 1 ）に入る最も適当なものはどれですか？",
+      "options": [
+        "明らかに",
+        "めったに",
+        "決して",
+        "おそらく"
+      ],
+      "answer": 0,
+      "explanation": "Trước đó tác giả nêu việc thông tin mạng nhanh, nhưng đằng sau khẳng định chắc chắn 2 loại thông tin này về bản chất hoàn toàn khác nhau. Từ phù hợp nhất là 「明らかに」(rõ ràng là, hiển nhiên là)."
+    },
+    {
+      "type": "fill_blank",
+      "question": "（ 2 ）に入る最も適当なものはどれですか？",
+      "options": [
+        "主体的（しゅたいてき）な",
+        "受動的（じゅどうてき）な",
+        "消極的（しょうきょくてき）な",
+        "一時的（いちじてき）な"
+      ],
+      "answer": 0,
+      "explanation": "Vế trước có '受け身ではない' (không phải là thụ động), từ đối nghĩa tương thích để diễn tả tư duy tích cực, tự mình chủ động chất vấn là '主体的な' (mang tính chủ động)."
+    },
+    {
+      "type": "multiple_choice",
+      "question": "筆者によると、読書をすることの利点として述べられていないものはどれですか？",
+      "options": [
+        "偉大な思想家の考えを短時間で追体験できること",
+        "受け身ではない主体的な思考力が養われること",
+        "SNSで多くのフォロワーを獲得し有名になれること",
+        "多様な人々に対する寛容さを身につけられること"
+      ],
+      "answer": 2,
+      "explanation": "Trong bài không hề nhắc đến việc đọc sách để tăng lượt follow hay nổi tiếng trên mạng xã hội. Các ý 1, 2, 4 đều được tác giả nêu rõ trong bài đọc."
+    },
+    {
+      "type": "multiple_choice",
+      "question": "筆者がこの文章で最も伝えたいことは何ですか？",
+      "options": [
+        "スマートフォンやSNSの使用を今すぐ完全に禁止するべきだ。",
+        "忙しい日常の中でも、意識して本を読む時間を確保することが大切だ。",
+        "昔の思想家の本だけを読み、現代の新しい本は読まない方がよい。",
+        "十五分以上本を読むと集中力が切れるため、短い読書で済ませるべきだ。"
+      ],
+      "answer": 1,
+      "explanation": "Ở đoạn cuối, tác giả tóm gọn thông điệp chính: '忙しい日常の中でも、意識して本を読む時間を確保することが重要である' (dù trong nhịp sống bận rộn, việc chủ động dành thời gian đọc sách là vô cùng quan trọng)."
+    }
+  ]
+}

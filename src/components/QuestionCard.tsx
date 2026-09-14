@@ -1,5 +1,6 @@
 import React from 'react';
-import { CheckCircle2, XCircle, Info } from 'lucide-react';
+import { CheckCircle2, XCircle, Info, Edit3, CheckSquare } from 'lucide-react';
+import type { QuestionType } from '../types/exam';
 
 interface QuestionCardProps {
   questionNumber: number;
@@ -12,6 +13,7 @@ interface QuestionCardProps {
   isReviewMode?: boolean;
   correctAnswer?: number;
   explanation?: string | null;
+  questionType?: QuestionType;
 }
 
 const OPTION_LABELS = ['A', 'B', 'C', 'D'];
@@ -25,15 +27,30 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({
   onSelectAnswer,
   isReviewMode = false,
   correctAnswer,
-  explanation
+  explanation,
+  questionType
 }) => {
   return (
     <div className="bg-white border border-gray-200 rounded-2xl p-4 sm:p-7 shadow-xs transition-all">
       {/* Header index */}
-      <div className="flex items-center justify-between mb-3.5">
-        <span className="inline-flex items-center px-2.5 py-1 rounded-lg text-xs font-semibold bg-gray-100 text-gray-800 tracking-wide uppercase">
-          Câu {questionNumber} / {totalQuestions}
-        </span>
+      <div className="flex items-center justify-between mb-3.5 flex-wrap gap-2">
+        <div className="flex items-center gap-2 flex-wrap">
+          <span className="inline-flex items-center px-2.5 py-1 rounded-lg text-xs font-semibold bg-gray-100 text-gray-800 tracking-wide uppercase">
+            Câu {questionNumber} / {totalQuestions}
+          </span>
+          {questionType === 'fill_blank' && (
+            <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-semibold bg-blue-50 text-blue-700 border border-blue-200">
+              <Edit3 className="w-3.5 h-3.5 text-blue-600" />
+              <span>Điền vào chỗ trống</span>
+            </span>
+          )}
+          {questionType === 'multiple_choice' && (
+            <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-semibold bg-purple-50 text-purple-700 border border-purple-200">
+              <CheckSquare className="w-3.5 h-3.5 text-purple-600" />
+              <span>Chọn đáp án</span>
+            </span>
+          )}
+        </div>
         {isReviewMode && selectedAnswer !== null && (
           <span
             className={`inline-flex items-center gap-1 text-xs font-medium px-2.5 py-1 rounded-full ${
