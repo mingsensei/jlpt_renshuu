@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useMemo } from 'react';
+import React, { useState, useEffect, useRef, useMemo, useCallback } from 'react';
 import {
   Volume2,
   Play,
@@ -7,14 +7,12 @@ import {
   Eye,
   EyeOff,
   BookOpen,
-  Copy,
-  Check,
-  ExternalLink,
   Sparkles,
   ChevronDown,
   ChevronUp
 } from 'lucide-react';
 import { JapaneseTTS, countJapaneseCharacters, estimateReadingTimeMinutes } from '../lib/japaneseUtils';
+import { lookupJapaneseText, type JapaneseLookupResult } from '../lib/japaneseDictionary';
 import type { JLPTLevel } from '../types/exam';
 
 interface JapanesePassageReaderProps {
@@ -53,10 +51,17 @@ export const JapanesePassageReader: React.FC<JapanesePassageReaderProps> = ({
   const [speechRate, setSpeechRate] = useState<number>(1.0);
   const [ttsSupported, setTtsSupported] = useState(true);
 
-  // Text Selection / Dictionary Toolbar State
+  // In-place Lookup Popup State
   const [selectedText, setSelectedText] = useState<string>('');
-  const [toolbarPosition, setToolbarPosition] = useState<{ x: number; y: number } | null>(null);
-  const [hasCopied, setHasCopied] = useState(false);
+  const [popupPosition, setPopupPosition] = useState<{
+    x: number;
+    y: number;
+    arrowOffset: number;
+    placeBelow: boolean;
+  } | null>(null);
+  const [lookupData, setLookupData] = useState<JapaneseLookupResult | null>(null);
+  const [isLoadingLookup, setIsLoadingLookup] = useState<boolean>(false);
+  const abortControllerRef = useRef<AbortController | null>(null);
 
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -74,6 +79,118 @@ export const JapanesePassageReader: React.FC<JapanesePassageReaderProps> = ({
       setShowTranslation(true);
     }
   }, [defaultShowTranslation]);
+
+  // Dismiss popup immediately as soon as selection ends (khi het boi den)
+  useEffect(() => {
+    const handleSelectionChange = () => {
+      const selection = window.getSelection();
+      if (!selection || selection.isCollapsed || !selection.toString().trim()) {
+        if (abortControllerRef.current) {
+          abortControllerRef.current.abort();
+          abortControllerRef.current = null;
+        }
+        setPopupPosition(null);
+        setLookupData(null);
+        setSelectedText('');
+      }
+    };
+
+    document.addEventListener('selectionchange', handleSelectionChange);
+    return () => {
+      document.removeEventListener('selectionchange', handleSelectionChange);
+      if (abortControllerRef.current) {
+        abortControllerRef.current.abort();
+      }
+    };
+  }, []);
+
+  // Handle Text Selection within passage (Mouse or Touch)
+  const handleSelection = useCallback(() => {
+    const selection = window.getSelection();
+    if (!selection || selection.isCollapsed) {
+      setPopupPosition(null);
+      setLookupData(null);
+      setSelectedText('');
+      return;
+    }
+
+    const text = selection.toString().trim();
+    if (!text || text.length > 250) {
+      setPopupPosition(null);
+      setLookupData(null);
+      setSelectedText('');
+      return;
+    }
+
+    if (!containerRef.current) return;
+    const anchorNode = selection.anchorNode;
+    const focusNode = selection.focusNode;
+    if (
+      (anchorNode && !containerRef.current.contains(anchorNode)) ||
+      (focusNode && !containerRef.current.contains(focusNode))
+    ) {
+      return;
+    }
+
+    const range = selection.getRangeAt(0);
+    const rect = range.getBoundingClientRect();
+    const containerRect = containerRef.current.getBoundingClientRect();
+
+    // Popup card dimensions & center calculation
+    const popupWidth = Math.min(340, containerRect.width - 24);
+    const centerSelectionX = rect.left - containerRect.left + rect.width / 2;
+
+    // Clamp horizontal position so popup stays neatly inside container bounds
+    const minLeft = popupWidth / 2 + 12;
+    const maxLeft = containerRect.width - popupWidth / 2 - 12;
+    const clampedCenterX = Math.max(minLeft, Math.min(maxLeft, centerSelectionX));
+
+    // Pointer arrow offset relative to popup center
+    const arrowOffset = Math.max(
+      -popupWidth / 2 + 20,
+      Math.min(popupWidth / 2 - 20, centerSelectionX - clampedCenterX)
+    );
+
+    // If rect is close to top of container, place popup below selection; otherwise above
+    const placeBelow = rect.top - containerRect.top < 150;
+    const posY = placeBelow
+      ? rect.bottom - containerRect.top + 8
+      : rect.top - containerRect.top - 8;
+
+    setSelectedText(text);
+    setPopupPosition({
+      x: clampedCenterX,
+      y: posY,
+      arrowOffset,
+      placeBelow
+    });
+
+    // Abort previous in-flight request
+    if (abortControllerRef.current) {
+      abortControllerRef.current.abort();
+    }
+    const controller = new AbortController();
+    abortControllerRef.current = controller;
+
+    setIsLoadingLookup(true);
+    setLookupData(null);
+
+    lookupJapaneseText(text, controller.signal)
+      .then((data) => {
+        setLookupData(data);
+        setIsLoadingLookup(false);
+      })
+      .catch((err) => {
+        if (err.name !== 'AbortError') {
+          setLookupData({
+            text,
+            meaning: 'Không tìm thấy định nghĩa cho đoạn này.',
+            reading: null
+          });
+          setIsLoadingLookup(false);
+        }
+      });
+  }, []);
 
   // Handle TTS Play
   const handlePlayTTS = () => {
@@ -142,62 +259,6 @@ export const JapanesePassageReader: React.FC<JapanesePassageReaderProps> = ({
   const handleSpeakSelected = () => {
     if (!selectedText) return;
     JapaneseTTS.speak(selectedText, speechRate);
-  };
-
-  // Copy Selected Text
-  const handleCopySelected = async () => {
-    if (!selectedText) return;
-    try {
-      await navigator.clipboard.writeText(selectedText);
-      setHasCopied(true);
-      setTimeout(() => setHasCopied(false), 2000);
-    } catch {
-      // fallback
-    }
-  };
-
-  // Open Mazii Dictionary
-  const handleOpenMazii = () => {
-    if (!selectedText) return;
-    const url = `https://mazii.net/vi/search/word/ja/${encodeURIComponent(selectedText)}`;
-    window.open(url, '_blank', 'noopener,noreferrer');
-  };
-
-  // Open Jisho Dictionary
-  const handleOpenJisho = () => {
-    if (!selectedText) return;
-    const url = `https://jisho.org/search/${encodeURIComponent(selectedText)}`;
-    window.open(url, '_blank', 'noopener,noreferrer');
-  };
-
-  // Handle Mouse Selection within passage
-  const handleMouseUp = () => {
-    const selection = window.getSelection();
-    if (!selection || selection.isCollapsed) {
-      // Clear selection after a slight delay so button clicks don't vanish instantly
-      setTimeout(() => {
-        if (window.getSelection()?.isCollapsed) {
-          setSelectedText('');
-          setToolbarPosition(null);
-        }
-      }, 250);
-      return;
-    }
-
-    const text = selection.toString().trim();
-    if (text.length > 0 && text.length <= 100) {
-      const range = selection.getRangeAt(0);
-      const rect = range.getBoundingClientRect();
-      const containerRect = containerRef.current?.getBoundingClientRect();
-
-      if (containerRect) {
-        setSelectedText(text);
-        setToolbarPosition({
-          x: Math.max(10, Math.min(containerRect.width - 200, rect.left - containerRect.left)),
-          y: Math.max(0, rect.top - containerRect.top - 46)
-        });
-      }
-    }
   };
 
   // Statistics
@@ -333,7 +394,9 @@ export const JapanesePassageReader: React.FC<JapanesePassageReaderProps> = ({
   return (
     <div
       ref={containerRef}
-      onMouseUp={handleMouseUp}
+      onMouseUp={handleSelection}
+      onTouchEnd={handleSelection}
+      onKeyUp={handleSelection}
       className={`relative bg-white border border-gray-200 rounded-3xl shadow-xs overflow-hidden transition-all ${className}`}
     >
       {/* ================= Passage Toolbar Header ================= */}
@@ -555,62 +618,111 @@ export const JapanesePassageReader: React.FC<JapanesePassageReaderProps> = ({
         )}
       </div>
 
-      {/* ================= Floating Word Selection Toolbar ================= */}
-      {selectedText && toolbarPosition && (
+      {/* ================= In-place Lookup Popup Card (Nổi popup tương ứng: cách đọc & nghĩa) ================= */}
+      {selectedText && popupPosition && (
         <div
-          style={{
-            left: `${toolbarPosition.x}px`,
-            top: `${toolbarPosition.y}px`
+          onMouseDown={(e) => {
+            // Prevent deselecting when interacting with popup (e.g. clicking pronunciation button)
+            e.stopPropagation();
           }}
-          className="absolute z-30 bg-gray-950 text-white shadow-xl rounded-xl px-2 py-1.5 flex items-center gap-1.5 text-xs animate-in fade-in zoom-in-95 duration-150 border border-gray-700"
+          onTouchStart={(e) => {
+            e.stopPropagation();
+          }}
+          style={{
+            left: `${popupPosition.x}px`,
+            top: `${popupPosition.y}px`,
+            transform: `translateX(-50%) ${popupPosition.placeBelow ? '' : 'translateY(-100%)'}`
+          }}
+          className="absolute z-50 w-72 sm:w-84 max-w-[calc(100vw-32px)] bg-white text-gray-900 border border-indigo-200 shadow-2xl rounded-2xl p-3.5 sm:p-4 text-xs animate-in fade-in zoom-in-95 duration-150"
         >
-          <span className="font-bold text-indigo-300 max-w-[120px] truncate px-1">
-            {selectedText}
-          </span>
+          {/* Arrow Pointer */}
+          <div
+            style={{
+              left: `calc(50% + ${popupPosition.arrowOffset}px)`
+            }}
+            className={`absolute w-3 h-3 bg-white border-indigo-200 rotate-45 -translate-x-1/2 ${
+              popupPosition.placeBelow
+                ? '-top-1.5 border-t border-l'
+                : '-bottom-1.5 border-b border-r'
+            }`}
+          />
 
-          <div className="h-3 w-px bg-gray-700 mx-0.5" />
+          {/* Header Row: Selected Text + Pronunciation Audio + Badges */}
+          <div className="flex items-start justify-between gap-2 pb-2.5 border-b border-gray-100">
+            <div className="min-w-0 flex-1">
+              <div className="flex items-center gap-1.5 flex-wrap mb-1">
+                <span className="font-bold text-gray-950 text-sm sm:text-base font-japanese-mincho break-all">
+                  {selectedText}
+                </span>
 
-          {/* Quick Pronunciation */}
-          <button
-            type="button"
-            onClick={handleSpeakSelected}
-            className="p-1 hover:bg-gray-800 rounded-lg text-gray-300 hover:text-white transition-colors cursor-pointer"
-            title="Phát âm từ này (Japanese Speech)"
-          >
-            <Volume2 className="w-3.5 h-3.5 text-indigo-400" />
-          </button>
+                {lookupData?.level && (
+                  <span className="text-[10px] font-bold bg-indigo-600 text-white px-1.5 py-0.5 rounded shadow-xs">
+                    {lookupData.level}
+                  </span>
+                )}
 
-          {/* Mazii Dictionary */}
-          <button
-            type="button"
-            onClick={handleOpenMazii}
-            className="inline-flex items-center gap-0.5 px-1.5 py-0.5 hover:bg-gray-800 rounded-lg text-[11px] font-semibold text-gray-200 hover:text-white transition-colors cursor-pointer"
-            title="Tra từ điển Mazii"
-          >
-            <span>Mazii</span>
-            <ExternalLink className="w-2.5 h-2.5 opacity-70" />
-          </button>
+                {lookupData?.hanViet && (
+                  <span className="text-[10px] font-semibold bg-amber-50 text-amber-900 border border-amber-200 px-1.5 py-0.5 rounded">
+                    Hán-Việt: {lookupData.hanViet}
+                  </span>
+                )}
+              </div>
+            </div>
 
-          {/* Jisho Dictionary */}
-          <button
-            type="button"
-            onClick={handleOpenJisho}
-            className="inline-flex items-center gap-0.5 px-1.5 py-0.5 hover:bg-gray-800 rounded-lg text-[11px] font-semibold text-gray-200 hover:text-white transition-colors cursor-pointer"
-            title="Tra từ điển Jisho"
-          >
-            <span>Jisho</span>
-            <ExternalLink className="w-2.5 h-2.5 opacity-70" />
-          </button>
+            {/* Pronounce Button */}
+            <button
+              type="button"
+              onClick={handleSpeakSelected}
+              className="flex-shrink-0 p-1.5 bg-indigo-50 hover:bg-indigo-100 text-indigo-700 rounded-xl transition-colors cursor-pointer"
+              title="Phát âm tiếng Nhật (TTS)"
+            >
+              <Volume2 className="w-4 h-4" />
+            </button>
+          </div>
 
-          {/* Copy */}
-          <button
-            type="button"
-            onClick={handleCopySelected}
-            className="p-1 hover:bg-gray-800 rounded-lg text-gray-300 hover:text-white transition-colors cursor-pointer"
-            title="Sao chép từ"
-          >
-            {hasCopied ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
-          </button>
+          {/* Body: Cách đọc (Reading) & Ý nghĩa (Meaning) */}
+          <div className="pt-2.5 space-y-2">
+            {isLoadingLookup ? (
+              <div className="flex items-center gap-2 py-2 text-gray-500">
+                <div className="w-4 h-4 border-2 border-indigo-600 border-t-transparent rounded-full animate-spin flex-shrink-0" />
+                <span className="text-xs">Đang tra cách đọc & nghĩa...</span>
+              </div>
+            ) : lookupData ? (
+              <>
+                {/* Cách đọc */}
+                {lookupData.reading && (
+                  <div className="bg-indigo-50/80 border border-indigo-100/80 rounded-xl p-2">
+                    <div className="text-[10px] font-bold text-indigo-900 uppercase tracking-wider mb-0.5">
+                      Cách đọc:
+                    </div>
+                    <div className="text-sm font-bold text-indigo-950 font-mono tracking-wide">
+                      {lookupData.reading}
+                    </div>
+                  </div>
+                )}
+
+                {/* Ý nghĩa / Dịch nghĩa */}
+                <div>
+                  <div className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-1">
+                    {lookupData.isSentence ? 'Dịch nghĩa câu / đoạn:' : 'Nghĩa tiếng Việt:'}
+                  </div>
+                  <div className="text-xs sm:text-sm text-gray-800 font-medium leading-relaxed max-h-36 overflow-y-auto">
+                    {lookupData.meaning}
+                  </div>
+                </div>
+              </>
+            ) : (
+              <div className="text-xs text-gray-500 italic py-1">
+                Không tìm thấy dữ liệu tra cứu.
+              </div>
+            )}
+          </div>
+
+          {/* Footer note */}
+          <div className="mt-2.5 pt-2 border-t border-gray-100 flex items-center justify-between text-[10px] text-gray-400">
+            <span>💡 Bỏ bôi đen để đóng popup</span>
+            <span className="font-mono">Từ điển tức thì</span>
+          </div>
         </div>
       )}
 
@@ -621,7 +733,7 @@ export const JapanesePassageReader: React.FC<JapanesePassageReaderProps> = ({
           <div className="text-[11px] text-gray-600 bg-indigo-50/50 px-3 py-1.5 rounded-xl border border-indigo-100 flex items-center justify-between flex-wrap gap-1">
             <span className="flex items-center gap-1">
               <Sparkles className="w-3.5 h-3.5 text-indigo-500 flex-shrink-0" />
-              <span>Bôi đen bất kỳ từ/cụm từ tiếng Nhật nào để nghe phát âm hoặc tra từ điển Mazii/Jisho nhanh.</span>
+              <span>Bôi đen bất kỳ từ, cụm từ hoặc câu tiếng Nhật nào để xem nhanh cách đọc và dịch nghĩa ngay tại chỗ.</span>
             </span>
             {onSelectQuestion && (
               <span className="font-semibold text-indigo-700">
