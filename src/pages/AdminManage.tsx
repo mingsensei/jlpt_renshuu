@@ -19,7 +19,8 @@ import {
   FolderPlus,
   X,
   Sparkles,
-  BookMarked
+  BookMarked,
+  Headphones
 } from 'lucide-react';
 import { examService } from '../lib/examService';
 import type { Exam, ExamResult, Lesson, ExamCategory } from '../types/exam';
@@ -388,12 +389,17 @@ export const AdminManage: React.FC = () => {
                 >
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2 mb-1.5 flex-wrap">
-                      {exam.passage && (
+                      {(exam.audio_url || exam.lesson?.category === 'listening') ? (
+                        <span className="inline-flex items-center gap-1 text-[11px] font-semibold bg-gray-900 text-white px-2 py-0.5 rounded-md">
+                          <Headphones className="w-3 h-3 text-white" />
+                          Nghe hiểu
+                        </span>
+                      ) : exam.passage ? (
                         <span className="inline-flex items-center gap-1 text-[11px] font-semibold bg-indigo-50 text-indigo-700 border border-indigo-200 px-2 py-0.5 rounded-md">
                           <BookMarked className="w-3 h-3 text-indigo-600" />
                           Đọc hiểu
                         </span>
-                      )}
+                      ) : null}
 
                       {exam.level && (
                         <span className="inline-flex items-center text-[11px] font-bold bg-gray-900 text-white px-2 py-0.5 rounded-md">
@@ -752,12 +758,17 @@ export const AdminManage: React.FC = () => {
                           )}
                         </span>
 
-                        {res.passage && (
+                        {(res.audio_url || (res as any).category === 'listening') ? (
+                          <span className="inline-flex items-center gap-1 text-[11px] font-semibold bg-gray-900 text-white px-2 py-0.5 rounded-md">
+                            <Headphones className="w-3 h-3 text-white" />
+                            Nghe hiểu
+                          </span>
+                        ) : res.passage ? (
                           <span className="inline-flex items-center gap-1 text-[11px] font-semibold bg-indigo-50 text-indigo-700 border border-indigo-200 px-2 py-0.5 rounded-md">
                             <BookMarked className="w-3 h-3 text-indigo-600" />
                             Đọc hiểu
                           </span>
-                        )}
+                        ) : null}
 
                         {res.level && (
                           <span className="inline-flex items-center text-[11px] font-bold bg-gray-900 text-white px-2 py-0.5 rounded-md">

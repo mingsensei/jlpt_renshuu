@@ -58,6 +58,44 @@ export const SAMPLE_JSON_INPUT: RawQuestionInput[] = [
   }
 ];
 
+export const SAMPLE_FILLBLANK_JSON_INPUT: RawQuestionInput[] = [
+  {
+    type: "fill_blank",
+    question: "わたしは ＿＿＿ です。（Tôi là người Việt Nam - Nhập từ còn thiếu bằng tiếng Nhật）",
+    answer: "ベトナム人",
+    options: ["ベトナム人", "ベトナムじん", "betonamujin"],
+    explanation: "Tôi là người Việt Nam: わたしは ベトナム人 (ベトナムじん) です。"
+  },
+  {
+    type: "fill_blank",
+    question: "きのう、ともだち ＿＿ えいがを みました。（Nhập 1 trợ từ tiếng Nhật thích hợp）",
+    answer: "と",
+    options: ["と", "to"],
+    explanation: "Trợ từ と dùng khi làm hành động cùng với ai đó: ともだちと (cùng bạn)."
+  },
+  {
+    type: "fill_blank",
+    question: "Dịch từ sau sang tiếng Nhật: \"Cảm ơn\" (Nhập Hiragana)",
+    answer: "ありがとう",
+    options: ["ありがとう", "ありがとうございます", "arigatou", "arigatougozaimasu"],
+    explanation: "Cảm ơn tiếng Nhật là 「ありがとう」 hoặc lịch sự là 「ありがとうございます」."
+  },
+  {
+    type: "fill_blank",
+    question: "まいあさ コーヒーを ＿＿＿。（Uống cà phê - Nhập dạng lịch sự: のみます）",
+    answer: "のみます",
+    options: ["のみます", "飲みます", "nomimasu"],
+    explanation: "Hành động uống cà phê: コーヒーをのみます (飲みます)."
+  },
+  {
+    type: "fill_blank",
+    question: "Dịch từ sau sang tiếng Việt: 「ねこ」(neko)",
+    answer: "con mèo",
+    options: ["con mèo", "mèo", "con meo", "meo"],
+    explanation: "「ねこ」(猫) trong tiếng Việt là con mèo."
+  }
+];
+
 export const SAMPLE_READING_JSON_INPUT: RawReadingExamInput = {
   title: "JLPT N3 Đọc hiểu: Giá trị của việc đọc sách trong thời đại số",
   description: "Bài đọc hiểu chuẩn cấp độ N3 dài ~500 từ về thói quen đọc sách và tư duy phản biện. Gồm câu hỏi điền vào chỗ trống và chọn đáp án phù hợp kèm bản dịch tiếng Việt.",
@@ -222,6 +260,34 @@ export const DEMO_LESSONS: Lesson[] = [
     level: "N1",
     order_index: 5,
     created_at: new Date().toISOString()
+  },
+  // Listening (Choukai - 聴解 N5 - N3)
+  {
+    id: "lesson-listening-n5",
+    category: "listening",
+    title: "Nghe hiểu N5: Hội thoại hàng ngày & Chỉ đường",
+    description: "Luyện nghe các đoạn hội thoại giao tiếp cơ bản: hỏi giờ, hỏi đường, mua đồ tại cửa hàng.",
+    level: "N5",
+    order_index: 1,
+    created_at: new Date().toISOString()
+  },
+  {
+    id: "lesson-listening-n4",
+    category: "listening",
+    title: "Nghe hiểu N4: Thông báo ga tàu & Lời nhắn",
+    description: "Luyện nghe thông báo phát thanh tại nơi công cộng, hẹn gặp và phân công công việc.",
+    level: "N4",
+    order_index: 2,
+    created_at: new Date().toISOString()
+  },
+  {
+    id: "lesson-listening-n3",
+    category: "listening",
+    title: "Nghe hiểu N3: Tình huống công sở & Thảo luận",
+    description: "Luyện nghe hội thoại nơi làm việc, phỏng vấn ngắn và lý do đưa ra quyết định.",
+    level: "N3",
+    order_index: 3,
+    created_at: new Date().toISOString()
   }
 ];
 
@@ -255,6 +321,62 @@ export const DEMO_EXAMS: Exam[] = [
     questions_count: 4
   },
   {
+    id: "demo-exam-listening-n5",
+    lesson_id: "lesson-listening-n5",
+    title: "JLPT N5 Nghe hiểu: Cuộc trò chuyện ở quầy thông tin nhà ga",
+    description: "Bài nghe hội thoại ngắn chuẩn đề thi Choukai JLPT N5. Đoạn đối thoại giữa nhân viên nhà ga và hành khách hỏi chuyến tàu đi Shinjuku.",
+    level: "N5",
+    time_limit: 600, // 10 mins
+    shuffle_questions: false,
+    shuffle_options: false,
+    passage: "男の人と駅員が話しています。男の人は何番線の電車に乗りますか？\n\n男：すみません、新宿に行きたいんですが、どの電車に乗ればいいですか？\n駅員：新宿ですね。今度の二番線の各駅停車か、三番線の快速に乗ってください。\n男：どちらが早いですか？\n駅員：三番線の快速のほうが十分くらい早く着きますよ。あと三分で来ます。\n男：分かりました。じゃあ、そっちに乗ります。ありがとうございました。\n\n質問：男の人は何番線の電車に乗りますか？",
+    passage_translation: "Người đàn ông và nhân viên nhà ga đang nói chuyện. Người đàn ông sẽ lên tàu ở đường ray số mấy?\n\nNam: Xin lỗi, tôi muốn đi Shinjuku thì nên lên tàu nào ạ?\nNhân viên: Đi Shinjuku à. Bạn hãy đi chuyến tàu dừng mọi ga ở đường ray số 2 sắp tới, hoặc tàu nhanh ở đường ray số 3 nhé.\nNam: Chuyến nào nhanh hơn ạ?\nNhân viên: Tàu nhanh số 3 sẽ đến nhanh hơn khoảng 10 phút đấy. Còn 3 phút nữa là tàu vào ga.\nNam: Tôi hiểu rồi. Vậy tôi sẽ đi chuyến đó. Cảm ơn anh rất nhiều.\n\nCâu hỏi: Người đàn ông sẽ lên tàu ở đường ray số mấy?",
+    created_at: new Date().toISOString(),
+    questions_count: 2
+  },
+  {
+    id: "demo-exam-listening-n4",
+    lesson_id: "lesson-listening-n4",
+    title: "JLPT N4 Nghe hiểu: Hẹn gặp trước thư viện và đổi kế hoạch",
+    description: "Bài nghe hội thoại N4 Mondai 1. Hai sinh viên thảo luận về địa điểm và thời gian làm bài tập nhóm.",
+    level: "N4",
+    time_limit: 600,
+    shuffle_questions: false,
+    shuffle_options: false,
+    passage: "大学で男の学生と女の学生が話しています。二人は何時にどこで会いますか？\n\n男：明日、レポートの打ち合わせだけど、何時にする？\n女：授業が一時半に終わるから、二時はどう？\n男：いいね。どこで会おうか。図書館の前のカフェは？\n女：明日は雨が降るらしいから、図書館のロビーのほうが濡れなくていいんじゃない？\n男：そうだね、じゃあ二時に図書館のロビーで待ってるよ。\n女：了解！よろしくね。\n\n質問：二人は何時にどこで会いますか？",
+    passage_translation: "Tại trường đại học, một nam sinh và một nữ sinh đang nói chuyện. Hai người sẽ gặp nhau lúc mấy giờ và ở đâu?\n\nNam: Ngày mai chúng mình thảo luận về bài báo cáo, hẹn lúc mấy giờ được nhỉ?\nNữ: Tiết học kết thúc lúc 1 rưỡi, vậy 2 giờ được không?\nNam: Được đấy. Gặp ở đâu nhỉ? Quán cà phê trước thư viện nhé?\nNữ: Nghe nói ngày mai trời mưa, hẹn ở sảnh thư viện thì sẽ không bị ướt, tốt hơn chứ?\nNam: Ừ đúng rồi, vậy 2 giờ tớ sẽ đợi ở sảnh thư viện nhé.\nNữ: Nhất trí! Nhờ cậu nhé.\n\nCâu hỏi: Hai người sẽ gặp nhau lúc mấy giờ và ở đâu?",
+    created_at: new Date().toISOString(),
+    questions_count: 2
+  },
+  {
+    id: "demo-exam-listening-n3",
+    lesson_id: "lesson-listening-n3",
+    title: "JLPT N3 Nghe hiểu: Chuẩn bị tài liệu hội nghị và phân chia công việc",
+    description: "Tình huống nơi làm việc cấp độ N3. Trưởng nhóm và nhân viên thảo luận chuẩn bị cho buổi hội nghị khách hàng chiều nay.",
+    level: "N3",
+    time_limit: 720,
+    shuffle_questions: false,
+    shuffle_options: false,
+    passage: "会社で課長と女性社員が話しています。女性社員はこのあと、まず何をしなければなりませんか？\n\n課長：佐藤さん、今日の午後三時からの企画会議の準備、進んでる？\n女：はい、会議室の予約とプロジェクターの確認は終わりました。\n課長：ありがとう。それで、参加者の名簿と配布資料のコピーはどうなってる？\n女：名簿はできているんですが、資料は鈴木さんが今修正中で、まだ印刷していません。\n課長：そうか。鈴木さんの修正が終わり次第、二十部コピーしてホチキスで留めておいてくれるかな。\n女：承知しました。鈴木さんに状況を確認してすぐ準備いたします。\n\n質問：女性社員はこのあと、まず何をしますか？",
+    passage_translation: "Tại công ty, trưởng phòng và một nữ nhân viên đang nói chuyện. Nữ nhân viên sau đây trước tiên phải làm gì?\n\nTrưởng phòng: Cô Sato, việc chuẩn bị cho cuộc họp kế hoạch lúc 3 giờ chiều nay tiến hành đến đâu rồi?\nNữ: Vâng, việc đặt phòng họp và kiểm tra máy chiếu em đã hoàn tất rồi ạ.\nTrưởng phòng: Cảm ơn cô. Thế còn danh sách người tham gia và tài liệu phát cho cuộc họp thì sao rồi?\nNữ: Danh sách đã xong, còn tài liệu thì anh Suzuki đang chỉnh sửa, vẫn chưa in ạ.\nTrưởng phòng: Vậy à. Ngay khi anh Suzuki chỉnh sửa xong, cô hãy photo 20 bộ và bấm ghim lại giúp tôi nhé.\nNữ: Em đã rõ. Em sẽ kiểm tra tình trạng với anh Suzuki và chuẩn bị ngay ạ.\n\nCâu hỏi: Nữ nhân viên sau đây trước hết phải làm gì?",
+    created_at: new Date().toISOString(),
+    questions_count: 2
+  },
+  {
+    id: "demo-exam-reading-n4",
+    lesson_id: "lesson-reading-n4",
+    title: "JLPT N4 Đọc hiểu: Lễ hội mùa hè và phong tục mặc Yukata",
+    description: "Đoạn văn đọc hiểu N4 giới thiệu về phong tục lễ hội mùa hè Matsuri truyền thống tại Nhật Bản.",
+    level: "N4",
+    time_limit: 900,
+    shuffle_questions: false,
+    shuffle_options: false,
+    passage: "日本[にほん]には夏[なつ]になると、たくさんの「夏祭[なつまつ]り」があります。町[まち]の神社[じんじゃ]や広場[ひろば]で、太鼓[たいこ]の音[おと]に合わせて「盆踊[ぼんおど]り」を踊[おど]ったり、おいしい屋台[やたい]で食[た]べ物[もの]を買[か]ったりします。\n\n夏祭りの日[ひ]には、多[おお]くの人[ひと]が「浴衣[ゆかた]」という着物[きもの]を着[き]ます。浴衣は涼[すず]しい布[ぬの]で作[つく]られていて、色[いろ]や柄[がら]がとてもきれいです。昔[むかし]はお風呂[ふろ]のあとに着るものでしたが、今[いま]は夏のおしゃれな服[ふく]として人気[にんき]があります。\n\n夜[よる]になると、大[おお]きな花火[はなび]が空[そら]に上[あ]がります。赤[あか]や青[あお]の光[ひかり]がとても美[うつく]しいです。友達[ともだち]や家族[かぞく]と一緒[いっしょ]に夏祭りに行[い]くのは、日本の夏の一番[いちばん]楽[たの]しい思[おも]い出[で]になります。",
+    passage_translation: "Tại Nhật Bản khi mùa hè đến sẽ có rất nhiều 'Lễ hội mùa hè'. Tại các đền thờ hoặc quảng trường trong thị trấn, mọi người nhảy điệu 'Bon Odori' theo tiếng trống Taiko, hoặc mua đồ ăn ngon ở các gian hàng ẩm thực.\n\nVào ngày lễ hội mùa hè, nhiều người mặc trang phục truyền thống gọi là 'Yukata'. Yukata được làm bằng chất vải mát mẻ, có màu sắc và hoa văn rất đẹp. Ngày xưa Yukata được mặc sau khi tắm xong, nhưng ngày nay nó rất được ưa chuộng như một trang phục thời trang mùa hè.\n\nKhi màn đêm buông xuống, những chùm pháo hoa rực rỡ được bắn lên bầu trời. Ánh sáng màu đỏ và xanh lam vô cùng đẹp mắt. Cùng bạn bè hoặc gia đình đi dự lễ hội mùa hè chính là kỷ niệm vui nhất của mùa hè Nhật Bản.",
+    created_at: new Date().toISOString(),
+    questions_count: 3
+  },
+  {
     id: "demo-exam-1",
     lesson_id: "lesson-grammar-1",
     title: "JLPT N5 Vocabulary & Grammar Starter",
@@ -286,6 +408,18 @@ export const DEMO_EXAMS: Exam[] = [
     shuffle_options: false,
     created_at: new Date(Date.now() - 43200000).toISOString(),
     questions_count: 2
+  },
+  {
+    id: "demo-exam-fillblank-n5",
+    lesson_id: "lesson-vocab-1",
+    title: "JLPT N5 Điền từ vựng & Ngữ pháp (Nhập câu trả lời)",
+    description: "Luyện tập dạng gõ trực tiếp từ tiếng Nhật (Hiragana, Kanji, Romaji) hoặc tiếng Việt để kiểm tra độ nhớ chính xác từ vựng và trợ từ.",
+    level: "N5",
+    time_limit: 600, // 10 mins
+    shuffle_questions: false,
+    shuffle_options: false,
+    created_at: new Date().toISOString(),
+    questions_count: 5
   }
 ];
 
@@ -522,6 +656,203 @@ export const DEMO_QUESTIONS: Record<string, Question[]> = {
       correct_answer: 0,
       explanation: "わたし (watashi) nghĩa là Tôi (ngôi thứ nhất).",
       order_index: 2
+    }
+  ],
+  "demo-exam-listening-n5": [
+    {
+      id: "q-lis-n5-1",
+      exam_id: "demo-exam-listening-n5",
+      question_type: "multiple_choice",
+      question: "男の人は何番線の電車に乗りますか？",
+      option_a: "3番線の快速電車",
+      option_b: "2番線の各駅停車",
+      option_c: "1番線の特急電車",
+      option_d: "4番線の普通電車",
+      correct_answer: 0,
+      explanation: "Trong bài nghe, nhân viên ga giải thích tàu nhanh ở đường ray số 3 (3番線の快速) đến Shinjuku nhanh hơn 10 phút và chỉ 3 phút nữa là đến ga. Người đàn ông đã quyết định: 「じゃあ、そっちに乗ります」(Vậy tôi sẽ đi tàu đó). Do đó đáp án là đường ray số 3.",
+      order_index: 1
+    },
+    {
+      id: "q-lis-n5-2",
+      exam_id: "demo-exam-listening-n5",
+      question_type: "multiple_choice",
+      question: "男の人が乗る電車は、あと何分で来ますか？",
+      option_a: "3分",
+      option_b: "10分",
+      option_c: "2分",
+      option_d: "5分",
+      correct_answer: 0,
+      explanation: "Nhân viên ga nói rõ: 「あと三分で来ます」(Còn 3 phút nữa là tàu tới).",
+      order_index: 2
+    }
+  ],
+  "demo-exam-listening-n4": [
+    {
+      id: "q-lis-n4-1",
+      exam_id: "demo-exam-listening-n4",
+      question_type: "multiple_choice",
+      question: "二人は何時にどこで会いますか？",
+      option_a: "2時に図書館のロビー",
+      option_b: "1時半に図書館の前のカフェ",
+      option_c: "2時に図書館の前のカフェ",
+      option_d: "1時半に教室",
+      correct_answer: 0,
+      explanation: "Nữ sinh đề xuất gặp lúc 2 giờ vì tiết học kết thúc lúc 1 rưỡi. Ban đầu nam sinh đề xuất quán cafe trước thư viện, nhưng nữ sinh bảo trời mưa nên hẹn ở sảnh thư viện (図書館のロビー) để không bị ướt. Nam sinh đồng ý: 「じゃあ二時に図書館のロビーで待ってるよ」.",
+      order_index: 1
+    },
+    {
+      id: "q-lis-n4-2",
+      exam_id: "demo-exam-listening-n4",
+      question_type: "multiple_choice",
+      question: "なぜ図書館のロビーで会うことにしましたか？",
+      option_a: "明日は雨が降るらしいから",
+      option_b: "カフェが休みだから",
+      option_c: "本を読みたいから",
+      option_d: "授業が早く終わるから",
+      correct_answer: 0,
+      explanation: "Nữ sinh nói: 「明日は雨が降るらしいから、図書館のロビーのほうが濡れなくていいんじゃない？」(Mai nghe nói trời mưa, ở sảnh thư viện thì không bị ướt chẳng phải tốt hơn sao).",
+      order_index: 2
+    }
+  ],
+  "demo-exam-listening-n3": [
+    {
+      id: "q-lis-n3-1",
+      exam_id: "demo-exam-listening-n3",
+      question_type: "multiple_choice",
+      question: "女性社員はこのあと、まず何をしなければなりませんか？",
+      option_a: "鈴木さんに資料の状況を確認する",
+      option_b: "資料を20部コピーする",
+      option_c: "会議室を予約する",
+      option_d: "プロジェクターを確認する",
+      correct_answer: 0,
+      explanation: "Trong hội thoại, phòng họp và máy chiếu đã xong. Danh sách đã chuẩn bị xong. Tài liệu anh Suzuki đang sửa chưa in. Trưởng phòng bảo khi anh Suzuki xong thì photo 20 bộ. Nữ nhân viên đáp: 「鈴木さんに状況を確認してすぐ準備いたします」-> Hành động ĐẦU TIÊN là kiểm tra tình hình với anh Suzuki.",
+      order_index: 1
+    },
+    {
+      id: "q-lis-n3-2",
+      exam_id: "demo-exam-listening-n3",
+      question_type: "multiple_choice",
+      question: "会議の配布資料は何部コピーする必要がありますか？",
+      option_a: "20部",
+      option_b: "30部",
+      option_c: "15部",
+      option_d: "10部",
+      correct_answer: 0,
+      explanation: "Trưởng phòng chỉ thị: 「二十部コピーしてホチキスで留めておいてくれるかな」(Photo 20 bộ rồi bấm ghim lại giúp tôi nhé).",
+      order_index: 2
+    }
+  ],
+  "demo-exam-reading-n4": [
+    {
+      id: "q-read-n4-1",
+      exam_id: "demo-exam-reading-n4",
+      question_type: "multiple_choice",
+      question: "夏祭りの日に多くの人は何を着ますか？",
+      option_a: "浴衣（ゆかた）",
+      option_b: "スーツ",
+      option_c: "セーター",
+      option_d: "コート",
+      correct_answer: 0,
+      explanation: "Đoạn 2 nêu rõ: 「夏祭りの日には、多くの人が『浴衣』という着物を着ます」.",
+      order_index: 1
+    },
+    {
+      id: "q-read-n4-2",
+      exam_id: "demo-exam-reading-n4",
+      question_type: "multiple_choice",
+      question: "昔、浴衣はどんなときに着るものでしたか？",
+      option_a: "お風呂のあと",
+      option_b: "学校に行くとき",
+      option_c: "仕事のとき",
+      option_d: "結婚式のとき",
+      correct_answer: 0,
+      explanation: "Trong bài viết: 「昔はお風呂のあとに着るものでしたが、今は夏のおしゃれな服として人気があります」.",
+      order_index: 2
+    },
+    {
+      id: "q-read-n4-3",
+      exam_id: "demo-exam-reading-n4",
+      question_type: "multiple_choice",
+      question: "夜になると、空に何が上がりますか？",
+      option_a: "大きな花火",
+      option_b: "鳥",
+      option_c: "風船",
+      option_d: "飛行機",
+      correct_answer: 0,
+      explanation: "Trong bài viết: 「夜になると、大きな花火が空に上がります」.",
+      order_index: 3
+    }
+  ],
+  "demo-exam-fillblank-n5": [
+    {
+      id: "q-fb-1",
+      exam_id: "demo-exam-fillblank-n5",
+      question_type: "fill_blank",
+      question: "わたしは ＿＿＿ です。（Tôi là người Việt Nam - Nhập từ còn thiếu bằng tiếng Nhật）",
+      option_a: "ベトナム人",
+      option_b: "ベトナムじん",
+      option_c: "betonamujin",
+      option_d: "",
+      correct_answer: 0,
+      answer_text: "ベトナム人",
+      explanation: "Tôi là người Việt Nam: わたしは ベトナム人 (ベトナムじん) です。",
+      order_index: 1
+    },
+    {
+      id: "q-fb-2",
+      exam_id: "demo-exam-fillblank-n5",
+      question_type: "fill_blank",
+      question: "きのう、ともだち ＿＿ えいがを みました。（Nhập 1 trợ từ tiếng Nhật thích hợp）",
+      option_a: "と",
+      option_b: "to",
+      option_c: "",
+      option_d: "",
+      correct_answer: 0,
+      answer_text: "と",
+      explanation: "Trợ từ と dùng khi làm hành động cùng với ai đó: ともだちと (cùng bạn).",
+      order_index: 2
+    },
+    {
+      id: "q-fb-3",
+      exam_id: "demo-exam-fillblank-n5",
+      question_type: "fill_blank",
+      question: "Dịch từ sau sang tiếng Nhật: \"Cảm ơn\" (Nhập Hiragana)",
+      option_a: "ありがとう",
+      option_b: "ありがとうございます",
+      option_c: "arigatou",
+      option_d: "",
+      correct_answer: 0,
+      answer_text: "ありがとう",
+      explanation: "Cảm ơn tiếng Nhật là 「ありがとう」 hoặc lịch sự là 「ありがとうございます」.",
+      order_index: 3
+    },
+    {
+      id: "q-fb-4",
+      exam_id: "demo-exam-fillblank-n5",
+      question_type: "fill_blank",
+      question: "まいあさ コーヒーを ＿＿＿。（Uống cà phê - Nhập dạng lịch sự: のみます）",
+      option_a: "のみます",
+      option_b: "飲みます",
+      option_c: "nomimasu",
+      option_d: "",
+      correct_answer: 0,
+      answer_text: "のみます",
+      explanation: "Hành động uống cà phê: コーヒーをのみます (飲みます).",
+      order_index: 4
+    },
+    {
+      id: "q-fb-5",
+      exam_id: "demo-exam-fillblank-n5",
+      question_type: "fill_blank",
+      question: "Dịch từ sau sang tiếng Việt: 「ねこ」(neko)",
+      option_a: "con mèo",
+      option_b: "mèo",
+      option_c: "con meo",
+      option_d: "meo",
+      correct_answer: 0,
+      answer_text: "con mèo",
+      explanation: "「ねこ」(猫) trong tiếng Việt là con mèo.",
+      order_index: 5
     }
   ]
 };

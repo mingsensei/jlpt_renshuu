@@ -12,6 +12,7 @@ import {
 import confetti from 'canvas-confetti';
 import { QuestionCard } from '../components/QuestionCard';
 import { JapanesePassageReader } from '../components/JapanesePassageReader';
+import { JapaneseListeningPlayer } from '../components/JapaneseListeningPlayer';
 import { examService } from '../lib/examService';
 import type { ExamResult } from '../types/exam';
 
@@ -28,7 +29,7 @@ export const Result: React.FC = () => {
 
   useEffect(() => {
     if (result) {
-      if (result.percentage >= 70) {
+      if (result.percentage >= 60) {
         try {
           confetti({
             particleCount: 80,
@@ -50,7 +51,7 @@ export const Result: React.FC = () => {
         const data = await examService.getResultById(id);
         if (data) {
           setResult(data);
-          if (data.percentage >= 70) {
+          if (data.percentage >= 60) {
             confetti({
               particleCount: 80,
               spread: 60,
@@ -78,7 +79,7 @@ export const Result: React.FC = () => {
   if (isLoading) {
     return (
       <div className="max-w-3xl mx-auto px-4 py-20 text-center">
-        <div className="w-8 h-8 border-3 border-gray-900 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+        <div className="w-8 h-8 border-[3px] border-gray-900 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
         <p className="text-gray-500 text-sm">Đang tải kết quả bài thi...</p>
       </div>
     );
@@ -143,7 +144,7 @@ export const Result: React.FC = () => {
       </div>
 
       {/* Score Card Banner */}
-      <div className="bg-white border border-gray-200 rounded-3xl p-5 sm:p-8 shadow-xs mb-8 text-center relative overflow-hidden">
+      <div className="bg-white border border-gray-200 rounded-3xl p-5 sm:p-8 shadow-xs mb-8 text-center relative overflow-hidden animate-score-rise">
         <div className="w-12 h-12 rounded-2xl bg-gray-100 flex items-center justify-center mx-auto mb-3 text-gray-900 font-bold">
           <Trophy className="w-6 h-6 text-amber-500" />
         </div>
@@ -157,7 +158,7 @@ export const Result: React.FC = () => {
 
         {/* Big Score Display */}
         <div className="inline-flex flex-col items-center justify-center my-2 p-5 sm:p-6 rounded-2xl bg-gray-50 border border-gray-200 min-w-[200px]">
-          <span className="text-[11px] font-semibold text-gray-500 uppercase tracking-wider mb-1">Score:</span>
+          <span className="text-[11px] font-semibold text-gray-500 uppercase tracking-wider mb-1">Điểm số:</span>
           <span className="text-3xl sm:text-5xl font-black text-gray-900 tracking-tight font-mono">
             {result.score} / {result.total}
           </span>
@@ -198,8 +199,19 @@ export const Result: React.FC = () => {
         </div>
       </div>
 
-      {/* Reading Passage Review Box */}
-      {result.passage && (
+      {/* Reading Passage or Listening Player Review Box */}
+      {(result.audio_url || result.category === 'listening') ? (
+        <div className="mb-8">
+          <JapaneseListeningPlayer
+            audioUrl={result.audio_url}
+            scriptText={result.passage}
+            scriptTranslation={result.passage_translation}
+            level={result.level}
+            examTitle={result.exam_title}
+            isReviewMode={true}
+          />
+        </div>
+      ) : result.passage ? (
         <div className="mb-8">
           <JapanesePassageReader
             passage={result.passage}
@@ -209,7 +221,7 @@ export const Result: React.FC = () => {
             defaultShowTranslation={false}
           />
         </div>
-      )}
+      ) : null}
 
       {/* Question Review Section */}
       <div className="space-y-5">
@@ -277,6 +289,9 @@ export const Result: React.FC = () => {
                     correctAnswer={item.correctAnswer}
                     explanation={item.explanation}
                     questionType={item.questionType}
+                    userTextAnswer={item.userTextAnswer}
+                    correctTextAnswer={item.correctTextAnswer}
+                    isCorrect={item.isCorrect}
                   />
 
                   {/* Explicit text recap like in prompt: あなたの答え / Correct */}
@@ -288,16 +303,20 @@ export const Result: React.FC = () => {
                           item.isCorrect ? 'text-emerald-700' : 'text-rose-600'
                         }`}
                       >
-                        {item.userAnswer !== null && item.options[item.userAnswer] !== undefined
+                        {item.questionType === 'fill_blank'
+                          ? item.userTextAnswer || '(Chưa nhập)'
+                          : item.userAnswer !== null && item.options[item.userAnswer] !== undefined
                           ? item.options[item.userAnswer]
                           : '(Chưa chọn)'}
                       </span>
                     </div>
 
                     <div className="flex items-center gap-1.5">
-                      <span className="text-gray-500 font-medium">Correct:</span>
+                      <span className="text-gray-500 font-medium">Đáp án đúng:</span>
                       <span className="font-bold text-emerald-700">
-                        {item.options[item.correctAnswer]}
+                        {item.questionType === 'fill_blank'
+                          ? item.correctTextAnswer || (item.options && item.options[0]) || ''
+                          : item.options[item.correctAnswer]}
                       </span>
                     </div>
                   </div>

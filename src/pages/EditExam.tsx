@@ -17,7 +17,8 @@ import {
   FolderPlus,
   BookMarked,
   Edit3,
-  CheckSquare
+  CheckSquare,
+  Headphones
 } from 'lucide-react';
 import { examService } from '../lib/examService';
 import { JapanesePassageReader } from '../components/JapanesePassageReader';
@@ -39,9 +40,10 @@ export const EditExam: React.FC = () => {
   const [shuffleQuestions, setShuffleQuestions] = useState(false);
   const [shuffleOptions, setShuffleOptions] = useState(false);
 
-  // Reading-specific states
+  // Reading & Listening-specific states
   const [passage, setPassage] = useState('');
   const [passageTranslation, setPassageTranslation] = useState('');
+  const [audioUrl, setAudioUrl] = useState('');
   const [level, setLevel] = useState<JLPTLevel>('N3');
 
   // Category and Lesson states
@@ -102,35 +104,60 @@ export const EditExam: React.FC = () => {
         return { isValid: false, questions: null, error: `Câu số ${qNum} thiếu trường "question" hoặc nội dung trống.` };
       }
 
-      if (!Array.isArray(item.options) || item.options.length !== 4) {
-        return {
-          isValid: false,
-          questions: null,
-          error: `Câu số ${qNum} phải có trường "options" là mảng đúng 4 lựa chọn.`
-        };
-      }
+      const isFillBlank = item.question_type === 'fill_blank' || item.type === 'fill_blank';
 
-      for (let optIdx = 0; optIdx < 4; optIdx++) {
-        if (typeof item.options[optIdx] !== 'string') {
+      if (isFillBlank) {
+        if (item.options !== undefined && !Array.isArray(item.options)) {
           return {
             isValid: false,
             questions: null,
-            error: `Câu số ${qNum}, lựa chọn thứ ${optIdx + 1} phải là chuỗi ký tự.`
+            error: `Câu số ${qNum} (Điền từ): trường "options" nếu có phải là mảng chuỗi đáp án chấp nhận được.`
           };
         }
-      }
 
-      if (
-        typeof item.answer !== 'number' ||
-        !Number.isInteger(item.answer) ||
-        item.answer < 0 ||
-        item.answer > 3
-      ) {
-        return {
-          isValid: false,
-          questions: null,
-          error: `Câu số ${qNum}: trường "answer" phải là số nguyên từ 0 đến 3 (tương ứng với options[0..3]).`
-        };
+        const hasValidAnswer =
+          (typeof item.answer === 'string' && item.answer.trim().length > 0) ||
+          (typeof item.answer_text === 'string' && item.answer_text.trim().length > 0) ||
+          (Array.isArray(item.options) && item.options.length > 0);
+
+        if (!hasValidAnswer) {
+          return {
+            isValid: false,
+            questions: null,
+            error: `Câu số ${qNum} (Điền từ): cần có trường "answer" (chuỗi từ khóa) hoặc mảng "options" chứa các từ được chấp nhận.`
+          };
+        }
+      } else {
+        if (!Array.isArray(item.options) || item.options.length !== 4) {
+          return {
+            isValid: false,
+            questions: null,
+            error: `Câu số ${qNum} phải có trường "options" là mảng đúng 4 lựa chọn.`
+          };
+        }
+
+        for (let optIdx = 0; optIdx < 4; optIdx++) {
+          if (typeof item.options[optIdx] !== 'string') {
+            return {
+              isValid: false,
+              questions: null,
+              error: `Câu số ${qNum}, lựa chọn thứ ${optIdx + 1} phải là chuỗi ký tự.`
+            };
+          }
+        }
+
+        if (
+          typeof item.answer !== 'number' ||
+          !Number.isInteger(item.answer) ||
+          item.answer < 0 ||
+          item.answer > 3
+        ) {
+          return {
+            isValid: false,
+            questions: null,
+            error: `Câu số ${qNum}: trường "answer" phải là số nguyên từ 0 đến 3 (tương ứng với options[0..3]).`
+          };
+        }
       }
     }
 
@@ -206,6 +233,7 @@ export const EditExam: React.FC = () => {
 
         if (exam.passage) setPassage(exam.passage);
         if (exam.passage_translation) setPassageTranslation(exam.passage_translation);
+        if (exam.audio_url) setAudioUrl(exam.audio_url);
         if (exam.level) setLevel(exam.level);
 
         if (exam.lesson_id) {
@@ -216,7 +244,9 @@ export const EditExam: React.FC = () => {
             if (found.level) setLevel(found.level);
           }
         } else {
-          if (exam.passage) {
+          if (exam.audio_url) {
+            setSelectedCategory('listening');
+          } else if (exam.passage) {
             setSelectedCategory('reading');
           } else {
             const vocabLessons = lessonsData.filter((l) => l.category === 'vocabulary');
@@ -354,8 +384,8 @@ export const EditExam: React.FC = () => {
       return;
     }
 
-    if (selectedCategory === 'reading' && !passage.trim()) {
-      alert('Chuyên đề Đọc hiểu yêu cầu phải có nội dung đoạn văn (~500 từ).');
+    if ((selectedCategory === 'reading' || selectedCategory === 'listening') && !passage.trim() && !audioUrl.trim()) {
+      alert(`Chuyên đề ${selectedCategory === 'reading' ? 'Đọc hiểu' : 'Nghe hiểu'} yêu cầu phải có nội dung ${selectedCategory === 'reading' ? 'đoạn văn (~500 từ)' : 'kịch bản hội thoại hoặc link âm thanh'}.`);
       return;
     }
 
@@ -370,10 +400,11 @@ export const EditExam: React.FC = () => {
       const timeLimitSeconds =
         timeMode === 'limited' ? Math.max(1, timeLimitMinutes) * 60 : null;
 
-      const readingOptions = selectedCategory === 'reading' ? {
+      const mediaOptions = (selectedCategory === 'reading' || selectedCategory === 'listening') ? {
         passage: passage.trim() || null,
         passage_translation: passageTranslation.trim() || null,
-        level: level
+        level: level,
+        audio_url: audioUrl.trim() || null
       } : undefined;
 
       const success = await examService.updateExam(
@@ -385,7 +416,7 @@ export const EditExam: React.FC = () => {
         shuffleQuestions,
         shuffleOptions,
         selectedLessonId || null,
-        readingOptions
+        mediaOptions
       );
 
       if (success) {
@@ -460,13 +491,13 @@ export const EditExam: React.FC = () => {
             <label className="block text-xs sm:text-sm font-bold text-gray-900 mb-2">
               Nhóm chuyên đề <span className="text-rose-500">*</span>
             </label>
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2">
               {CATEGORY_TABS.map((cat) => (
                 <button
                   key={cat.id}
                   type="button"
                   onClick={() => handleCategoryChange(cat.id)}
-                  className={`py-2 px-3 rounded-xl border text-xs sm:text-sm font-semibold transition-all cursor-pointer text-center ${
+                  className={`py-2.5 px-3 rounded-xl border text-xs sm:text-sm font-semibold transition-all cursor-pointer text-center ${
                     selectedCategory === cat.id
                       ? 'bg-gray-900 text-white border-gray-900 shadow-xs'
                       : 'bg-gray-50 text-gray-700 border-gray-200 hover:bg-gray-100'
@@ -478,11 +509,11 @@ export const EditExam: React.FC = () => {
             </div>
           </div>
 
-          {/* JLPT Level Selector (Specific to Reading) */}
-          {selectedCategory === 'reading' && (
+          {/* JLPT Level Selector (For Reading & Listening) */}
+          {(selectedCategory === 'reading' || selectedCategory === 'listening') && (
             <div className="pt-3 border-t border-gray-100">
               <label className="block text-xs sm:text-sm font-bold text-gray-900 mb-2">
-                Cấp độ JLPT Đọc hiểu <span className="text-rose-500">*</span>
+                Cấp độ JLPT {selectedCategory === 'listening' ? 'Nghe hiểu' : 'Đọc hiểu'} <span className="text-rose-500">*</span>
               </label>
               <div className="grid grid-cols-5 gap-1.5 sm:gap-2">
                 {JLPT_LEVELS.map((lvl) => {
@@ -494,7 +525,7 @@ export const EditExam: React.FC = () => {
                       onClick={() => {
                         setLevel(lvl.id);
                         const matchLesson = allLessons.find(
-                          (l) => l.category === 'reading' && l.level === lvl.id
+                          (l) => l.category === selectedCategory && l.level === lvl.id
                         );
                         if (matchLesson) {
                           setSelectedLessonId(matchLesson.id);
@@ -694,6 +725,70 @@ export const EditExam: React.FC = () => {
           </div>
         )}
 
+        {/* Listening Audio & Script Input (Shown when Listening category is selected) */}
+        {selectedCategory === 'listening' && (
+          <div className="bg-white border-2 border-gray-900/20 rounded-2xl p-4 sm:p-6 shadow-xs space-y-4">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <div className="w-8 h-8 rounded-xl bg-gray-900 text-white flex items-center justify-center">
+                  <Headphones className="w-4 h-4" />
+                </div>
+                <div>
+                  <h3 className="text-sm sm:text-base font-bold text-gray-900">
+                    Cấu hình bài thi Nghe hiểu (Choukai)
+                  </h3>
+                  <p className="text-[11px] sm:text-xs text-gray-500">
+                    Hỗ trợ dán link Audio MP3 hoặc nhập Script hội thoại để AI đọc tự động chuẩn ngữ điệu
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <label className="block text-xs font-bold text-gray-700 mb-1.5">
+                Đường dẫn tệp âm thanh MP3 (Audio URL) <span className="text-gray-400 font-normal">(Không bắt buộc nếu có script bên dưới)</span>
+              </label>
+              <input
+                type="url"
+                value={audioUrl}
+                onChange={(e) => setAudioUrl(e.target.value)}
+                placeholder="https://example.com/audio/choukai-n3-mondai1.mp3"
+                className="w-full p-3 bg-gray-50 border border-gray-200 rounded-xl text-xs sm:text-sm text-gray-900 placeholder-gray-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-gray-900 transition-all"
+              />
+            </div>
+
+            <div>
+              <label className="block text-xs font-bold text-gray-700 mb-1.5">
+                Kịch bản lời thoại tiếng Nhật (Audio Script) <span className="text-rose-500">*</span>
+              </label>
+              <textarea
+                rows={7}
+                value={passage}
+                onChange={(e) => setPassage(e.target.value)}
+                placeholder={"Dán kịch bản hội thoại tiếng Nhật tại đây. Ví dụ:\n男：すみません、新宿駅へ行きたいんですが...\n女：それなら、中央線に乗ると早いですよ。\n質問：男の人は何に乗りますか？"}
+                required={selectedCategory === 'listening' && !audioUrl.trim()}
+                className="w-full p-3.5 bg-gray-50 border border-gray-200 rounded-xl text-xs sm:text-sm text-gray-900 placeholder-gray-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-gray-900 transition-all leading-relaxed font-sans"
+              />
+              <p className="text-[11px] text-gray-600 mt-2 bg-gray-50 p-2.5 rounded-xl border border-gray-200">
+                💡 <strong>Tự động đọc AI:</strong> Nếu không có file mp3 riêng, hệ thống sẽ sử dụng giọng đọc AI chuẩn Tokyo với ngữ điệu ngắt nghỉ tự nhiên theo từng câu của kịch bản này. Kịch bản sẽ được ẩn trong lúc làm bài thi và hiển thị khi học sinh xem lại bài.
+              </p>
+            </div>
+
+            <div className="pt-2 border-t border-gray-100">
+              <label className="block text-xs font-bold text-gray-700 mb-1.5">
+                Bản dịch tiếng Việt kịch bản (Script Translation)
+              </label>
+              <textarea
+                rows={5}
+                value={passageTranslation}
+                onChange={(e) => setPassageTranslation(e.target.value)}
+                placeholder="Nhập bản dịch tiếng Việt của kịch bản để học sinh đối chiếu sau khi làm bài xong..."
+                className="w-full p-3.5 bg-gray-50 border border-gray-200 rounded-xl text-xs sm:text-sm text-gray-900 placeholder-gray-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-gray-900 transition-all leading-relaxed font-sans"
+              />
+            </div>
+          </div>
+        )}
+
         {/* 1. Exam Name & Description */}
         <div className="bg-white border border-gray-200 rounded-2xl p-4 sm:p-6 shadow-xs">
           <label className="block text-xs sm:text-sm font-bold text-gray-900 mb-2">
@@ -861,18 +956,24 @@ export const EditExam: React.FC = () => {
                             )}
                           </span>
                         </div>
-                        <div className="grid grid-cols-2 gap-1 text-[11px] text-gray-600">
-                          {q.options.map((opt, optIdx) => (
-                            <div
-                              key={optIdx}
-                              className={`px-1.5 py-0.5 rounded ${
-                                optIdx === q.answer ? 'bg-emerald-50 text-emerald-800 font-bold' : ''
-                              }`}
-                            >
-                              {['A', 'B', 'C', 'D'][optIdx]}. {opt}
-                            </div>
-                          ))}
-                        </div>
+                        {q.options && q.options.length > 0 ? (
+                          <div className="grid grid-cols-2 gap-1 text-[11px] text-gray-600">
+                            {q.options.map((opt, optIdx) => (
+                              <div
+                                key={optIdx}
+                                className={`px-1.5 py-0.5 rounded ${
+                                  optIdx === q.answer ? 'bg-emerald-50 text-emerald-800 font-bold' : ''
+                                }`}
+                              >
+                                {['A', 'B', 'C', 'D'][optIdx] || optIdx + 1}. {opt}
+                              </div>
+                            ))}
+                          </div>
+                        ) : (
+                          <div className="text-[11px] text-gray-700 bg-gray-50 px-2 py-1 rounded">
+                            Đáp án: <strong className="text-gray-900">{String(q.answer ?? q.answer_text ?? '')}</strong>
+                          </div>
+                        )}
                         {q.explanation && (
                           <p className="text-[11px] text-gray-500 italic pt-1 border-t border-gray-50">
                             💡 Giải thích: {q.explanation}

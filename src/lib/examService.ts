@@ -16,16 +16,18 @@ export function packReadingMetadata(
     passage?: string | null;
     passage_translation?: string | null;
     level?: JLPTLevel | null;
+    audio_url?: string | null;
   }
 ): string {
   const cleanDesc = description ? description.replace(/<!-- READING_META:[\s\S]*?-->\n?/g, '').trim() : '';
-  if (!meta.passage && !meta.passage_translation && !meta.level) {
+  if (!meta.passage && !meta.passage_translation && !meta.level && !meta.audio_url) {
     return cleanDesc;
   }
   const json = JSON.stringify({
     passage: meta.passage || null,
     passage_translation: meta.passage_translation || null,
-    level: meta.level || null
+    level: meta.level || null,
+    audio_url: meta.audio_url || null
   });
   return `${READING_META_PREFIX}${json}${READING_META_SUFFIX}\n${cleanDesc}`;
 }
@@ -35,10 +37,12 @@ export function unpackReadingMetadata(exam: any): {
   passage: string | null;
   passage_translation: string | null;
   level: JLPTLevel | null;
+  audio_url: string | null;
 } {
   let passage = exam.passage || null;
   let passage_translation = exam.passage_translation || null;
   let level = exam.level || null;
+  let audio_url = exam.audio_url || null;
   let desc = exam.description || null;
 
   if (desc && desc.includes(READING_META_PREFIX)) {
@@ -49,6 +53,7 @@ export function unpackReadingMetadata(exam: any): {
         if (!passage && meta.passage) passage = meta.passage;
         if (!passage_translation && meta.passage_translation) passage_translation = meta.passage_translation;
         if (!level && meta.level) level = meta.level;
+        if (!audio_url && meta.audio_url) audio_url = meta.audio_url;
         desc = desc.replace(/<!-- READING_META:[\s\S]*?-->\n?/, '').trim() || null;
       }
     } catch (e) {
@@ -56,7 +61,7 @@ export function unpackReadingMetadata(exam: any): {
     }
   }
 
-  return { description: desc, passage, passage_translation, level };
+  return { description: desc, passage, passage_translation, level, audio_url };
 }
 
 function getLocalLessons(): Lesson[] {
@@ -607,6 +612,7 @@ export const examService = {
       passage?: string | null;
       passage_translation?: string | null;
       level?: JLPTLevel | null;
+      audio_url?: string | null;
     }
   ): Promise<string> {
     const examId = crypto.randomUUID ? crypto.randomUUID() : `exam-${Date.now()}`;
@@ -653,17 +659,26 @@ export const examService = {
           const actualExamId = examData.id;
 
           // Format questions for Supabase
-          const questionsPayload = rawQuestions.map((q, idx) => ({
-            exam_id: actualExamId,
-            question: q.question,
-            option_a: q.options[0] || '',
-            option_b: q.options[1] || '',
-            option_c: q.options[2] || '',
-            option_d: q.options[3] || '',
-            correct_answer: q.answer,
-            explanation: q.explanation || null,
-            order_index: idx + 1
-          }));
+          const questionsPayload = rawQuestions.map((q, idx) => {
+            const qType = q.question_type || q.type || 'multiple_choice';
+            const opts = q.options || [];
+            const isFb = qType === 'fill_blank';
+            const answerText = q.answer_text || (typeof q.answer === 'string' ? q.answer : (opts[Number(q.answer)] || ''));
+            const numericAnswer = typeof q.answer === 'number' ? q.answer : 0;
+
+            return {
+              exam_id: actualExamId,
+              question: q.question,
+              question_type: qType,
+              option_a: opts[0] || (isFb && answerText ? answerText : ''),
+              option_b: opts[1] || '',
+              option_c: opts[2] || '',
+              option_d: opts[3] || '',
+              correct_answer: numericAnswer,
+              explanation: q.explanation || null,
+              order_index: idx + 1
+            };
+          });
 
           const { error: questionsError } = await supabase
             .from('questions')
@@ -693,24 +708,34 @@ export const examService = {
       shuffle_options: shuffleOptions,
       passage: readingOptions?.passage || null,
       passage_translation: readingOptions?.passage_translation || null,
+      audio_url: readingOptions?.audio_url || null,
       level: readingOptions?.level || null,
       created_at: new Date().toISOString(),
       questions_count: rawQuestions.length
     };
 
-    const newQuestions: Question[] = rawQuestions.map((q, idx) => ({
-      id: `q-${examId}-${idx + 1}`,
-      exam_id: examId,
-      question: q.question,
-      question_type: q.type || 'multiple_choice',
-      option_a: q.options[0] || '',
-      option_b: q.options[1] || '',
-      option_c: q.options[2] || '',
-      option_d: q.options[3] || '',
-      correct_answer: q.answer,
-      explanation: q.explanation || null,
-      order_index: idx + 1
-    }));
+    const newQuestions: Question[] = rawQuestions.map((q, idx) => {
+      const qType = q.question_type || q.type || 'multiple_choice';
+      const opts = q.options || [];
+      const isFb = qType === 'fill_blank';
+      const answerText = q.answer_text || (typeof q.answer === 'string' ? q.answer : (opts[Number(q.answer)] || ''));
+      const numericAnswer = typeof q.answer === 'number' ? q.answer : 0;
+
+      return {
+        id: `q-${examId}-${idx + 1}`,
+        exam_id: examId,
+        question: q.question,
+        question_type: qType,
+        option_a: opts[0] || (isFb && answerText ? answerText : ''),
+        option_b: opts[1] || '',
+        option_c: opts[2] || '',
+        option_d: opts[3] || '',
+        correct_answer: numericAnswer,
+        answer_text: answerText || undefined,
+        explanation: q.explanation || null,
+        order_index: idx + 1
+      };
+    });
 
     const currentExams = getLocalExams();
     currentExams.unshift(newExam);
@@ -751,6 +776,8 @@ export const examService = {
     examTitle?: string;
     passage?: string | null;
     passage_translation?: string | null;
+    audio_url?: string | null;
+    category?: ExamCategory | null;
     level?: JLPTLevel | null;
   }): Promise<string> {
     const resultId = crypto.randomUUID ? crypto.randomUUID() : `result-${Date.now()}`;
@@ -792,6 +819,8 @@ export const examService = {
       exam_title: result.examTitle,
       passage: result.passage || null,
       passage_translation: result.passage_translation || null,
+      audio_url: result.audio_url || null,
+      category: result.category || null,
       level: result.level || null
     };
 
@@ -812,7 +841,7 @@ export const examService = {
           .single();
 
         if (!error && data) {
-          const meta = data.exams ? unpackReadingMetadata(data.exams) : { passage: null, passage_translation: null, level: null };
+          const meta = data.exams ? unpackReadingMetadata(data.exams) : { passage: null, passage_translation: null, level: null, audio_url: null };
           return {
             id: data.id,
             exam_id: data.exam_id,
@@ -825,6 +854,7 @@ export const examService = {
             exam_title: data.exams?.title,
             passage: meta.passage,
             passage_translation: meta.passage_translation,
+            audio_url: meta.audio_url,
             level: meta.level
           };
         }
@@ -835,16 +865,17 @@ export const examService = {
 
     const localResults = getLocalResults();
     const found = localResults.find((r) => r.id === id);
-    if (found && !found.passage) {
-      // Try to attach passage from local exam if available
+    if (found && (!found.passage || !found.audio_url)) {
+      // Try to attach passage/audio from local exam if available
       const localExams = getLocalExams();
       const matchExam = localExams.find((e) => e.id === found.exam_id);
       if (matchExam) {
         return {
           ...found,
-          passage: matchExam.passage,
-          passage_translation: matchExam.passage_translation,
-          level: matchExam.level
+          passage: found.passage || matchExam.passage,
+          passage_translation: found.passage_translation || matchExam.passage_translation,
+          audio_url: found.audio_url || matchExam.audio_url,
+          level: found.level || matchExam.level
         };
       }
     }
@@ -867,6 +898,7 @@ export const examService = {
       passage?: string | null;
       passage_translation?: string | null;
       level?: JLPTLevel | null;
+      audio_url?: string | null;
     }
   ): Promise<boolean> {
     const packedDescription = packReadingMetadata(description, readingOptions || {});
@@ -906,17 +938,26 @@ export const examService = {
           // 2. Delete old questions and insert new ones
           await supabase.from('questions').delete().eq('exam_id', id);
 
-          const questionsPayload = rawQuestions.map((q, idx) => ({
-            exam_id: id,
-            question: q.question,
-            option_a: q.options[0] || '',
-            option_b: q.options[1] || '',
-            option_c: q.options[2] || '',
-            option_d: q.options[3] || '',
-            correct_answer: q.answer,
-            explanation: q.explanation || null,
-            order_index: idx + 1
-          }));
+          const questionsPayload = rawQuestions.map((q, idx) => {
+            const qType = q.question_type || q.type || 'multiple_choice';
+            const opts = q.options || [];
+            const isFb = qType === 'fill_blank';
+            const answerText = q.answer_text || (typeof q.answer === 'string' ? q.answer : (opts[Number(q.answer)] || ''));
+            const numericAnswer = typeof q.answer === 'number' ? q.answer : 0;
+
+            return {
+              exam_id: id,
+              question: q.question,
+              question_type: qType,
+              option_a: opts[0] || (isFb && answerText ? answerText : ''),
+              option_b: opts[1] || '',
+              option_c: opts[2] || '',
+              option_d: opts[3] || '',
+              correct_answer: numericAnswer,
+              explanation: q.explanation || null,
+              order_index: idx + 1
+            };
+          });
 
           const { error: questionsError } = await supabase
             .from('questions')
@@ -949,25 +990,35 @@ export const examService = {
         shuffle_options: shuffleOptions,
         passage: readingOptions?.passage !== undefined ? readingOptions.passage : currentExams[idx].passage,
         passage_translation: readingOptions?.passage_translation !== undefined ? readingOptions.passage_translation : currentExams[idx].passage_translation,
+        audio_url: readingOptions?.audio_url !== undefined ? readingOptions.audio_url : currentExams[idx].audio_url,
         level: readingOptions?.level !== undefined ? readingOptions.level : currentExams[idx].level,
         questions_count: rawQuestions.length
       };
       saveLocalExams(currentExams);
     }
 
-    const newQuestions: Question[] = rawQuestions.map((q, qIdx) => ({
-      id: `q-${id}-${qIdx + 1}`,
-      exam_id: id,
-      question: q.question,
-      question_type: q.type || 'multiple_choice',
-      option_a: q.options[0] || '',
-      option_b: q.options[1] || '',
-      option_c: q.options[2] || '',
-      option_d: q.options[3] || '',
-      correct_answer: q.answer,
-      explanation: q.explanation || null,
-      order_index: qIdx + 1
-    }));
+    const newQuestions: Question[] = rawQuestions.map((q, qIdx) => {
+      const qType = q.question_type || q.type || 'multiple_choice';
+      const opts = q.options || [];
+      const isFb = qType === 'fill_blank';
+      const answerText = q.answer_text || (typeof q.answer === 'string' ? q.answer : (opts[Number(q.answer)] || ''));
+      const numericAnswer = typeof q.answer === 'number' ? q.answer : 0;
+
+      return {
+        id: `q-${id}-${qIdx + 1}`,
+        exam_id: id,
+        question: q.question,
+        question_type: qType,
+        option_a: opts[0] || (isFb && answerText ? answerText : ''),
+        option_b: opts[1] || '',
+        option_c: opts[2] || '',
+        option_d: opts[3] || '',
+        correct_answer: numericAnswer,
+        answer_text: answerText || undefined,
+        explanation: q.explanation || null,
+        order_index: qIdx + 1
+      };
+    });
     saveLocalQuestions(id, newQuestions);
 
     return true;

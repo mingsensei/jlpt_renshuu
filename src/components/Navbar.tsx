@@ -115,6 +115,8 @@ export const Navbar: React.FC = () => {
           <button
             type="button"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label={mobileMenuOpen ? 'Đóng menu' : 'Mở menu'}
+            aria-expanded={mobileMenuOpen}
             className="p-2 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors"
           >
             {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate, useLocation, Link } from 'react-router-dom';
-import { LogIn, UserPlus, Lock, Mail, ArrowLeft, Sparkles, AlertCircle } from 'lucide-react';
+import { LogIn, UserPlus, Lock, Mail, ArrowLeft, Sparkles, AlertCircle, CheckCircle2 } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 
 export const Login: React.FC = () => {
@@ -21,8 +21,8 @@ export const Login: React.FC = () => {
   if (user) {
     return (
       <div className="max-w-md mx-auto px-4 py-16 text-center">
-        <div className="w-14 h-14 rounded-2xl bg-gray-100 flex items-center justify-center mx-auto mb-4 text-gray-900 font-bold text-xl">
-          ✓
+        <div className="w-14 h-14 rounded-2xl bg-emerald-50 border border-emerald-200 flex items-center justify-center mx-auto mb-4">
+          <CheckCircle2 className="w-7 h-7 text-emerald-600" />
         </div>
         <h2 className="text-2xl font-bold text-gray-900 mb-2">Bạn đã đăng nhập</h2>
         <p className="text-gray-500 text-sm mb-6">Tài khoản: <strong>{user.email}</strong></p>

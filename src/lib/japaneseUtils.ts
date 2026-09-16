@@ -13,31 +13,47 @@ export interface ClozeMarker {
 }
 
 /**
- * Clean Japanese passage for Web Speech API (TTS)
- * - Converts `漢字[かんじ]` to `漢字` (speech synthesizers read Kanji naturally with correct context)
- * - Converts `[漢字|かんじ]` to `漢字`
+ * Clean Japanese passage for Web Speech API & Neural TTS with natural intonation & prosody
+ * - Converts `漢字[かんじ]` to `漢字`
  * - Strips HTML tags like `<ruby>`, `<rt>`, `<u>`, etc.
- * - Converts cloze numbers `( 1 )` to `1番` so it speaks smoothly in Japanese
+ * - Converts cloze numbers `( 1 )` to `1番`
+ * - Retains and standardizes Japanese punctuation (`？`, `！`, `。`, `、`)
+ * - Adds natural breath pauses after conjunctions (しかし、また、そのため、等)
+ * - Formats dialogue speaker turns (男：, 女：) with pause commas for natural speech rhythm
  */
 export function cleanJapaneseTextForTTS(rawText: string): string {
   if (!rawText) return '';
 
-  return (
-    rawText
-      // Remove HTML tags
-      .replace(/<rt>.*?<\/rt>/gi, '')
-      .replace(/<[^>]+>/g, '')
-      // Remove bracket furigana: 漢字[かんじ] -> 漢字
-      .replace(/([一-龯々仝〆〇]+)\[(.*?)\]/g, '$1')
-      // Remove pipe furigana: [漢字|かんじ] -> 漢字
-      .replace(/\[([一-龯々仝〆〇]+)\|.*?\]/g, '$1')
-      // Cloze markers to natural Japanese audio: （ 1 ） -> １番
-      .replace(/[（(【\[]\s*(\d+)\s*[）)】\]]/g, ' $1番 ')
-      // Markdown bold/italic
-      .replace(/\*\*([^*]+)\*\*/g, '$1')
-      .replace(/\*([^*]+)\*/g, '$1')
-      .trim()
-  );
+  let cleaned = rawText
+    // Remove HTML tags
+    .replace(/<rt>.*?<\/rt>/gi, '')
+    .replace(/<[^>]+>/g, '')
+    // Remove bracket furigana: 漢字[かんじ] -> 漢字
+    .replace(/([一-龯々仝〆〇]+)\[(.*?)\]/g, '$1')
+    // Remove pipe furigana: [漢字|かんじ] -> 漢字
+    .replace(/\[([一-龯々仝〆〇]+)\|.*?\]/g, '$1')
+    // Cloze markers to natural Japanese audio: （ 1 ） -> １番
+    .replace(/[（(【\[]\s*(\d+)\s*[）)】\]]/g, ' $1番 ')
+    // Markdown bold/italic
+    .replace(/\*\*([^*]+)\*\*/g, '$1')
+    .replace(/\*([^*]+)\*/g, '$1');
+
+  // Enhance dialogue speaker markers for natural prosodic pause (e.g. 男：, 女：, Aさん：, 質問：)
+  cleaned = cleaned.replace(/^(男|女|先生|学生|店員|客|アナウンス|[A-Za-z]+(?:さん)?)\s*[:：]\s*/gmu, '$1、');
+  cleaned = cleaned.replace(/([。\n])\s*(男|女|先生|学生|店員|客|アナウンス|[A-Za-z]+(?:さん)?)\s*[:：]\s*/gmu, '$1 $2、');
+
+  // Convert Western question mark to fullwidth Japanese ？ so the neural voice raises pitch at the end
+  cleaned = cleaned.replace(/\?/g, '？');
+  cleaned = cleaned.replace(/!/g, '！');
+  cleaned = cleaned.replace(/,/g, '、');
+
+  // Add natural clause pauses after common sentence-opening conjunctions if comma is omitted
+  cleaned = cleaned.replace(/([。\n]|^)\s*(しかし|そのため|また|ところで|さらに|一方|例えば|つまり)(?![\s、])/gu, '$1$2、');
+
+  // Ensure questions ending in 'か' have a question mark to trigger rising pitch contour
+  cleaned = cleaned.replace(/([でま]すか|ですか|ますか|でしょうか|のかな|のか)(?=[。\n\s]|$)/gu, '$1？');
+
+  return cleaned.trim();
 }
 
 /**
@@ -229,4 +245,41 @@ export function estimateReadingTimeMinutes(text: string): number {
   const chars = countJapaneseCharacters(text);
   if (chars <= 0) return 0;
   return Math.max(1, Math.ceil(chars / 350));
+}
+
+/**
+ * Normalize an answer string (Japanese / Vietnamese / Romaji) for fair comparison
+ * Removes trailing/leading spaces, standardizes punctuation, lowercases
+ */
+export function normalizeAnswer(str: string): string {
+  if (!str) return '';
+  return str
+    .trim()
+    .toLowerCase()
+    // remove common punctuation: commas, periods, question marks, fullwidth/halfwidth spaces
+    .replace(/[\s\u3000。、.,?!？！/\\()（）[\]「」『』"']/g, '');
+}
+
+/**
+ * Check if user's text answer matches any of the acceptable answers
+ * Supports multi-answers separated by /, ,, ;, | in acceptable answers list
+ */
+export function checkFillBlankAnswer(
+  userInput: string | undefined | null,
+  acceptableAnswers: string[]
+): boolean {
+  if (!userInput || !userInput.trim()) return false;
+  const cleanInput = normalizeAnswer(userInput);
+  if (!cleanInput) return false;
+
+  for (const ans of acceptableAnswers) {
+    if (!ans) continue;
+    // An answer might have multiple variations separated by slash, comma, semicolon, newline or pipe
+    // e.g. "私 / わたし / watashi" or "xin chào, chào"
+    const variants = ans.split(/[\/,;|\n]+/).map(normalizeAnswer).filter(Boolean);
+    if (variants.includes(cleanInput)) {
+      return true;
+    }
+  }
+  return false;
 }

@@ -4,6 +4,8 @@ import {
   Play,
   Pause,
   Square,
+  SkipBack,
+  SkipForward,
   Eye,
   EyeOff,
   BookOpen,
@@ -11,7 +13,8 @@ import {
   ChevronDown,
   ChevronUp
 } from 'lucide-react';
-import { JapaneseTTS, countJapaneseCharacters, estimateReadingTimeMinutes } from '../lib/japaneseUtils';
+import { countJapaneseCharacters, estimateReadingTimeMinutes } from '../lib/japaneseUtils';
+import { japaneseAIPlayer, type VoiceMode } from '../lib/japaneseAITTS';
 import { lookupJapaneseText, type JapaneseLookupResult } from '../lib/japaneseDictionary';
 import type { JLPTLevel } from '../types/exam';
 
@@ -45,11 +48,13 @@ export const JapanesePassageReader: React.FC<JapanesePassageReaderProps> = ({
   const [showTranslation, setShowTranslation] = useState(defaultShowTranslation);
   const [isExpandedMobile, setIsExpandedMobile] = useState(true);
 
-  // Audio / TTS States
+  // Audio / AI TTS States
   const [isPlaying, setIsPlaying] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
   const [speechRate, setSpeechRate] = useState<number>(1.0);
-  const [ttsSupported, setTtsSupported] = useState(true);
+  const [voiceMode, setVoiceMode] = useState<VoiceMode>('ai');
+  const [activeSentenceIndex, setActiveSentenceIndex] = useState<number | null>(null);
+  const [totalSentences, setTotalSentences] = useState<number>(0);
 
   // In-place Lookup Popup State
   const [selectedText, setSelectedText] = useState<string>('');
@@ -66,11 +71,41 @@ export const JapanesePassageReader: React.FC<JapanesePassageReaderProps> = ({
 
   const containerRef = useRef<HTMLDivElement>(null);
 
+  // Load passage into AI Player whenever passage changes
   useEffect(() => {
-    setTtsSupported(JapaneseTTS.isSupported());
+    if (passage) {
+      const sents = japaneseAIPlayer.loadPassage(passage);
+      setTotalSentences(sents.length);
+      setActiveSentenceIndex(null);
+    }
     return () => {
-      // Cleanup TTS on unmount
-      JapaneseTTS.stop();
+      japaneseAIPlayer.stop();
+    };
+  }, [passage]);
+
+  // Set up listeners for japaneseAIPlayer
+  useEffect(() => {
+    japaneseAIPlayer.onSentenceChange = (idx, total) => {
+      setActiveSentenceIndex(idx);
+      setTotalSentences(total);
+    };
+
+    japaneseAIPlayer.onStatusChange = (playing, paused) => {
+      setIsPlaying(playing);
+      setIsPaused(paused);
+      if (!playing) {
+        setActiveSentenceIndex(null);
+      }
+    };
+
+    japaneseAIPlayer.onEnd = () => {
+      setIsPlaying(false);
+      setIsPaused(false);
+      setActiveSentenceIndex(null);
+    };
+
+    return () => {
+      japaneseAIPlayer.stop();
     };
   }, []);
 
@@ -217,73 +252,60 @@ export const JapanesePassageReader: React.FC<JapanesePassageReaderProps> = ({
       });
   }, [passage]);
 
-  // Handle TTS Play
+  // Handle AI TTS Play
   const handlePlayTTS = () => {
     if (isPlaying && isPaused) {
-      JapaneseTTS.resume();
-      setIsPaused(false);
+      japaneseAIPlayer.resume();
       return;
     }
-
-    setIsPlaying(true);
-    setIsPaused(false);
-
-    JapaneseTTS.speak(
-      passage,
-      speechRate,
-      () => {
-        setIsPlaying(true);
-        setIsPaused(false);
-      },
-      () => {
-        setIsPlaying(false);
-        setIsPaused(false);
-      },
-      (err) => {
-        console.warn('TTS error/interrupted:', err);
-        setIsPlaying(false);
-        setIsPaused(false);
-      }
-    );
+    japaneseAIPlayer.setPlaybackRate(speechRate);
+    japaneseAIPlayer.setVoiceMode(voiceMode);
+    japaneseAIPlayer.play();
   };
 
-  // Handle TTS Pause
+  // Handle AI TTS Pause
   const handlePauseTTS = () => {
-    JapaneseTTS.pause();
-    setIsPaused(true);
+    japaneseAIPlayer.pause();
   };
 
-  // Handle TTS Stop
+  // Handle AI TTS Stop
   const handleStopTTS = () => {
-    JapaneseTTS.stop();
-    setIsPlaying(false);
-    setIsPaused(false);
+    japaneseAIPlayer.stop();
+    setActiveSentenceIndex(null);
   };
+
+  // Handle Sentence Navigation
+  const handleNextSentence = () => {
+    japaneseAIPlayer.nextSentence();
+  };
+
+  const handlePrevSentence = () => {
+    japaneseAIPlayer.prevSentence();
+  };
+
+  const handleJumpToSentence = useCallback((index: number) => {
+    japaneseAIPlayer.setPlaybackRate(speechRate);
+    japaneseAIPlayer.setVoiceMode(voiceMode);
+    japaneseAIPlayer.jumpToSentence(index);
+  }, [speechRate, voiceMode]);
 
   // Handle Speed Change
   const handleRateChange = (rate: number) => {
     setSpeechRate(rate);
-    if (isPlaying) {
-      // Restart at new rate
-      JapaneseTTS.stop();
-      setIsPlaying(true);
-      setIsPaused(false);
-      JapaneseTTS.speak(
-        passage,
-        rate,
-        undefined,
-        () => {
-          setIsPlaying(false);
-          setIsPaused(false);
-        }
-      );
-    }
+    japaneseAIPlayer.setPlaybackRate(rate);
   };
 
-  // Speak Selected Text
+  // Handle Voice Mode Switch
+  const handleToggleVoiceMode = () => {
+    const nextMode: VoiceMode = voiceMode === 'ai' ? 'system' : 'ai';
+    setVoiceMode(nextMode);
+    japaneseAIPlayer.setVoiceMode(nextMode);
+  };
+
+  // Speak Selected Text using AI Voice
   const handleSpeakSelected = () => {
     if (!selectedText) return;
-    JapaneseTTS.speak(selectedText, speechRate);
+    japaneseAIPlayer.speakSingleText(selectedText, speechRate);
   };
 
   // Statistics
@@ -291,26 +313,36 @@ export const JapanesePassageReader: React.FC<JapanesePassageReaderProps> = ({
   const estimatedMins = useMemo(() => estimateReadingTimeMinutes(passage), [passage]);
 
   /**
-   * Parse passage tokens:
+   * Parse passage tokens into paragraphs and synchronized sentences:
    * 1. Cloze markers: `（ 1 ）`, `( 1 )`, `【 1 】`, `[ 1 ]`, `①`, `②`, `③`, `④`, `⑤`, etc.
    * 2. Furigana: `漢字[かんじ]` or `[漢字|かんじ]` or `<ruby>...</ruby>`
    * 3. Underline: `<u>...</u>`
+   * 4. Sentence-level illumination synchronized with Japanese AI Audio narration
    */
   const renderedContent = useMemo(() => {
     if (!passage) return null;
 
     // Split passage into paragraphs
     const paragraphs = passage.split(/\n+/);
+    let globalSentenceCounter = 0;
 
     return paragraphs.map((paragraph, pIdx) => {
-      // Tokenize paragraph for Cloze markers and Furigana
-      // Regex matches:
-      // - Cloze: ([（(【\[]\s*(\d+|[A-Za-z])\s*[）)】\]])
-      // - Furigana: ([一-龯々仝〆〇]+\[[^\]]+\]|\[[一-龯々仝〆〇]+\|[^\]]+\])
-      // - Circle numbers: ([①②③④⑤⑥⑦⑧⑨⑩])
-      // - Underline: (<u>.*?<\/u>)
+      // Split paragraph by Japanese sentence boundaries: 。, ！, ？
+      const sentenceDelimRegex = /([。！？]+)/;
+      const sentenceRawParts = paragraph.split(sentenceDelimRegex);
+      const sentencesInParagraph: { text: string; sIdx: number }[] = [];
+
+      for (let i = 0; i < sentenceRawParts.length; i += 2) {
+        const fullSent = (sentenceRawParts[i] || '') + (sentenceRawParts[i + 1] || '');
+        if (fullSent.trim()) {
+          sentencesInParagraph.push({
+            text: fullSent,
+            sIdx: globalSentenceCounter++
+          });
+        }
+      }
+
       const tokenRegex = /([（(【[]\s*(?:\d+|[A-Za-z])\s*[）)】\]]|[①②③④⑤⑥⑦⑧⑨⑩]|[一-龯々仝〆〇]+\[[^\]]+\]|\[[一-龯々仝〆〇]+\|[^\]]+\]|<u>.*?<\/u>)/g;
-      const parts = paragraph.split(tokenRegex);
 
       return (
         <p
@@ -318,103 +350,127 @@ export const JapanesePassageReader: React.FC<JapanesePassageReaderProps> = ({
           className="mb-4 text-justify leading-loose"
           style={{ textIndent: pIdx === 0 ? '0' : '1em' }}
         >
-          {parts.map((part, tokenIdx) => {
-            if (!part) return null;
+          {sentencesInParagraph.map(({ text: sentenceText, sIdx }) => {
+            const isCurrentSentence = isPlaying && activeSentenceIndex === sIdx;
+            const parts = sentenceText.split(tokenRegex);
 
-            // 1. Check if it's a Cloze Marker
-            const clozeMatch = part.match(/^[（(【[]\s*(\d+|[A-Za-z])\s*[）)】\]]$/);
-            const circleNumberMap: Record<string, number> = {
-              '①': 1, '②': 2, '③': 3, '④': 4, '⑤': 5,
-              '⑥': 6, '⑦': 7, '⑧': 8, '⑨': 9, '⑩': 10
-            };
-
-            let questionNum: number | null = null;
-            if (clozeMatch) {
-              const numVal = parseInt(clozeMatch[1], 10);
-              if (!isNaN(numVal)) {
-                questionNum = numVal;
-              }
-            } else if (circleNumberMap[part] !== undefined) {
-              questionNum = circleNumberMap[part];
-            }
-
-            if (questionNum !== null) {
-              const targetQuestionIndex = questionNum - 1;
-              const isCurrentQuestion =
-                currentQuestionIndex !== undefined && currentQuestionIndex === targetQuestionIndex;
-
-              return (
-                <span
-                  key={`cloze-${tokenIdx}`}
-                  onClick={() => {
-                    if (onSelectQuestion && targetQuestionIndex >= 0) {
-                      onSelectQuestion(targetQuestionIndex);
-                    }
-                  }}
-                  className={`inline-flex items-center justify-center mx-1 px-2.5 py-0.5 rounded-full text-xs font-bold transition-all align-baseline ${
-                    onSelectQuestion ? 'cursor-pointer hover:shadow-sm' : ''
-                  } ${
-                    isCurrentQuestion
-                      ? 'bg-indigo-600 text-white ring-2 ring-indigo-400 ring-offset-1 shadow-xs scale-105 animate-pulse'
-                      : 'bg-indigo-50 text-indigo-700 border border-indigo-200 hover:bg-indigo-100'
-                  }`}
-                  title={
-                    onSelectQuestion
-                      ? `Chuyển tới câu hỏi ${questionNum} (${isCurrentQuestion ? 'Đang làm' : 'Bấm để xem'})`
-                      : `Chỗ trống câu hỏi ${questionNum}`
+            return (
+              <span
+                key={`sent-${sIdx}`}
+                onClick={() => {
+                  const sel = window.getSelection();
+                  if (!sel || sel.isCollapsed) {
+                    handleJumpToSentence(sIdx);
                   }
-                >
-                  {part}
-                </span>
-              );
-            }
+                }}
+                className={`transition-all duration-300 rounded px-1 py-0.5 inline cursor-pointer select-text ${
+                  isCurrentSentence
+                    ? 'bg-indigo-100/90 text-indigo-950 font-semibold ring-2 ring-indigo-400 ring-offset-1 shadow-xs'
+                    : 'hover:bg-indigo-50/50'
+                }`}
+                title="Bấm để nghe câu này bằng Giọng AI"
+              >
+                {parts.map((part, tokenIdx) => {
+                  if (!part) return null;
 
-            // 2. Check if it's Furigana: 漢字[かんじ]
-            const furiganaBracketMatch = part.match(/^([一-龯々仝〆〇]+)\[(.*?)\]$/);
-            if (furiganaBracketMatch) {
-              const kanji = furiganaBracketMatch[1];
-              const kana = furiganaBracketMatch[2];
-              return (
-                <ruby key={`ruby-${tokenIdx}`} className="select-text px-0.5">
-                  {kanji}
-                  <rt className="text-indigo-600">{kana}</rt>
-                </ruby>
-              );
-            }
+                  // 1. Check if it's a Cloze Marker
+                  const clozeMatch = part.match(/^[（(【[]\s*(\d+|[A-Za-z])\s*[）)】\]]$/);
+                  const circleNumberMap: Record<string, number> = {
+                    '①': 1, '②': 2, '③': 3, '④': 4, '⑤': 5,
+                    '⑥': 6, '⑦': 7, '⑧': 8, '⑨': 9, '⑩': 10
+                  };
 
-            // 3. Check if it's Pipe Furigana: [漢字|かんじ]
-            const furiganaPipeMatch = part.match(/^\[([一-龯々仝〆〇]+)\|(.*?)\]$/);
-            if (furiganaPipeMatch) {
-              const kanji = furiganaPipeMatch[1];
-              const kana = furiganaPipeMatch[2];
-              return (
-                <ruby key={`ruby-pipe-${tokenIdx}`} className="select-text px-0.5">
-                  {kanji}
-                  <rt className="text-indigo-600">{kana}</rt>
-                </ruby>
-              );
-            }
+                  let questionNum: number | null = null;
+                  if (clozeMatch) {
+                    const numVal = parseInt(clozeMatch[1], 10);
+                    if (!isNaN(numVal)) {
+                      questionNum = numVal;
+                    }
+                  } else if (circleNumberMap[part] !== undefined) {
+                    questionNum = circleNumberMap[part];
+                  }
 
-            // 4. Check if it's Underlined text: <u>...</u>
-            const underlineMatch = part.match(/^<u>(.*?)<\/u>$/);
-            if (underlineMatch) {
-              return (
-                <u
-                  key={`u-${tokenIdx}`}
-                  className="underline decoration-indigo-500 decoration-2 underline-offset-4 font-semibold text-indigo-950"
-                >
-                  {underlineMatch[1]}
-                </u>
-              );
-            }
+                  if (questionNum !== null) {
+                    const targetQuestionIndex = questionNum - 1;
+                    const isCurrentQuestion =
+                      currentQuestionIndex !== undefined && currentQuestionIndex === targetQuestionIndex;
 
-            // Normal text
-            return <span key={`text-${tokenIdx}`}>{part}</span>;
+                    return (
+                      <span
+                        key={`cloze-${tokenIdx}`}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          if (onSelectQuestion && targetQuestionIndex >= 0) {
+                            onSelectQuestion(targetQuestionIndex);
+                          }
+                        }}
+                        className={`inline-flex items-center justify-center mx-1 px-2.5 py-0.5 rounded-full text-xs font-bold transition-all align-baseline ${
+                          onSelectQuestion ? 'cursor-pointer hover:shadow-sm' : ''
+                        } ${
+                          isCurrentQuestion
+                            ? 'bg-indigo-600 text-white ring-2 ring-indigo-400 ring-offset-1 shadow-xs scale-105 animate-pulse'
+                            : 'bg-indigo-50 text-indigo-700 border border-indigo-200 hover:bg-indigo-100'
+                        }`}
+                        title={
+                          onSelectQuestion
+                            ? `Chuyển tới câu hỏi ${questionNum} (${isCurrentQuestion ? 'Đang làm' : 'Bấm để xem'})`
+                            : `Chỗ trống câu hỏi ${questionNum}`
+                        }
+                      >
+                        {part}
+                      </span>
+                    );
+                  }
+
+                  // 2. Check if it's Furigana: 漢字[かんじ]
+                  const furiganaBracketMatch = part.match(/^([一-龯々仝〆〇]+)\[(.*?)\]$/);
+                  if (furiganaBracketMatch) {
+                    const kanji = furiganaBracketMatch[1];
+                    const kana = furiganaBracketMatch[2];
+                    return (
+                      <ruby key={`ruby-${tokenIdx}`} className="select-text px-0.5">
+                        {kanji}
+                        <rt className="text-indigo-600">{kana}</rt>
+                      </ruby>
+                    );
+                  }
+
+                  // 3. Check if it's Pipe Furigana: [漢字|かんじ]
+                  const furiganaPipeMatch = part.match(/^\[([一-龯々仝〆〇]+)\|(.*?)\]$/);
+                  if (furiganaPipeMatch) {
+                    const kanji = furiganaPipeMatch[1];
+                    const kana = furiganaPipeMatch[2];
+                    return (
+                      <ruby key={`ruby-pipe-${tokenIdx}`} className="select-text px-0.5">
+                        {kanji}
+                        <rt className="text-indigo-600">{kana}</rt>
+                      </ruby>
+                    );
+                  }
+
+                  // 4. Check if it's Underlined text: <u>...</u>
+                  const underlineMatch = part.match(/^<u>(.*?)<\/u>$/);
+                  if (underlineMatch) {
+                    return (
+                      <u
+                        key={`u-${tokenIdx}`}
+                        className="underline decoration-indigo-500 decoration-2 underline-offset-4 font-semibold text-indigo-950"
+                      >
+                        {underlineMatch[1]}
+                      </u>
+                    );
+                  }
+
+                  // Normal text
+                  return <span key={`text-${tokenIdx}`}>{part}</span>;
+                })}
+              </span>
+            );
           })}
         </p>
       );
     });
-  }, [passage, currentQuestionIndex, onSelectQuestion]);
+  }, [passage, currentQuestionIndex, onSelectQuestion, isPlaying, activeSentenceIndex, handleJumpToSentence]);
 
   return (
     <div
@@ -481,85 +537,132 @@ export const JapanesePassageReader: React.FC<JapanesePassageReaderProps> = ({
         {/* Second line: Audio Player & Typography Controls */}
         {(!isMobile || isExpandedMobile) && (
           <div className="flex items-center justify-between gap-2 flex-wrap pt-2 border-t border-gray-200/60 text-xs">
-            {/* Left: Native Japanese TTS Player */}
-            {ttsSupported ? (
-              <div className="flex items-center gap-1.5 flex-wrap">
-                {!isPlaying ? (
+            {/* Left: AI & System Japanese Voice Player */}
+            <div className="flex items-center gap-1.5 flex-wrap">
+              {!isPlaying ? (
+                <button
+                  type="button"
+                  onClick={handlePlayTTS}
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-indigo-600 text-white font-bold hover:bg-indigo-700 transition-all cursor-pointer shadow-xs active:scale-95 text-xs"
+                  title="Nghe bài đọc bằng Giọng AI chân thật (Google WaveNet Neural)"
+                >
+                  <Sparkles className="w-3.5 h-3.5 text-amber-300 animate-pulse" />
+                  <Play className="w-3.5 h-3.5 fill-current" />
+                  <span>Nghe bài đọc (Giọng AI)</span>
+                </button>
+              ) : (
+                <div className="inline-flex items-center gap-1 bg-white border border-indigo-200 rounded-xl p-0.5 shadow-xs">
+                  {/* Prev Sentence */}
                   <button
                     type="button"
-                    onClick={handlePlayTTS}
-                    className="inline-flex items-center gap-1 px-2.5 py-1 rounded-xl bg-gray-900 text-white font-semibold hover:bg-black transition-colors cursor-pointer shadow-xs"
-                    title="Nghe giọng đọc tiếng Nhật bản xứ (Web Speech API)"
+                    onClick={handlePrevSentence}
+                    disabled={(activeSentenceIndex ?? 0) <= 0}
+                    className="p-1.5 rounded-lg text-indigo-700 hover:bg-indigo-50 disabled:opacity-30 disabled:hover:bg-transparent cursor-pointer"
+                    title="Câu trước"
                   >
-                    <Play className="w-3.5 h-3.5 fill-current" />
-                    <span>Nghe bài đọc</span>
+                    <SkipBack className="w-3.5 h-3.5 fill-current" />
                   </button>
-                ) : (
-                  <div className="inline-flex items-center gap-1 bg-white border border-indigo-200 rounded-xl p-0.5 shadow-xs">
-                    {isPaused ? (
-                      <button
-                        type="button"
-                        onClick={handlePlayTTS}
-                        className="p-1.5 rounded-lg text-indigo-700 hover:bg-indigo-50 cursor-pointer"
-                        title="Tiếp tục nghe"
-                      >
-                        <Play className="w-3.5 h-3.5 fill-current" />
-                      </button>
-                    ) : (
-                      <button
-                        type="button"
-                        onClick={handlePauseTTS}
-                        className="p-1.5 rounded-lg text-indigo-700 hover:bg-indigo-50 cursor-pointer"
-                        title="Tạm dừng"
-                      >
-                        <Pause className="w-3.5 h-3.5 fill-current" />
-                      </button>
-                    )}
 
+                  {/* Play / Pause */}
+                  {isPaused ? (
                     <button
                       type="button"
-                      onClick={handleStopTTS}
-                      className="p-1.5 rounded-lg text-rose-600 hover:bg-rose-50 cursor-pointer"
-                      title="Dừng phát âm"
+                      onClick={handlePlayTTS}
+                      className="p-1.5 rounded-lg text-indigo-700 hover:bg-indigo-50 cursor-pointer"
+                      title="Tiếp tục nghe"
                     >
-                      <Square className="w-3.5 h-3.5 fill-current" />
+                      <Play className="w-3.5 h-3.5 fill-current" />
                     </button>
+                  ) : (
+                    <button
+                      type="button"
+                      onClick={handlePauseTTS}
+                      className="p-1.5 rounded-lg text-indigo-700 hover:bg-indigo-50 cursor-pointer"
+                      title="Tạm dừng"
+                    >
+                      <Pause className="w-3.5 h-3.5 fill-current" />
+                    </button>
+                  )}
 
-                    <div className="flex items-center gap-0.5 px-1 text-[11px] font-mono font-bold text-indigo-900">
-                      <Volume2 className="w-3.5 h-3.5 text-indigo-600 animate-pulse" />
-                      <span className="hidden sm:inline">Đang đọc</span>
-                    </div>
+                  {/* Next Sentence */}
+                  <button
+                    type="button"
+                    onClick={handleNextSentence}
+                    disabled={(activeSentenceIndex ?? 0) >= totalSentences - 1}
+                    className="p-1.5 rounded-lg text-indigo-700 hover:bg-indigo-50 disabled:opacity-30 disabled:hover:bg-transparent cursor-pointer"
+                    title="Câu sau"
+                  >
+                    <SkipForward className="w-3.5 h-3.5 fill-current" />
+                  </button>
+
+                  {/* Stop */}
+                  <button
+                    type="button"
+                    onClick={handleStopTTS}
+                    className="p-1.5 rounded-lg text-rose-600 hover:bg-rose-50 cursor-pointer"
+                    title="Dừng phát âm"
+                  >
+                    <Square className="w-3.5 h-3.5 fill-current" />
+                  </button>
+
+                  {/* Sentence Counter Progress */}
+                  <div className="flex items-center gap-1 px-1.5 py-0.5 bg-indigo-50/80 rounded-lg text-[11px] font-mono font-bold text-indigo-900">
+                    <Volume2 className="w-3.5 h-3.5 text-indigo-600 animate-pulse" />
+                    <span>
+                      Câu {(activeSentenceIndex ?? 0) + 1}/{totalSentences || 1}
+                    </span>
                   </div>
-                )}
-
-                {/* Speed Rates (0.8x, 1.0x, 1.2x) */}
-                <div className="inline-flex rounded-lg border border-gray-200 bg-white p-0.5 text-[10px] font-semibold">
-                  {[
-                    { label: '0.8x', rate: 0.8, title: 'Tốc độ chậm (N5-N4)' },
-                    { label: '1.0x', rate: 1.0, title: 'Tốc độ chuẩn' },
-                    { label: '1.2x', rate: 1.2, title: 'Tốc độ nhanh (N2-N1)' }
-                  ].map((s) => (
-                    <button
-                      key={s.label}
-                      type="button"
-                      onClick={() => handleRateChange(s.rate)}
-                      title={s.title}
-                      className={`px-1.5 py-0.5 rounded cursor-pointer transition-colors ${
-                        speechRate === s.rate
-                          ? 'bg-gray-900 text-white font-bold'
-                          : 'text-gray-600 hover:text-gray-900'
-                      }`}
-                    >
-                      {s.label}
-                    </button>
-                  ))}
                 </div>
+              )}
+
+              {/* Voice Mode Toggle (AI vs Machine) */}
+              <button
+                type="button"
+                onClick={handleToggleVoiceMode}
+                className={`inline-flex items-center gap-1 px-2 py-1 rounded-lg text-[10px] font-bold transition-all border cursor-pointer ${
+                  voiceMode === 'ai'
+                    ? 'bg-gradient-to-r from-purple-50 to-indigo-50 border-purple-200 text-purple-800 shadow-xs'
+                    : 'bg-gray-100 border-gray-200 text-gray-600 hover:bg-gray-200'
+                }`}
+                title={
+                  voiceMode === 'ai'
+                    ? 'Đang dùng: Giọng AI Chân thật (Google Neural Voice). Bấm để đổi sang giọng máy trình duyệt.'
+                    : 'Đang dùng: Giọng máy hệ thống. Bấm để đổi sang Giọng AI chân thật.'
+                }
+              >
+                {voiceMode === 'ai' ? (
+                  <>
+                    <Sparkles className="w-3 h-3 text-purple-600" />
+                    <span>Giọng AI</span>
+                  </>
+                ) : (
+                  <span>🤖 Giọng máy</span>
+                )}
+              </button>
+
+              {/* Speed Rates (0.8x, 1.0x, 1.2x) */}
+              <div className="inline-flex rounded-lg border border-gray-200 bg-white p-0.5 text-[10px] font-semibold">
+                {[
+                  { label: '0.8x', rate: 0.8, title: 'Tốc độ chậm (N5-N4)' },
+                  { label: '1.0x', rate: 1.0, title: 'Tốc độ chuẩn' },
+                  { label: '1.2x', rate: 1.2, title: 'Tốc độ nhanh (N2-N1)' }
+                ].map((s) => (
+                  <button
+                    key={s.label}
+                    type="button"
+                    onClick={() => handleRateChange(s.rate)}
+                    title={s.title}
+                    className={`px-1.5 py-0.5 rounded cursor-pointer transition-colors ${
+                      speechRate === s.rate
+                        ? 'bg-gray-900 text-white font-bold'
+                        : 'text-gray-600 hover:text-gray-900'
+                    }`}
+                  >
+                    {s.label}
+                  </button>
+                ))}
               </div>
-            ) : (
-              <div className="text-[11px] text-gray-400 italic">
-                (Trình duyệt không hỗ trợ phát âm)
-              </div>
-            )}
+            </div>
 
             {/* Right: Japanese Typography Options */}
             <div className="flex items-center gap-1.5 ml-auto flex-wrap">
@@ -641,6 +744,27 @@ export const JapanesePassageReader: React.FC<JapanesePassageReaderProps> = ({
             </div>
           </div>
         )}
+
+        {/* Live Audio Status Banner */}
+        {isPlaying && (
+          <div className="mt-2.5 flex items-center justify-between gap-2 px-3 py-1.5 bg-indigo-50/90 border border-indigo-200/70 rounded-xl text-[11px] text-indigo-950 animate-in fade-in duration-200">
+            <div className="flex items-center gap-1.5">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-indigo-600"></span>
+              </span>
+              <span>
+                Đang đọc câu <strong>{(activeSentenceIndex ?? 0) + 1}/{totalSentences}</strong> bằng{' '}
+                <strong className="text-purple-700 font-bold">
+                  {voiceMode === 'ai' ? 'Giọng AI chân thật' : 'Giọng máy hệ thống'}
+                </strong>
+              </span>
+            </div>
+            <span className="text-gray-500 hidden sm:inline text-[10px]">
+              💡 Bấm vào câu bất kỳ trong bài đọc để nghe riêng câu đó
+            </span>
+          </div>
+        )}
       </div>
 
       {/* ================= In-place Lookup Popup Card (Nổi popup tương ứng: cách đọc & nghĩa) ================= */}
@@ -700,7 +824,7 @@ export const JapanesePassageReader: React.FC<JapanesePassageReaderProps> = ({
               type="button"
               onClick={handleSpeakSelected}
               className="flex-shrink-0 p-1.5 bg-indigo-50 hover:bg-indigo-100 text-indigo-700 rounded-xl transition-colors cursor-pointer"
-              title="Phát âm tiếng Nhật (TTS)"
+              title="Phát âm bằng Giọng AI chân thật"
             >
               <Volume2 className="w-4 h-4" />
             </button>

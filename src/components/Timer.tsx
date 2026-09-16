@@ -60,9 +60,10 @@ export const Timer: React.FC<TimerProps> = ({
 
   return (
     <div
+      key={isLowTime ? remaining : undefined}
       className={`inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-sm font-mono font-medium border transition-colors ${
         isLowTime
-          ? 'bg-rose-50 border-rose-300 text-rose-700 animate-pulse'
+          ? `bg-rose-50 border-rose-300 text-rose-700 ${remaining > 0 ? 'animate-timer-tick' : ''}`
           : isWarningTime
           ? 'bg-amber-50 border-amber-300 text-amber-700'
           : 'bg-white border-gray-200 text-gray-700 shadow-sm'

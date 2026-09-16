@@ -15,7 +15,9 @@ import {
 import { QuestionCard } from '../components/QuestionCard';
 import { Timer } from '../components/Timer';
 import { JapanesePassageReader } from '../components/JapanesePassageReader';
+import { JapaneseListeningPlayer } from '../components/JapaneseListeningPlayer';
 import { examService } from '../lib/examService';
+import { checkFillBlankAnswer } from '../lib/japaneseUtils';
 import type { Exam, Question, UserAnswerReview } from '../types/exam';
 
 interface ShuffledQuestion {
@@ -37,8 +39,12 @@ export const ExamPage: React.FC = () => {
   const [hasStarted, setHasStarted] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [userAnswers, setUserAnswers] = useState<Record<number, number>>({}); // index -> selected option index
+  const [userTextAnswers, setUserTextAnswers] = useState<Record<number, string>>({}); // index -> user typed answer for fill_blank
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [startTime, setStartTime] = useState<number>(0);
+  const [showTimeUpBanner, setShowTimeUpBanner] = useState(false);
+  const [showSubmitConfirm, setShowSubmitConfirm] = useState(false);
+  const [slideDirection, setSlideDirection] = useState<'forward' | 'back' | undefined>(undefined);
 
   // Shuffled options / questions configuration
   const [shuffleQuestions, setShuffleQuestions] = useState(false);
@@ -127,6 +133,7 @@ export const ExamPage: React.FC = () => {
     setHasStarted(true);
     setCurrentIndex(0);
     setUserAnswers({});
+    setUserTextAnswers({});
     setStartTime(Date.now());
   };
 
@@ -143,9 +150,30 @@ export const ExamPage: React.FC = () => {
     let score = 0;
 
     const answerReviews: UserAnswerReview[] = sessionQuestions.map((sq, idx) => {
-      const userSelected = userAnswers[idx] !== undefined ? userAnswers[idx] : null;
-      const isCorrect = userSelected === sq.displayedCorrectIndex;
-      if (isCorrect) score += 1;
+      const qType = sq.question.question_type || 'multiple_choice';
+      let isCorrect = false;
+      let userSelected: number | null = null;
+      let userTextAnswer: string | undefined = undefined;
+      let correctTextAnswer: string | undefined = undefined;
+
+      if (qType === 'fill_blank') {
+        userTextAnswer = (userTextAnswers[idx] || '').trim();
+        const acceptable: string[] = [];
+        if (sq.question.answer_text) acceptable.push(sq.question.answer_text.trim());
+        sq.displayedOptions.forEach((opt) => {
+          if (opt && opt.trim()) acceptable.push(opt.trim());
+        });
+        if (acceptable.length === 0 && sq.question.correct_answer !== undefined && sq.displayedOptions[sq.question.correct_answer]) {
+          acceptable.push(sq.displayedOptions[sq.question.correct_answer].trim());
+        }
+        correctTextAnswer = sq.question.answer_text || acceptable[0] || '';
+        isCorrect = checkFillBlankAnswer(userTextAnswer, acceptable.length > 0 ? acceptable : [correctTextAnswer]);
+        if (isCorrect) score += 1;
+      } else {
+        userSelected = userAnswers[idx] !== undefined ? userAnswers[idx] : null;
+        isCorrect = userSelected === sq.displayedCorrectIndex;
+        if (isCorrect) score += 1;
+      }
 
       return {
         questionId: sq.question.id,
@@ -154,6 +182,8 @@ export const ExamPage: React.FC = () => {
         options: sq.displayedOptions,
         userAnswer: userSelected,
         correctAnswer: sq.displayedCorrectIndex,
+        userTextAnswer,
+        correctTextAnswer,
         isCorrect,
         explanation: sq.question.explanation
       };
@@ -173,6 +203,8 @@ export const ExamPage: React.FC = () => {
         examTitle: exam.title,
         passage: exam.passage,
         passage_translation: exam.passage_translation,
+        audio_url: exam.audio_url,
+        category: exam.lesson?.category,
         level: exam.level
       });
 
@@ -190,6 +222,8 @@ export const ExamPage: React.FC = () => {
             created_at: new Date().toISOString(),
             passage: exam.passage,
             passage_translation: exam.passage_translation,
+            audio_url: exam.audio_url,
+            category: exam.lesson?.category,
             level: exam.level
           }
         }
@@ -199,11 +233,11 @@ export const ExamPage: React.FC = () => {
       alert('Đã xảy ra lỗi khi nộp bài. Vui lòng thử lại.');
       setIsSubmitting(false);
     }
-  }, [exam, isSubmitting, sessionQuestions, userAnswers, startTime, navigate]);
+  }, [exam, isSubmitting, sessionQuestions, userAnswers, userTextAnswers, startTime, navigate]);
 
   // Auto-submit on time up
   const handleTimeUp = useCallback(() => {
-    alert('Hết giờ làm bài! Hệ thống đang tự động nộp bài kiểm tra của bạn.');
+    setShowTimeUpBanner(true);
     handleSubmitExam();
   }, [handleSubmitExam]);
 
@@ -221,8 +255,23 @@ export const ExamPage: React.FC = () => {
     // Auto advance to next question after 300ms delay so user visually sees selection
     if (currentIndex < sessionQuestions.length - 1) {
       autoAdvanceTimerRef.current = setTimeout(() => {
+        setSlideDirection('forward');
         setCurrentIndex((prev) => Math.min(sessionQuestions.length - 1, prev + 1));
       }, 300);
+    }
+  };
+
+  const handleTextAnswerChange = (text: string) => {
+    setUserTextAnswers((prev) => ({
+      ...prev,
+      [currentIndex]: text
+    }));
+  };
+
+  const handleSubmitTextAnswer = () => {
+    if (currentIndex < sessionQuestions.length - 1) {
+      setSlideDirection('forward');
+      setCurrentIndex((prev) => Math.min(sessionQuestions.length - 1, prev + 1));
     }
   };
 
@@ -236,7 +285,7 @@ export const ExamPage: React.FC = () => {
   if (isLoading) {
     return (
       <div className="max-w-3xl mx-auto px-4 py-20 text-center">
-        <div className="w-8 h-8 border-3 border-gray-900 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+        <div className="w-8 h-8 border-[3px] border-gray-900 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
         <p className="text-gray-500 text-sm">Đang tải thông tin bài kiểm tra...</p>
       </div>
     );
@@ -393,11 +442,37 @@ export const ExamPage: React.FC = () => {
   // -------------------------------------------------------------
   const currentQuestionData = sessionQuestions[currentIndex];
   const total = sessionQuestions.length;
-  const answeredCount = Object.keys(userAnswers).length;
+
+  const isQuestionAnswered = (idx: number) => {
+    const sq = sessionQuestions[idx];
+    if (!sq) return false;
+    if (sq.question.question_type === 'fill_blank') {
+      return Boolean(userTextAnswers[idx]?.trim());
+    }
+    return userAnswers[idx] !== undefined;
+  };
+
+  const answeredCount = sessionQuestions.filter((_, idx) => isQuestionAnswered(idx)).length;
   const progressPercent = total > 0 ? ((currentIndex + 1) / total) * 100 : 0;
+
+  const isListening = exam.lesson?.category === 'listening' || Boolean(exam.audio_url);
 
   const renderPassagePanel = (isMobile: boolean = false) => {
     if (!exam.passage) return null;
+
+    if (isListening) {
+      return (
+        <div className={isMobile ? 'mb-4' : 'sticky top-4'}>
+          <JapaneseListeningPlayer
+            audioUrl={exam.audio_url}
+            scriptText={exam.passage}
+            scriptTranslation={exam.passage_translation}
+            level={exam.level}
+            examTitle={exam.title}
+          />
+        </div>
+      );
+    }
 
     return (
       <div className={isMobile ? 'mb-4' : 'sticky top-4'}>
@@ -417,25 +492,27 @@ export const ExamPage: React.FC = () => {
     );
   };
 
+  const hasMediaPanel = Boolean(exam.passage || exam.audio_url);
+
   return (
-    <div className={`mx-auto px-3 sm:px-6 py-4 sm:py-8 ${exam.passage ? 'max-w-6xl' : 'max-w-3xl'}`}>
-      {/* Mobile-only passage accordion (hidden on lg screens) */}
-      {exam.passage && (
+    <div className={`mx-auto px-3 sm:px-6 py-4 sm:py-8 ${hasMediaPanel ? 'max-w-6xl' : 'max-w-3xl'}`}>
+      {/* Mobile-only passage/audio accordion (hidden on lg screens) */}
+      {hasMediaPanel && (
         <div className="lg:hidden">
           {renderPassagePanel(true)}
         </div>
       )}
 
-      <div className={exam.passage ? 'grid grid-cols-1 lg:grid-cols-12 gap-6 items-start' : ''}>
-        {/* Desktop-only Left Column: Sticky Passage Panel */}
-        {exam.passage && (
+      <div className={hasMediaPanel ? 'grid grid-cols-1 lg:grid-cols-12 gap-6 items-start' : ''}>
+        {/* Desktop-only Left Column: Sticky Passage/Audio Panel */}
+        {hasMediaPanel && (
           <div className="hidden lg:block lg:col-span-6 xl:col-span-6">
             {renderPassagePanel(false)}
           </div>
         )}
 
         {/* Questions Panel */}
-        <div className={exam.passage ? 'lg:col-span-6 xl:col-span-6' : ''}>
+        <div className={hasMediaPanel ? 'lg:col-span-6 xl:col-span-6' : ''}>
           {/* Top Test Header */}
           <div className="bg-white border border-gray-200 rounded-2xl p-3.5 sm:p-4 mb-4 shadow-xs">
             <div className="flex items-center justify-between gap-2 mb-2.5">
@@ -472,15 +549,14 @@ export const ExamPage: React.FC = () => {
                 <button
                   type="button"
                   onClick={() => {
-                    if (
-                      answeredCount < total &&
-                      !window.confirm(`Bạn còn ${total - answeredCount} câu chưa trả lời. Bạn có chắc muốn nộp bài?`)
-                    ) {
-                      return;
+                    if (answeredCount < total) {
+                      setShowSubmitConfirm(true);
+                    } else {
+                      handleSubmitExam();
                     }
-                    handleSubmitExam();
                   }}
                   disabled={isSubmitting}
+                  aria-label={isSubmitting ? 'Đang nộp bài...' : 'Nộp bài'}
                   className="inline-flex items-center gap-1 px-3 py-1.5 rounded-xl text-xs font-semibold bg-gray-900 text-white hover:bg-black transition-all active:scale-95 disabled:opacity-50 cursor-pointer"
                 >
                   <Send className="w-3 h-3" />
@@ -498,9 +574,44 @@ export const ExamPage: React.FC = () => {
             </div>
           </div>
 
+          {/* Time-up notification banner */}
+          {showTimeUpBanner && (
+            <div className="mb-4 p-3.5 bg-amber-50 border border-amber-300 rounded-2xl flex items-center gap-3 text-amber-900 text-xs sm:text-sm font-medium shadow-xs">
+              <Clock className="w-4 h-4 text-amber-600 flex-shrink-0" />
+              <span>Hết giờ làm bài! Đang tự động nộp bài kiểm tra...</span>
+            </div>
+          )}
+
+          {/* Submit confirm inline banner */}
+          {showSubmitConfirm && (
+            <div className="mb-4 p-4 bg-gray-50 border border-gray-300 rounded-2xl shadow-xs">
+              <p className="text-sm font-semibold text-gray-900 mb-1">
+                Bạn còn <strong className="text-rose-600">{total - answeredCount}</strong> câu chưa trả lời.
+              </p>
+              <p className="text-xs text-gray-500 mb-3">Bạn có chắc muốn nộp bài ngay bây giờ không?</p>
+              <div className="flex gap-2">
+                <button
+                  type="button"
+                  onClick={() => { setShowSubmitConfirm(false); handleSubmitExam(); }}
+                  className="flex-1 py-2 px-3 rounded-xl bg-gray-900 text-white text-xs font-bold hover:bg-black transition-colors cursor-pointer"
+                >
+                  Nộp bài ngay
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setShowSubmitConfirm(false)}
+                  className="flex-1 py-2 px-3 rounded-xl border border-gray-300 text-gray-700 text-xs font-semibold hover:bg-gray-50 transition-colors cursor-pointer"
+                >
+                  Làm tiếp
+                </button>
+              </div>
+            </div>
+          )}
+
           {/* Current Question Card */}
           {currentQuestionData && (
             <QuestionCard
+              key={currentIndex}
               questionNumber={currentIndex + 1}
               totalQuestions={total}
               questionText={currentQuestionData.question.question}
@@ -508,6 +619,10 @@ export const ExamPage: React.FC = () => {
               selectedAnswer={userAnswers[currentIndex] !== undefined ? userAnswers[currentIndex] : null}
               onSelectAnswer={handleSelectOption}
               questionType={currentQuestionData.question.question_type}
+              slideDirection={slideDirection}
+              textAnswer={userTextAnswers[currentIndex] || ''}
+              onTextAnswerChange={handleTextAnswerChange}
+              onSubmitTextAnswer={handleSubmitTextAnswer}
             />
           )}
 
@@ -518,6 +633,7 @@ export const ExamPage: React.FC = () => {
               disabled={currentIndex === 0}
               onClick={() => {
                 if (autoAdvanceTimerRef.current) clearTimeout(autoAdvanceTimerRef.current);
+                setSlideDirection('back');
                 setCurrentIndex((prev) => Math.max(0, prev - 1));
               }}
               className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 px-4 py-3 sm:py-2.5 rounded-xl border border-gray-200 text-xs sm:text-sm font-semibold text-gray-700 bg-white hover:bg-gray-50 transition-colors disabled:opacity-30 disabled:cursor-not-allowed active:scale-98 cursor-pointer"
@@ -535,6 +651,7 @@ export const ExamPage: React.FC = () => {
                 type="button"
                 onClick={() => {
                   if (autoAdvanceTimerRef.current) clearTimeout(autoAdvanceTimerRef.current);
+                  setSlideDirection('forward');
                   setCurrentIndex((prev) => Math.min(total - 1, prev + 1));
                 }}
                 className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 px-4 py-3 sm:py-2.5 rounded-xl border border-gray-300 text-xs sm:text-sm font-semibold text-gray-900 bg-gray-50 hover:bg-gray-100 transition-colors active:scale-98 cursor-pointer"
@@ -554,26 +671,23 @@ export const ExamPage: React.FC = () => {
               </button>
             )}
           </div>
+        </div>
 
-          {/* Quick Question Navigation Palette */}
-          <div className="mt-6 sm:mt-10 p-4 sm:p-5 bg-white border border-gray-200 rounded-2xl shadow-xs">
-            <div className="flex items-center justify-between mb-3">
-              <div className="flex items-center gap-2">
-                <span className="text-[11px] sm:text-xs font-bold text-gray-500 uppercase tracking-wider">
-                  Bảng câu hỏi
-                </span>
-                <div className="flex items-center gap-2 text-[10px] text-gray-500 hidden sm:flex">
-                  <span className="inline-flex items-center gap-1"><span className="w-2.5 h-2.5 rounded-full bg-gray-900"></span> Đã làm</span>
-                  <span className="inline-flex items-center gap-1"><span className="w-2.5 h-2.5 rounded-full bg-white border border-gray-300"></span> Chưa làm</span>
-                </div>
-              </div>
-              <span className="text-xs text-gray-500">
-                <strong className="text-gray-900">{answeredCount}</strong>/{total} đã làm
+        {/* Sidebar: Question Matrix Palette */}
+        <div className="lg:w-80">
+          <div className="bg-white border border-gray-200 rounded-2xl p-4 sm:p-5 shadow-xs lg:sticky lg:top-20">
+            <div className="flex items-center justify-between mb-3.5">
+              <span className="text-xs font-bold text-gray-900 uppercase tracking-wider">
+                Bảng câu hỏi ({answeredCount}/{total})
+              </span>
+              <span className="text-[11px] text-gray-400">
+                {Math.round(progressPercent)}%
               </span>
             </div>
+
             <div className="flex flex-wrap gap-1.5 sm:gap-2">
               {sessionQuestions.map((sq, idx) => {
-                const isAnswered = userAnswers[idx] !== undefined;
+                const isAnswered = isQuestionAnswered(idx);
                 const isCurrent = idx === currentIndex;
 
                 let badgeStyle = 'bg-white text-gray-500 border-gray-200 hover:border-gray-400 hover:bg-gray-50';
@@ -591,6 +705,7 @@ export const ExamPage: React.FC = () => {
                     type="button"
                     onClick={() => {
                       if (autoAdvanceTimerRef.current) clearTimeout(autoAdvanceTimerRef.current);
+                      setSlideDirection(idx > currentIndex ? 'forward' : 'back');
                       setCurrentIndex(idx);
                     }}
                     className={`w-8 h-8 sm:w-9 sm:h-9 rounded-lg sm:rounded-xl border text-xs flex items-center justify-center transition-all cursor-pointer ${badgeStyle}`}

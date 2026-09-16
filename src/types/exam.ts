@@ -1,4 +1,4 @@
-export type ExamCategory = 'vocabulary' | 'kanji' | 'grammar' | 'reading';
+export type ExamCategory = 'vocabulary' | 'kanji' | 'grammar' | 'reading' | 'listening';
 
 export type JLPTLevel = 'N5' | 'N4' | 'N3' | 'N2' | 'N1';
 
@@ -29,6 +29,7 @@ export const CATEGORY_TABS: { id: ExamCategory; label: string; subLabel: string;
   { id: 'kanji', label: 'Kanji', subLabel: 'Kanji', kanji: '漢字' },
   { id: 'grammar', label: 'Ngữ pháp', subLabel: 'Bunpou', kanji: '文法' },
   { id: 'reading', label: 'Đọc hiểu', subLabel: 'Dokkai', kanji: '読解' },
+  { id: 'listening', label: 'Nghe hiểu', subLabel: 'Choukai', kanji: '聴解' },
 ];
 
 export interface Exam {
@@ -39,8 +40,9 @@ export interface Exam {
   time_limit: number | null; // in seconds: null = unlimited, e.g. 1800 for 30 minutes
   shuffle_questions?: boolean;
   shuffle_options?: boolean;
-  passage?: string | null; // Japanese reading passage (~500 words)
-  passage_translation?: string | null; // Vietnamese translation of the passage
+  passage?: string | null; // Japanese reading passage or listening audio script (~500 words)
+  passage_translation?: string | null; // Vietnamese translation of the passage or script
+  audio_url?: string | null; // Direct mp3 audio link for listening exams (optional, fallback to AI voice)
   level?: JLPTLevel | null; // N5, N4, N3, N2, N1
   created_at?: string;
   questions_count?: number;
@@ -57,6 +59,7 @@ export interface Question {
   option_c: string;
   option_d: string;
   correct_answer: number; // 0, 1, 2, 3
+  answer_text?: string;
   explanation: string | null;
   order_index?: number;
 }
@@ -68,8 +71,9 @@ export interface RawQuestionInput {
   question: string;
   type?: QuestionType;
   question_type?: QuestionType;
-  options: string[];
-  answer: number;
+  options?: string[];
+  answer?: number | string;
+  answer_text?: string;
   explanation?: string;
 }
 
@@ -91,8 +95,10 @@ export interface UserAnswerReview {
   question: string;
   questionType?: QuestionType;
   options: string[];
-  userAnswer: number | null; // index of chosen option in displayed order
+  userAnswer: number | null; // index of chosen option in displayed order (for multiple_choice)
   correctAnswer: number; // index of correct answer in displayed order
+  userTextAnswer?: string; // user's entered text for fill_blank questions
+  correctTextAnswer?: string; // correct expected text answer for fill_blank questions
   isCorrect: boolean;
   explanation?: string | null;
   originalAnswerIndex?: number;
@@ -110,6 +116,8 @@ export interface ExamResult {
   exam_title?: string;
   passage?: string | null;
   passage_translation?: string | null;
+  audio_url?: string | null;
+  category?: ExamCategory | null;
   level?: JLPTLevel | null;
 }
 
