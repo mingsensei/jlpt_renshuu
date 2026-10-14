@@ -869,12 +869,17 @@ export const CreateExam: React.FC = () => {
                 </p>
               </div>
             ) : (
-              <p>
-                Format: Mảng các câu hỏi với <code className="font-mono text-gray-700">question</code>,{' '}
-                <code className="font-mono text-gray-700">options</code> (4 lựa chọn),{' '}
-                <code className="font-mono text-gray-700">answer</code> (0..3), và{' '}
-                <code className="font-mono text-gray-700">explanation</code>.
-              </p>
+              <div className="bg-gray-50 border border-gray-200 rounded-xl p-3 text-gray-700 space-y-1">
+                <p className="font-semibold text-gray-900">
+                  Hỗ trợ cả 2 định dạng câu hỏi:
+                </p>
+                <p>
+                  1. <strong>Trắc nghiệm (4 đáp án):</strong> <code className="font-mono text-gray-800 font-semibold">{`{ "question": "...", "options": ["A", "B", "C", "D"], "answer": 0 }`}</code> (hoặc bấm <em>Dán mẫu</em>)
+                </p>
+                <p>
+                  2. <strong>Điền từ (Nhập text):</strong> <code className="font-mono text-gray-800 font-semibold">{`{ "type": "fill_blank", "question": "...", "answer": "đáp án", "options": ["từ 1", "từ 2"] }`}</code> (hoặc bấm nút <em>Mẫu Điền từ</em> trên toolbar)
+                </p>
+              </div>
             )}
           </div>
 
@@ -886,7 +891,7 @@ export const CreateExam: React.FC = () => {
               placeholder={
                 selectedCategory === 'reading'
                   ? `{\n  "title": "JLPT N3 Đọc hiểu - Bài đọc mẫu",\n  "level": "N3",\n  "passage": "日本語の文章...",\n  "passage_translation": "Bản dịch tiếng Việt...",\n  "questions": [\n    {\n      "question": "( 1 ) に入る最も適切なものはどれですか。",\n      "question_type": "fill_blank",\n      "options": ["...", "...", "...", "..."],\n      "answer": 0,\n      "explanation": "Giải thích chi tiết..."\n    }\n  ]\n}`
-                  : `[\n  {\n    "question": "「食べます」のて形はどれですか？",\n    "options": ["食べて", "食べた", "食べる", "食べない"],\n    "answer": 0,\n    "explanation": "食べます is group 2 verb..."\n  }\n]`
+                  : `[\n  {\n    "type": "fill_blank",\n    "question": "Dịch sang tiếng Nhật: Cảm ơn",\n    "answer": "ありがとう",\n    "options": ["ありがとう", "ありがとうございます", "arigatou"],\n    "explanation": "Cảm ơn trong tiếng Nhật là ありがとう."\n  },\n  {\n    "question": "「食べます」のて形はどれですか？",\n    "options": ["食べて", "食べた", "食べる", "食べない"],\n    "answer": 0,\n    "explanation": "食べます là động từ nhóm 2..."\n  }\n]`
               }
               className="w-full p-3 sm:p-4 bg-gray-50 border border-gray-200 rounded-xl font-mono text-xs sm:text-sm text-gray-800 placeholder-gray-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-transparent transition-all leading-relaxed"
             />

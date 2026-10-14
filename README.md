@@ -85,3 +85,24 @@ Dự án đã xuất sẵn 2 file mẫu định dạng câu hỏi:
    VITE_SUPABASE_KEY=your_supabase_anon_key_here
    ```
 2. Chạy file SQL khởi tạo bảng và RLS tại [`supabase/schema.sql`](supabase/schema.sql) trong **Supabase SQL Editor**.
+
+---
+
+## ⚡ Tự Động Ping Giữ Kết Nối DB (Keep-Alive Mỗi 12 Giờ)
+
+Để tránh gói Supabase Free Tier tự động tạm dừng (pause/ngắt kết nối) dự án sau 7 ngày không có hoạt động, hệ thống đã được tích hợp cơ chế **Keep-Alive 3 lớp**:
+
+1. **GitHub Actions Workflow** ([`.github/workflows/supabase-keep-alive.yml`](.github/workflows/supabase-keep-alive.yml)):
+   - Tự động chạy định kỳ trên GitHub Cloud mỗi 12 giờ một lần (`0 0,12 * * *`).
+   - Query nhẹ vào bảng Database để reset bộ đếm thời gian inactivity của Supabase.
+   - Hỗ trợ nút **Run workflow** thủ công trong tab *Actions* của GitHub repository.
+2. **Client-side Keep-Alive** ([`src/lib/supabasePing.ts`](src/lib/supabasePing.ts)):
+   - Tự động kiểm tra và ping database khi người dùng truy cập web nếu lần ping gần nhất đã quá 12 giờ.
+   - Định kỳ ping mỗi 12 giờ nếu tab web đang mở.
+3. **Vercel Serverless Endpoint** ([`api/ping.ts`](api/ping.ts)):
+   - Endpoint `/api/ping` trên Vercel để kiểm tra tình trạng kết nối DB bất kỳ lúc nào hoặc kết nối với các dịch vụ uptime monitoring miễn phí (UptimeRobot, cron-job.org).
+4. **Chạy thủ công bằng lệnh**:
+   ```bash
+   npm run ping:db
+   ```
+

@@ -1,0 +1,31 @@
+name: Supabase Auto-Ping Keep-Alive
+
+on:
+  schedule:
+    # Chạy tự động mỗi 12 giờ (00:00 và 12:00 UTC = 07:00 và 19:00 Việt Nam)
+    - cron: '0 0,12 * * *'
+  workflow_dispatch: # Cho phép kích hoạt thủ công từ tab Actions trên GitHub
+  push:
+    paths:
+      - '.github/workflows/supabase-keep-alive.yml'
+      - 'scripts/ping-supabase.mjs'
+
+jobs:
+  ping-supabase:
+    name: Auto Ping Supabase Database
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Ping Supabase Database
+        env:
+          SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL || secrets.SUPABASE_URL || vars.VITE_SUPABASE_URL || 'https://ntodbclgjrphbezmdvan.supabase.co' }}
+          SUPABASE_KEY: ${{ secrets.VITE_SUPABASE_KEY || secrets.SUPABASE_KEY || vars.VITE_SUPABASE_KEY || 'sb_publishable_BEDFnyXJIGV66dz7wh0ihg_Acuzca1z' }}
+        run: |
+          node scripts/ping-supabase.mjs

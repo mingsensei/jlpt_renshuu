@@ -867,7 +867,7 @@ export const EditExam: React.FC = () => {
           </div>
 
           <p className="text-[11px] sm:text-xs text-gray-500 mb-3 leading-relaxed">
-            Bạn có thể trực tiếp sửa câu hỏi, loại câu hỏi (<code className="font-mono text-gray-700">question_type: "fill_blank" | "multiple_choice"</code>), đáp án đúng (<code className="font-mono text-gray-700">answer: 0..3</code>), hoặc giải thích tại đây.
+            Hỗ trợ cả 2 dạng: <strong>Trắc nghiệm</strong> (<code className="font-mono text-gray-700">options: 4 lựa chọn, answer: 0..3</code>) hoặc <strong>Điền từ</strong> (<code className="font-mono text-gray-700">question_type: "fill_blank", answer: "chuỗi đáp án"</code>).
           </p>
 
           <div className="relative">

@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
 import { ProtectedRoute } from './components/ProtectedRoute';
@@ -9,8 +10,14 @@ import { Result } from './pages/Result';
 import { Login } from './pages/Login';
 import { AdminManage } from './pages/AdminManage';
 import { EditExam } from './pages/EditExam';
+import { initSupabaseKeepAlive } from './lib/supabasePing';
 
 export function App() {
+  useEffect(() => {
+    const cleanup = initSupabaseKeepAlive();
+    return cleanup;
+  }, []);
+
   return (
     <AuthProvider>
       <BrowserRouter>
