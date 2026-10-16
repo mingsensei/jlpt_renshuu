@@ -26,9 +26,11 @@ import type { KanjiItem } from '../data/kanjiN3';
 // Storage keys
 const STORAGE_KNOWN_KEY = 'jlpt_kanji_n3_known_v1';
 const STORAGE_STARRED_KEY = 'jlpt_kanji_n3_starred_v1';
+const STORAGE_STUDY_COUNTS_KEY = 'jlpt_kanji_n3_study_counts_v1';
 
 type ViewMode = 'flashcards' | 'known_list' | 'all_list' | 'quiz';
 type CardFrontMode = 'kanji' | 'meaning';
+type DeckSortOrder = 'least_reviewed' | 'stt';
 type QuizQuestionType = 'kanji_to_hanviet' | 'kanji_to_meaning' | 'meaning_to_kanji' | 'mixed';
 
 interface QuizQuestion {
@@ -64,6 +66,19 @@ export const KanjiFlashcards: React.FC = () => {
       return [];
     }
   });
+
+  // Study counts per Kanji ID: { [kanjiId]: reviewCount }
+  const [studyCounts, setStudyCounts] = useState<Record<number, number>>(() => {
+    try {
+      const saved = localStorage.getItem(STORAGE_STUDY_COUNTS_KEY);
+      return saved ? JSON.parse(saved) : {};
+    } catch {
+      return {};
+    }
+  });
+
+  // Priority sorting: 'least_reviewed' (thẻ học ít nhất lên trước) | 'stt' (theo STT 1-370)
+  const [sortOrder, setSortOrder] = useState<DeckSortOrder>('least_reviewed');
 
   // Settings
   const [cardFrontMode, setCardFrontMode] = useState<CardFrontMode>('kanji');
@@ -107,6 +122,19 @@ export const KanjiFlashcards: React.FC = () => {
     }
   }, [starredIds]);
 
+  useEffect(() => {
+    try {
+      localStorage.setItem(STORAGE_STUDY_COUNTS_KEY, JSON.stringify(studyCounts));
+    } catch (e) {
+      console.error('Error saving study counts to localStorage', e);
+    }
+  }, [studyCounts]);
+
+  // Total reviews count across all cards
+  const totalReviews = useMemo(() => {
+    return Object.values(studyCounts).reduce((acc, curr) => acc + curr, 0);
+  }, [studyCounts]);
+
   // Text to speech for Japanese
   const speakJapanese = useCallback((text: string) => {
     if (!('speechSynthesis' in window)) return;
@@ -140,8 +168,20 @@ export const KanjiFlashcards: React.FC = () => {
       return shuffledOrder.map((idx) => pool[idx]).filter(Boolean);
     }
 
+    // Ưu tiên thẻ chưa biết / học ít nhất hiện trước, thẻ học nhiều hiện sau
+    if (sortOrder === 'least_reviewed') {
+      return [...pool].sort((a, b) => {
+        const countA = studyCounts[a.id] || 0;
+        const countB = studyCounts[b.id] || 0;
+        if (countA !== countB) {
+          return countA - countB; // Số lần học ít hơn thì đứng trước
+        }
+        return a.id - b.id; // Bằng nhau thì xếp theo STT
+      });
+    }
+
     return pool;
-  }, [rangeFilteredData, filterSource, knownIds, starredIds, isShuffled, shuffledOrder]);
+  }, [rangeFilteredData, filterSource, knownIds, starredIds, isShuffled, shuffledOrder, sortOrder, studyCounts]);
 
   // Reset or adjust index if deck changes
   useEffect(() => {
@@ -182,10 +222,16 @@ export const KanjiFlashcards: React.FC = () => {
     }
   };
 
-  // Mark as Known (Đã biết -> loại khỏi flashcard)
+  // Mark as Known (Đã biết -> loại khỏi flashcard & ghi nhận lần học)
   const handleMarkKnown = useCallback(() => {
     if (!currentCard) return;
     const cardId = currentCard.id;
+
+    // Tăng số lần học
+    setStudyCounts((prev) => ({
+      ...prev,
+      [cardId]: (prev[cardId] || 0) + 1
+    }));
 
     // Add to known IDs
     setKnownIds((prev) => (prev.includes(cardId) ? prev : [...prev, cardId]));
@@ -202,14 +248,20 @@ export const KanjiFlashcards: React.FC = () => {
     setIsFlipped(false);
   }, [currentCard, studyDeck.length]);
 
-  // Mark as Need Review / Unknown (Chưa biết / Cần ôn lại -> giữ lại và xem tiếp)
+  // Mark as Need Review / Unknown (Chưa biết / Cần ôn lại -> tăng số lần học, thẻ sẽ trôi về sau các thẻ học ít hơn)
   const handleNeedReview = useCallback(() => {
     if (!currentCard) return;
     setIsFlipped(false);
-    if (currentIndex < studyDeck.length - 1) {
-      setCurrentIndex((prev) => prev + 1);
-    } else {
-      // Loop back to start
+    const cardId = currentCard.id;
+
+    // Tăng số lần học
+    setStudyCounts((prev) => ({
+      ...prev,
+      [cardId]: (prev[cardId] || 0) + 1
+    }));
+
+    // Chuyển thẻ tiếp theo trong hàng đợi ưu tiên
+    if (currentIndex >= studyDeck.length - 1) {
       setCurrentIndex(0);
     }
   }, [currentCard, currentIndex, studyDeck.length]);
@@ -298,6 +350,19 @@ export const KanjiFlashcards: React.FC = () => {
       )
     ) {
       setKnownIds([]);
+      setCurrentIndex(0);
+      setIsFlipped(false);
+    }
+  };
+
+  // Reset study counts
+  const handleResetStudyCounts = () => {
+    if (
+      window.confirm(
+        'Bạn có chắc chắn muốn đặt lại số lần học của tất cả các thẻ về 0?'
+      )
+    ) {
+      setStudyCounts({});
       setCurrentIndex(0);
       setIsFlipped(false);
     }
@@ -571,6 +636,17 @@ export const KanjiFlashcards: React.FC = () => {
 
         {/* Action buttons */}
         <div className="flex items-center gap-2">
+          {totalReviews > 0 && (
+            <button
+              onClick={handleResetStudyCounts}
+              title="Đặt lại số lần học của tất cả thẻ về 0"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold bg-gray-50 hover:bg-gray-100 text-gray-600 border border-gray-200 transition-colors cursor-pointer"
+            >
+              <RotateCcw className="w-3.5 h-3.5" />
+              <span>Xóa số lần học ({totalReviews})</span>
+            </button>
+          )}
+
           {knownCount > 0 && (
             <button
               onClick={handleCopyKnownList}
@@ -589,7 +665,7 @@ export const KanjiFlashcards: React.FC = () => {
               className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-xl text-xs font-semibold text-rose-600 hover:bg-rose-50 transition-colors cursor-pointer"
             >
               <RotateCcw className="w-3.5 h-3.5" />
-              <span>Reset</span>
+              <span>Reset đã biết</span>
             </button>
           )}
         </div>
@@ -602,9 +678,9 @@ export const KanjiFlashcards: React.FC = () => {
         <div className="space-y-6">
           {/* Deck Controls Toolbar */}
           <div className="flex flex-wrap items-center justify-between gap-3 bg-white p-3 sm:p-4 rounded-2xl border border-gray-200">
-            {/* Filter source */}
-            <div className="flex items-center gap-2">
-              <span className="text-xs font-medium text-gray-500">Chế độ học:</span>
+            {/* Filter source & Priority sort */}
+            <div className="flex flex-wrap items-center gap-2">
+              <span className="text-xs font-medium text-gray-500">Chế độ:</span>
               <select
                 value={filterSource}
                 onChange={(e) => {
@@ -617,6 +693,21 @@ export const KanjiFlashcards: React.FC = () => {
                 <option value="unlearned">Chỉ từ chưa biết ({totalKanji - knownCount})</option>
                 <option value="all">Tất cả ({totalKanji})</option>
                 <option value="starred">Đã gắn sao ({starredIds.length})</option>
+              </select>
+
+              {/* Priority sorting order */}
+              <select
+                value={sortOrder}
+                onChange={(e) => {
+                  setSortOrder(e.target.value as DeckSortOrder);
+                  setCurrentIndex(0);
+                  setIsFlipped(false);
+                }}
+                className="text-xs font-bold bg-amber-50 border border-amber-200 text-amber-900 rounded-lg px-2.5 py-1.5 outline-none focus:border-amber-500 cursor-pointer"
+                title="Cơ chế ưu tiên: Thẻ nào chưa biết mà được học ít nhất thì ưu tiên hiện lên trước"
+              >
+                <option value="least_reviewed">⚡ Ưu tiên học ít nhất trước</option>
+                <option value="stt">🔢 Theo STT chuẩn (1-370)</option>
               </select>
 
               {/* Range filter */}
@@ -726,6 +817,24 @@ export const KanjiFlashcards: React.FC = () => {
                   <span>
                     Thẻ {currentIndex + 1} / {studyDeck.length}
                   </span>
+
+                  {/* Badge số lần học của thẻ hiện tại */}
+                  <span
+                    className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[11px] font-bold ${
+                      (studyCounts[currentCard.id] || 0) === 0
+                        ? 'bg-blue-50 text-blue-700 border border-blue-200'
+                        : (studyCounts[currentCard.id] || 0) === 1
+                        ? 'bg-emerald-50 text-emerald-700 border border-emerald-200'
+                        : 'bg-amber-50 text-amber-700 border border-amber-200'
+                    }`}
+                  >
+                    <span>Lần học: {studyCounts[currentCard.id] || 0}</span>
+                    {(studyCounts[currentCard.id] || 0) === 0 && (
+                      <span className="text-[9px] bg-blue-600 text-white px-1 py-0.2 rounded font-semibold uppercase">
+                        Mới
+                      </span>
+                    )}
+                  </span>
                 </div>
                 <div className="flex items-center gap-3">
                   <span className="text-gray-400">Phím tắt: Space (Lật) • 1 (Chưa biết) • 2 (Đã biết)</span>
@@ -760,9 +869,24 @@ export const KanjiFlashcards: React.FC = () => {
                         <Volume2 className="w-5 h-5" />
                       </button>
 
-                      <span className="text-xs font-semibold tracking-wider text-gray-400 uppercase">
-                        {cardFrontMode === 'kanji' ? 'Mặt trước: Chữ Hán' : 'Mặt trước: Nghĩa'}
-                      </span>
+                      <div className="flex items-center gap-1.5">
+                        <span className="text-xs font-semibold tracking-wider text-gray-400 uppercase">
+                          {cardFrontMode === 'kanji' ? 'Mặt trước' : 'Mặt trước: Nghĩa'}
+                        </span>
+                        <span
+                          className={`px-2 py-0.5 rounded-full text-[11px] font-bold ${
+                            (studyCounts[currentCard.id] || 0) === 0
+                              ? 'bg-blue-50 text-blue-700 border border-blue-200'
+                              : (studyCounts[currentCard.id] || 0) === 1
+                              ? 'bg-emerald-50 text-emerald-700 border border-emerald-200'
+                              : 'bg-amber-50 text-amber-800 border border-amber-200'
+                          }`}
+                        >
+                          {(studyCounts[currentCard.id] || 0) === 0
+                            ? 'Chưa học'
+                            : `Đã học ${studyCounts[currentCard.id]} lần`}
+                        </span>
+                      </div>
 
                       <button
                         onClick={(e) => {
@@ -834,9 +958,22 @@ export const KanjiFlashcards: React.FC = () => {
                         </button>
                       </div>
 
-                      <span className="text-xs font-semibold tracking-wider text-emerald-400 uppercase">
-                        Mặt sau: Giải nghĩa chi tiết
-                      </span>
+                      <div className="flex items-center gap-1.5">
+                        <span className="text-xs font-semibold tracking-wider text-emerald-400 uppercase">
+                          Mặt sau
+                        </span>
+                        <span
+                          className={`px-2 py-0.5 rounded-full text-[11px] font-bold ${
+                            (studyCounts[currentCard.id] || 0) === 0
+                              ? 'bg-blue-500/20 text-blue-300 border border-blue-400/30'
+                              : (studyCounts[currentCard.id] || 0) === 1
+                              ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-400/30'
+                              : 'bg-amber-500/20 text-amber-300 border border-amber-400/30'
+                          }`}
+                        >
+                          Đã học {studyCounts[currentCard.id] || 0} lần
+                        </span>
+                      </div>
 
                       <button
                         onClick={(e) => {
@@ -1055,7 +1192,12 @@ export const KanjiFlashcards: React.FC = () => {
                         <div className="text-base font-extrabold text-emerald-700">
                           {item.hanViet}
                         </div>
-                        <div className="text-xs text-gray-500 font-medium">#{item.id}</div>
+                        <div className="text-xs text-gray-500 font-medium flex items-center gap-2 mt-0.5">
+                          <span>#{item.id}</span>
+                          <span className="text-[10px] font-bold text-emerald-700 bg-emerald-100/70 px-1.5 py-0.2 rounded-md">
+                            Đã học: {studyCounts[item.id] || 0} lần
+                          </span>
+                        </div>
                       </div>
                     </div>
 
@@ -1191,7 +1333,20 @@ export const KanjiFlashcards: React.FC = () => {
                         >
                           {item.hanViet}
                         </div>
-                        <div className="text-xs text-gray-400 font-medium">#{item.id}</div>
+                        <div className="text-xs text-gray-400 font-medium flex items-center gap-2 mt-0.5">
+                          <span>#{item.id}</span>
+                          <span
+                            className={`text-[10px] font-bold px-1.5 py-0.2 rounded-md ${
+                              (studyCounts[item.id] || 0) === 0
+                                ? 'bg-gray-100 text-gray-500'
+                                : (studyCounts[item.id] || 0) === 1
+                                ? 'bg-emerald-50 text-emerald-700 border border-emerald-200'
+                                : 'bg-amber-50 text-amber-700 border border-amber-200'
+                            }`}
+                          >
+                            Đã học: {studyCounts[item.id] || 0} lần
+                          </span>
+                        </div>
                       </div>
                     </div>
 
