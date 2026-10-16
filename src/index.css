@@ -45,7 +45,7 @@ body {
 }
 
 .font-japanese-gothic {
-  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo", "Noto Sans JP", sans-serif;
+  font-family: "Hiragino Maru Gothic ProN", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo", "Noto Sans JP", -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
 /* Ruby Furigana styling */
