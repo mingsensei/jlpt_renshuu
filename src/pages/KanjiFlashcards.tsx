@@ -944,7 +944,7 @@ export const KanjiFlashcards: React.FC = () => {
                     {/* Top row */}
                     <div className="flex items-center justify-between text-gray-400">
                       <div className="flex items-center gap-2">
-                        <span className="text-3xl font-bold font-japanese-gothic text-white">
+                        <span className="text-3xl font-medium font-japanese-gothic text-white">
                           {currentCard.kanji}
                         </span>
                         <button
@@ -1185,7 +1185,7 @@ export const KanjiFlashcards: React.FC = () => {
                 >
                   <div className="flex items-start justify-between">
                     <div className="flex items-center gap-3">
-                      <span className="text-4xl font-semibold font-japanese-gothic text-gray-900">
+                      <span className="text-4xl font-medium font-japanese-gothic text-gray-900">
                         {item.kanji}
                       </span>
                       <div>
@@ -1322,7 +1322,7 @@ export const KanjiFlashcards: React.FC = () => {
                 >
                   <div className="flex items-start justify-between">
                     <div className="flex items-center gap-3">
-                      <span className="text-4xl font-semibold font-japanese-gothic text-gray-900">
+                      <span className="text-4xl font-medium font-japanese-gothic text-gray-900">
                         {item.kanji}
                       </span>
                       <div>
@@ -1591,7 +1591,7 @@ export const KanjiFlashcards: React.FC = () => {
                         : 'Chọn chữ Hán Kanji'}
                     </span>
 
-                    <div className="text-5xl sm:text-6xl font-bold font-japanese-gothic text-gray-900 pt-2">
+                    <div className="text-5xl sm:text-6xl font-medium font-japanese-gothic text-gray-900 pt-2">
                       {quizQuestions[quizCurrentIndex].questionText}
                     </div>
 
