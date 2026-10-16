@@ -1,0 +1,162 @@
+[
+  {
+    "topic_id": "topic_01_tim_phong_chuyen_nha",
+    "title": "Chủ đề 01: Tìm phòng & Thuê nhà",
+    "japanese_title": "部屋探し・賃貸・引っ越しの語彙",
+    "file_path": "/notebooklm_lectures/topic_01_tim_phong_chuyen_nha.md",
+    "slide_count": 10,
+    "prompt": "Hãy tạo bài giảng Audio Overview podcast phân tích chi tiết chủ đề Chủ đề 01: Tìm phòng & Thuê nhà (部屋探し・賃貸・引っ越しの語彙) cho học viên ôn thi JLPT N3 dựa trên tài liệu này."
+  },
+  {
+    "topic_id": "topic_02_rac_thai_chung_cu",
+    "title": "Chủ đề 02: Rác thải sinh hoạt & Chung cư",
+    "japanese_title": "ゴミ分別・マンション生活の語彙",
+    "file_path": "/notebooklm_lectures/topic_02_rac_thai_chung_cu.md",
+    "slide_count": 10,
+    "prompt": "Hãy tạo bài giảng Audio Overview podcast phân tích chi tiết chủ đề Chủ đề 02: Rác thải sinh hoạt & Chung cư (ゴミ分別・マンション生活の語彙) cho học viên ôn thi JLPT N3 dựa trên tài liệu này."
+  },
+  {
+    "topic_id": "topic_03_giao_thong_tau_xe",
+    "title": "Chủ đề 03: Giao thông & Đi lại tàu xe",
+    "japanese_title": "交通機関・電車・バスの語彙",
+    "file_path": "/notebooklm_lectures/topic_03_giao_thong_tau_xe.md",
+    "slide_count": 10,
+    "prompt": "Hãy tạo bài giảng Audio Overview podcast phân tích chi tiết chủ đề Chủ đề 03: Giao thông & Đi lại tàu xe (交通機関・電車・バスの語彙) cho học viên ôn thi JLPT N3 dựa trên tài liệu này."
+  },
+  {
+    "topic_id": "topic_04_baito_phong_van",
+    "title": "Chủ đề 04: Đi làm thêm & Phỏng vấn",
+    "japanese_title": "アルバイト・面接・仕事探しの語彙",
+    "file_path": "/notebooklm_lectures/topic_04_baito_phong_van.md",
+    "slide_count": 10,
+    "prompt": "Hãy tạo bài giảng Audio Overview podcast phân tích chi tiết chủ đề Chủ đề 04: Đi làm thêm & Phỏng vấn (アルバイト・面接・仕事探しの語彙) cho học viên ôn thi JLPT N3 dựa trên tài liệu này."
+  },
+  {
+    "topic_id": "topic_05_van_phong_hourenso",
+    "title": "Chủ đề 05: Văn hóa công sở & Hourensou",
+    "japanese_title": "ビジネスマナー・報連相・業務の語彙",
+    "file_path": "/notebooklm_lectures/topic_05_van_phong_hourenso.md",
+    "slide_count": 10,
+    "prompt": "Hãy tạo bài giảng Audio Overview podcast phân tích chi tiết chủ đề Chủ đề 05: Văn hóa công sở & Hourensou (ビジネスマナー・報連相・業務の語彙) cho học viên ôn thi JLPT N3 dựa trên tài liệu này."
+  },
+  {
+    "topic_id": "topic_06_thu_tuc_hanh_chinh",
+    "title": "Chủ đề 06: Thủ tục hành chính & Giấy tờ quận",
+    "japanese_title": "行政手続き・市役所・書類の語彙",
+    "file_path": "/notebooklm_lectures/topic_06_thu_tuc_hanh_chinh.md",
+    "slide_count": 10,
+    "prompt": "Hãy tạo bài giảng Audio Overview podcast phân tích chi tiết chủ đề Chủ đề 06: Thủ tục hành chính & Giấy tờ quận (行政手続き・市役所・書類の語彙) cho học viên ôn thi JLPT N3 dựa trên tài liệu này."
+  },
+  {
+    "topic_id": "topic_07_kham_benh_uong_thuoc",
+    "title": "Chủ đề 07: Khám bệnh & Y tế & Uống thuốc",
+    "japanese_title": "病院・診察・症状・処方箋の語彙",
+    "file_path": "/notebooklm_lectures/topic_07_kham_benh_uong_thuoc.md",
+    "slide_count": 10,
+    "prompt": "Hãy tạo bài giảng Audio Overview podcast phân tích chi tiết chủ đề Chủ đề 07: Khám bệnh & Y tế & Uống thuốc (病院・診察・症状・処方箋の語彙) cho học viên ôn thi JLPT N3 dựa trên tài liệu này."
+  },
+  {
+    "topic_id": "topic_08_mua_sam_giao_hang",
+    "title": "Chủ đề 08: Mua sắm & Đặt hàng online & Giao hàng",
+    "japanese_title": "買い物・ネット通販・宅配便の語彙",
+    "file_path": "/notebooklm_lectures/topic_08_mua_sam_giao_hang.md",
+    "slide_count": 10,
+    "prompt": "Hãy tạo bài giảng Audio Overview podcast phân tích chi tiết chủ đề Chủ đề 08: Mua sắm & Đặt hàng online & Giao hàng (買い物・ネット通販・宅配便の語彙) cho học viên ôn thi JLPT N3 dựa trên tài liệu này."
+  },
+  {
+    "topic_id": "topic_09_hoc_tap_deadline",
+    "title": "Chủ đề 09: Học tập & Thi cử & Deadline báo cáo",
+    "japanese_title": "学校・授業・レポート・締め切りの語彙",
+    "file_path": "/notebooklm_lectures/topic_09_hoc_tap_deadline.md",
+    "slide_count": 10,
+    "prompt": "Hãy tạo bài giảng Audio Overview podcast phân tích chi tiết chủ đề Chủ đề 09: Học tập & Thi cử & Deadline báo cáo (学校・授業・レポート・締め切りの語彙) cho học viên ôn thi JLPT N3 dựa trên tài liệu này."
+  },
+  {
+    "topic_id": "topic_10_clb_le_hoi_truong",
+    "title": "Chủ đề 10: Câu lạc bộ & Lễ hội trường",
+    "japanese_title": "サークル活動・学園祭・イベントの語彙",
+    "file_path": "/notebooklm_lectures/topic_10_clb_le_hoi_truong.md",
+    "slide_count": 10,
+    "prompt": "Hãy tạo bài giảng Audio Overview podcast phân tích chi tiết chủ đề Chủ đề 10: Câu lạc bộ & Lễ hội trường (サークル活動・学園祭・イベントの語彙) cho học viên ôn thi JLPT N3 dựa trên tài liệu này."
+  },
+  {
+    "topic_id": "topic_11_du_lich_dat_phong",
+    "title": "Chủ đề 11: Du lịch & Đặt phòng khách sạn",
+    "japanese_title": "旅行・宿泊予約・観光の語彙",
+    "file_path": "/notebooklm_lectures/topic_11_du_lich_dat_phong.md",
+    "slide_count": 10,
+    "prompt": "Hãy tạo bài giảng Audio Overview podcast phân tích chi tiết chủ đề Chủ đề 11: Du lịch & Đặt phòng khách sạn (旅行・宿泊予約・観光の語彙) cho học viên ôn thi JLPT N3 dựa trên tài liệu này."
+  },
+  {
+    "topic_id": "topic_12_moi_truong_rac_thai",
+    "title": "Chủ đề 12: Môi trường & Tái chế & Tiết kiệm năng lượng",
+    "japanese_title": "環境問題・リサイクル・省エネの語彙",
+    "file_path": "/notebooklm_lectures/topic_12_moi_truong_rac_thai.md",
+    "slide_count": 10,
+    "prompt": "Hãy tạo bài giảng Audio Overview podcast phân tích chi tiết chủ đề Chủ đề 12: Môi trường & Tái chế & Tiết kiệm năng lượng (環境問題・リサイクル・省エネの語彙) cho học viên ôn thi JLPT N3 dựa trên tài liệu này."
+  },
+  {
+    "topic_id": "topic_13_thien_tai_cuu_ho",
+    "title": "Chủ đề 13: Thiên tai & Cứu hộ & Sơ tán",
+    "japanese_title": "自然災害・地震・防災・避難の語彙",
+    "file_path": "/notebooklm_lectures/topic_13_thien_tai_cuu_ho.md",
+    "slide_count": 10,
+    "prompt": "Hãy tạo bài giảng Audio Overview podcast phân tích chi tiết chủ đề Chủ đề 13: Thiên tai & Cứu hộ & Sơ tán (自然災害・地震・防災・避難の語彙) cho học viên ôn thi JLPT N3 dựa trên tài liệu này."
+  },
+  {
+    "topic_id": "topic_14_tap_tinh_dong_vat",
+    "title": "Chủ đề 14: Động vật & Sinh thái thiên nhiên",
+    "japanese_title": "動物の生態・自然・習性の語彙",
+    "file_path": "/notebooklm_lectures/topic_14_tap_tinh_dong_vat.md",
+    "slide_count": 10,
+    "prompt": "Hãy tạo bài giảng Audio Overview podcast phân tích chi tiết chủ đề Chủ đề 14: Động vật & Sinh thái thiên nhiên (動物の生態・自然・習性の語彙) cho học viên ôn thi JLPT N3 dựa trên tài liệu này."
+  },
+  {
+    "topic_id": "topic_15_suc_khoe_phong_benh",
+    "title": "Chủ đề 15: Sức khỏe & Thể dục & Phòng bệnh",
+    "japanese_title": "健康管理・予防・運動・生活習慣の語彙",
+    "file_path": "/notebooklm_lectures/topic_15_suc_khoe_phong_benh.md",
+    "slide_count": 10,
+    "prompt": "Hãy tạo bài giảng Audio Overview podcast phân tích chi tiết chủ đề Chủ đề 15: Sức khỏe & Thể dục & Phòng bệnh (健康管理・予防・運動・生活習慣の語彙) cho học viên ôn thi JLPT N3 dựa trên tài liệu này."
+  },
+  {
+    "topic_id": "topic_16_nau_an_han_thuc_pham",
+    "title": "Chủ đề 16: Nấu ăn & Nguyên liệu & An toàn thực phẩm",
+    "japanese_title": "料理・調味料・賞味期限・食品安全の語彙",
+    "file_path": "/notebooklm_lectures/topic_16_nau_an_han_thuc_pham.md",
+    "slide_count": 10,
+    "prompt": "Hãy tạo bài giảng Audio Overview podcast phân tích chi tiết chủ đề Chủ đề 16: Nấu ăn & Nguyên liệu & An toàn thực phẩm (料理・調味料・賞味期限・食品安全の語彙) cho học viên ôn thi JLPT N3 dựa trên tài liệu này."
+  },
+  {
+    "topic_id": "topic_17_smartphone_song_so",
+    "title": "Chủ đề 17: Smartphone & Mạng xã hội & Đời sống số",
+    "japanese_title": "スマホ・SNS・デジタル技術の語彙",
+    "file_path": "/notebooklm_lectures/topic_17_smartphone_song_so.md",
+    "slide_count": 10,
+    "prompt": "Hãy tạo bài giảng Audio Overview podcast phân tích chi tiết chủ đề Chủ đề 17: Smartphone & Mạng xã hội & Đời sống số (スマホ・SNS・デジタル技術の語彙) cho học viên ôn thi JLPT N3 dựa trên tài liệu này."
+  },
+  {
+    "topic_id": "topic_18_giao_tiep_tu_choi_xin_loi",
+    "title": "Chủ đề 18: Kỹ năng giao tiếp: Từ chối khéo & Xin lỗi",
+    "japanese_title": "断り方・お詫び・対人マナーの語彙",
+    "file_path": "/notebooklm_lectures/topic_18_giao_tiep_tu_choi_xin_loi.md",
+    "slide_count": 10,
+    "prompt": "Hãy tạo bài giảng Audio Overview podcast phân tích chi tiết chủ đề Chủ đề 18: Kỹ năng giao tiếp: Từ chối khéo & Xin lỗi (断り方・お詫び・対人マナーの語彙) cho học viên ôn thi JLPT N3 dựa trên tài liệu này."
+  },
+  {
+    "topic_id": "topic_19_qua_tang_omiyage",
+    "title": "Chủ đề 19: Quà tặng & Phong tục Omiyage",
+    "japanese_title": "お土産・贈り物・お中元・お歳暮の語彙",
+    "file_path": "/notebooklm_lectures/topic_19_qua_tang_omiyage.md",
+    "slide_count": 10,
+    "prompt": "Hãy tạo bài giảng Audio Overview podcast phân tích chi tiết chủ đề Chủ đề 19: Quà tặng & Phong tục Omiyage (お土産・贈り物・お中元・お歳暮の語彙) cho học viên ôn thi JLPT N3 dựa trên tài liệu này."
+  },
+  {
+    "topic_id": "topic_20_quan_ly_thoi_gian",
+    "title": "Chủ đề 20: Quản lý thời gian & Lập kế hoạch",
+    "japanese_title": "時間管理・スケジュール・計画性の語彙",
+    "file_path": "/notebooklm_lectures/topic_20_quan_ly_thoi_gian.md",
+    "slide_count": 10,
+    "prompt": "Hãy tạo bài giảng Audio Overview podcast phân tích chi tiết chủ đề Chủ đề 20: Quản lý thời gian & Lập kế hoạch (時間管理・スケジュール・計画性の語彙) cho học viên ôn thi JLPT N3 dựa trên tài liệu này."
+  }
+]

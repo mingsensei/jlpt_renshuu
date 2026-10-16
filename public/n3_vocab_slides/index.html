@@ -71,6 +71,12 @@
           <svg class="w-4 h-4 text-slate-400 absolute left-2.5 top-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
         </div>
 
+        <!-- NotebookLM Studio Button -->
+        <button id="notebooklmBtn" class="flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-amber-300 bg-amber-50 hover:bg-amber-100 text-xs font-bold text-amber-900 transition">
+          <span class="text-amber-500">✨</span>
+          <span>NotebookLM</span>
+        </button>
+
         <!-- Topic Drawer Toggle -->
         <button id="toggleDrawerBtn" class="flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-slate-200 hover:bg-slate-50 text-xs font-semibold text-slate-700 transition">
           <svg class="w-4 h-4 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
@@ -115,8 +121,12 @@
           <span id="slideWordType" class="text-[11px] font-semibold text-slate-500 bg-slate-100 px-2.5 py-1 rounded-full">Danh từ</span>
         </div>
         
-        <!-- Slide Index & Audio -->
+        <!-- Slide Index & Audio & Video Play -->
         <div class="flex items-center gap-2">
+          <button id="videoPlayBtn" title="Tự động phát video bài giảng" class="flex items-center gap-1.5 px-3 py-1 rounded-full bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold transition shadow-xs active:scale-95">
+            <svg id="videoPlayIcon" class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+            <span id="videoPlayText">Phát Video AI</span>
+          </button>
           <button id="ttsBtn" title="Phát âm tiếng Nhật" class="w-8 h-8 rounded-full bg-indigo-50 hover:bg-indigo-100 text-indigo-600 flex items-center justify-center transition active:scale-95">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"></path></svg>
           </button>
@@ -204,8 +214,10 @@
           </p>
         </div>
 
-      </div>
+    </div>
 
+    <!-- Video Subtitle Ticker Bar -->
+    <div id="videoSubtitleBar" class="hidden w-full max-w-2xl mt-4 px-4 py-2.5 bg-slate-900 text-amber-300 rounded-2xl text-xs sm:text-sm font-semibold text-center shadow-lg border border-slate-800 animate-fade-in">
     </div>
 
     <!-- Carousel Navigation Bar -->
@@ -248,6 +260,52 @@
 
     <div id="drawerTopicList" class="flex-1 overflow-y-auto p-3 space-y-1.5 custom-scrollbar">
       <!-- 20 topic cards populated here -->
+    </div>
+  <!-- NotebookLM Studio Modal -->
+  <div id="notebooklmModal" class="hidden fixed inset-0 z-50 bg-black/60 backdrop-blur-xs flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-xl w-full p-6 sm:p-7 shadow-2xl border border-slate-100 flex flex-col gap-4 relative animate-fade-in">
+      <button id="closeNlmModalBtn" class="absolute right-5 top-5 p-1 rounded-full text-slate-400 hover:text-slate-600 hover:bg-slate-100">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-2xl bg-amber-500/10 text-amber-600 flex items-center justify-center font-bold text-xl">
+          ✨
+        </div>
+        <div>
+          <h3 class="text-base sm:text-lg font-extrabold text-slate-900">
+            NotebookLM Studio • Video & Audio Overview
+          </h3>
+          <p class="text-xs text-slate-500">
+            Tạo podcast và video bài giảng 2 host đối thoại bằng Google NotebookLM
+          </p>
+        </div>
+      </div>
+
+      <div class="bg-amber-50/70 border border-amber-200/80 rounded-2xl p-4 text-xs text-amber-950 leading-relaxed">
+        <p class="font-bold text-amber-900 mb-1">💡 Hướng dẫn tạo Video/Podcast với NotebookLM:</p>
+        <ol class="list-decimal list-inside space-y-1 text-[11px] text-amber-900/90">
+          <li>Bấm <strong>Tải file .md</strong> bên dưới để lấy tài liệu nguồn chuẩn hóa.</li>
+          <li>Mở <a href="https://notebooklm.google.com" target="_blank" rel="noreferrer" class="underline font-bold text-indigo-600">NotebookLM</a> và bấm <strong>New Notebook</strong>.</li>
+          <li>Tải file nguồn lên (Upload Source), rồi bấm <strong>Audio Overview (Podcast)</strong> hoặc <strong>Video Overview</strong> trong ô Studio để tạo bài giảng!</li>
+        </ol>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+        <a id="downloadTopicNlmBtn" href="./notebooklm_lectures/topic_01_tim_phong_chuyen_nha.md" download="topic_01_tim_phong_chuyen_nha.md" class="flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-indigo-50 hover:bg-indigo-100 text-indigo-700 text-xs font-bold border border-indigo-200 transition">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+          <span id="downloadTopicText">Tải .md Chủ đề này</span>
+        </a>
+
+        <a href="./notebooklm_lectures/n3_vocab_all_20_topics_master.md" download="n3_vocab_all_20_topics_master.md" class="flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-bold border border-slate-200 transition">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+          <span>Tải trọn bộ 20 Chủ đề</span>
+        </a>
+
+        <a href="https://notebooklm.google.com/" target="_blank" rel="noopener noreferrer" class="sm:col-span-2 flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-600 text-white text-xs font-bold shadow-sm shadow-amber-200 transition">
+          <span>Mở Google NotebookLM →</span>
+        </a>
+      </div>
     </div>
   </div>
 
@@ -365,6 +423,15 @@
           child.className = 'p-2.5 rounded-2xl border text-left cursor-pointer transition bg-white border-slate-100 hover:bg-slate-50';
         }
       });
+
+      // Update NotebookLM modal download button
+      const nlmBtn = document.getElementById('downloadTopicNlmBtn');
+      const nlmText = document.getElementById('downloadTopicText');
+      if (nlmBtn && nlmText) {
+        nlmBtn.href = `./notebooklm_lectures/${topic.topic_id}.md`;
+        nlmBtn.download = `${topic.topic_id}.md`;
+        nlmText.textContent = `Tải .md Chủ đề ${currentTopicIndex + 1}`;
+      }
 
       renderSlide();
     }
@@ -511,20 +578,121 @@
       }
     };
 
+    // Video Lecture State & Logic
+    let isVideoMode = false;
+    let videoTimer = null;
+    const videoPlayBtn = document.getElementById('videoPlayBtn');
+    const videoPlayText = document.getElementById('videoPlayText');
+    const videoSubtitleBar = document.getElementById('videoSubtitleBar');
+    const notebooklmModal = document.getElementById('notebooklmModal');
+    const notebooklmBtn = document.getElementById('notebooklmBtn');
+    const closeNlmModalBtn = document.getElementById('closeNlmModalBtn');
+
+    function toggleVideoLecture() {
+      if (isVideoMode) {
+        stopVideoLecture();
+      } else {
+        startVideoLecture();
+      }
+    }
+
+    function startVideoLecture() {
+      isVideoMode = true;
+      videoPlayText.textContent = 'Dừng Video';
+      videoPlayBtn.className = 'flex items-center gap-1.5 px-3 py-1 rounded-full bg-red-600 hover:bg-red-700 text-white text-xs font-bold transition shadow-xs active:scale-95';
+      videoSubtitleBar.classList.remove('hidden');
+      playCurrentSlideVideo();
+    }
+
+    function stopVideoLecture() {
+      isVideoMode = false;
+      videoPlayText.textContent = 'Phát Video AI';
+      videoPlayBtn.className = 'flex items-center gap-1.5 px-3 py-1 rounded-full bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold transition shadow-xs active:scale-95';
+      videoSubtitleBar.classList.add('hidden');
+      if (videoTimer) clearTimeout(videoTimer);
+      if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+    }
+
+    function playCurrentSlideVideo() {
+      if (!isVideoMode) return;
+      const topic = topicsData[currentTopicIndex];
+      const slide = topic.slides[currentSlideIndex];
+      videoSubtitleBar.textContent = `🔊 ${slide.word} 【${slide.furigana}】: ${slide.meaning_vn}`;
+
+      if (!('speechSynthesis' in window)) return;
+      window.speechSynthesis.cancel();
+      const utter = new SpeechSynthesisUtterance(slide.word);
+      utter.lang = 'ja-JP';
+      utter.rate = 0.9;
+      utter.onend = () => {
+        videoSubtitleBar.textContent = `💡 Mẹo nhớ: ${slide.mnemonic || slide.diagram_caption || slide.meaning_vn}`;
+        videoTimer = setTimeout(() => {
+          if (slide.example && slide.example.sentence) {
+            videoSubtitleBar.textContent = `📖 Ví dụ: ${slide.example.translation}`;
+            const utterEx = new SpeechSynthesisUtterance(slide.example.sentence);
+            utterEx.lang = 'ja-JP';
+            utterEx.rate = 0.95;
+            utterEx.onend = () => {
+              videoTimer = setTimeout(() => {
+                if (currentSlideIndex < topic.slides.length - 1) {
+                  currentSlideIndex++;
+                  renderSlide();
+                  playCurrentSlideVideo();
+                } else {
+                  stopVideoLecture();
+                }
+              }, 1500);
+            };
+            window.speechSynthesis.speak(utterEx);
+          } else {
+            videoTimer = setTimeout(() => {
+              if (currentSlideIndex < topic.slides.length - 1) {
+                currentSlideIndex++;
+                renderSlide();
+                playCurrentSlideVideo();
+              } else {
+                stopVideoLecture();
+              }
+            }, 1500);
+          }
+        }, 1200);
+      };
+      window.speechSynthesis.speak(utter);
+    }
+
     // Event listeners
-    prevBtn.onclick = prevSlide;
-    nextBtn.onclick = nextSlide;
+    prevBtn.onclick = () => {
+      stopVideoLecture();
+      prevSlide();
+    };
+    nextBtn.onclick = () => {
+      stopVideoLecture();
+      nextSlide();
+    };
     ttsBtn.onclick = speakJapanese;
+    videoPlayBtn.onclick = toggleVideoLecture;
     toggleDrawerBtn.onclick = openDrawer;
     closeDrawerBtn.onclick = closeDrawer;
     drawerOverlay.onclick = closeDrawer;
+
+    notebooklmBtn.onclick = () => {
+      notebooklmModal.classList.remove('hidden');
+    };
+    closeNlmModalBtn.onclick = () => {
+      notebooklmModal.classList.add('hidden');
+    };
+    notebooklmModal.onclick = (e) => {
+      if (e.target === notebooklmModal) notebooklmModal.classList.add('hidden');
+    };
 
     // Keyboard Shortcuts
     document.addEventListener('keydown', (e) => {
       if (document.activeElement === searchInput) return;
       if (e.key === 'ArrowRight') {
+        stopVideoLecture();
         nextSlide();
       } else if (e.key === 'ArrowLeft') {
+        stopVideoLecture();
         prevSlide();
       } else if (e.key === ' ' || e.code === 'Space') {
         e.preventDefault();
