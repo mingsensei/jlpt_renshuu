@@ -10,6 +10,7 @@ import { Result } from './pages/Result';
 import { Login } from './pages/Login';
 import { AdminManage } from './pages/AdminManage';
 import { EditExam } from './pages/EditExam';
+import { KanjiFlashcards } from './pages/KanjiFlashcards';
 import { initSupabaseKeepAlive } from './lib/supabasePing';
 
 export function App() {
@@ -27,6 +28,9 @@ export function App() {
           <main className="flex-1">
             <Routes>
               <Route path="/" element={<Home />} />
+              <Route path="/flashcards" element={<KanjiFlashcards />} />
+              <Route path="/quizlet" element={<Navigate to="/flashcards" replace />} />
+              <Route path="/kanji" element={<Navigate to="/flashcards" replace />} />
               <Route path="/login" element={<Login />} />
               <Route
                 path="/manage"

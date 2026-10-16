@@ -480,6 +480,33 @@ export const Home: React.FC = () => {
         })}
       </div>
 
+      {/* Featured Banner: Quizlet Flashcards 370 Kanji N3 */}
+      <div className="mb-6 sm:mb-8 bg-gradient-to-r from-emerald-600 via-teal-600 to-indigo-700 rounded-3xl p-5 sm:p-6 text-white shadow-md relative overflow-hidden flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div className="relative z-10 space-y-1.5 max-w-xl">
+          <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-white/20 backdrop-blur-xs text-white">
+            <Sparkles className="w-3.5 h-3.5 text-amber-300" />
+            <span>TÍNH NĂNG MỚI • QUIZLET FLASHCARD</span>
+          </div>
+          <h2 className="text-xl sm:text-2xl font-black tracking-tight text-white">
+            Học Thẻ 370 Kanji N3 Chuẩn Thi JLPT
+          </h2>
+          <p className="text-xs sm:text-sm text-emerald-50 leading-relaxed">
+            Học từng thẻ 3D lật mặt (Kanji, Âm Hán-Việt, On, Kun, Nghĩa). Thẻ nào đã biết sẽ tự động ẩn đi và lưu lại để tạo trắc nghiệm kiểm tra!
+          </p>
+        </div>
+
+        <div className="relative z-10 flex items-center gap-3 flex-shrink-0">
+          <Link
+            to="/flashcards"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white text-gray-900 font-bold text-xs sm:text-sm shadow-md hover:bg-emerald-50 active:scale-95 transition-all cursor-pointer"
+          >
+            <Layers className="w-4 h-4 text-emerald-600" />
+            <span>Mở Flashcard Quizlet</span>
+            <ChevronRight className="w-4 h-4 text-gray-400" />
+          </Link>
+        </div>
+      </div>
+
       {/* JLPT Level Filter Bar (For Reading & Listening: 5 levels N5 ~ N1) */}
       {(activeCategory === 'reading' || activeCategory === 'listening') && (
         <div className="mb-6 p-3 sm:p-4 bg-white border border-gray-200 rounded-2xl shadow-xs">

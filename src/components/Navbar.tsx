@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { PlusCircle, LogIn, LogOut, Menu, X, Layers } from 'lucide-react';
+import { PlusCircle, LogIn, LogOut, Menu, X, Layers, Sparkles } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 
 export const Navbar: React.FC = () => {
@@ -32,6 +32,18 @@ export const Navbar: React.FC = () => {
             }`}
           >
             Danh sách đề
+          </Link>
+
+          <Link
+            to="/flashcards"
+            className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-sm font-medium transition-colors ${
+              location.pathname.startsWith('/flashcards')
+                ? 'bg-emerald-50 text-emerald-800 font-semibold'
+                : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
+            }`}
+          >
+            <Sparkles className="w-3.5 h-3.5 text-emerald-600" />
+            <span>Flashcard Kanji N3</span>
           </Link>
 
           {/* Admin / Quản lý link if logged in */}
@@ -133,6 +145,15 @@ export const Navbar: React.FC = () => {
             className="block py-2 text-sm font-medium text-gray-800 hover:text-black"
           >
             Danh sách đề thi
+          </Link>
+
+          <Link
+            to="/flashcards"
+            onClick={() => setMobileMenuOpen(false)}
+            className="flex items-center gap-2 py-2 text-sm font-medium text-emerald-800"
+          >
+            <Sparkles className="w-4 h-4 text-emerald-600" />
+            <span>Flashcard 370 Kanji N3</span>
           </Link>
 
           {user ? (
