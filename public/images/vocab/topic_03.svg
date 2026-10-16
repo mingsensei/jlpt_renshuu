@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bg_topic_03" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#e0f2fe"/>
+      <stop offset="100%" stop-color="#bae6fd"/>
+    </linearGradient>
+    <filter id="shadow_topic_03" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="#0284c7" flood-opacity="0.12"/>
+    </filter>
+  </defs>
+
+  <!-- Background Canvas -->
+  <rect width="800" height="450" rx="24" fill="url(#bg_topic_03)"/>
+
+  <!-- Subtle grid pattern dots -->
+  <g opacity="0.15" fill="#0284c7">
+    <circle cx="40" cy="40" r="3"/><circle cx="100" cy="40" r="3"/><circle cx="160" cy="40" r="3"/><circle cx="700" cy="40" r="3"/><circle cx="760" cy="40" r="3"/>
+    <circle cx="40" cy="100" r="3"/><circle cx="760" cy="100" r="3"/><circle cx="40" cy="350" r="3"/><circle cx="760" cy="350" r="3"/>
+  </g>
+
+  <!-- Header Badge -->
+  <g transform="translate(40, 35)">
+    <rect width="110" height="32" rx="16" fill="#0284c7"/>
+    <text x="55" y="21" font-family="'Plus Jakarta Sans', sans-serif" font-size="13" font-weight="800" fill="#ffffff" text-anchor="middle" letter-spacing="0.5">CHỦ ĐỀ 03</text>
+  </g>
+
+  <!-- Title typography -->
+  <text x="165" y="58" font-family="'Plus Jakarta Sans', sans-serif" font-size="20" font-weight="800" fill="#0f172a">Giao thông tàu xe & Đi lại</text>
+  <text x="760" y="58" font-family="'Noto Sans JP', sans-serif" font-size="16" font-weight="700" fill="#0284c7" text-anchor="end">交通機関・電車・バス</text>
+
+  <!-- Main Illustration Scene -->
+  
+            <!-- Shinkansen Train -->
+            <path d="M120 260 C200 260 400 240 650 240 C670 240 680 230 680 200 C680 160 620 160 520 160 L120 160 Z" fill="#ffffff" filter="drop-shadow(0 15px 25px rgba(2,132,199,0.2))"/>
+            <path d="M120 200 H650" stroke="#0284c7" stroke-width="12"/>
+            <rect x="180" y="175" width="55" height="40" rx="6" fill="#0369a1"/>
+            <rect x="260" y="175" width="55" height="40" rx="6" fill="#0369a1"/>
+            <rect x="340" y="175" width="55" height="40" rx="6" fill="#0369a1"/>
+            <rect x="420" y="175" width="55" height="40" rx="6" fill="#0369a1"/>
+            <path d="M510 175 L560 175 C580 175 600 185 610 200 L510 200 Z" fill="#0369a1"/>
+            <!-- Railway Track -->
+            <path d="M80 280 H720" stroke="#64748b" stroke-width="6"/>
+            <path d="M80 300 H720" stroke="#64748b" stroke-width="6"/>
+            <g stroke="#94a3b8" stroke-width="4">
+                <line x1="120" y1="275" x2="120" y2="305"/>
+                <line x1="200" y1="275" x2="200" y2="305"/>
+                <line x1="280" y1="275" x2="280" y2="305"/>
+                <line x1="360" y1="275" x2="360" y2="305"/>
+                <line x1="440" y1="275" x2="440" y2="305"/>
+                <line x1="520" y1="275" x2="520" y2="305"/>
+                <line x1="600" y1="275" x2="600" y2="305"/>
+                <line x1="680" y1="275" x2="680" y2="305"/>
+            </g>
+        
+
+  <!-- Bottom Accent Stripe -->
+  <rect x="0" y="442" width="800" height="8" fill="#0284c7"/>
+</svg>

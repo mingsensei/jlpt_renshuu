@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bg_topic_04" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffedd5"/>
+      <stop offset="100%" stop-color="#fed7aa"/>
+    </linearGradient>
+    <filter id="shadow_topic_04" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="#ea580c" flood-opacity="0.12"/>
+    </filter>
+  </defs>
+
+  <!-- Background Canvas -->
+  <rect width="800" height="450" rx="24" fill="url(#bg_topic_04)"/>
+
+  <!-- Subtle grid pattern dots -->
+  <g opacity="0.15" fill="#ea580c">
+    <circle cx="40" cy="40" r="3"/><circle cx="100" cy="40" r="3"/><circle cx="160" cy="40" r="3"/><circle cx="700" cy="40" r="3"/><circle cx="760" cy="40" r="3"/>
+    <circle cx="40" cy="100" r="3"/><circle cx="760" cy="100" r="3"/><circle cx="40" cy="350" r="3"/><circle cx="760" cy="350" r="3"/>
+  </g>
+
+  <!-- Header Badge -->
+  <g transform="translate(40, 35)">
+    <rect width="110" height="32" rx="16" fill="#ea580c"/>
+    <text x="55" y="21" font-family="'Plus Jakarta Sans', sans-serif" font-size="13" font-weight="800" fill="#ffffff" text-anchor="middle" letter-spacing="0.5">CHỦ ĐỀ 04</text>
+  </g>
+
+  <!-- Title typography -->
+  <text x="165" y="58" font-family="'Plus Jakarta Sans', sans-serif" font-size="20" font-weight="800" fill="#0f172a">Đi làm thêm & Phỏng vấn</text>
+  <text x="760" y="58" font-family="'Noto Sans JP', sans-serif" font-size="16" font-weight="700" fill="#ea580c" text-anchor="end">アルバイト・面接</text>
+
+  <!-- Main Illustration Scene -->
+  
+            <!-- Resume Document & Interview -->
+            <rect x="130" y="100" width="240" height="250" rx="16" fill="#ffffff" filter="drop-shadow(0 15px 25px rgba(234,88,12,0.15))"/>
+            <text x="250" y="140" font-size="20" font-family="'Noto Sans JP', sans-serif" font-weight="900" fill="#1e293b" text-anchor="middle">履 歴 書</text>
+            <rect x="280" y="160" width="60" height="75" rx="6" fill="#fed7aa" stroke="#ea580c" stroke-width="2"/>
+            <circle cx="310" cy="190" r="16" fill="#fb923c"/>
+            <path d="M290 225 C295 210 325 210 330 225" fill="#fb923c"/>
+            <path d="M160 180 H250 M160 210 H250 M160 240 H330 M160 270 H330 M160 300 H330" stroke="#e2e8f0" stroke-width="5" stroke-linecap="round"/>
+            <!-- Coin Stack & Handshake -->
+            <g transform="translate(440, 160)">
+                <ellipse cx="60" cy="120" rx="45" ry="18" fill="#f59e0b"/>
+                <ellipse cx="60" cy="95" rx="45" ry="18" fill="#fbbf24"/>
+                <ellipse cx="60" cy="70" rx="45" ry="18" fill="#fde68a"/>
+                <text x="60" y="77" font-size="20" font-family="sans-serif" font-weight="bold" fill="#b45309" text-anchor="middle">¥ 時給</text>
+                <text x="170" y="90" font-size="52" text-anchor="middle">🤝</text>
+                <text x="170" y="130" font-size="16" font-family="sans-serif" font-weight="bold" fill="#ea580c" text-anchor="middle">採用決定!</text>
+            </g>
+        
+
+  <!-- Bottom Accent Stripe -->
+  <rect x="0" y="442" width="800" height="8" fill="#ea580c"/>
+</svg>

@@ -1,0 +1,309 @@
+{
+  "topic_id": "topic_07_kham_benh_uong_thuoc",
+  "title": "Chủ đề 07: Khám bệnh & Y tế & Uống thuốc",
+  "japanese_title": "病院・診察・症状・処方箋の語彙",
+  "description": "Từ vựng đi bệnh viện, miêu tả triệu chứng bệnh, bảo hiểm y tế và cách dùng thuốc đúng chỉ định tại Nhật.",
+  "level": "N3",
+  "slides": [
+    {
+      "id": 1,
+      "slide_number": 1,
+      "word": "保険証",
+      "furigana": "ほけんしょう",
+      "romaji": "hokenshou",
+      "han_viet": "BẢO HIỂM CHỨNG",
+      "meaning_vn": "Thẻ bảo hiểm y tế quốc dân (giảm 70% viện phí)",
+      "word_type": "Danh từ",
+      "tag": "Giấy tờ y tế",
+      "visual_diagram": "   🏥 VIỆN PHÍ TẠI NHẬT:\n   ├── ❌ Không có thẻ: BẠN TRẢ 100% (Khám cảm cúm ~ 10,000円)\n   └── ⭕ Có thẻ 保険証: BẠN TRẢ 30% (Chỉ tốn ~ 3,000円, 70% nhà nước chi trả)",
+      "diagram_caption": "Vật bất ly thân khi đi khám bệnh tại bất kỳ bệnh viện hay phòng khám nào",
+      "mnemonic": "BẢO HIỂM (保険 - giữ gìn phòng hiểm họa) + CHỨNG (証 - bằng chứng). Thẻ chứng nhận đã đóng bảo hiểm y tế.",
+      "collocations": [
+        {
+          "ja": "健康保険証を提示する",
+          "furigana": "けんこうほけんしょうをていじする",
+          "vn": "Xuất trình thẻ bảo hiểm y tế"
+        },
+        {
+          "ja": "国民健康保険",
+          "furigana": "こくみんけんこうほけん",
+          "vn": "Bảo hiểm y tế quốc dân cho du học sinh"
+        }
+      ],
+      "example": {
+        "sentence": "初[はじ]めての病院[びょういん]を受診[じゅしん]する際[さい]は、必[かなら]ず保険証[ほけんしょう]を持参[じさん]する。",
+        "translation": "Khi đến khám bệnh tại bệnh viện lần đầu, nhất định phải mang theo thẻ bảo hiểm."
+      }
+    },
+    {
+      "id": 2,
+      "slide_number": 2,
+      "word": "診察券",
+      "furigana": "しんさつけん",
+      "romaji": "shinsatsuken",
+      "han_viet": "CHẨN SÁT KHOÁN",
+      "meaning_vn": "Thẻ khám bệnh riêng của từng bệnh viện/phòng khám",
+      "word_type": "Danh từ",
+      "tag": "Thẻ y tế",
+      "visual_diagram": "   🏥 PHÂN BIỆT 2 LOẠI THẺ KHI ĐI KHÁM:\n   ├── 💳 保険証: Thẻ bảo hiểm chung do nhà nước cấp (dùng ở mọi bệnh viện)\n   └── 🔖 診察券: Thẻ riêng của viện cấp lần đầu (ghi mã số bệnh nhân của viện đó)",
+      "diagram_caption": "Mỗi bệnh viện bạn đến lần đầu sẽ cấp cho bạn một tấm 診察券 bằng nhựa hoặc bìa cứng",
+      "mnemonic": "CHẨN SÁT (診察 - bác sĩ thăm khám bệnh) + KHOÁN (券 - tấm vé, chiếc thẻ).",
+      "collocations": [
+        {
+          "ja": "診察券を出す",
+          "furigana": "しんさつけんをだす",
+          "vn": "Nộp thẻ khám bệnh khi tới tái khám"
+        },
+        {
+          "ja": "診察券を再発行する",
+          "furigana": "しんさつけんをさいはっこうする",
+          "vn": "Cấp lại thẻ khám bệnh bị mất"
+        }
+      ],
+      "example": {
+        "sentence": "再診[さいしん]の時[とき]は、受付[うけつけ]で診察券[しんさつけん]と保険証[ほけんしょう]を一緒[いっしょ]に出[だ]す。",
+        "translation": "Khi đi tái khám, hãy nộp cùng lúc thẻ khám bệnh và thẻ bảo hiểm tại quầy tiếp tân."
+      }
+    },
+    {
+      "id": 3,
+      "slide_number": 3,
+      "word": "処方箋",
+      "furigana": "しょほうせん",
+      "romaji": "shohousen",
+      "han_viet": "XỨ PHƯƠNG TIÊM",
+      "meaning_vn": "Đơn thuốc do bác sĩ kê",
+      "word_type": "Danh từ",
+      "tag": "Lấy thuốc",
+      "visual_diagram": "   🏥 Bệnh viện (Khám bệnh xong) ──▶ Nhận đơn 処方箋 (Giấy kê toa)\n                                           │\n                                           ▼ Mang sang\n   💊 薬局 (Hiệu thuốc kê đơn bên ngoài) ──▶ Dược sĩ bốc thuốc và hướng dẫn",
+      "diagram_caption": "Tại Nhật, bệnh viện chỉ khám bệnh, thuốc phải mang đơn ra hiệu thuốc riêng biệt để lấy",
+      "mnemonic": "XỨ PHƯƠNG (処方 - phương thuốc điều trị) + TIÊM (箋 - tờ giấy ghi chú). Bản kê toa thuốc.",
+      "collocations": [
+        {
+          "ja": "処方箋をもらう",
+          "furigana": "しょほうせんをもらう",
+          "vn": "Nhận đơn thuốc từ bác sĩ"
+        },
+        {
+          "ja": "処方箋薬局",
+          "furigana": "しょほうせんやっきょく",
+          "vn": "Hiệu thuốc chuyên bốc theo đơn bác sĩ"
+        }
+      ],
+      "example": {
+        "sentence": "医師[いし]からもらった処方箋[しょほうせん]を持[も]って、近[ちか]くの薬局[やっきょく]へ行[い]った。",
+        "translation": "Tôi cầm đơn thuốc bác sĩ đưa đến hiệu thuốc gần đó để lấy thuốc."
+      }
+    },
+    {
+      "id": 4,
+      "slide_number": 4,
+      "word": "症状",
+      "furigana": "しょうじょう",
+      "romaji": "shoujou",
+      "han_viet": "CHỨNG TRẠNG",
+      "meaning_vn": "Triệu chứng bệnh (sốt, đau họng, chóng mặt...)",
+      "word_type": "Danh từ",
+      "tag": "Khám bệnh",
+      "visual_diagram": "   🤒 CÁC TRIỆU CHỨNG PHỔ BIẾN BẰNG TIẾNG NHẬT:\n   ├── 🌡️ 熱がある (Sốt cao)\n   ├── 🤧 鼻水・くしゃみ (Sổ mũi, hắt hơi)\n   ├── 🗣️ 咳が出る・喉が痛い (Ho, đau rát cổ họng)\n   ├── 😵 めまいがする (Chóng mặt, hoa mắt)\n   └── 🤢 吐き気がする (Buồn nôn)",
+      "diagram_caption": "Bác sĩ sẽ luôn hỏi câu đầu tiên: 'Hôm nay bạn có triệu chứng thế nào?' (どんな症状ですか)",
+      "mnemonic": "CHỨNG (症 - chứng bệnh) + TRẠNG (状 - tình trạng, biểu hiện). Tình trạng biểu hiện của căn bệnh.",
+      "collocations": [
+        {
+          "ja": "症状が治まる",
+          "furigana": "しょうじょうがおさまる",
+          "vn": "Triệu chứng thuyên giảm, đỡ hẳn"
+        },
+        {
+          "ja": "症状が悪化する",
+          "furigana": "しょうじょうがあっかする",
+          "vn": "Triệu chứng bệnh chuyển biến xấu đi"
+        }
+      ],
+      "example": {
+        "sentence": "風邪[かぜ]の初期[しょき]症状[しょうじょう]が現[あらわ]れたので、早[はや]めに薬[くすり]を飲[の]んで休[やす]んだ。",
+        "translation": "Vì xuất hiện triệu chứng cảm cúm ban đầu nên tôi đã uống thuốc sớm rồi đi nghỉ ngơi."
+      }
+    },
+    {
+      "id": 5,
+      "slide_number": 5,
+      "word": "副作用",
+      "furigana": "ふくさよう",
+      "romaji": "fukusayou",
+      "han_viet": "PHÓ TÁC DỤNG",
+      "meaning_vn": "Tác dụng phụ không mong muốn của thuốc",
+      "word_type": "Danh từ",
+      "tag": "Cảnh báo dùng thuốc",
+      "visual_diagram": "   💊 TÁC DỤNG CỦA THUỐC:\n   ├── 🎯 主作用 (Tác dụng chính: Giảm đau, hạ sốt, diệt khuẩn)\n   └── ⚠️ 副作用 (Tác dụng phụ: Buồn ngủ cực độ, khô họng, đau bụng)\n         ▲\n         └── 🚫 Uống thuốc cảm xong KHÔNG ĐƯỢC LÁI XE (運転禁止)",
+      "diagram_caption": "Bao bì thuốc ở Nhật luôn in rất rõ các tác dụng phụ có thể gặp phải",
+      "mnemonic": "PHÓ (副 - thứ yếu, phụ bên cạnh) + TÁC DỤNG (作用 - hiệu quả). Tác động đi kèm bên cạnh tác dụng chính.",
+      "collocations": [
+        {
+          "ja": "副作用が出る",
+          "furigana": "ふくさようがでる",
+          "vn": "Xuất hiện tác dụng phụ"
+        },
+        {
+          "ja": "強い副作用",
+          "furigana": "つよいふくさよう",
+          "vn": "Tác dụng phụ mạnh"
+        }
+      ],
+      "example": {
+        "sentence": "この風邪薬[かぜぐすり]は眠気[ねむけ]の副作用[ふくさよう]があるため、運転[うんてん]前[まえ]の服用[ふくよう]は避[さ]ける。",
+        "translation": "Loại thuốc cảm này có tác dụng phụ gây buồn ngủ nên tránh uống trước khi lái xe."
+      }
+    },
+    {
+      "id": 6,
+      "slide_number": 6,
+      "word": "食前・食後",
+      "furigana": "しょくぜん・しょくご",
+      "romaji": "shokuzen / shokugo",
+      "han_viet": "THỰC TIỀN / THỰC HẬU",
+      "meaning_vn": "Trước bữa ăn / Sau bữa ăn (chỉ định thời gian uống thuốc)",
+      "word_type": "Danh từ / Trạng từ",
+      "tag": "Hướng dẫn dùng thuốc",
+      "visual_diagram": "   ⏰ THỜI ĐIỂM UỐNG THUỐC:\n   ├── 🥣 食前 (しょくぜん - Trước bữa ăn ~30 phút, khi bụng đói)\n   ├── 🍽️ 食間 (しょっかん - Giữa hai bữa ăn, cách ăn 2 tiếng, KHÔNG PHẢI trong khi ăn!)\n   └── 🍲 食後 (しょくご - Sau bữa ăn ~30 phút, bảo vệ dạ dày)",
+      "diagram_caption": "Bẫy từ vựng N3: 食間 (thực gian) là GIỮA 2 BỮA ĂN (khi bụng đói), không phải vừa ăn vừa uống thuốc!",
+      "mnemonic": "TIỀN (前 - trước) vs HẬU (後 - sau). Nhìn chữ Hán nhận diện ngay thời điểm.",
+      "collocations": [
+        {
+          "ja": "食後に服用する",
+          "furigana": "しょくごにふくようする",
+          "vn": "Uống thuốc sau bữa ăn"
+        },
+        {
+          "ja": "毎食後",
+          "furigana": "まいしょくご",
+          "vn": "Sau mỗi bữa ăn hàng ngày"
+        }
+      ],
+      "example": {
+        "sentence": "胃[い]を痛[いた]めないように、この抗生[こうせい]物質[ぶっしつ]は必[かなら]ず食後[しょくご]に飲[の]んでください。",
+        "translation": "Để không làm hại dạ dày, kháng sinh này nhất định phải uống sau bữa ăn."
+      }
+    },
+    {
+      "id": 7,
+      "slide_number": 7,
+      "word": "内科・外科",
+      "furigana": "ないか・げか",
+      "romaji": "naika / geka",
+      "han_viet": "NỘI KHOA / NGOẠI KHOA",
+      "meaning_vn": "Khoa nội (chữa bằng thuốc) / Khoa ngoại (chữa bằng phẫu thuật, bó bột)",
+      "word_type": "Danh từ",
+      "tag": "Chuyên khoa bệnh viện",
+      "visual_diagram": "   🏥 CHỌN ĐÚNG PHÒNG KHÁM:\n   ├── 🩺 内科 (Nội khoa): Cảm sốt, đau bụng, tim mạch, huyết áp\n   ├── 🩹 外科 (Ngoại khoa): Gãy xương, chấn thương, vết rách chảy máu\n   ├── 👁️ 眼科 (Khoa mắt)\n   ├── 🦷 歯科 (Khoa răng nha khoa)\n   └── 👂 耳鼻科 (Tai mũi họng)",
+      "diagram_caption": "Tại Nhật có các phòng khám tư nhân (クリニック) phân theo từng chuyên khoa ở khắp các ga",
+      "mnemonic": "NỘI (内 - bên trong cơ thể) vs NGOẠI (外 - vết thương ngoài da hoặc phẫu thuật).",
+      "collocations": [
+        {
+          "ja": "内科のクリニック",
+          "furigana": "ないかのクリニック",
+          "vn": "Phòng khám chuyên khoa nội"
+        },
+        {
+          "ja": "外科手術",
+          "furigana": "げかしゅじゅつ",
+          "vn": "Phẫu thuật ngoại khoa"
+        }
+      ],
+      "example": {
+        "sentence": "熱[ねつ]が高[たか]く腹痛[ふくつう]もあるので、駅前[えきまえ]の内科[ないか]を受診[じゅしん]した。",
+        "translation": "Vì sốt cao và đau bụng nên tôi đã đến khám ở khoa nội trước nhà ga."
+      }
+    },
+    {
+      "id": 8,
+      "slide_number": 8,
+      "word": "問診票",
+      "furigana": "もんしんひょう",
+      "romaji": "monshinhyou",
+      "han_viet": "VẤN CHẨN PHIẾU",
+      "meaning_vn": "Phiếu khảo sát tiền sử bệnh (điền khi vừa tới viện)",
+      "word_type": "Danh từ",
+      "tag": "Thủ tục khám bệnh",
+      "visual_diagram": "   📋 問診票 (Phiếu bệnh sử):\n   ├── ❓ Bị đau từ lúc nào? (いつから?)\n   ├── ❓ Mức độ đau thế nào? (ズキズキ, チクチク, ガンガン)\n   ├── ⚠️ Có bị dị ứng thuốc nào không? (アレルギーの有無)\n   └── 🤰 Có đang mang thai hoặc uống thuốc gì khác không?",
+      "diagram_caption": "Điền trung thực để bác sĩ chẩn đoán chính xác và tránh kê thuốc gây dị ứng sốc phản vệ",
+      "mnemonic": "VẤN (問 - hỏi han) + CHẨN (診 - chẩn đoán) + PHIẾU (票 - tờ phiếu). Phiếu trả lời câu hỏi khảo sát y tế.",
+      "collocations": [
+        {
+          "ja": "問診票に記入する",
+          "furigana": "もんしんひょうにきにゅうする",
+          "vn": "Điền vào phiếu khảo sát bệnh sử"
+        },
+        {
+          "ja": "問診票を提出する",
+          "furigana": "もんしんひょうをていしゅつする",
+          "vn": "Nộp phiếu lại cho quầy tiếp tân"
+        }
+      ],
+      "example": {
+        "sentence": "受付[うけつけ]で渡[わた]された問診票[もんしんひょう]に、今[いま]の症状[しょうじょう]を詳[くわ]しく書[か]いた。",
+        "translation": "Tôi đã viết chi tiết các triệu chứng hiện tại vào phiếu bệnh sử được phát tại quầy tiếp tân."
+      }
+    },
+    {
+      "id": 9,
+      "slide_number": 9,
+      "word": "安静",
+      "furigana": "あんせい",
+      "romaji": "ansei",
+      "han_viet": "AN TĨNH",
+      "meaning_vn": "Nghỉ ngơi yên tĩnh, tĩnh dưỡng phục hồi",
+      "word_type": "Danh từ / Tính từ đuôi な",
+      "tag": "Hồi phục sức khỏe",
+      "visual_diagram": "   🛌 安静 (Tĩnh dưỡng đúng cách):\n   ├── 🛏️ Nằm nghỉ trên giường, không làm việc nặng\n   ├── 📱 Tắt điện thoại, hạn chế nhìn màn hình\n   └── 🍵 Uống đủ nước ấm và ngủ đủ giấc\n   ==▶ 「お大事にどうぞ、安静にしてください」(Bác sĩ dặn dò)",
+      "diagram_caption": "Lời dặn quen thuộc nhất của bác sĩ Nhật: 'Hãy về nhà nghỉ ngơi tĩnh dưỡng' (安静にしてください)",
+      "mnemonic": "AN (安 - bình an, an lành) + TĨNH (静 - yên tĩnh, không xáo động). Giữ yên tĩnh để mau lành bệnh.",
+      "collocations": [
+        {
+          "ja": "絶対安静",
+          "furigana": "ぜったいあんせい",
+          "vn": "Tuyệt đối phải nằm bất động nghỉ ngơi"
+        },
+        {
+          "ja": "安静を保つ",
+          "furigana": "あんせいをたもつ",
+          "vn": "Duy trì trạng thái nghỉ ngơi tĩnh dưỡng"
+        }
+      ],
+      "example": {
+        "sentence": "高熱[こうねつ]が出[で]ている間[あいだ]は無理[むり]に出勤[しゅっきん]せず、家[いえ]で安静[あんせい]にしている。",
+        "translation": "Trong khi đang sốt cao thì đừng cố đi làm mà hãy ở nhà nghỉ ngơi tĩnh dưỡng."
+      }
+    },
+    {
+      "id": 10,
+      "slide_number": 10,
+      "word": "アレルギー",
+      "furigana": "アレルギー",
+      "romaji": "arerugii",
+      "han_viet": "DỊ ỨNG",
+      "meaning_vn": "Dị ứng (phấn hoa, hải sản, lông chó mèo, thuốc)",
+      "word_type": "Danh từ",
+      "tag": "Y tế dự phòng",
+      "visual_diagram": "   🤧 CÁC DẠNG DỊ ỨNG PHỔ BIẾN TẠI NHẬT:\n   ├── 🌲 花粉症 (Dị ứng phấn hoa tuyết tùng vào mùa xuân: Hắt hơi, đỏ mắt)\n   ├── 🦐 食物アレルギー (Dị ứng thực phẩm: Tôm cua, đậu phộng, trứng)\n   └── 💊 薬物アレルギー (Dị ứng thuốc kháng sinh)",
+      "diagram_caption": "Bắt nguồn từ tiếng Đức 'Allergie'. Trên menu nhà hàng Nhật luôn ghi chú các chất gây dị ứng",
+      "mnemonic": "Từ mượn tiếng Đức Allergie. Nhớ biểu tượng cây tùng mùa xuân của Nhật Bản.",
+      "collocations": [
+        {
+          "ja": "アレルギー反応",
+          "furigana": "アレルギーはんのう",
+          "vn": "Phản ứng dị ứng"
+        },
+        {
+          "ja": "花粉症",
+          "furigana": "かふんしょう",
+          "vn": "Bệnh dị ứng phấn hoa (đặc sản mùa xuân Nhật)"
+        }
+      ],
+      "example": {
+        "sentence": "エビやカニに対[たい]するアレルギーがあるので、外食[がいしょく]の時[とき]は注意[ちゅうい]している。",
+        "translation": "Vì bị dị ứng với tôm cua nên khi đi ăn ngoài tôi luôn hết sức cẩn thận."
+      }
+    }
+  ]
+}

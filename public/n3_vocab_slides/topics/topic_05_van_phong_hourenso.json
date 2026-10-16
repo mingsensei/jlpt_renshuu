@@ -1,0 +1,309 @@
+{
+  "topic_id": "topic_05_van_phong_hourenso",
+  "title": "Chủ đề 05: Văn hóa công sở & Hourensou",
+  "japanese_title": "ビジネスマナー・報連相・業務の語彙",
+  "description": "Bộ quy tắc ứng xử kinh điển trong doanh nghiệp Nhật, kỹ năng báo cáo - liên lạc - thảo luận và kính ngữ công sở.",
+  "level": "N3",
+  "slides": [
+    {
+      "id": 1,
+      "slide_number": 1,
+      "word": "報告",
+      "furigana": "ほうこく",
+      "romaji": "houkoku",
+      "han_viet": "BÁO CÁO",
+      "meaning_vn": "Báo cáo kết quả và tiến độ công việc cho cấp trên",
+      "word_type": "Danh từ / Động từ nhóm 3",
+      "tag": "Hourensou (報連相)",
+      "visual_diagram": "   🥦 HOURENSOU (Quy tắc vàng công sở Nhật):\n   ├── 📢 報 (ほう - 報告 - Báo cáo): Việc xong phải báo cấp trên ngay\n   ├── 💬 連 (れん - 連絡 - Liên lạc): Có biến đổi thông tin phải báo đồng đội\n   └── 🤝 相 (そう - 相談 - Thảo luận): Gặp chuyện khó đừng tự ý làm, hãy xin ý kiến",
+      "diagram_caption": "Ba chữ cái đầu ghép lại thành 'Horenso' (ほうれん草 - rau bina), phép chơi chữ kinh điển của giới văn phòng Nhật",
+      "mnemonic": "BÁO (報 - thông báo) + CÁO (告 - tỏ bày). Chủ động trình bày kết quả cho cấp trên.",
+      "collocations": [
+        {
+          "ja": "進捗を報告する",
+          "furigana": "しんちょくをほうこくする",
+          "vn": "Báo cáo tiến độ đang làm tới đâu"
+        },
+        {
+          "ja": "中間報告",
+          "furigana": "ちゅうかんほうこく",
+          "vn": "Báo cáo giữa chừng khi dự án chưa xong"
+        }
+      ],
+      "example": {
+        "sentence": "仕事[しごと]が終[お]わったら、すぐに上司[じょうし]に結果[けっか]を報告[ほうこく]しなければならない。",
+        "translation": "Sau khi công việc kết thúc, phải lập tức báo cáo kết quả cho cấp trên."
+      }
+    },
+    {
+      "id": 2,
+      "slide_number": 2,
+      "word": "連絡",
+      "furigana": "れんらく",
+      "romaji": "renraku",
+      "han_viet": "LIÊN LẠC",
+      "meaning_vn": "Liên lạc, cập nhật và chia sẻ thông tin cho các bên",
+      "word_type": "Danh từ / Động từ nhóm 3",
+      "tag": "Hourensou (報連相)",
+      "visual_diagram": "   🏃‍♂️ ĐẾN MUỘN?\n   ├── ❌ Im lặng chạy đến ──▶ Bị đánh giá thiếu trách nhiệm trầm trọng\n   └── ⭕ Gọi điện trước giờ làm: 「電車の遅延で15分遅れます」 ──▶ Được thông cảm",
+      "diagram_caption": "Bất kỳ sự cố nào xảy ra làm lệch giờ giấc, bắt buộc phải liên lạc ngay lập tức",
+      "mnemonic": "LIÊN (連 - kết nối) + LẠC (絡 - ràng buộc mạng lưới). Giữ cho mạng lưới thông tin luôn thông suốt.",
+      "collocations": [
+        {
+          "ja": "事前連絡",
+          "furigana": "じぜんれんらく",
+          "vn": "Liên lạc báo trước khi sự việc diễn ra"
+        },
+        {
+          "ja": "連絡を取り合う",
+          "furigana": "れんらくをとりあう",
+          "vn": "Giữ liên lạc thường xuyên qua lại"
+        }
+      ],
+      "example": {
+        "sentence": "体調[たいちょう]が悪[わる]くて休[やす]む時[とき]は、始業[しぎょう]前[まえ]に会社[かいしゃ]へ連絡[れんらく]する。",
+        "translation": "Khi bị ốm phải nghỉ thì hãy liên lạc đến công ty trước giờ bắt đầu làm việc."
+      }
+    },
+    {
+      "id": 3,
+      "slide_number": 3,
+      "word": "相談",
+      "furigana": "そうだん",
+      "romaji": "soudan",
+      "han_viet": "TƯƠNG ĐÀM",
+      "meaning_vn": "Thảo luận, xin lời khuyên / ý kiến của người khác",
+      "word_type": "Danh từ / Động từ nhóm 3",
+      "tag": "Hourensou (報連相)",
+      "visual_diagram": "   🤔 TỰ Ý QUYẾT ĐỊNH (勝手な判断) ──▶ NGUY HIỂM LỚN TRONG CÔNG TY NHẬT!\n   │\n   └── 🤝 相談する: Gặp điều chưa rõ, đến hỏi tiền bối:\n       「今、少しご相談のお時間をいただけますでしょうか。」",
+      "diagram_caption": "Xin ý kiến tiền bối không phải là yếu kém, mà là sự cẩn trọng bảo đảm chất lượng công việc",
+      "mnemonic": "TƯƠNG (相 - lẫn nhau) + ĐÀM (談 - đàm luận trò chuyện). Cùng nhau đàm đạo để tìm ra giải pháp.",
+      "collocations": [
+        {
+          "ja": "上司に相談を持ちかける",
+          "furigana": "じょうしにそうだんをもちかける",
+          "vn": "Mở lời xin ý kiến sếp"
+        },
+        {
+          "ja": "相談に乗る",
+          "furigana": "そうだんにのる",
+          "vn": "Lắng nghe và cho lời khuyên"
+        }
+      ],
+      "example": {
+        "sentence": "自分[じぶん]一人[ひとり]で悩[なや]まずに、経験[けいけん]の豊富[ほうふ]な先輩[せんぱい]に相談[そうだん]する。",
+        "translation": "Đừng ôm phiền não một mình mà hãy xin lời khuyên từ các tiền bối giàu kinh nghiệm."
+      }
+    },
+    {
+      "id": 4,
+      "slide_number": 4,
+      "word": "承知",
+      "furigana": "しょうち",
+      "romaji": "shouchi",
+      "han_viet": "THỪA TRI",
+      "meaning_vn": "Hiểu rõ, tiếp nhận yêu cầu (Kính ngữ công sở: 承知いたしました)",
+      "word_type": "Danh từ / Động từ nhóm 3",
+      "tag": "Kính ngữ thương mại",
+      "visual_diagram": "   🙅‍♂️ 了解しました (Chỉ dùng với bạn bè, đồng cấp hoặc cấp dưới)\n   🙆‍♂️ 承知いたしました (Kính ngữ chuẩn mực tuyệt đối với sếp & khách hàng)\n   🙆‍♂️ かしこまりました (Đồng nghĩa cực kỳ lịch sự)",
+      "diagram_caption": "Bẫy kính ngữ N3 cực kỳ phổ biến: Nói '了解です' với sếp là bị chê thất lễ!",
+      "mnemonic": "THỪA (承 - nhận lãnh) + TRI (知 - thấu hiểu). Đã hiểu rõ và xin nhận lãnh chỉ thị.",
+      "collocations": [
+        {
+          "ja": "承知いたしました",
+          "furigana": "しょうちいたしました",
+          "vn": "Tôi đã hiểu rõ yêu cầu (rất lịch sự)"
+        },
+        {
+          "ja": "ご承知のとおり",
+          "furigana": "ごしょうちのとおり",
+          "vn": "Như quý vị đã biết rõ"
+        }
+      ],
+      "example": {
+        "sentence": "「この資料[しりょう]を明日[あす]までにコピーしておいて」「はい、承知[しょうち]いたしました」",
+        "translation": "'Hãy photo tài liệu này trước ngày mai nhé.' - 'Vâng, tôi đã hiểu rõ và sẽ làm ngay ạ.'"
+      }
+    },
+    {
+      "id": 5,
+      "slide_number": 5,
+      "word": "恐れ入ります",
+      "furigana": "おそれいります",
+      "romaji": "osoreirimasu",
+      "han_viet": "KHỦNG NHẬP",
+      "meaning_vn": "Xin phép làm phiền / Vô cùng cảm kích (lời mở đầu lịch sự)",
+      "word_type": "Cụm kính ngữ",
+      "tag": "Kính ngữ giao tiếp",
+      "visual_diagram": "   🙇‍♂️ CUSHION WORDS (Lời đệm mềm mại trước khi nhờ vả):\n   ├── 「恐れ入りますが、お名前を伺えますでしょうか」\n   ├── 「お忙しいところ恐縮ですが...」\n   └── 「ご面倒をおかけしますが...」",
+      "diagram_caption": "Giúp câu nói giảm bớt tính áp đặt, tạo cảm giác vô cùng tôn trọng đối phương",
+      "mnemonic": "KHỦNG (恐 - e sợ, ngần ngại) + NHẬP (入 - đi vào). Cảm thấy ngại ngùng khi phiền người khác.",
+      "collocations": [
+        {
+          "ja": "恐れ入りますが",
+          "furigana": "おそれいりますが",
+          "vn": "Xin thứ lỗi làm phiền nhưng..."
+        },
+        {
+          "ja": "大変恐れ入ります",
+          "furigana": "たいへんおそれいります",
+          "vn": "Vô cùng cảm kích và áy náy"
+        }
+      ],
+      "example": {
+        "sentence": "恐[おそ]れ入[い]りますが、少々[しょうしょう]お待[ま]ちいただけますでしょうか。",
+        "translation": "Xin thứ lỗi làm phiền, nhưng quý khách có thể vui lòng đợi một chút được không ạ?"
+      }
+    },
+    {
+      "id": 6,
+      "slide_number": 6,
+      "word": "担当",
+      "furigana": "たんとう",
+      "romaji": "tantou",
+      "han_viet": "ĐẢM ĐƯƠNG",
+      "meaning_vn": "Đảm trách, phụ trách một mảng công việc hoặc khách hàng",
+      "word_type": "Danh từ / Động từ nhóm 3",
+      "tag": "Phân công công việc",
+      "visual_diagram": "   🏢 BỘ PHẬN CÔNG TY (部署):\n   ├── 👨‍💼 担当者 (Người trực tiếp xử lý dự án)\n   └── 📞 Gọi điện: 「担当の山田様はいらっしゃいますでしょうか」\n       (Cho tôi xin phép gặp anh Yamada người phụ trách mảng này ạ)",
+      "diagram_caption": "Tại Nhật, mỗi khách hàng hoặc hạng mục đều có một người chịu trách nhiệm trực tiếp",
+      "mnemonic": "ĐẢM (担 - gánh vác) + ĐƯƠNG (当 - gánh nhận). Gánh vác trọng trách việc được giao.",
+      "collocations": [
+        {
+          "ja": "担当者",
+          "furigana": "たんとうしゃ",
+          "vn": "Người phụ trách trực tiếp"
+        },
+        {
+          "ja": "営業を担当する",
+          "furigana": "えいぎょうをたんとうする",
+          "vn": "Phụ trách mảng kinh doanh"
+        }
+      ],
+      "example": {
+        "sentence": "新規[しんき]プロジェクトの進行[しんこう]を担当[たんとう]することになった。",
+        "translation": "Tôi đã được giao nhiệm vụ phụ trách tiến độ của dự án mới."
+      }
+    },
+    {
+      "id": 7,
+      "slide_number": 7,
+      "word": "議事録",
+      "furigana": "ぎじろく",
+      "romaji": "gijiroku",
+      "han_viet": "NGHỊ SỰ LỤC",
+      "meaning_vn": "Biên bản cuộc họp (ghi lại quyết định và ai làm gì)",
+      "word_type": "Danh từ",
+      "tag": "Tài liệu văn phòng",
+      "visual_diagram": "   📝 議事録 (Nội dung cốt lõi của biên bản họp):\n   ├── 📅 Thời gian, địa điểm, thành viên tham gia\n   ├── 💡 Những nội dung chính đã thống nhất (決定事項)\n   └── 📌 Kế hoạch hành động tiếp theo: Ai làm việc gì, hạn chót ngày nào (TODO / Action items)",
+      "diagram_caption": "Nhiệm vụ đầu tiên của lính mới sau các buổi họp: Soạn biên bản và gửi toàn công ty trong ngày",
+      "mnemonic": "NGHỊ SỰ (議事 - chuyện bàn bạc trong cuộc họp) + LỤC (録 - ghi chép lại).",
+      "collocations": [
+        {
+          "ja": "議事録を作成する",
+          "furigana": "ぎじろくをさくせいする",
+          "vn": "Soạn thảo biên bản cuộc họp"
+        },
+        {
+          "ja": "議事録を共有する",
+          "furigana": "ぎじろくをきょうゆうする",
+          "vn": "Chia sẻ biên bản cho toàn bộ thành viên"
+        }
+      ],
+      "example": {
+        "sentence": "会議[かいぎ]が終[お]わったら、当日[とうじつ]中[ちゅう]に議事録[ぎじろく]を関係者[かんけいしゃ]にメールで送[おく]る。",
+        "translation": "Sau khi cuộc họp kết thúc, hãy soạn và gửi biên bản họp qua email cho các bên liên quan ngay trong ngày."
+      }
+    },
+    {
+      "id": 8,
+      "slide_number": 8,
+      "word": "納期",
+      "furigana": "のうき",
+      "romaji": "nouki",
+      "han_viet": "NẠP KỲ",
+      "meaning_vn": "Hạn giao hàng, hạn chót bàn giao sản phẩm",
+      "word_type": "Danh từ",
+      "tag": "Tiến độ công việc",
+      "visual_diagram": "   ⏰ 納期 (DEADLINE GIAO HÀNG):\n   ├── ⭕ 納期厳守 (Tuyệt đối tuân thủ kỳ hạn - Nguyên tắc sống còn)\n   └── ❌ 納期遅延 (Trễ hạn - Mất uy tín, bồi thường thiệt hại)",
+      "diagram_caption": "Chữ TÍN số 1 của doanh nghiệp Nhật Bản: Giao hàng đúng hẹn từng phút từng giây",
+      "mnemonic": "NẠP (納 - nộp, giao nạp) + KỲ (期 - kỳ hạn, thời hạn). Hạn cuối phải nộp sản phẩm.",
+      "collocations": [
+        {
+          "ja": "納期に間に合わせる",
+          "furigana": "のうきにまにあわせる",
+          "vn": "Làm kịp đúng hạn bàn giao"
+        },
+        {
+          "ja": "納期を延期する",
+          "furigana": "のうきをえんきする",
+          "vn": "Xin gia hạn ngày giao hàng"
+        }
+      ],
+      "example": {
+        "sentence": "チーム全員[ぜんいん]で協力[きょうりょく]して、何[なん]とか納期[のうき]に間[ま]に合[あ]わせた。",
+        "translation": "Cả đội đã đồng lòng hợp tác và bằng mọi giá đã kịp hạn chót bàn giao."
+      }
+    },
+    {
+      "id": 9,
+      "slide_number": 9,
+      "word": "打ち合わせ",
+      "furigana": "うちあわせ",
+      "romaji": "uchiawase",
+      "han_viet": "ĐẢ HỢP",
+      "meaning_vn": "Họp trao đổi sơ bộ, bàn bạc sắp xếp trước",
+      "word_type": "Danh từ / Động từ nhóm 2",
+      "tag": "Cuộc họp",
+      "visual_diagram": "   ☕ 打ち合わせ (Họp ngắn, trao đổi ý tưởng nhanh, không quá trang trọng)\n        vs\n   👔 会議 (Họp hội nghị lớn, đưa ra quyết định chính thức cấp phòng/công ty)",
+      "diagram_caption": "Uchiawase thường diễn ra khoảng 15-30 phút để chốt kế hoạch trước khi bắt tay làm",
+      "mnemonic": "ĐẢ (打 - gõ) + HỢP (合 - khớp nhau). Khớp ý nhau trước để cùng nhịp điệu.",
+      "collocations": [
+        {
+          "ja": "打ち合わせを行う",
+          "furigana": "うちあわせをおこなう",
+          "vn": "Tiến hành buổi họp trao đổi"
+        },
+        {
+          "ja": "事前打ち合わせ",
+          "furigana": "じぜんうちあわせ",
+          "vn": "Họp trù bị từ trước"
+        }
+      ],
+      "example": {
+        "sentence": "午後[ごご]から取引先[とりひきさき]と新[あたら]しい案件[あんけん]の打[う]ち合[あ]わせがある。",
+        "translation": "Chiều nay tôi có buổi họp trao đổi với đối tác về dự án mới."
+      }
+    },
+    {
+      "id": 10,
+      "slide_number": 10,
+      "word": "恐縮",
+      "furigana": "きょうしゅく",
+      "romaji": "kyoushuku",
+      "han_viet": "KHỦNG SÚC",
+      "meaning_vn": "Vô cùng áy náy và biết ơn (dùng khi được giúp hoặc phiền ai)",
+      "word_type": "Danh từ / Động từ nhóm 3",
+      "tag": "Kính ngữ trang trọng",
+      "visual_diagram": "   🙇‍♂️「大変恐縮でございますが、ご確認のほどよろしくお願い申し上げます。」\n   (Tôi cảm thấy vô cùng áy náy làm phiền quý vị, nhưng kính mong quý vị kiểm tra giúp cho ạ)",
+      "diagram_caption": "Cụm từ xuất hiện dày đặc trong email công việc của người Nhật",
+      "mnemonic": "KHỦNG (恐 - sợ sệt) + SÚC (縮 - co rúm lại). Ngại ngùng co người lại vì được đối phương quá đỗi ưu ái.",
+      "collocations": [
+        {
+          "ja": "お忙しいところ恐縮ですが",
+          "furigana": "おいそがしいところきょうしゅくですが",
+          "vn": "Biết anh/chị rất bận tôi rất áy náy nhưng..."
+        },
+        {
+          "ja": "恐縮至極",
+          "furigana": "きょうしゅくしごく",
+          "vn": "Vô cùng cảm kích và áy náy"
+        }
+      ],
+      "example": {
+        "sentence": "私[わたし]のような者のためにわざわざお越[こ]しいただき、恐縮[きょうしゅく]しております。",
+        "translation": "Vì một người như tôi mà quý vị đã cất công tới tận đây, tôi thật sự cảm thấy vô cùng áy náy và biết ơn."
+      }
+    }
+  ]
+}

@@ -1,0 +1,309 @@
+{
+  "topic_id": "topic_18_giao_tiep_tu_choi_xin_loi",
+  "title": "Chủ đề 18: Kỹ năng giao tiếp: Từ chối khéo & Xin lỗi",
+  "japanese_title": "断り方・お詫び・対人マナーの語彙",
+  "description": "Nghệ thuật ứng xử tinh tế của người Nhật: từ chối gián tiếp giữ thể diện và các mức độ xin lỗi chuẩn văn hóa.",
+  "level": "N3",
+  "slides": [
+    {
+      "id": 1,
+      "slide_number": 1,
+      "word": "遠慮",
+      "furigana": "えんりょ",
+      "romaji": "enryo",
+      "han_viet": "VIỄN LỰ",
+      "meaning_vn": "Khách khí, ngại ngùng, khéo léo từ chối giữ ý tứ",
+      "word_type": "Danh từ / Động từ nhóm 3",
+      "tag": "Giao tiếp tinh tế",
+      "visual_diagram": "   🍶 ĐƯỢC MỜI RƯỢU / MỜI ĂN:\n   ├── 「どうぞ食べてください」(Xin mời bạn cứ ăn tự nhiên)\n   ├── 🙆‍♂️ 「それでは、遠慮なくいただきます」(Vậy tôi xin phép không khách khí nữa ạ)\n   └── 🙅‍♂️ 「せっかくですが、今回はご遠慮させていただきます」(Rất tiếc nhưng lần này tôi xin phép khéo từ chối ạ)",
+      "diagram_caption": "Chữ 'Khách khí giữ ý' thể hiện đỉnh cao sự tinh tế trong văn hóa giao tiếp Nhật Bản",
+      "mnemonic": "VIỄN (遠 - nhìn xa trông rộng) + LỰ (慮 - suy xét đắn đo). Suy nghĩ sâu xa giữ kẽ cho người khác.",
+      "collocations": [
+        {
+          "ja": "遠慮なくどうぞ",
+          "furigana": "えんりょなくどうぞ",
+          "vn": "Xin đừng khách khí, cứ tự nhiên nhé"
+        },
+        {
+          "ja": "遠慮深い人",
+          "furigana": "えんりょぶかいひと",
+          "vn": "Người biết giữ ý tứ, không suồng sã"
+        }
+      ],
+      "example": {
+        "sentence": "「お茶[ちゃ]をもう一杯[いっぱい]いかがですか」「ありがとうございます、もう十分[じゅうぶん]ですのでご遠慮[えんりょ]いたします」",
+        "translation": "'Bạn có muốn uống thêm tách trà nữa không?' - 'Cảm ơn bạn, tôi đã uống đủ rồi nên xin phép thôi ạ.'"
+      }
+    },
+    {
+      "id": 2,
+      "slide_number": 2,
+      "word": "辞退",
+      "furigana": "じたい",
+      "romaji": "jitai",
+      "han_viet": "TỪ THOÁI",
+      "meaning_vn": "Xin rút lui, từ chối chính thức (nhận giải thưởng, chức vụ, lời mời phỏng vấn)",
+      "word_type": "Danh từ / Động từ nhóm 3",
+      "tag": "Từ chối trang trọng",
+      "visual_diagram": "   🏆 Được trao tặng chức vụ / Đậu phỏng vấn nhưng không muốn đi làm\n        │\n        └── 🙇‍♂️ 辞退する (Trang trọng gửi thư xin phép rút lui):\n            「一身上の都合により、今回は内定を辞退させていただきます」",
+      "diagram_caption": "Trang trọng hơn 遠慮, mang tính pháp lý và thông báo chính thức",
+      "mnemonic": "TỪ (辞 - từ giã lời từ biệt) + THOÁI (退 - rút lui). Lời xin rút lui chính thức.",
+      "collocations": [
+        {
+          "ja": "内定を辞退する",
+          "furigana": "ないていをじたいする",
+          "vn": "Từ chối lời mời nhận việc của công ty"
+        },
+        {
+          "ja": "候補を辞退する",
+          "furigana": "こうほをじたいする",
+          "vn": "Xin rút tên khỏi danh sách ứng cử"
+        }
+      ],
+      "example": {
+        "sentence": "他[ほか]の第一[だいいち]志望[しぼう]の企業[きぎょう]から内定[ないてい]をもらったので、こちらの会社[かいしゃ]は辞退[じたい]した。",
+        "translation": "Vì đã nhận được lời mời làm việc từ công ty nguyện vọng 1 nên tôi đã xin rút lui tại công ty này."
+      }
+    },
+    {
+      "id": 3,
+      "slide_number": 3,
+      "word": "お詫び",
+      "furigana": "おわび",
+      "romaji": "owabi",
+      "han_viet": "SỰ TẠ LỖI",
+      "meaning_vn": "Lời xin lỗi chân thành sâu sắc trong công việc/thương mại",
+      "word_type": "Danh từ",
+      "tag": "Xin lỗi chuẩn mực",
+      "visual_diagram": "   🙇‍♂️ CÁC CẤP ĐỘ XIN LỖI TRONG TIẾNG NHẬT:\n   ├── 👦 ごめん (Bạn bè thân thiết xuề xòa)\n   ├── 🤝 すみません (Xã giao đời thường khi lỡ dẫm chân)\n   ├── 👔 申し訳ありません (Trang trọng nơi công sở)\n   └── 🙇‍♂️ お詫び申し上げます (Đỉnh cao tạ lỗi khi công ty làm sai sót lớn)",
+      "diagram_caption": "Góc cúi đầu khi nói お詫び phải gập người 45 độ giữ nguyên trong 3 giây",
+      "mnemonic": "Từ động từ 詫びる (わびる - tạ lỗi nhận khuyết điểm).",
+      "collocations": [
+        {
+          "ja": "心よりお詫び申し上げます",
+          "furigana": "こころよりおわびもうしあげます",
+          "vn": "Xin chân thành gửi lời tạ lỗi từ tận đáy lòng"
+        },
+        {
+          "ja": "お詫びの手紙",
+          "furigana": "おわびのてがみ",
+          "vn": "Thư viết tạ lỗi khách hàng"
+        }
+      ],
+      "example": {
+        "sentence": "商品[しょうひん]の発送[はっそう]が遅[おく]れてしまい、お客様[きゃくさま]に深[ふか]くお詫[わ]びを申[もう]し上[あ]げた。",
+        "translation": "Vì việc gửi hàng bị chậm trễ nên tôi đã gửi lời xin lỗi sâu sắc tới quý khách hàng."
+      }
+    },
+    {
+      "id": 4,
+      "slide_number": 4,
+      "word": "都合が悪い",
+      "furigana": "つごうがわるい",
+      "romaji": "tsugou ga warui",
+      "han_viet": "ĐÔ HỢP BẤT TIỆN",
+      "meaning_vn": "Không tiện thời gian, bận việc bận lịch",
+      "word_type": "Cụm tính từ",
+      "tag": "Từ chối khéo",
+      "visual_diagram": "   🍻 Bạn rủ: 「今週の土曜日、飲みに行かない？」(Thứ 7 này đi nhậu không?)\n   ├── ❌ Người Nhật KHÔNG BAO GIỜ nói: 「行かない」(Tôi không đi - Rất thô lỗ!)\n   └── ⭕ Luôn nói khéo: 「あいにくその日はちょっと都合が悪くて...」(Tiếc quá hôm đó tôi lại bận việc mất rồi...)",
+      "diagram_caption": "Cách từ chối chuẩn mực không làm phật lòng bất kỳ ai",
+      "mnemonic": "ĐÔ HỢP (都合 - sự tiện lợi thu xếp thời gian) + BẤT TIỆN (悪い - xấu, kẹt). Kẹt lịch không thu xếp được.",
+      "collocations": [
+        {
+          "ja": "ご都合はいかがでしょうか",
+          "furigana": "ごつごうはいかがでしょうか",
+          "vn": "Hỏi lịch đối phương: Thời gian đó có tiện cho anh/chị không ạ?"
+        },
+        {
+          "ja": "都合をつける",
+          "furigana": "つごうをつける",
+          "vn": "Cố gắng thu xếp sắp xếp thời gian để tham gia"
+        }
+      ],
+      "example": {
+        "sentence": "来週[らいしゅう]の月曜日[げつようび]は都合[つごう]が悪[わる]いので、火曜日[かようび]に変更[へんこう]していただけますか。",
+        "translation": "Thứ Hai tuần tới tôi không tiện thời gian nên có thể vui lòng đổi sang thứ Ba giúp tôi được không ạ?"
+      }
+    },
+    {
+      "id": 5,
+      "slide_number": 5,
+      "word": "結構です",
+      "furigana": "けっこうです",
+      "romaji": "kekkou desu",
+      "han_viet": "KẾT CẤU",
+      "meaning_vn": "Tôi đủ rồi / Xin thôi (từ chối nhẹ nhàng khi được mời chào)",
+      "word_type": "Cụm từ",
+      "tag": "Từ chối lịch sự",
+      "visual_diagram": "   🏪 Thu ngân siêu thị: 「レジ袋はお付けしますか」(Quý khách có lấy túi nilon không ạ?)\n        │\n        └── ✋ Vẫy tay nhẹ: 「あ、結構です」(Dạ, tôi đủ rồi, không cần đâu ạ)\n        (Ý nghĩa: 'Tôi đã thấy đủ và ổn rồi, không cần thêm nữa')",
+      "diagram_caption": "Bẫy ngữ nghĩa N3: 結構 vừa có nghĩa là 'Rất tốt' (結構美味しい), vừa có nghĩa là 'Xin từ chối' (結構です)",
+      "mnemonic": "KẾT CẤU (結構). Nghĩa cổ là 'xây dựng đã hoàn thành mỹ mãn'. Đã đủ đẹp rồi không cần thêm nữa.",
+      "collocations": [
+        {
+          "ja": "もう結構です",
+          "furigana": "もうけっこうです",
+          "vn": "Tôi đã no/đủ rồi, xin không lấy thêm"
+        },
+        {
+          "ja": "結構な品",
+          "furigana": "けっこうなしな",
+          "vn": "Món quà tặng rất trang trọng tuyệt vời"
+        }
+      ],
+      "example": {
+        "sentence": "「レシートはお使[つか]いになりますか」「いえ、結構[けっこう]です」",
+        "translation": "'Quý khách có dùng hóa đơn không ạ?' - 'Dạ không, tôi không cần đâu ạ.'"
+      }
+    },
+    {
+      "id": 6,
+      "slide_number": 6,
+      "word": "申し訳ありません",
+      "furigana": "もうしわけありません",
+      "romaji": "moushiwake arimasen",
+      "han_viet": "THÂN DỊCH",
+      "meaning_vn": "Vô cùng xin lỗi, không có lời nào biện minh cho sai lầm",
+      "word_type": "Cụm kính ngữ",
+      "tag": "Kính ngữ xin lỗi",
+      "visual_diagram": "   🙇‍♂️ NGUYÊN NGHĨA SÂU XA CỦA 申し訳ありません:\n   ├── 申す (もうす - Lời nói phân trần)\n   ├── 訳 (わけ - Lý do, lý lẽ thanh minh)\n   └── 無い (ない - Hoàn toàn không có)\n   ==▶ 'Tôi hoàn toàn không có một lời lý lẽ nào để bào chữa cho lỗi lầm của mình!'",
+      "diagram_caption": "Lời nhận lỗi hạ mình tuyệt đối trong văn hóa doanh nghiệp Nhật Bản",
+      "mnemonic": "Lời nói thanh minh (申し訳) hoàn toàn không có (ありません). Hoàn toàn nhận trách nhiệm về mình.",
+      "collocations": [
+        {
+          "ja": "大変申し訳ございません",
+          "furigana": "たいへんもうしわけございません",
+          "vn": "Cấp độ kính ngữ cao nhất"
+        },
+        {
+          "ja": "申し訳ない気持ちでいっぱいだ",
+          "furigana": "もうしわけないきもちでいっぱいだ",
+          "vn": "Trong lòng ngập tràn cảm giác áy náy khôn nguôi"
+        }
+      ],
+      "example": {
+        "sentence": "私[わたし]の確認[かくにん]不足[ぶそく]でご迷惑[めいわく]をおかけし、大変[たいへん]申[もう]し訳[わけ]ありませんでした。",
+        "translation": "Do sự thiếu sót trong khâu kiểm tra của tôi đã làm phiền quý vị, tôi vô cùng xin lỗi."
+      }
+    },
+    {
+      "id": 7,
+      "slide_number": 7,
+      "word": "配慮",
+      "furigana": "はいりょ",
+      "romaji": "hairyo",
+      "han_viet": "PHỐI LỰ",
+      "meaning_vn": "Sự quan tâm chu đáo, tinh tế để ý đến cảm xúc người khác",
+      "word_type": "Danh từ / Động từ nhóm 3",
+      "tag": "Tinh tế ứng xử",
+      "visual_diagram": "   🤝 VÍ DỤ SỰ TINH TẾ (配慮 - はいりょ):\n   ├── 🤫 Đi lại nhẹ nhàng đêm khuya để người tầng dưới ngủ ngon\n   ├── 🥗 Chuẩn bị sẵn món chay khi biết trong đoàn có người ăn chay\n   └── 🚪 Giữ cửa thang máy chờ người đi sau bước vào",
+      "diagram_caption": "Giá trị cốt lõi làm nên sự văn minh và trật tự tuyệt vời của xã hội Nhật",
+      "mnemonic": "PHỐI (配 - phân phối san sẻ) + LỰ (慮 - suy nghĩ thấu đáo). San sẻ sự suy nghĩ thấu đáo đến mọi người xung quanh.",
+      "collocations": [
+        {
+          "ja": "周囲に配慮する",
+          "furigana": "しゅういにはいりょする",
+          "vn": "Để ý quan tâm đến mọi người xung quanh"
+        },
+        {
+          "ja": "温かいご配慮",
+          "furigana": "あたたかいごはいりょ",
+          "vn": "Sự quan tâm chăm sóc vô cùng ấm áp"
+        }
+      ],
+      "example": {
+        "sentence": "体調[たいちょう]の悪[わる]い同僚[どうりょう]に対[たい]して、仕事[しごと]の負担[ふたん]を減[へ]らす配慮[はいりょ]をした。",
+        "translation": "Đối với người đồng nghiệp đang bị mệt, tôi đã tinh tế san sẻ giảm bớt gánh nặng công việc cho anh ấy."
+      }
+    },
+    {
+      "id": 8,
+      "slide_number": 8,
+      "word": "失礼",
+      "furigana": "しつれい",
+      "romaji": "shitsurei",
+      "han_viet": "THẤT LỄ",
+      "meaning_vn": "Thất lễ, xin phép bước vào/rời đi (失礼します / 失礼いたします)",
+      "word_type": "Danh từ / Tính từ đuôi な / Động từ nhóm 3",
+      "tag": "Nghi thức",
+      "visual_diagram": "   🚪 CÂU NÓI CỬA MIỆNG HÀNG NGÀY TẠI CÔNG SỞ:\n   ├── 🚶 Khi bước vào phòng sếp: 「失礼します」(Tôi xin phép bước vào)\n   └── 🏃‍♂️ Khi tan làm về trước đồng nghiệp: 「お先に失礼します」(Tôi xin phép về trước mọi người ạ)",
+      "diagram_caption": "Từ vựng có tần suất nói nhiều nhất trong một ngày làm việc của người Nhật",
+      "mnemonic": "THẤT (失 - làm mất đi) + LỄ (礼 - lễ nghĩa). Tạm gác lại lễ nghĩa xin phép thực hiện hành động.",
+      "collocations": [
+        {
+          "ja": "お先に失礼します",
+          "furigana": "おさきにしつれいします",
+          "vn": "Câu chào khi tan làm về trước"
+        },
+        {
+          "ja": "失礼な態度",
+          "furigana": "しつれいなたいど",
+          "vn": "Thái độ bất lịch sự vô phép tắc"
+        }
+      ],
+      "example": {
+        "sentence": "面接[めんせつ]の部屋[へや]を出[で]る時[とき]は、深[ふか]く一礼[いちれい]して「失礼[しつれい]いたしました」と言[い]う。",
+        "translation": "Khi rời khỏi phòng phỏng vấn, hãy cúi đầu thật sâu và nói 'Tôi xin phép thất lễ ạ'."
+      }
+    },
+    {
+      "id": 9,
+      "slide_number": 9,
+      "word": "承諾",
+      "furigana": "しょうだく",
+      "romaji": "shoudaku",
+      "han_viet": "THỪA NẶC",
+      "meaning_vn": "Đồng ý, chấp thuận lời đề nghị hoặc điều kiện",
+      "word_type": "Danh từ / Động từ nhóm 3",
+      "tag": "Đồng thuận",
+      "visual_diagram": "   🤝 HAI TRẠNG THÁI PHẢN HỒI LỜI MỜI:\n   ├── ⭕ 承諾 (Đồng thuận, nhận lời vui vẻ hợp tác)\n   └── ❌ 拒否・辞退 (Từ chối, không đồng ý điều khoản)",
+      "diagram_caption": "Từ mang sắc thái trang trọng trong hợp đồng và thư từ kinh doanh",
+      "mnemonic": "THỪA (承 - nhận lấy) + NẶC (諾 - ưng thuận đồng ý). Nhận lấy và ưng thuận yêu cầu.",
+      "collocations": [
+        {
+          "ja": "依頼を快く承諾する",
+          "furigana": "いらいをこころよくしょうだくする",
+          "vn": "Sẵn sàng vui vẻ nhận lời nhờ vả"
+        },
+        {
+          "ja": "ご承諾いただく",
+          "furigana": "ごしょうだくいただく",
+          "vn": "Nhận được sự chấp thuận của đối phương"
+        }
+      ],
+      "example": {
+        "sentence": "無理[むり]なお願[ねが]いにもかかわらず、先輩[せんぱい]は引[ひ]き受[う]けることを承諾[しょうだく]してくれた。",
+        "translation": "Dù là một lời nhờ vả quá sức nhưng anh tiền bối vẫn sẵn lòng đồng ý nhận giúp."
+      }
+    },
+    {
+      "id": 10,
+      "slide_number": 10,
+      "word": "見合わせる",
+      "furigana": "みあわせる",
+      "romaji": "miawaseru",
+      "han_viet": "KIẾN HỢP",
+      "meaning_vn": "Tạm hoãn, chưa thực hiện để nhìn nhận tình hình",
+      "word_type": "Động từ nhóm 2",
+      "tag": "Quyết định thận trọng",
+      "visual_diagram": "   🚄 BẢNG THÔNG BÁO TÀU ĐIỆN KHI BÃO LỚN:\n   「強風のため、全線で運転を見合わせております」\n   (Do gió giật mạnh, chúng tôi xin tạm hoãn các chuyến tàu để theo dõi tình hình an toàn)",
+      "diagram_caption": "Gặp liên tục trên loa phát thanh nhà ga khi thời tiết xấu hoặc có sự cố tai nạn",
+      "mnemonic": "KIẾN (見 - nhìn ngắm) + HỢP (合 - đối chiếu). Nhìn ngắm đối chiếu tình hình rồi mới quyết định tiếp.",
+      "collocations": [
+        {
+          "ja": "運転を見合わせる",
+          "furigana": "うんてんをみあわせる",
+          "vn": "Tạm dừng chạy tàu xe để theo dõi sự cố"
+        },
+        {
+          "ja": "計画の実行を見合わせる",
+          "furigana": "けいかくのじっこうをみあわせる",
+          "vn": "Tạm hoãn thực thi kế hoạch"
+        }
+      ],
+      "example": {
+        "sentence": "大雨[おおあめ]の影響[えいきょう]で安全[あんぜん]の確認[かくにん]が取[と]れないため、電車[でんしゃ]の運行[うんこう]を見合[みあ]わせている。",
+        "translation": "Do ảnh hưởng của mưa to chưa thể xác nhận an toàn nên các chuyến tàu đang tạm hoãn hoạt động."
+      }
+    }
+  ]
+}

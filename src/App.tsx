@@ -11,6 +11,7 @@ import { Login } from './pages/Login';
 import { AdminManage } from './pages/AdminManage';
 import { EditExam } from './pages/EditExam';
 import { KanjiFlashcards } from './pages/KanjiFlashcards';
+import { VocabSlides } from './pages/VocabSlides';
 import { initSupabaseKeepAlive } from './lib/supabasePing';
 
 export function App() {
@@ -31,6 +32,9 @@ export function App() {
               <Route path="/flashcards" element={<KanjiFlashcards />} />
               <Route path="/quizlet" element={<Navigate to="/flashcards" replace />} />
               <Route path="/kanji" element={<Navigate to="/flashcards" replace />} />
+              <Route path="/vocab-slides" element={<VocabSlides />} />
+              <Route path="/slides" element={<Navigate to="/vocab-slides" replace />} />
+              <Route path="/vocab" element={<Navigate to="/vocab-slides" replace />} />
               <Route path="/login" element={<Login />} />
               <Route
                 path="/manage"

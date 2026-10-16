@@ -1,0 +1,309 @@
+{
+  "topic_id": "topic_04_baito_phong_van",
+  "title": "Chủ đề 04: Đi làm thêm & Phỏng vấn",
+  "japanese_title": "アルバイト・面接・仕事探しの語彙",
+  "description": "Các thuật ngữ cốt lõi khi nộp hồ sơ xin việc, phỏng vấn xin việc và chế độ làm thêm của du học sinh tại Nhật.",
+  "level": "N3",
+  "slides": [
+    {
+      "id": 1,
+      "slide_number": 1,
+      "word": "履歴書",
+      "furigana": "りれきしょ",
+      "romaji": "rirekisho",
+      "han_viet": "LÝ LỊCH THƯ",
+      "meaning_vn": "Sơ yếu lý lịch, bản CV xin việc",
+      "word_type": "Danh từ",
+      "tag": "Hồ sơ xin việc",
+      "visual_diagram": "   📄 履歴書 (Bản lý lịch tiêu chuẩn):\n   ├── 📸 Ảnh thẻ dán góc phải (chụp áo vest, lịch sự)\n   ├── 🎓 学歴 (Quá trình học vấn: Tiểu học ──▶ Đại học)\n   ├── 💼 職歴 (Kinh nghiệm làm việc từ trước đến nay)\n   └── ✍️ 志望動機 (Lý do vì sao muốn vào làm việc ở đây)",
+      "diagram_caption": "Bản khai báo bắt buộc phải mang theo khi đi phỏng vấn việc làm thêm hoặc công ty tại Nhật",
+      "mnemonic": "LÝ (履 - trải qua) + LỊCH (歴 - năm tháng lịch sử) + THƯ (書 - văn bản sách vở). Giấy ghi lại lịch sử bản thân.",
+      "collocations": [
+        {
+          "ja": "履歴書を送付する",
+          "furigana": "りれきしょをそうふする",
+          "vn": "Gửi bưu điện bản lý lịch"
+        },
+        {
+          "ja": "履歴書を持参する",
+          "furigana": "りれきしょをじさんする",
+          "vn": "Mang theo sơ yếu lý lịch khi đi phỏng vấn"
+        }
+      ],
+      "example": {
+        "sentence": "アルバイトの面接[めんせつ]のために、丁寧[ていねい]な字[じ]で履歴書[りれきしょ]を書[か]いた。",
+        "translation": "Để chuẩn bị cho buổi phỏng vấn việc làm thêm, tôi đã viết bản lý lịch bằng nét chữ nắn nót cẩn thận."
+      }
+    },
+    {
+      "id": 2,
+      "slide_number": 2,
+      "word": "面接",
+      "furigana": "めんせつ",
+      "romaji": "mensetsu",
+      "han_viet": "DIỆN TIẾP",
+      "meaning_vn": "Phỏng vấn trực tiếp",
+      "word_type": "Danh từ / Động từ nhóm 3",
+      "tag": "Thi tuyển",
+      "visual_diagram": "   🚪 GÕ CỬA 3 TIẾNG: ✊✊✊ (Kon-kon-kon)\n   ├── 「どうぞ」(Mời vào)\n   ├── 🙇‍♂️ 「失礼します」(Xin phép thất lễ)\n   ├── 🚶 Đi đến cạnh ghế và đứng thẳng chờ mời ngồi\n   └── 🗣️ 面接 (Phỏng vấn hỏi đáp tự tin, rõ ràng)",
+      "diagram_caption": "Quy tắc tác phong chuẩn mực khi bước vào phòng phỏng vấn ở Nhật",
+      "mnemonic": "DIỆN (面 - mặt đối mặt) + TIẾP (接 - tiếp xúc). Tiếp xúc mặt đối mặt để vấn đáp.",
+      "collocations": [
+        {
+          "ja": "面接を受ける",
+          "furigana": "めんせつをうける",
+          "vn": "Tham gia buổi phỏng vấn"
+        },
+        {
+          "ja": "面接官",
+          "furigana": "めんせつかん",
+          "vn": "Người phỏng vấn / giám khảo"
+        }
+      ],
+      "example": {
+        "sentence": "緊張[きんちょう]したが、面接[めんせつ]では自分[じぶん]の熱意[ねついて]をしっかり伝[つた]えられた。",
+        "translation": "Dù rất hồi hộp nhưng trong buổi phỏng vấn tôi đã truyền tải được lòng nhiệt huyết của mình."
+      }
+    },
+    {
+      "id": 3,
+      "slide_number": 3,
+      "word": "志望動機",
+      "furigana": "しぼうどうき",
+      "romaji": "shiboudouki",
+      "han_viet": "CHÍ VỌNG ĐỘNG CƠ",
+      "meaning_vn": "Lý do và động lực muốn ứng tuyển vào công việc",
+      "word_type": "Danh từ",
+      "tag": "Nội dung phỏng vấn",
+      "visual_diagram": "   🎯 志望動機 (Lý do chọn công ty):\n   ├── ❓ Tại sao lại là công ty này mà không phải nơi khác?\n   ├── 🌟 Mình có điểm mạnh gì đóng góp được cho quán/cty?\n   └── 🚀 Mong muốn học hỏi và gắn bó lâu dài.",
+      "diagram_caption": "Câu hỏi số một 100% người phỏng vấn sẽ hỏi: 'Bạn hãy nêu lý do ứng tuyển?'",
+      "mnemonic": "CHÍ VỌNG (志望 - nguyện vọng mong muốn) + ĐỘNG CƠ (動機 - lý do thúc đẩy hành động).",
+      "collocations": [
+        {
+          "ja": "志望動機を述べる",
+          "furigana": "しぼうどうきをのべる",
+          "vn": "Trình bày lý do ứng tuyển"
+        },
+        {
+          "ja": "明確な志望動機",
+          "furigana": "めいかくなしぼうどうき",
+          "vn": "Động cơ ứng tuyển rõ ràng, thuyết phục"
+        }
+      ],
+      "example": {
+        "sentence": "面接[めんせつ]で最も重視[じゅうし]されるのは、説得力[せっとくりょく]のある志望動機[しぼうどうき]だ。",
+        "translation": "Điều được coi trọng nhất trong buổi phỏng vấn chính là một lý do ứng tuyển có sức thuyết phục."
+      }
+    },
+    {
+      "id": 4,
+      "slide_number": 4,
+      "word": "シフト",
+      "furigana": "シフト",
+      "romaji": "shifuto",
+      "han_viet": "CA LÀM VIỆC",
+      "meaning_vn": "Ca làm việc, lịch phân công theo tuần/tháng",
+      "word_type": "Danh từ",
+      "tag": "Chế độ làm việc",
+      "visual_diagram": "   📅 BẢNG PHÂN CA (シフト表):\n   ├── 🌅 早番 (Ca sáng: 08:00 - 14:00)\n   ├── 🌇 遅番 (Ca chiều tối: 14:00 - 22:00)\n   └── 🌙 夜勤 (Ca đêm: 22:00 - 06:00 - Lương tăng 25%)",
+      "diagram_caption": "Làm thêm ở Nhật thường đăng ký ca làm (シフト希望) trước 2 tuần hoặc đầu tháng",
+      "mnemonic": "Bắt nguồn từ tiếng Anh 'Shift' (ca kíp làm việc luân phiên).",
+      "collocations": [
+        {
+          "ja": "シフトに入る",
+          "furigana": "シフトにはいる",
+          "vn": "Đến lượt vào ca làm việc"
+        },
+        {
+          "ja": "シフトを提出する",
+          "furigana": "シフトをていしゅつする",
+          "vn": "Nộp lịch đăng ký ca làm"
+        }
+      ],
+      "example": {
+        "sentence": "来週[らいしゅう]は試験[しけん]があるので、アルバイトのシフトを少[すく]なめにした。",
+        "translation": "Vì tuần sau có kỳ thi nên tôi đã xin giảm bớt ca làm thêm."
+      }
+    },
+    {
+      "id": 5,
+      "slide_number": 5,
+      "word": "時給",
+      "furigana": "じきゅう",
+      "romaji": "jikyuu",
+      "han_viet": "THỜI CẤP",
+      "meaning_vn": "Lương theo giờ",
+      "word_type": "Danh từ",
+      "tag": "Thu nhập",
+      "visual_diagram": "   ⏱️ 1 時間 (1 giờ làm việc) ──▶ 💰 時給 (Ví dụ: 1,200円)\n   [So sánh]:\n   ├── ⏱️ 時給 (Lương giờ - Baito)\n   ├── 📅 日給 (Lương ngày - Việc ngắn hạn)\n   └── 📆 月給 (Lương tháng - Nhân viên chính thức)",
+      "diagram_caption": "Mỗi tỉnh thành ở Nhật có mức lương tối thiểu (最低賃金) do chính phủ quy định",
+      "mnemonic": "THỜI (時 - thời gian, giờ) + CẤP (給 - cấp phát, tiền lương). Tiền trả theo từng giờ.",
+      "collocations": [
+        {
+          "ja": "時給が高い",
+          "furigana": "じきゅうがたかい",
+          "vn": "Lương theo giờ cao"
+        },
+        {
+          "ja": "時給がアップする",
+          "furigana": "じきゅうがあっぷする",
+          "vn": "Được tăng lương giờ (do làm lâu, chăm chỉ)"
+        }
+      ],
+      "example": {
+        "sentence": "深夜[しんや]の時間帯[じかんたい]は、通常[つうじょう]の時給[じきゅう]より二割[にわり]五分[ごぶ]高[たか]くなる。",
+        "translation": "Khung giờ đêm khuya thì mức lương giờ sẽ cao hơn 25% so với bình thường."
+      }
+    },
+    {
+      "id": 6,
+      "slide_number": 6,
+      "word": "交通費支給",
+      "furigana": "こうつうひしきゅう",
+      "romaji": "koutsuuhi shikyuu",
+      "han_viet": "GIAO THÔNG PHÍ CHI CẤP",
+      "meaning_vn": "Được thanh toán / chi trả toàn bộ tiền vé đi lại",
+      "word_type": "Cụm danh từ",
+      "tag": "Quyền lợi",
+      "visual_diagram": "   🏠 Nhà bạn ──(Tàu điện 500円/ngày)──▶ 🏪 Quán làm việc\n       │\n       └── 🎁 交通費全額支給: Quán trả lại toàn bộ tiền tàu xe cho bạn cuối tháng!",
+      "diagram_caption": "Điểm cộng lớn khi tìm việc làm thêm: Được hỗ trợ tiền tàu xe đi lại",
+      "mnemonic": "GIAO THÔNG PHÍ (tiền đi lại) + CHI CẤP (cung cấp, thanh toán).",
+      "collocations": [
+        {
+          "ja": "交通費全額支給",
+          "furigana": "こうつうひぜんがくしきゅう",
+          "vn": "Chi trả toàn bộ 100% tiền đi lại"
+        },
+        {
+          "ja": "交通費上限あり",
+          "furigana": "こうつうひじょうげんあり",
+          "vn": "Có mức trần tối đa (ví dụ 10.000 yên/tháng)"
+        }
+      ],
+      "example": {
+        "sentence": "この職場[しょくば]は交通費[こうつうひ]が全額[ぜんがく]支給[しきゅう]されるので助[たす]かる。",
+        "translation": "Chỗ làm việc này hỗ trợ trả toàn bộ tiền đi lại nên rất đỡ tiền cho tôi."
+      }
+    },
+    {
+      "id": 7,
+      "slide_number": 7,
+      "word": "採用",
+      "furigana": "さいよう",
+      "romaji": "saiyou",
+      "han_viet": "THẢI DỤNG",
+      "meaning_vn": "Tuyển dụng, trúng tuyển (được nhận vào làm)",
+      "word_type": "Danh từ / Động từ nhóm 3",
+      "tag": "Kết quả phỏng vấn",
+      "visual_diagram": "   🎉 採用 (Trúng tuyển, được nhận)\n         vs\n   😢 不採用 (Trượt, không được nhận ── Nhận thư cảm ơn お祈りメール)",
+      "diagram_caption": "Khi trúng tuyển quán sẽ gọi điện báo trong vòng 3-7 ngày làm việc",
+      "mnemonic": "THẢI (採 - chọn lọc hái lấy) + DỤNG (用 - sử dụng). Lựa chọn người tài vào làm việc.",
+      "collocations": [
+        {
+          "ja": "採用が決まる",
+          "furigana": "さいようがきまる",
+          "vn": "Đã có quyết định trúng tuyển"
+        },
+        {
+          "ja": "採用通知書",
+          "furigana": "さいようつうちしょ",
+          "vn": "Giấy thông báo trúng tuyển"
+        }
+      ],
+      "example": {
+        "sentence": "厳[きび]しい面接[めんせつ]の結果[けっか]、無事[ぶじ]に採用[さいよう]が決[き]まった。",
+        "translation": "Sau buổi phỏng vấn gắt gao, tôi đã thuận lợi được nhận vào làm việc."
+      }
+    },
+    {
+      "id": 8,
+      "slide_number": 8,
+      "word": "不採用",
+      "furigana": "ふさいよう",
+      "romaji": "fusaiyou",
+      "han_viet": "BẤT THẢI DỤNG",
+      "meaning_vn": "Không trúng tuyển, bị từ chối",
+      "word_type": "Danh từ",
+      "tag": "Kết quả phỏng vấn",
+      "visual_diagram": "   ✉️ KHẨU HIỆU TỪ CHỐI KINH ĐIỂN CỦA NHẬT:\n   「誠に残念ながら、今回はご希望に添えない結果となりました。」\n   (Rất lấy làm tiếc, lần này chúng tôi chưa thể đáp ứng nguyện vọng của bạn)",
+      "diagram_caption": "Dù trượt cũng gửi thư xin lỗi từ chối vô cùng lịch sự và nhã nhặn",
+      "mnemonic": "Thêm tiền tố 不 (BẤT - không): 不採用 = Không được tuyển dụng.",
+      "collocations": [
+        {
+          "ja": "不採用の通知",
+          "furigana": "ふさいようのつうち",
+          "vn": "Thông báo không trúng tuyển"
+        },
+        {
+          "ja": "不採用の理由",
+          "furigana": "ふさいようのりゆう",
+          "vn": "Lý do không được nhận"
+        }
+      ],
+      "example": {
+        "sentence": "もし不採用[ふさいよう]になっても、落[お]ち込[こ]まずに次[つぎ]の面接[めんせつ]に挑戦[ちょうせん]する。",
+        "translation": "Dù có bị từ chối đi chăng nữa, tôi cũng không nản lòng mà sẽ thử sức tiếp ở buổi phỏng vấn sau."
+      }
+    },
+    {
+      "id": 9,
+      "slide_number": 9,
+      "word": "研修",
+      "furigana": "けんしゅう",
+      "romaji": "kenshuu",
+      "han_viet": "NGHIÊN TU",
+      "meaning_vn": "Đào tạo, tập huấn, thời gian thử việc",
+      "word_type": "Danh từ / Động từ nhóm 3",
+      "tag": "Bắt đầu công việc",
+      "visual_diagram": "   🔰 新人 (Người mới vào làm)\n        │\n        └── 📚 研修期間 (Giai đoạn tập huấn 1-3 tháng)\n            ├── Học cách chào hỏi & Cúi đầu (お辞儀)\n            ├── Học sử dụng máy tính tiền (レジ操作)\n            └── Luôn có tiền bối (先輩) đứng bên cạnh chỉ dẫn",
+      "diagram_caption": "Tại Nhật, dù là việc làm thêm rửa bát hay phụ bếp cũng đều được đào tạo bài bản",
+      "mnemonic": "NGHIÊN (研 - mài giũa) + TU (修 - rèn luyện tu bổ) = Rèn luyện kỹ năng cho thành thục.",
+      "collocations": [
+        {
+          "ja": "研修期間",
+          "furigana": "けんしゅうきかん",
+          "vn": "Thời gian thử việc đào tạo"
+        },
+        {
+          "ja": "研修を受ける",
+          "furigana": "けんしゅうをうける",
+          "vn": "Tham gia khóa huấn luyện"
+        }
+      ],
+      "example": {
+        "sentence": "最初[さいしょ]の二週間[にしゅうかん]は研修[けんしゅう]期間[きかん]として、先輩[せんぱい]から仕事[しごと]を教[おそ]わった。",
+        "translation": "Hai tuần đầu tiên là thời gian tập huấn, tôi đã được các anh chị tiền bối chỉ bảo công việc."
+      }
+    },
+    {
+      "id": 10,
+      "slide_number": 10,
+      "word": "問い合わせ",
+      "furigana": "といあわせ",
+      "romaji": "toiawase",
+      "han_viet": "VẤN HỢP",
+      "meaning_vn": "Liên hệ hỏi thăm thông tin, thắc mắc",
+      "word_type": "Danh từ / Động từ nhóm 2",
+      "tag": "Giao tiếp xin việc",
+      "visual_diagram": "   📞 CÂU THẦN CHÚ KHI GỌI ĐIỆN XIN VIỆC:\n   「求人募集を拝見してお電話いたしました。今、お時間よろしいでしょうか。」\n   (Tôi thấy tin tuyển dụng nên xin phép gọi điện tới. Lúc này quý quán có tiện không ạ?)",
+      "diagram_caption": "Gọi điện hỏi việc tránh các khung giờ ăn trưa (11:30 - 13:30) của quán ăn vì rất bận",
+      "mnemonic": "VẤN (問 - hỏi) + HỢP (合 - đối chiếu, so khớp) = Gọi điện trao đổi đối chiếu thông tin.",
+      "collocations": [
+        {
+          "ja": "電話で問い合わせる",
+          "furigana": "でんわでといあわせる",
+          "vn": "Hỏi thông tin qua điện thoại"
+        },
+        {
+          "ja": "お問い合わせ窓口",
+          "furigana": "おといあわせまどぐち",
+          "vn": "Bộ phận tiếp nhận giải đáp thắc mắc"
+        }
+      ],
+      "example": {
+        "sentence": "求人[きゅうじん]広告[こうこく]を見[み]て、募集[ぼしゅう]条件[じょうけん]について電話[でんわ]で問[と]い合[あ]わせた。",
+        "translation": "Nhìn thấy quảng cáo tuyển dụng, tôi đã gọi điện hỏi thăm chi tiết về điều kiện ứng tuyển."
+      }
+    }
+  ]
+}

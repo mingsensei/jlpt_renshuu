@@ -1,0 +1,309 @@
+{
+  "topic_id": "topic_12_moi_truong_rac_thai",
+  "title": "Chủ đề 12: Môi trường & Tái chế & Tiết kiệm năng lượng",
+  "japanese_title": "環境問題・リサイクル・省エネの語彙",
+  "description": "Chủ đề thời sự xuất hiện dày đặc trong đề đọc hiểu và nghe hiểu JLPT N3: biến đổi khí hậu, năng lượng xanh và bảo vệ sinh thái.",
+  "level": "N3",
+  "slides": [
+    {
+      "id": 1,
+      "slide_number": 1,
+      "word": "地球温暖化",
+      "furigana": "ちきゅうおんだんか",
+      "romaji": "chikyuu ondanka",
+      "han_viet": "ĐỊA CẦU ÔN NOÃN HÓA",
+      "meaning_vn": "Sự nóng lên toàn cầu, biến đổi khí hậu Trái Đất",
+      "word_type": "Danh từ",
+      "tag": "Khủng hoảng khí hậu",
+      "visual_diagram": "   🏭 Khí thải CO2 (二酸化炭素) ──▶ Hiệu ứng nhà kính (温室効果)\n        │\n        └── 🌡️ 地球温暖化 (Nhiệt độ toàn cầu tăng lên)\n             ├── 🧊 Băng ở 2 cực tan chảy (氷が溶ける)\n             ├── 🌊 Nước biển dâng cao (海面の上昇)\n             └── 🌪️ Bão lũ cực đoan bất thường gia tăng",
+      "diagram_caption": "Chủ đề 'tủ' 90% xuất hiện trong các bài đọc luận văn JLPT N3/N2",
+      "mnemonic": "ĐỊA CẦU (地球 - quả đất) + ÔN NOÃN (温暖 - ấm áp nóng lên) + HÓA (化 - biến hóa trở thành).",
+      "collocations": [
+        {
+          "ja": "地球温暖化を防ぐ",
+          "furigana": "ちきゅうおんだんかをふせぐ",
+          "vn": "Ngăn chặn hiện tượng nóng lên toàn cầu"
+        },
+        {
+          "ja": "温暖化対策",
+          "furigana": "おんだんかたいさく",
+          "vn": "Các biện pháp đối phó biến đổi khí hậu"
+        }
+      ],
+      "example": {
+        "sentence": "地球[ちきゅう]温暖化[おんだんか]を食[く]い止[と]めるため、世界[せかい]規模[きぼ]で温室[おんしつ]効果[こうか]ガスの削減[さくげん]が求[もと]められている。",
+        "translation": "Để ngăn chặn sự nóng lên toàn cầu, việc cắt giảm khí nhà kính đang được yêu cầu trên quy mô toàn thế giới."
+      }
+    },
+    {
+      "id": 2,
+      "slide_number": 2,
+      "word": "リサイクル",
+      "furigana": "リサイクル",
+      "romaji": "risaikuru",
+      "han_viet": "TÁI CHẾ",
+      "meaning_vn": "Tái chế đồ cũ và rác thải thành nguyên liệu mới",
+      "word_type": "Danh từ / Động từ nhóm 3",
+      "tag": "Bảo vệ tài nguyên",
+      "visual_diagram": "   ♻️ NGUYÊN TẮC 3R TRONG BẢO VỆ MÔI TRƯỜNG NHẬT BẢN:\n   1. 🔻 Reduce (リデュース): Giảm bớt lượng rác thải sinh hoạt\n   2. 🔄 Reuse (リユース): Tái sử dụng đồ cũ nhiều lần\n   3. ♻️ Recycle (リサイクル): Tái chế rác thành sản phẩm mới (Áo may từ vỏ chai nhựa)",
+      "diagram_caption": "Tại Nhật Bản, tỷ lệ tái chế chai nhựa PET thuộc hàng cao nhất thế giới (trên 85%)",
+      "mnemonic": "Từ mượn tiếng Anh Recycle. Nhớ biểu tượng 3 mũi tên tạo thành vòng tròn ♻️.",
+      "collocations": [
+        {
+          "ja": "資源をリサイクルする",
+          "furigana": "しげんをリサイクルする",
+          "vn": "Tái chế tài nguyên"
+        },
+        {
+          "ja": "リサイクルショップ",
+          "furigana": "リサイクルショップ",
+          "vn": "Cửa hàng bán đồ cũ/đồ thanh lý giá rẻ"
+        }
+      ],
+      "example": {
+        "sentence": "回収[かいしゅう]されたペットボトルは、服[ふく]や文房具[ぶんぼうぐ]としてリサイクルされる。",
+        "translation": "Những chai nhựa PET được thu gom sẽ được tái chế thành quần áo và đồ dùng văn phòng phẩm."
+      }
+    },
+    {
+      "id": 3,
+      "slide_number": 3,
+      "word": "省エネ",
+      "furigana": "しょうエネ",
+      "romaji": "shouene",
+      "han_viet": "TỈNH NĂNG",
+      "meaning_vn": "Tiết kiệm năng lượng (viết tắt của 省エネルギー)",
+      "word_type": "Danh từ / Động từ nhóm 3",
+      "tag": "Đời sống xanh",
+      "visual_diagram": "   💡 HÀNH ĐỘNG TIẾT KIỆM NĂNG LƯỢNG (省エネ):\n   ├── 🔌 Rút phích cắm khi không dùng đồ điện\n   ├── ❄️ Đặt điều hòa mùa hè 28°C (Chiến dịch Cool Biz)\n   ├── 💡 Thay bóng đèn sợi đốt bằng bóng đèn LED tiết kiệm điện\n   └── 🚗 Đi phương tiện công cộng thay vì lái xe ô tô",
+      "diagram_caption": "Phong trào toàn dân tại Nhật nhằm giảm tải áp lực cho mạng lưới điện quốc gia",
+      "mnemonic": "TỈNH (省 - giảm thiểu, tiết kiệm) + NĂNG (エネ - viết tắt của Energy). Tiết kiệm năng lượng.",
+      "collocations": [
+        {
+          "ja": "省エネ家電",
+          "furigana": "しょうエネかでん",
+          "vn": "Đồ gia dụng tiết kiệm điện có nhãn sao năng lượng"
+        },
+        {
+          "ja": "省エネに取り組む",
+          "furigana": "しょうエネにとりくむ",
+          "vn": "Nỗ lực thực hành tiết kiệm năng lượng"
+        }
+      ],
+      "example": {
+        "sentence": "電気代[でんきだい]を節約[せつやく]するだけでなく、環境[かんきょう]のためにも省[しょう]エネを心[こころ]がけている。",
+        "translation": "Không chỉ để tiết kiệm tiền điện mà vì môi trường tôi cũng luôn chú ý tiết kiệm năng lượng."
+      }
+    },
+    {
+      "id": 4,
+      "slide_number": 4,
+      "word": "排出",
+      "furigana": "はいしゅつ",
+      "romaji": "haishutsu",
+      "han_viet": "BÀI XUẤT",
+      "meaning_vn": "Thải ra, xả ra môi trường (khí thải, nước thải, rác)",
+      "word_type": "Danh từ / Động từ nhóm 3",
+      "tag": "Ô nhiễm",
+      "visual_diagram": "   🏭 Nhà máy công nghiệp ──▶ Thải khói đen vào bầu trời\n   🚗 Xe hơi chạy xăng dầu ──▶ Thải khí carbon từ ống bô\n   ==▶ Hành vi xả thải độc hại này gọi là 排出 (はいしゅつ)",
+      "diagram_caption": "Từ vựng chuyên ngành thường xuyên đối chiếu với từ 'cắt giảm' (削減)",
+      "mnemonic": "BÀI (排 - đẩy ra ngoài) + XUẤT (出 - đi ra). Đẩy các chất thải đi ra môi trường.",
+      "collocations": [
+        {
+          "ja": "二酸化炭素の排出量",
+          "furigana": "にさんかたんそのはいしゅつりょう",
+          "vn": "Lượng phát thải khí CO2"
+        },
+        {
+          "ja": "排気ガス",
+          "furigana": "はいきガス",
+          "vn": "Khí thải động cơ xe cộ"
+        }
+      ],
+      "example": {
+        "sentence": "工場[こうじょう]から排出[はいしゅつ]される有害[ゆうがい]なガスが、大気[たいき]を汚染[おせん]している。",
+        "translation": "Khí gas độc hại thải ra từ các nhà máy đang làm ô nhiễm bầu khí quyển."
+      }
+    },
+    {
+      "id": 5,
+      "slide_number": 5,
+      "word": "削減",
+      "furigana": "さくげん",
+      "romaji": "sakugen",
+      "han_viet": "TƯỚC GIẢM",
+      "meaning_vn": "Cắt giảm bớt về số lượng hoặc chi phí",
+      "word_type": "Danh từ / Động từ nhóm 3",
+      "tag": "Chính sách môi trường",
+      "visual_diagram": "   📈 Mức phát thải cũ: 100% ───────┐\n                                    │ CẮT GIẢM (削減)\n   📉 Mục tiêu năm 2030: 50% ◀──────┘",
+      "diagram_caption": "Chính phủ Nhật đặt mục tiêu cắt giảm lượng phát thải carbon về 0 (Net Zero) vào năm 2050",
+      "mnemonic": "TƯỚC (削 - gọt đẽo bớt đi) + GIẢM (減 - bớt đi). Gọt bớt đi cho số lượng ít lại.",
+      "collocations": [
+        {
+          "ja": "ゴミの排出量を削減する",
+          "furigana": "ごみのはいしゅつりょうをさくげんする",
+          "vn": "Cắt giảm lượng xả rác thải"
+        },
+        {
+          "ja": "コスト削減",
+          "furigana": "コストさくげん",
+          "vn": "Cắt giảm chi phí trong doanh nghiệp"
+        }
+      ],
+      "example": {
+        "sentence": "プラスチックゴミを削減[さくげん]するために、レジ袋[ぶくろ]の有料化[ゆうりょうか]が始[はじ]まった。",
+        "translation": "Để cắt giảm rác thải nhựa, chính sách tính tiền túi nilon ở quầy thanh toán đã được bắt đầu."
+      }
+    },
+    {
+      "id": 6,
+      "slide_number": 6,
+      "word": "汚染",
+      "furigana": "おせん",
+      "romaji": "osen",
+      "han_viet": "Ô NHIỄM",
+      "meaning_vn": "Ô nhiễm (nguồn nước, không khí, đất đai)",
+      "word_type": "Danh từ / Động từ nhóm 3",
+      "tag": "Khủng hoảng môi trường",
+      "visual_diagram": "   ☣️ CÁC DẠNG Ô NHIỄM NGUY HẠI:\n   ├── 🌫️ 大気汚染 (たいきおせん - Ô nhiễm không khí, bụi mịn PM2.5)\n   ├── 🐟 水質汚染 (すいしつおせん - Ô nhiễm nguồn nước, cá chết hàng loạt)\n   └── 🌱 土壌汚染 (どじょうおせん - Ô nhiễm đất đai do hóa chất công nghiệp)",
+      "diagram_caption": "Nhật Bản từng trải qua nhiều bài học đắt giá về ô nhiễm trong thời kỳ bùng nổ công nghiệp thế kỷ 20",
+      "mnemonic": "Ô (汚 - dơ bẩn vấy bẩn) + NHIỄM (染 - ngấm vào lây lan). Chất bẩn ngấm vào môi trường trong lành.",
+      "collocations": [
+        {
+          "ja": "海洋汚染",
+          "furigana": "かいようおせん",
+          "vn": "Ô nhiễm biển do rác thải nhựa"
+        },
+        {
+          "ja": "汚染物質を取り除く",
+          "furigana": "おせんぶっしつをとりのぞく",
+          "vn": "Loại bỏ các chất độc hại gây ô nhiễm"
+        }
+      ],
+      "example": {
+        "sentence": "海[うみ]に流[なが]れ出[で]たプラスチックゴミによる海洋[かいよう]汚染[おせん]が深刻[しんこく]な問題[もんだい]になっている。",
+        "translation": "Ô nhiễm đại dương do rác thải nhựa trôi dạt ra biển đang trở thành vấn đề vô cùng nghiêm trọng."
+      }
+    },
+    {
+      "id": 7,
+      "slide_number": 7,
+      "word": "エコバッグ",
+      "furigana": "エコバッグ",
+      "romaji": "ekobaggu",
+      "han_viet": "TÚI MÔI TRƯỜNG",
+      "meaning_vn": "Túi vải dùng nhiều lần khi đi mua sắm (thay túi nilon)",
+      "word_type": "Danh từ",
+      "tag": "Thói quen sinh hoạt",
+      "visual_diagram": "   🏪 ĐI SIÊU THỊ / KONBINI:\n   ├── ❌ Lấy túi nilon dùng 1 lần ──▶ Tốn 3円 - 5円/túi & Thải rác nhựa\n   └── ⭕ Tự mang エコバッグ ──▶ Tiết kiệm tiền & Thân thiện môi trường\n         ▲\n         └── 🗣️ Thu ngân: 「レジ袋はご利用ですか」「いいえ、エコバッグがあります」",
+      "diagram_caption": "Vật dụng quen thuộc luôn nằm gọn trong balo của người dân sinh sống tại Nhật",
+      "mnemonic": "Ghép từ Ecology (sinh thái môi trường) + Bag (chiếc túi xách).",
+      "collocations": [
+        {
+          "ja": "エコバッグを持参する",
+          "furigana": "エコバッグをじさんする",
+          "vn": "Tự mang theo túi môi trường khi đi chợ"
+        },
+        {
+          "ja": "マイバッグ",
+          "furigana": "マイバッグ",
+          "vn": "Tên gọi tương đương: Túi riêng của tôi"
+        }
+      ],
+      "example": {
+        "sentence": "買[か]い物[もの]に行[い]く際[さい]は、必[かなら]ずカバンの中[なか]にエコバッグを入[い]れて持[も]ち歩[ある]く。",
+        "translation": "Khi đi mua sắm, tôi luôn bỏ sẵn túi vải môi trường trong túi xách mang theo bên mình."
+      }
+    },
+    {
+      "id": 8,
+      "slide_number": 8,
+      "word": "自然保護",
+      "furigana": "しぜんほご",
+      "romaji": "shizen hogo",
+      "han_viet": "TỰ NHIÊN BẢO HỘ",
+      "meaning_vn": "Bảo tồn thiên nhiên, bảo vệ rừng và động thực vật",
+      "word_type": "Danh từ",
+      "tag": "Sinh thái",
+      "visual_diagram": "   🌲 TỰ NHIÊN HOANG DÃ (Rừng nguyên sinh, rạn san hô, suối nguồn)\n        │\n        └── 🛡️ 自然保護 (Bảo vệ giữ gìn):\n            ├── 🚫 Nghiêm cấm chặt phá rừng bừa bãi\n            └── 🦅 Thiết lập các vườn quốc gia bảo tồn loài quý hiếm",
+      "diagram_caption": "Nhật Bản có hơn 67% diện tích lãnh thổ là rừng núi được bảo tồn cẩn mật",
+      "mnemonic": "TỰ NHIÊN (自然 - đất trời tạo hóa) + BẢO HỘ (保護 - che chở gìn giữ). Giữ gìn nguyên vẹn mẹ thiên nhiên.",
+      "collocations": [
+        {
+          "ja": "自然保護区",
+          "furigana": "しぜんほごく",
+          "vn": "Khu bảo tồn thiên nhiên quốc gia"
+        },
+        {
+          "ja": "自然保護活動に参加する",
+          "furigana": "しぜんほごかつどうにさんかする",
+          "vn": "Tham gia phong trào bảo vệ môi trường"
+        }
+      ],
+      "example": {
+        "sentence": "美[うつく]しい山[やま]の自然[しぜん]を未来[みらい]の世代[せだい]に残[のこ]すため、自然[しぜん]保護[ほご]活動[かつどう]が行[おこな]われている。",
+        "translation": "Để để lại vẻ đẹp thiên nhiên núi rừng cho thế hệ tương lai, các hoạt động bảo tồn thiên nhiên đang được tiến hành."
+      }
+    },
+    {
+      "id": 9,
+      "slide_number": 9,
+      "word": "太陽光発電",
+      "furigana": "たいようこうはつでん",
+      "romaji": "taiyoukou hatsuden",
+      "han_viet": "THÁI DƯƠNG QUANG PHÁT ĐIỆN",
+      "meaning_vn": "Điện mặt trời, quang điện năng lượng sạch",
+      "word_type": "Danh từ",
+      "tag": "Năng lượng tái tạo",
+      "visual_diagram": "   ☀️ 太陽 (Mặt trời)\n      ↓\n      ↓ (Ánh nắng rọi xuống)\n   🟦 太陽光パネル (Tấm pin năng lượng trên mái nhà)\n      ↓\n   ⚡ Điện sinh hoạt sạch, không phát thải CO2",
+      "diagram_caption": "Sơ đồ chuyển hóa quang năng thành điện năng sạch cực kỳ phổ biến trên mái nhà ở Nhật",
+      "mnemonic": "THÁI DƯƠNG (太陽 - mặt trời) + QUANG (光 - ánh sáng) + PHÁT ĐIỆN (発電 - sinh ra dòng điện).",
+      "collocations": [
+        {
+          "ja": "太陽光パネルを設置する",
+          "furigana": "たいようこうパネルをせっちする",
+          "vn": "Lắp đặt tấm pin năng lượng mặt trời"
+        },
+        {
+          "ja": "再生可能エネルギー",
+          "furigana": "さいせいかのうエネルギー",
+          "vn": "Năng lượng tái tạo xanh"
+        }
+      ],
+      "example": {
+        "sentence": "自宅[じたく]の屋根[やね]に太陽[たいよう]光[こう]発電[はつでん]パネルを設置[せっち]して、環境[かんきょう]に優[やさ]しい生活[せいかつ]を送[おく]る。",
+        "translation": "Lắp đặt các tấm pin điện mặt trời trên mái nhà riêng để hướng tới một lối sống thân thiện với môi trường."
+      }
+    },
+    {
+      "id": 10,
+      "slide_number": 10,
+      "word": "資源",
+      "furigana": "しげん",
+      "romaji": "shigen",
+      "han_viet": "TƯ NGUYÊN",
+      "meaning_vn": "Tài nguyên thiên nhiên (dầu mỏ, khoáng sản, nước ngọt)",
+      "word_type": "Danh từ",
+      "tag": "Địa lý & Kinh tế",
+      "visual_diagram": "   🗾 ĐẶC TRƯNG TÀI NGUYÊN NHẬT BẢN:\n   ├── ❌ 天然資源 (Tài nguyên khoáng sản: Cực kỳ nghèo nàn, phải nhập khẩu 99% dầu mỏ)\n   └── ⭕ 人材・技術資源 (Tài nguyên con người & công nghệ: Rất dồi dào, phát triển hàng đầu)",
+      "diagram_caption": "Chính vì khan hiếm tài nguyên tự nhiên nên người Nhật cực kỳ trân trọng từng mẩu giấy, giọt nước",
+      "mnemonic": "TƯ (資 - của cải của trời) + NGUYÊN (源 - đầu nguồn suối chảy). Nguồn cội của mọi của cải vật chất.",
+      "collocations": [
+        {
+          "ja": "限りある資源を大切にする",
+          "furigana": "かぎりあるしげんをたいせつにする",
+          "vn": "Trân trọng nguồn tài nguyên có hạn"
+        },
+        {
+          "ja": "天然資源に乏しい",
+          "furigana": "てんねんしげんにとぼしい",
+          "vn": "Nghèo nàn tài nguyên thiên nhiên"
+        }
+      ],
+      "example": {
+        "sentence": "日本[にほん]は資源[しげん]の少[すく]ない国[くに]だからこそ、リサイクルや省[しょう]エネの技術[ぎじゅつ]が発達[はったつ]した。",
+        "translation": "Chính vì Nhật Bản là một quốc gia ít tài nguyên nên các công nghệ tái chế và tiết kiệm năng lượng mới phát triển vượt bậc."
+      }
+    }
+  ]
+}

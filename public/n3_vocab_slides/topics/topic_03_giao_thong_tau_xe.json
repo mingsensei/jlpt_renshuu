@@ -1,0 +1,309 @@
+{
+  "topic_id": "topic_03_giao_thong_tau_xe",
+  "title": "Chủ đề 03: Giao thông & Đi lại tàu xe",
+  "japanese_title": "交通機関・電車・バスの語彙",
+  "description": "Các loại tàu điện, vé tháng, chuyển tuyến và quy tắc đi lại an toàn tiện lợi tại Nhật Bản.",
+  "level": "N3",
+  "slides": [
+    {
+      "id": 1,
+      "slide_number": 1,
+      "word": "各駅停車",
+      "furigana": "かくえきていしゃ",
+      "romaji": "kakuekiteisha",
+      "han_viet": "CÁC DỊCH ĐÌNH XA",
+      "meaning_vn": "Tàu đỗ ở mọi ga (tàu thường, đi chậm nhất)",
+      "word_type": "Danh từ",
+      "tag": "Loại tàu",
+      "visual_diagram": "   🚉 CÁC LOẠI TÀU ĐIỆN NHẬT BẢN:\n   ├── 🐌 各駅停車 (Đỗ tất cả mọi ga trên đường: ●-●-●-●-●-●)\n   ├── 🚅 快速 (Bỏ qua ga nhỏ, chỉ đỗ ga nhỡ: ●---●---●---●)\n   └── 🚄 特急 (Tốc hành, chỉ đỗ ga trung tâm lớn: ●-------●-------●)",
+      "diagram_caption": "So sánh 3 cấp độ tàu hỏa phổ biến trên mạng lưới đường sắt Nhật Bản",
+      "mnemonic": "CÁC (各 - mỗi) + DỊCH (駅 - nhà ga) + ĐÌNH XA (停車 - dừng tàu) = Tàu dừng ở từng ga một.",
+      "collocations": [
+        {
+          "ja": "各停 (viết tắt)",
+          "furigana": "かくてい",
+          "vn": "Tên gọi tắt hiển thị trên bảng điện tử ga"
+        },
+        {
+          "ja": "各駅停車に乗る",
+          "furigana": "かくえきていしゃにのる",
+          "vn": "Lên chuyến tàu dừng mọi ga"
+        }
+      ],
+      "example": {
+        "sentence": "次[つぎ]の小[ちい]さな駅[えき]には快速[かいそく]は止[と]まらないので、各駅[かくえき]停車[ていしゃ]を利用[りよう]する。",
+        "translation": "Vì tàu nhanh không dừng ở ga nhỏ tiếp theo nên tôi chuyển sang đi tàu thường dừng mọi ga."
+      }
+    },
+    {
+      "id": 2,
+      "slide_number": 2,
+      "word": "快速",
+      "furigana": "かいそく",
+      "romaji": "kaisoku",
+      "han_viet": "KHOÁI TỐC",
+      "meaning_vn": "Tàu nhanh (bỏ qua một số ga nhỏ, cùng giá vé thường)",
+      "word_type": "Danh từ",
+      "tag": "Loại tàu",
+      "visual_diagram": "   🎫 GIÁ VÉ:\n   ├── 各駅停車 (Tàu thường) ──▶ Giá vé thường\n   ├── 快速 (Tàu nhanh)       ──▶ Giá vé thường (Không mất thêm phí!)\n   └── 特急 (Tàu đặc biệt)   ──▶ Vé thường + Vé đặc biệt (特急券)",
+      "diagram_caption": "Đi tàu 快速 giúp tiết kiệm thời gian mà hoàn toàn không mất thêm phụ phí vé",
+      "mnemonic": "KHOÁI (快 - sảng khoái, mượt mà) + TỐC (速 - tốc độ). Đi nhanh chóng không dừng vặt.",
+      "collocations": [
+        {
+          "ja": "快速電車",
+          "furigana": "かいそくでんしゃ",
+          "vn": "Chuyến tàu điện nhanh"
+        },
+        {
+          "ja": "通勤快速",
+          "furigana": "つうきんかいそく",
+          "vn": "Tàu nhanh giờ cao điểm đi làm"
+        }
+      ],
+      "example": {
+        "sentence": "快速[かいそく]を使[つか]えば、目的地[もくてきち]まで三十分[さんじゅっぷん]も早[はや]く到着[とうちゃく]できる。",
+        "translation": "Nếu đi tàu nhanh thì có thể đến nơi sớm hơn tận 30 phút."
+      }
+    },
+    {
+      "id": 3,
+      "slide_number": 3,
+      "word": "特急",
+      "furigana": "とっきゅう",
+      "romaji": "tokkyuu",
+      "han_viet": "ĐẶC CẤP",
+      "meaning_vn": "Tàu tốc hành đặc biệt (phải mua thêm vé特急券)",
+      "word_type": "Danh từ",
+      "tag": "Loại tàu",
+      "visual_diagram": "   🎫 BẮT BUỘC CÓ 2 LOẠI VÉ ĐỂ ĐI TÀU ĐẶC CẤP (特急):\n   [🎫 乗車券 - Vé thường (trả theo số km di chuyển)]\n         +\n   [🎫 特急券 - Vé phụ phí tốc hành và đặt số ghế]",
+      "diagram_caption": "Nếu chỉ quẹt thẻ IC thường mà lên tàu 特急 sẽ bị nhân viên soát vé phạt hoặc thu thêm tiền",
+      "mnemonic": "ĐẶC (特 - đặc biệt) + CẤP (急 - khẩn cấp). Cực kỳ nhanh và phục vụ dịch vụ đặc biệt.",
+      "collocations": [
+        {
+          "ja": "特急券を購入する",
+          "furigana": "とっきゅうけんをこうにゅうする",
+          "vn": "Mua vé phụ phí tàu đặc cấp"
+        },
+        {
+          "ja": "全席指定",
+          "furigana": "ぜんせきしてい",
+          "vn": "Toàn bộ là ghế đặt trước"
+        }
+      ],
+      "example": {
+        "sentence": "出張[しゅっちょう]で遠[とお]くへ行[い]くため、特急[とっきゅう]の指定席[していせき]を予約[よやく]した。",
+        "translation": "Vì đi công tác xa nên tôi đã đặt trước ghế ngồi chỉ định của tàu tốc hành."
+      }
+    },
+    {
+      "id": 4,
+      "slide_number": 4,
+      "word": "乗り換え",
+      "furigana": "のりかえ",
+      "romaji": "norikae",
+      "han_viet": "THỪA HOÁN",
+      "meaning_vn": "Chuyển tàu / đổi tuyến",
+      "word_type": "Danh từ / Động từ nhóm 2",
+      "tag": "Hành trình",
+      "visual_diagram": "   [Tuyến JR Yamanote 🟢] ──(xuống ga Shinjuku)──▶ [Tuyến Chuo 🟠]\n                                │\n                                └── 🔄 乗り換え (Thời gian đi bộ: 3 phút)",
+      "diagram_caption": "Ứng dụng tra cứu tàu ở Nhật (như Jorudan/Navitime) luôn chỉ rõ sân ga để chuyển tuyến",
+      "mnemonic": "THỪA (乗 - lên xe) + HOÁN (換 - thay đổi) = Đổi từ xe/tàu này sang xe/tàu khác.",
+      "collocations": [
+        {
+          "ja": "乗り換え案内アプリ",
+          "furigana": "のりかえあんないアプリ",
+          "vn": "Ứng dụng chỉ đường tàu điện"
+        },
+        {
+          "ja": "乗り換えなしで直通",
+          "furigana": "のりかえなしでちょくつう",
+          "vn": "Đi thẳng không cần đổi tàu"
+        }
+      ],
+      "example": {
+        "sentence": "新宿駅[しんじゅくえき]で地下鉄[ちかてつ]に乗り換[のりか]える必要[ひつよう]がある。",
+        "translation": "Cần phải chuyển sang tuyến tàu điện ngầm tại ga Shinjuku."
+      }
+    },
+    {
+      "id": 5,
+      "slide_number": 5,
+      "word": "定期券",
+      "furigana": "ていきけん",
+      "romaji": "teikiken",
+      "han_viet": "ĐỊNH KỲ KHOÁN",
+      "meaning_vn": "Vé tháng tàu xe tuyến cố định (tiết kiệm 30-50%)",
+      "word_type": "Danh từ",
+      "tag": "Vé tàu",
+      "visual_diagram": "   🏠 Ga nhà (A) ═══════════════════════════════▶ 🏫 Ga trường/cty (B)\n   │                                          │\n   └── 💳 定期券: Trong đoạn từ A đến B, lên xuống bao nhiêu lần cũng MIỄN PHÍ!",
+      "diagram_caption": "Vé tháng cho phép bạn xuống ở bất kỳ ga nào nằm giữa chặng mà không tốn thêm xu nào",
+      "mnemonic": "ĐỊNH KỲ (定期 - thời hạn cố định 1/3/6 tháng) + KHOÁN (券 - tấm vé).",
+      "collocations": [
+        {
+          "ja": "通学定期 / 通勤定期",
+          "furigana": "つうがくていき / つうきんていき",
+          "vn": "Vé tháng đi học / đi làm"
+        },
+        {
+          "ja": "定期券を更新する",
+          "furigana": "ていきけんをこうしんする",
+          "vn": "Gia hạn thêm hạn dùng của vé tháng"
+        }
+      ],
+      "example": {
+        "sentence": "学校[がっこう]までの通学[つうがく]定期券[ていきけん]を買[か]うと、学生[がくせい]割引[わりびき]がきく。",
+        "translation": "Khi mua vé tháng đi học đến trường, học sinh sinh viên sẽ được giảm giá đặc biệt."
+      }
+    },
+    {
+      "id": 6,
+      "slide_number": 6,
+      "word": "往復",
+      "furigana": "おうふく",
+      "romaji": "oufuku",
+      "han_viet": "VÃNG PHỤC",
+      "meaning_vn": "Khứ hồi, đi và về cả hai chiều",
+      "word_type": "Danh từ / Động từ nhóm 3",
+      "tag": "Lộ trình",
+      "visual_diagram": "   🎫 往復 (Khứ hồi):  A ──────Đi──────▶ B\n                       A ◀─────Về────── B\n                       vs\n   🎫 片道 (Một chiều): A ──────Đi──────▶ B (かたみち)",
+      "diagram_caption": "Mua vé khứ hồi đường dài (trên 600km) ở Nhật thường được giảm 10%",
+      "mnemonic": "VÃNG (往 - đi) + PHỤC (復 - quay trở lại). Vãng phục là đi rồi lại trở về chốn cũ.",
+      "collocations": [
+        {
+          "ja": "往復切符",
+          "furigana": "おうふくきっぷ",
+          "vn": "Vé khứ hồi cả 2 chiều"
+        },
+        {
+          "ja": "往復葉書",
+          "furigana": "おうふくはがき",
+          "vn": "Bưu thiếp khứ hồi (có sẵn tem để hồi đáp)"
+        }
+      ],
+      "example": {
+        "sentence": "新幹線[しんかんせん]の往復[おうふく]チケットをあらかじめネットで予約[よやく]した。",
+        "translation": "Tôi đã đặt trước vé khứ hồi tàu Shinkansen qua mạng internet."
+      }
+    },
+    {
+      "id": 7,
+      "slide_number": 7,
+      "word": "片道",
+      "furigana": "かたみち",
+      "romaji": "katamichi",
+      "han_viet": "PHIẾN ĐẠO",
+      "meaning_vn": "Một chiều, chuyến đi một lượt",
+      "word_type": "Danh từ",
+      "tag": "Lộ trình",
+      "visual_diagram": "   🏃‍♂️ A ──────────▶ B (Chỉ đi 1 chiều: 片道)\n   (Nếu về bằng phương tiện khác thì chỉ cần mua vé 片道)",
+      "diagram_caption": "Đối lập hoàn toàn với 往復 (khứ hồi)",
+      "mnemonic": "PHIẾN (片 - một nửa, một bên) + ĐẠO (道 - con đường). Chỉ đi một nửa lượt đường.",
+      "collocations": [
+        {
+          "ja": "片道切符",
+          "furigana": "かたみちきっぷ",
+          "vn": "Vé một chiều"
+        },
+        {
+          "ja": "片道一時間かかる",
+          "furigana": "かたみちいちじかんかかる",
+          "vn": "Một chiều đi mất 1 tiếng đồng hồ"
+        }
+      ],
+      "example": {
+        "sentence": "会社[かいしゃ]まで片道[かたみち]で一[いち]時間[じかん]半[はん]ほどかかる。",
+        "translation": "Một chiều đi từ nhà đến công ty mất khoảng một tiếng rưỡi."
+      }
+    },
+    {
+      "id": 8,
+      "slide_number": 8,
+      "word": "終電",
+      "furigana": "しゅうでん",
+      "romaji": "shuuden",
+      "han_viet": "CHUNG ĐIỆN",
+      "meaning_vn": "Chuyến tàu cuối cùng trong ngày (chuyến chót)",
+      "word_type": "Danh từ",
+      "tag": "Lịch chạy tàu",
+      "visual_diagram": "   ⏰ 23:55 ── 🏃‍♂️💨 Chạy hớt hải bắt tàu!\n        │\n        └── 🚄 終電 (Chuyến chót)\n             ├── ⭕ Bắt kịp ──▶ Về nhà ngủ an toàn\n             └── ❌ Bỏ lỡ ──▶ Tốn tiền taxi / ngủ tiệm net manga / chờ sáng mai",
+      "diagram_caption": "Tại Nhật, bỏ lỡ chuyến tàu chót đồng nghĩa với việc phát sinh chi phí đắt đỏ qua đêm",
+      "mnemonic": "CHUNG (終 - kết thúc) + ĐIỆN (電 - tàu điện). Chuyến tàu khép lại ngày hôm đó.",
+      "collocations": [
+        {
+          "ja": "終電を逃す",
+          "furigana": "しゅうでんをのがす",
+          "vn": "Bỏ lỡ chuyến tàu cuối cùng"
+        },
+        {
+          "ja": "終電に間に合う",
+          "furigana": "しゅうでんにまにあう",
+          "vn": "Kịp chuyến tàu chót"
+        }
+      ],
+      "example": {
+        "sentence": "飲[の]み会[かい]が盛[もり]あがっていたが、終電[しゅうでん]の時間を気[き]にして早[はや]めに帰[かえ]った。",
+        "translation": "Bữa tiệc nhậu đang rất sôi nổi nhưng lo chuyến tàu chót nên tôi đã về sớm."
+      }
+    },
+    {
+      "id": 9,
+      "slide_number": 9,
+      "word": "踏切",
+      "furigana": "ふみきり",
+      "romaji": "fumikiri",
+      "han_viet": "ĐẠP THIẾT",
+      "meaning_vn": "Rào chắn đường ray xe lửa, điểm giao cắt",
+      "word_type": "Danh từ",
+      "tag": "An toàn đường ray",
+      "visual_diagram": "   🚧 ĐÈN CHỚP ĐỎ & TIẾNG BÁO DỒN DẬP (カンカンカン)\n      ▼\n   ⛔ Rào chắn hạ xuống ──▶ BẮT BUỘC DỪNG LẠI TUYỆT ĐỐI\n      ▼\n   🚄 Tàu vụt qua",
+      "diagram_caption": "Luật giao thông Nhật: Người và xe cộ phải dừng hẳn trước rào chắn, nhìn trái phải rồi mới qua",
+      "mnemonic": "ĐẠP (踏 - giẫm bước) + THIẾT (切 - cắt ngang qua). Điểm cắt ngang đường ray.",
+      "collocations": [
+        {
+          "ja": "踏切を渡る",
+          "furigana": "ふみきりをわたる",
+          "vn": "Băng qua rào chắn đường tàu"
+        },
+        {
+          "ja": "開かずの踏切",
+          "furigana": "あかずのふみきり",
+          "vn": "Rào chắn kẹt cứng không mở trong giờ cao điểm"
+        }
+      ],
+      "example": {
+        "sentence": "警報機[けいほうき]が鳴[な]り始[はじ]めたら、踏切[ふみきり]の中[なか]に入[はい]ってはいけない。",
+        "translation": "Khi chuông cảnh báo đã bắt đầu reo thì tuyệt đối không được đi vào trong rào chắn."
+      }
+    },
+    {
+      "id": 10,
+      "slide_number": 10,
+      "word": "運賃",
+      "furigana": "うんちん",
+      "romaji": "unchin",
+      "han_viet": "VẬN THẢM",
+      "meaning_vn": "Cước phí vận chuyển, tiền vé tàu xe",
+      "word_type": "Danh từ",
+      "tag": "Chi phí đi lại",
+      "visual_diagram": "   🎟️ SO SÁNH CÁC TỪ CHỈ CHI PHÍ TIẾNG NHẬT:\n   ├── 運賃 (うんちん): Tiền cước vé tàu xe, máy bay, taxi\n   ├── 家賃 (やちん): Tiền thuê nhà\n   └── 授業料 (じゅぎょうりょう): Tiền học phí",
+      "diagram_caption": "Tất cả các từ có đuôi 賃 (THẢM) đều chỉ chi phí thuê mướn hoặc dịch vụ vận chuyển",
+      "mnemonic": "VẬN (運 - vận chuyển) + THẢM (賃 - tiền công). Tiền trả cho việc chở mình đi.",
+      "collocations": [
+        {
+          "ja": "運賃を精算する",
+          "furigana": "うんちんをせいさんする",
+          "vn": "Nạp thêm tiền trả cước thiếu tại máy ga"
+        },
+        {
+          "ja": "運賃表",
+          "furigana": "うんちんひょう",
+          "vn": "Bảng cước giá vé tàu treo trên cao ở ga"
+        }
+      ],
+      "example": {
+        "sentence": "切符[きっぷ]の残高[ざんだか]が足[た]りなかったので、出口[でぐち]で運賃[うんちん]を精算[せいさん]した。",
+        "translation": "Vì số dư vé không đủ tiền nên tôi đã điều chỉnh thanh toán cước phí ở cửa ra."
+      }
+    }
+  ]
+}

@@ -1,0 +1,309 @@
+{
+  "topic_id": "topic_17_smartphone_song_so",
+  "title": "Chủ đề 17: Smartphone & Mạng xã hội & Đời sống số",
+  "japanese_title": "スマホ・SNS・デジタル技術の語彙",
+  "description": "Các thao tác điện thoại thông minh, bảo mật thông tin cá nhân, mạng xã hội và lối sống số tại Nhật.",
+  "level": "N3",
+  "slides": [
+    {
+      "id": 1,
+      "slide_number": 1,
+      "word": "充電",
+      "furigana": "じゅうでん",
+      "romaji": "juuden",
+      "han_viet": "SUNG ĐIỆN",
+      "meaning_vn": "Sạc pin điện thoại, nạp điện",
+      "word_type": "Danh từ / Động từ nhóm 3",
+      "tag": "Thiết bị điện tử",
+      "visual_diagram": "   🪫 Pin yếu 5% (バッテリー残量わずか)\n        │\n        └── 🔌 Cắm dây cáp 充電器 (Củ sạc) ──▶ 🔋 Đầy pin 100% (充電完了)",
+      "diagram_caption": "Tại quán cà phê và tàu Shinkansen ở Nhật luôn có sẵn ổ cắm sạc pin miễn phí",
+      "mnemonic": "SUNG (充 - lấp đầy, sung túc) + ĐIỆN (電 - dòng điện). Nạp điện đầy ắp vào pin.",
+      "collocations": [
+        {
+          "ja": "スマホを充電する",
+          "furigana": "スマホをじゅうでんする",
+          "vn": "Sạc pin điện thoại thông minh"
+        },
+        {
+          "ja": "モバイルバッテリー",
+          "furigana": "モバイルバッテリー",
+          "vn": "Cục sạc dự phòng mang theo người"
+        }
+      ],
+      "example": {
+        "sentence": "外出[がいしゅつ]先[さき]でバッテリーが切[き]れないように、前[まえ]の晩[ばん]にしっかり充電[じゅうでん]しておく。",
+        "translation": "Để không bị hết pin khi ra ngoài, tôi đã sạc đầy điện thoại từ tối hôm trước."
+      }
+    },
+    {
+      "id": 2,
+      "slide_number": 2,
+      "word": "画面",
+      "furigana": "がめん",
+      "romaji": "gamen",
+      "han_viet": "HỌA DIỆN",
+      "meaning_vn": "Màn hình (điện thoại, máy tính bảng, tivi)",
+      "word_type": "Danh từ",
+      "tag": "Giao diện máy",
+      "visual_diagram": "   📱 MÀN HÌNH ĐIỆN THOẠI (画面):\n   ├── 👆 画面をタッチする (Chạm vuốt màn hình cảm ứng)\n   ├── 💥 画面が割れる (Rơi từ trên cao xuống làm nứt vỡ kính màn hình)\n   └── 📱 画面保護フィルム (Dán miếng kính cường lực bảo vệ)",
+      "diagram_caption": "Bảo vệ màn hình là việc đầu tiên người dùng làm sau khi mua máy mới",
+      "mnemonic": "HỌA (画 - bức tranh, hình ảnh) + DIỆN (面 - bề mặt). Bề mặt hiển thị hình ảnh.",
+      "collocations": [
+        {
+          "ja": "画面が割れる / ヒビが入る",
+          "furigana": "がめんがわれる / ヒビがはいる",
+          "vn": "Màn hình bị nứt vỡ"
+        },
+        {
+          "ja": "画面の明るさを調整する",
+          "furigana": "がめんのあかるさをちょうせいする",
+          "vn": "Điều chỉnh độ sáng màn hình"
+        }
+      ],
+      "example": {
+        "sentence": "歩[ある]きスマホをしていて手[て]が滑[すべ]り、画面[がめん]を割[わ]ってしまった。",
+        "translation": "Vừa đi bộ vừa bấm điện thoại trượt tay làm rơi vỡ toang màn hình."
+      }
+    },
+    {
+      "id": 3,
+      "slide_number": 3,
+      "word": "不具合",
+      "furigana": "ふぐあい",
+      "romaji": "fuguai",
+      "han_viet": "BẤT CỤ HỢP",
+      "meaning_vn": "Lỗi kỹ thuật, trục trặc, phần mềm bị đơ/giật lag",
+      "word_type": "Danh từ",
+      "tag": "Sự cố công nghệ",
+      "visual_diagram": "   📱 MÁY ĐANG DÙNG BỖNG NHIÊN:\n   ├── 🥶 Đơ màn hình không bấm được (フリーズする)\n   ├── 🚫 Ứng dụng tự động văng ra ngoài (アプリが落ちる)\n   └── ⚠️ Hệ thống báo: 「不具合が発生しました」(Đã phát sinh sự cố lỗi)",
+      "diagram_caption": "Thuật ngữ chuyên ngành IT và dịch vụ hỗ trợ khách hàng tại Nhật",
+      "mnemonic": "BẤT (不 - không) + CỤ HỢP (具合 - tình trạng). Tình trạng máy móc không được suôn sẻ.",
+      "collocations": [
+        {
+          "ja": "システムに不具合が生じる",
+          "furigana": "システムにふぐあいがしょうじる",
+          "vn": "Phát sinh lỗi kỹ thuật trong hệ thống"
+        },
+        {
+          "ja": "不具合を修正する",
+          "furigana": "ふぐあいをしゅうせいする",
+          "vn": "Sửa lỗi phần mềm (Fix bug)"
+        }
+      ],
+      "example": {
+        "sentence": "アプリの不具合[ふぐあい]を直[なお]すためのアップデートが配信[はいしん]された。",
+        "translation": "Bản cập nhật để sửa chữa lỗi kỹ thuật của ứng dụng đã được phát hành."
+      }
+    },
+    {
+      "id": 4,
+      "slide_number": 4,
+      "word": "接続",
+      "furigana": "せつぞく",
+      "romaji": "setsuzoku",
+      "han_viet": "TIẾP TỤC",
+      "meaning_vn": "Kết nối (mạng Wi-Fi, thiết bị Bluetooth)",
+      "word_type": "Danh từ / Động từ nhóm 3",
+      "tag": "Mạng viễn thông",
+      "visual_diagram": "   📱 Smartphone ──(Sóng vô tuyến)──▶ 📶 Free Wi-Fi Ga tàu\n        │\n        └── 🔗 接続 (Kết nối thành công ──▶ Lướt mạng thả ga)",
+      "diagram_caption": "Tại các nhà ga và chuỗi cửa hàng tiện lợi Nhật Bản đều có Wi-Fi công cộng miễn phí",
+      "mnemonic": "TIẾP (接 - tiếp xúc, gắn vào) + TỤC (続 - nối tiếp nhau). Gắn nối thông suốt với nhau.",
+      "collocations": [
+        {
+          "ja": "Wi-Fiに接続する",
+          "furigana": "Wi-Fiにせつぞくする",
+          "vn": "Kết nối vào mạng Wi-Fi"
+        },
+        {
+          "ja": "インターネット接続が切断される",
+          "furigana": "インターネットせつぞくがせつだんされる",
+          "vn": "Bị ngắt kết nối internet"
+        }
+      ],
+      "example": {
+        "sentence": "カフェのフリーWi-Fiに接続[せつぞく]して、パソコンで課題[かだい]のレポートを書[か]いた。",
+        "translation": "Kết nối vào Wi-Fi miễn phí của quán cà phê, tôi đã dùng máy tính viết bài báo cáo."
+      }
+    },
+    {
+      "id": 5,
+      "slide_number": 5,
+      "word": "個人情報",
+      "furigana": "こじんじょうほう",
+      "romaji": "kojin jouhou",
+      "han_viet": "CÁ NHÂN TÌNH BÁO",
+      "meaning_vn": "Thông tin cá nhân riêng tư (cần bảo mật tuyệt đối)",
+      "word_type": "Danh từ",
+      "tag": "Bảo mật",
+      "visual_diagram": "   🔒 DỮ LIỆU CÁ NHÂN NHẠY CẢM (個人情報):\n   ├── 👤 Họ tên, ngày sinh, địa chỉ nhà riêng\n   ├── 📞 Số điện thoại cá nhân\n   ├── 💳 Số thẻ ngân hàng, số thẻ tín dụng\n   └── ⚠️ Cảnh báo: Rò rỉ thông tin (情報漏洩 - じょうほうろうえい) là vi phạm pháp luật nặng",
+      "diagram_caption": "Luật bảo vệ thông tin cá nhân của Nhật Bản cực kỳ nghiêm ngặt",
+      "mnemonic": "CÁ NHÂN (個人 - riêng từng người) + TÌNH BÁO (情報 - tin tức thông tin). Thông tin riêng tư của cá nhân.",
+      "collocations": [
+        {
+          "ja": "個人情報を保護する",
+          "furigana": "こじんじょうほうをほごする",
+          "vn": "Bảo vệ thông tin cá nhân"
+        },
+        {
+          "ja": "個人情報が流出する",
+          "furigana": "こじんじょうほうがりゅうしゅつする",
+          "vn": "Bị rò rỉ lộ thông tin cá nhân ra ngoài"
+        }
+      ],
+      "example": {
+        "sentence": "見知[みし]らぬ怪[あや]しいサイトには、決[けっ]して個人[こじん]情報[じょうほう]を入力[にゅうりょく]してはならない。",
+        "translation": "Tuyệt đối không bao giờ được nhập thông tin cá nhân vào các trang web lạ có dấu hiệu khả nghi."
+      }
+    },
+    {
+      "id": 6,
+      "slide_number": 6,
+      "word": "設定",
+      "furigana": "せってい",
+      "romaji": "settei",
+      "han_viet": "THIẾT ĐỊNH",
+      "meaning_vn": "Cài đặt tùy chỉnh hệ thống (Settings)",
+      "word_type": "Danh từ / Động từ nhóm 3",
+      "tag": "Thao tác máy móc",
+      "visual_diagram": "   ⚙️ CÀI ĐẶT TRONG ĐIỆN THOẠI (設定アプリ):\n   ├── 🌐 言語設定 (Đổi ngôn ngữ máy sang tiếng Nhật để luyện học từ)\n   ├── 🔔 通知設定 (Bật/tắt chuông thông báo làm phiền)\n   └── 🤫 マナーモード (Chuyển sang chế độ rung khi lên tàu điện)",
+      "diagram_caption": "Tại Nhật khi lên tàu bắt buộc phải cài đặt chế độ rung lịch sự (Manner Mode)",
+      "mnemonic": "THIẾT (設 - thiết lập xây dựng) + ĐỊNH (定 - cố định quy định). Thiết lập thông số cố định.",
+      "collocations": [
+        {
+          "ja": "初期設定を行う",
+          "furigana": "しょきせっていをおこなう",
+          "vn": "Cài đặt ban đầu khi mới mua máy"
+        },
+        {
+          "ja": "パスワードを再設定する",
+          "furigana": "パスワードをさいせっていする",
+          "vn": "Đặt lại mật khẩu mới"
+        }
+      ],
+      "example": {
+        "sentence": "電車[でんしゃ]に乗[の]る際[さい]は、音[おと]が鳴[な]らないようにマナーモードに設定[せってい]しておく。",
+        "translation": "Khi lên tàu điện, hãy cài đặt chế độ rung im lặng để chuông không kêu làm phiền mọi người."
+      }
+    },
+    {
+      "id": 7,
+      "slide_number": 7,
+      "word": "制限",
+      "furigana": "せいげん",
+      "romaji": "seigen",
+      "han_viet": "CHẾ HẠN",
+      "meaning_vn": "Giới hạn, hạn chế (dung lượng 4G, thời gian dùng app)",
+      "word_type": "Danh từ / Động từ nhóm 3",
+      "tag": "Quy định dung lượng",
+      "visual_diagram": "   📊 GÓI CƯỚC 4G: 20GB/tháng\n        │\n        └── 🚫 Xem quá nhiều video TikTok ──▶ Hết dung lượng tốc độ cao!\n            └── 🐌 Bị bóp băng thông (通信速度制限) ──▶ Mạng chậm như rùa bò",
+      "diagram_caption": "Cơn ác mộng cuối tháng của giới trẻ khi bị bóp băng thông mạng (ギガ死)",
+      "mnemonic": "CHẾ (制 - kiểm soát kìm chế) + HẠN (限 - giới hạn ranh giới). Khống chế trong một ranh giới nhất định.",
+      "collocations": [
+        {
+          "ja": "通信速度制限がかかる",
+          "furigana": "つうしんそくどせいげんがかかる",
+          "vn": "Bị áp đặt giới hạn tốc độ truyền tải mạng"
+        },
+        {
+          "ja": "年齢制限",
+          "furigana": "ねんれいせいげん",
+          "vn": "Giới hạn độ tuổi xem phim/chơi game"
+        }
+      ],
+      "example": {
+        "sentence": "月末[げつまつ]にデータ通信[つうしん]量[りょう]が上限[じょうげん]を超[こ]えてしまい、速度[そくど]制限[せいげん]がかかった。",
+        "translation": "Cuối tháng dung lượng dữ liệu mạng vượt quá mức trần nên máy tôi đã bị bóp tốc độ."
+      }
+    },
+    {
+      "id": 8,
+      "slide_number": 8,
+      "word": "パスワード",
+      "furigana": "パスワード",
+      "romaji": "pasuwaado",
+      "han_viet": "MẬT KHẨU",
+      "meaning_vn": "Mật khẩu bảo vệ tài khoản",
+      "word_type": "Danh từ",
+      "tag": "Bảo mật",
+      "visual_diagram": "   🔑 MẬT KHẨU BẢO MẬT AN TOÀN:\n   ├── ❌ Mật khẩu yếu: 123456, ngày tháng năm sinh (Dễ bị hack mất tiền)\n   └── ⭕ Mật khẩu mạnh: Kết hợp chữ hoa, chữ thường, số và ký tự đặc biệt (@#$)\n         ▲\n         └── 🛡️ Kích hoạt xác thực 2 bước (二段階認証)",
+      "diagram_caption": "Bắt nguồn từ tiếng Anh Password",
+      "mnemonic": "Từ mượn Password (mã khóa thông hành).",
+      "collocations": [
+        {
+          "ja": "パスワードを入力する",
+          "furigana": "パスワードをにゅうりょくする",
+          "vn": "Nhập mật khẩu đăng nhập"
+        },
+        {
+          "ja": "パスワードを忘れる",
+          "furigana": "パスワードをわすれる",
+          "vn": "Quên mất mật khẩu"
+        }
+      ],
+      "example": {
+        "sentence": "セキュリティを高[たか]めるため、定期的[ていきてき]にパスワードを変更[へんこう]する。",
+        "translation": "Để nâng cao tính bảo mật an ninh, tôi định kỳ đổi mật khẩu mới."
+      }
+    },
+    {
+      "id": 9,
+      "slide_number": 9,
+      "word": "検索",
+      "furigana": "けんさく",
+      "romaji": "kensaku",
+      "han_viet": "KIỂM TÁC",
+      "meaning_vn": "Tra cứu, tìm kiếm thông tin trên internet",
+      "word_type": "Danh từ / Động từ nhóm 3",
+      "tag": "Tìm kiếm thông tin",
+      "visual_diagram": "   🔍 TÌM KIẾM GOOGLE (ググる):\n   ├── ⌨️ Nhập từ khóa: 「N3 語彙 スライド」\n   ├── 🔍 検索 (Tìm kiếm trong 0.2 giây)\n   └── 📄 Hàng triệu kết quả bài viết hữu ích hiện ra",
+      "diagram_caption": "Kỹ năng tra cứu thông tin nhanh là vũ khí quan trọng nhất trong thời đại số",
+      "mnemonic": "KIỂM (検 - kiểm tra rà soát) + TÁC (索 - tìm kiếm lùng sục). Rà soát lùng sục thông tin.",
+      "collocations": [
+        {
+          "ja": "キーワードで検索する",
+          "furigana": "キーワードでけんさくする",
+          "vn": "Tìm kiếm bằng từ khóa"
+        },
+        {
+          "ja": "検索エンジン",
+          "furigana": "けんさくエンジン",
+          "vn": "Công cụ tìm kiếm (Google, Yahoo)"
+        }
+      ],
+      "example": {
+        "sentence": "分[わ]からない単語[たんご]があれば、すぐにスマホの辞書[じしょ]アプリで検索[けんさく]する習慣[しゅうかん]をつける。",
+        "translation": "Hãy tạo thói quen nếu gặp từ mới không hiểu thì lập tức tra cứu ngay trên ứng dụng từ điển điện thoại."
+      }
+    },
+    {
+      "id": 10,
+      "slide_number": 10,
+      "word": "通知",
+      "furigana": "つうち",
+      "romaji": "tsuuchi",
+      "han_viet": "THÔNG TRI",
+      "meaning_vn": "Thông báo tin nhắn, chuông báo ứng dụng",
+      "word_type": "Danh từ / Động từ nhóm 3",
+      "tag": "Tin nhắn",
+      "visual_diagram": "   🔔 THÔNG BÁO TỪ ỨNG DỤNG (アプリの通知):\n   ├── 💬 Tin nhắn mới trên LINE (新着メッセージ)\n   ├── 📧 Email công việc quan trọng gửi tới\n   └── 🔴 Dấu chấm đỏ hiện trên góc biểu tượng ứng dụng",
+      "diagram_caption": "Người Nhật chuộng dùng ứng dụng nhắn tin LINE thay cho Messenger hay Zalo",
+      "mnemonic": "THÔNG (通 - truyền đi thông đạt) + TRI (知 - cho biết). Truyền tin cho đối phương biết.",
+      "collocations": [
+        {
+          "ja": "通知が届く",
+          "furigana": "つうちがとどく",
+          "vn": "Có thông báo gửi tới"
+        },
+        {
+          "ja": "プッシュ通知をオフにする",
+          "furigana": "プッシュつうちをオフにする",
+          "vn": "Tắt thông báo đẩy để không bị làm phiền khi học bài"
+        }
+      ],
+      "example": {
+        "sentence": "勉強[べんきょう]中[ちゅう]にスマホの通知[つうち]が鳴[な]ると気[き]が散[ち]るので、音[おと]を切[き]っておく。",
+        "translation": "Trong khi học nếu chuông thông báo điện thoại kêu sẽ làm phân tâm nên tôi đã tắt tiếng đi."
+      }
+    }
+  ]
+}

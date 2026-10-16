@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bg_topic_20" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f0fdfa"/>
+      <stop offset="100%" stop-color="#ccfbf1"/>
+    </linearGradient>
+    <filter id="shadow_topic_20" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="#0d9488" flood-opacity="0.12"/>
+    </filter>
+  </defs>
+
+  <!-- Background Canvas -->
+  <rect width="800" height="450" rx="24" fill="url(#bg_topic_20)"/>
+
+  <!-- Subtle grid pattern dots -->
+  <g opacity="0.15" fill="#0d9488">
+    <circle cx="40" cy="40" r="3"/><circle cx="100" cy="40" r="3"/><circle cx="160" cy="40" r="3"/><circle cx="700" cy="40" r="3"/><circle cx="760" cy="40" r="3"/>
+    <circle cx="40" cy="100" r="3"/><circle cx="760" cy="100" r="3"/><circle cx="40" cy="350" r="3"/><circle cx="760" cy="350" r="3"/>
+  </g>
+
+  <!-- Header Badge -->
+  <g transform="translate(40, 35)">
+    <rect width="110" height="32" rx="16" fill="#0d9488"/>
+    <text x="55" y="21" font-family="'Plus Jakarta Sans', sans-serif" font-size="13" font-weight="800" fill="#ffffff" text-anchor="middle" letter-spacing="0.5">CHỦ ĐỀ 20</text>
+  </g>
+
+  <!-- Title typography -->
+  <text x="165" y="58" font-family="'Plus Jakarta Sans', sans-serif" font-size="20" font-weight="800" fill="#0f172a">Quản lý thời gian & Lập kế hoạch</text>
+  <text x="760" y="58" font-family="'Noto Sans JP', sans-serif" font-size="16" font-weight="700" fill="#0d9488" text-anchor="end">時間管理・計画性</text>
+
+  <!-- Main Illustration Scene -->
+  
+            <!-- Hourglass & Checklist -->
+            <g transform="translate(160, 120)">
+                <text x="70" y="90" font-size="72" text-anchor="middle">⏳</text>
+                <text x="70" y="150" font-size="16" font-family="sans-serif" font-weight="bold" fill="#0d9488" text-anchor="middle">優先順位</text>
+            </g>
+            <g transform="translate(380, 110)">
+                <rect x="0" y="0" width="250" height="190" rx="16" fill="#ffffff" filter="drop-shadow(0 10px 20px rgba(0,0,0,0.06))"/>
+                <g transform="translate(30, 35)">
+                    <circle cx="15" cy="15" r="12" fill="#dcfce7"/>
+                    <path d="M10 15 L14 19 L21 11" stroke="#16a34a" stroke-width="3" fill="none"/>
+                    <text x="35" y="20" font-size="14" font-family="sans-serif" font-weight="bold" fill="#1e293b">JLPT N3 合格目標</text>
+                </g>
+                <g transform="translate(30, 80)">
+                    <circle cx="15" cy="15" r="12" fill="#dcfce7"/>
+                    <path d="M10 15 L14 19 L21 11" stroke="#16a34a" stroke-width="3" fill="none"/>
+                    <text x="35" y="20" font-size="14" font-family="sans-serif" font-weight="bold" fill="#1e293b">200 Từ vựng theo Slide</text>
+                </g>
+                <g transform="translate(30, 125)">
+                    <circle cx="15" cy="15" r="12" fill="#dcfce7"/>
+                    <path d="M10 15 L14 19 L21 11" stroke="#16a34a" stroke-width="3" fill="none"/>
+                    <text x="35" y="20" font-size="14" font-family="sans-serif" font-weight="bold" fill="#16a34a">達成! (Hoàn thành)</text>
+                </g>
+            </g>
+        
+
+  <!-- Bottom Accent Stripe -->
+  <rect x="0" y="442" width="800" height="8" fill="#0d9488"/>
+</svg>

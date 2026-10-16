@@ -1,0 +1,309 @@
+{
+  "topic_id": "topic_08_mua_sam_giao_hang",
+  "title": "Chủ đề 08: Mua sắm & Đặt hàng online & Giao hàng",
+  "japanese_title": "買い物・ネット通販・宅配便の語彙",
+  "description": "Từ vựng mua hàng thương mại điện tử, dịch vụ chuyển phát nhanh Yamato/Sagawa và xử lý giấy báo vắng nhà.",
+  "level": "N3",
+  "slides": [
+    {
+      "id": 1,
+      "slide_number": 1,
+      "word": "通販",
+      "furigana": "つうはん",
+      "romaji": "tsuuhan",
+      "han_viet": "THÔNG PHIẾN",
+      "meaning_vn": "Mua sắm từ xa / Bán hàng qua mạng (viết tắt của 通信販売)",
+      "word_type": "Danh từ",
+      "tag": "Thương mại điện tử",
+      "visual_diagram": "   🛒 通信販売 (つうしんはんばい) ──▶ Viết tắt: 通販 (つうはん)\n   ├── 📱 Đặt hàng trên app (Amazon, Rakuten, Yahoo Shopping)\n   ├── 💳 Thanh toán thẻ / chuyển khoản / trả sau combini\n   └── 📦 Hàng giao tận cửa nhà bằng xe tải chuyển phát",
+      "diagram_caption": "Phương thức mua sắm chiếm ưu thế tuyệt đối trong đời sống hiện đại tại Nhật Bản",
+      "mnemonic": "THÔNG (通 - giao thông, thông thương) + PHIẾN (販 - buôn bán). Buôn bán kết nối từ xa.",
+      "collocations": [
+        {
+          "ja": "通販サイト",
+          "furigana": "つうはんサイト",
+          "vn": "Trang web mua sắm trực tuyến"
+        },
+        {
+          "ja": "ネット通販を利用する",
+          "furigana": "ネットつうはんをりようする",
+          "vn": "Sử dụng dịch vụ mua hàng online"
+        }
+      ],
+      "example": {
+        "sentence": "最近[さいきん]は重[おも]い日用品[にちようひん]もお米[こめ]もすべて通販[つうはん]で買[か]っている。",
+        "translation": "Dạo gần đây ngay cả đồ dùng hàng ngày nặng nề hay gạo tôi cũng đều mua qua mạng."
+      }
+    },
+    {
+      "id": 2,
+      "slide_number": 2,
+      "word": "宅配便",
+      "furigana": "たくはいびん",
+      "romaji": "takuhaibin",
+      "han_viet": "TRẠCH PHỐI TIỆN",
+      "meaning_vn": "Dịch vụ chuyển phát nhanh tận nhà (Yamato, Sagawa, Bưu điện)",
+      "word_type": "Danh từ",
+      "tag": "Vận chuyển",
+      "visual_diagram": "   🚚 CÁC HÃNG CHUYỂN PHÁT LỚN TẠI NHẬT:\n   ├── 🐱 ヤマト運輸 (Yamato Kuroneko - Logo mèo đen ngậm mèo con)\n   ├── 🏃 佐川急便 (Sagawa Express - Chuyên hàng nặng/công ty)\n   └── 📮 日本郵便 (Bưu điện Nhật Bản - Yu-Pack)\n   ==▶ Giao đúng đến từng khung giờ hẹn (時間帯指定)",
+      "diagram_caption": "Dịch vụ chuyển phát ở Nhật cực kỳ chuyên nghiệp và chính xác đến từng phút",
+      "mnemonic": "TRẠCH (宅 - nhà ở cá nhân) + PHỐI (配 - phân phối, giao tận nơi) + TIỆN (便 - chuyến xe). Chuyến xe giao đồ đến tận nhà.",
+      "collocations": [
+        {
+          "ja": "宅配便で荷物を送る",
+          "furigana": "たくはいびんでにもつをおくる",
+          "vn": "Gửi đồ qua dịch vụ chuyển phát nhanh"
+        },
+        {
+          "ja": "宅配ボックス",
+          "furigana": "たくはいボックス",
+          "vn": "Tủ nhận hàng tự động trước sảnh chung cư"
+        }
+      ],
+      "example": {
+        "sentence": "実家[じっか]から野菜[やさい]が詰[つ]まったダンボールが宅配便[たくはいびん]で届[とど]いた。",
+        "translation": "Thùng carton đầy ắp rau củ từ quê nhà đã được gửi chuyển phát nhanh tới nơi."
+      }
+    },
+    {
+      "id": 3,
+      "slide_number": 3,
+      "word": "不在票",
+      "furigana": "ふざいひょう",
+      "romaji": "fuzaihyou",
+      "han_viet": "BẤT TẠI PHIẾU",
+      "meaning_vn": "Giấy báo vắng nhà (shipper để lại hòm thư khi bạn vắng)",
+      "word_type": "Danh từ",
+      "tag": "Giao nhận hàng",
+      "visual_diagram": "   🚪 Shipper bấm chuông: ピンポーン ── (Không ai mở cửa)\n        │\n        └── 📬 Shipper nhét vào hòm thư: 🎫 不在票 (Giấy báo vắng nhà)\n            ├── Ghi mã bưu phẩm (伝票番号)\n            └── Có mã QR quét yêu cầu giao lại (再配達)",
+      "diagram_caption": "Đừng vội lo lắng khi thấy tờ giấy này trong hòm thư, chỉ cần quét mã QR hẹn giờ giao lại",
+      "mnemonic": "BẤT (不 - không) + TẠI (在 - có mặt tại nhà) + PHIẾU (票 - tờ giấy). Tờ phiếu báo người nhận không có nhà.",
+      "collocations": [
+        {
+          "ja": "不在票が入っている",
+          "furigana": "ふざいひょうがはいっている",
+          "vn": "Có giấy báo vắng nhà trong hòm thư"
+        },
+        {
+          "ja": "不在連絡票",
+          "furigana": "ふざいれんらくひょう",
+          "vn": "Tên gọi đầy đủ: Giấy liên lạc khi vắng nhà"
+        }
+      ],
+      "example": {
+        "sentence": "ポストに宅配便[たくはいびん]の不在票[ふざいひょう]が入[はい]っていたので、スマホで再配達[さいはいたつ]を頼[たの]んだ。",
+        "translation": "Trong hòm thư có giấy báo vắng nhà nên tôi đã dùng điện thoại đặt lịch giao lại."
+      }
+    },
+    {
+      "id": 4,
+      "slide_number": 4,
+      "word": "再配達",
+      "furigana": "さいはいたつ",
+      "romaji": "saihaitatsu",
+      "han_viet": "TÁI PHỐI ĐẠT",
+      "meaning_vn": "Giao lại hàng theo giờ hẹn",
+      "word_type": "Danh từ / Động từ nhóm 3",
+      "tag": "Giao nhận hàng",
+      "visual_diagram": "   📲 ĐẶT LỊCH GIAO LẠI (再配達の手順):\n   1. Quét mã QR trên giấy 不在票\n   2. Chọn khung giờ rảnh ở nhà:\n      ├── 🌅 Sáng: 8h - 12h\n      ├── 🌇 Chiều: 14h - 16h / 16h - 18h\n      └── 🌙 Tối: 19h - 21h (Phù hợp sau giờ làm việc)\n   3. 📦 Shipper mang hàng đến đúng giờ hẹn",
+      "diagram_caption": "Dịch vụ giao lại hoàn toàn miễn phí tại Nhật Bản",
+      "mnemonic": "TÁI (再 - lại lần nữa) + PHỐI ĐẠT (配達 - giao phát hàng). Giao hàng lại lần hai.",
+      "collocations": [
+        {
+          "ja": "再配達を依頼する",
+          "furigana": "さいはいたつをいらいする",
+          "vn": "Yêu cầu shipper giao lại hàng"
+        },
+        {
+          "ja": "再配達の希望日時",
+          "furigana": "さいはいたつのきぼうにちじ",
+          "vn": "Ngày giờ mong muốn được giao lại"
+        }
+      ],
+      "example": {
+        "sentence": "今夜[こんや]は家[いえ]にいるので、十九時[じゅうくじ]以降[いこう]に再配達[さいはいたつ]してもらうよう指定[してい]した。",
+        "translation": "Tối nay tôi có ở nhà nên đã chỉ định giao lại vào khung giờ sau 19h."
+      }
+    },
+    {
+      "id": 5,
+      "slide_number": 5,
+      "word": "領収書",
+      "furigana": "りょうしゅうしょ",
+      "romaji": "ryoushuusho",
+      "han_viet": "LÃNH THU THƯ",
+      "meaning_vn": "Biên lai thu tiền / Hóa đơn thanh toán (dùng thanh toán công ty)",
+      "word_type": "Danh từ",
+      "tag": "Thanh toán",
+      "visual_diagram": "   🧾 PHÂN BIỆT 2 LOẠI HÓA ĐƠN:\n   ├── 🧾 レシート (Hóa đơn mua lẻ siêu thị, in nhiệt bình thường)\n   └── 📜 領収書 (Biên lai chính thức có ghi tên công ty宛名, dùng để công ty thanh toán lại tiền chi phí)",
+      "diagram_caption": "Khi đi tiếp khách hoặc mua sắm công vụ, nhân viên luôn nói: 'Xin cho tôi hóa đơn đỏ' (領収書をください)",
+      "mnemonic": "LÃNH (領 - nhận lấy) + THU (収 - thu tiền) + THƯ (書 - giấy tờ). Giấy chứng nhận đã nhận tiền.",
+      "collocations": [
+        {
+          "ja": "領収書を発行する",
+          "furigana": "りょうしゅうしょをはっこうする",
+          "vn": "Xuất biên lai thanh toán"
+        },
+        {
+          "ja": "領収書の宛名",
+          "furigana": "りょうしゅうしょのあてな",
+          "vn": "Tên người/tên công ty đứng tên trên hóa đơn"
+        }
+      ],
+      "example": {
+        "sentence": "会社[かいしゃ]の経費[けいひ]で落[お]とすため、店員[てんいん]に領収書[りょうしゅうしょ]を求[もと]めた。",
+        "translation": "Để tính vào chi phí công ty, tôi đã yêu cầu nhân viên xuất hóa đơn biên lai."
+      }
+    },
+    {
+      "id": 6,
+      "slide_number": 6,
+      "word": "返品・交換",
+      "furigana": "へんぴん・こうかん",
+      "romaji": "hempin / koukan",
+      "han_viet": "PHẢN PHẨM / GIAO HOÁN",
+      "meaning_vn": "Trả lại hàng lấy lại tiền / Đổi lấy món khác cùng loại",
+      "word_type": "Danh từ / Động từ nhóm 3",
+      "tag": "Chính sách mua hàng",
+      "visual_diagram": "   📦 HÀNG HÓA CÓ VẤN ĐỀ (Bị rách, sai size):\n   ├── ↩️ 返品 (Phản phẩm - Trả đồ lại cho cửa hàng và nhận lại tiền)\n   └── 🔄 交換 (Giao hoán - Đổi lấy một sản phẩm mới tinh khác)",
+      "diagram_caption": "Tại Nhật, muốn đổi trả đồ bắt buộc phải còn nguyên tem mác (タグ) và hóa đơn (レシート)",
+      "mnemonic": "PHẢN (返 - trả lại) + PHẨM (品 - món đồ). GIAO (交 - giao lưu) + HOÁN (換 - thay đổi).",
+      "collocations": [
+        {
+          "ja": "返品を受け付ける",
+          "furigana": "へんぴんをうけつける",
+          "vn": "Chấp nhận cho trả lại hàng"
+        },
+        {
+          "ja": "初期不良による交換",
+          "furigana": "しょきふりょうによるこうかん",
+          "vn": "Đổi sản phẩm do lỗi từ nhà sản xuất"
+        }
+      ],
+      "example": {
+        "sentence": "服[ふく]のサイズが合[あ]わなかったので、レシートを持[も]って店[みせ]で交換[こうかん]してもらった。",
+        "translation": "Vì kích cỡ quần áo không vừa nên tôi đã cầm theo hóa đơn đến cửa hàng xin đổi sản phẩm."
+      }
+    },
+    {
+      "id": 7,
+      "slide_number": 7,
+      "word": "送料無料",
+      "furigana": "そうりょうむりょう",
+      "romaji": "souryou muryou",
+      "han_viet": "TỐNG LIỆU VÔ LIỆU",
+      "meaning_vn": "Miễn phí vận chuyển (Freeship)",
+      "word_type": "Cụm từ",
+      "tag": "Khuyến mãi",
+      "visual_diagram": "   🚚 送料 (Cước vận chuyển: Thường 500円 - 1000円/lần)\n       │\n       └── 🎉 送料無料: Mua đơn hàng trên 3,000円 ──▶ Phí ship = 0円!",
+      "diagram_caption": "Chiêu kích cầu mua sắm kinh điển của các trang thương mại điện tử",
+      "mnemonic": "TỐNG LIỆU (送料 - cước phí gửi đi) + VÔ LIỆU (無料 - không mất tiền).",
+      "collocations": [
+        {
+          "ja": "送料無料キャンペーン",
+          "furigana": "そうりょうむりょうキャンペーン",
+          "vn": "Chương trình khuyến mãi miễn phí ship"
+        },
+        {
+          "ja": "全国一律送料無料",
+          "furigana": "ぜんこくいちりつそうりょうむりょう",
+          "vn": "Miễn phí ship đồng giá toàn quốc"
+        }
+      ],
+      "example": {
+        "sentence": "三千円[さんぜんえん]以上[いじょう]買[か]い物[もの]をすると、送料[そうりょう]無料[むりょう]になる。",
+        "translation": "Nếu mua sắm đơn hàng từ 3,000 yên trở lên sẽ được miễn phí vận chuyển."
+      }
+    },
+    {
+      "id": 8,
+      "slide_number": 8,
+      "word": "決済",
+      "furigana": "けっさい",
+      "romaji": "kessai",
+      "han_viet": "QUYẾT TẾ",
+      "meaning_vn": "Thanh toán giao dịch tài chính",
+      "word_type": "Danh từ / Động từ nhóm 3",
+      "tag": "Thanh toán số",
+      "visual_diagram": "   💳 CÁC HÌNH THỨC THANH TOÁN (決済方法):\n   ├── 💳 クレジットカード決済 (Thanh toán qua thẻ tín dụng Visa/JCB)\n   ├── 📱 キャッシュレス決済 (Thanh toán không tiền mặt: PayPay, Suica)\n   ├── 🏪 コンビニ決済 (Thanh toán tại quầy cửa hàng tiện lợi)\n   └── 💵 代金引換 (COD - Giao hàng trả tiền mặt cho shipper)",
+      "diagram_caption": "Thị trường thanh toán không tiền mặt (Cashless) đang bùng nổ mạnh mẽ tại Nhật",
+      "mnemonic": "QUYẾT (決 - quyết định) + TẾ (済 - hoàn tất xong xuôi). Hoàn tất thanh toán dứt điểm giao dịch.",
+      "collocations": [
+        {
+          "ja": "クレジットカードで決済する",
+          "furigana": "クレジットカードでけっさいする",
+          "vn": "Thanh toán bằng thẻ tín dụng"
+        },
+        {
+          "ja": "キャッシュレス決済",
+          "furigana": "キャッシュレスけっさい",
+          "vn": "Thanh toán không dùng tiền mặt"
+        }
+      ],
+      "example": {
+        "sentence": "スマホアプリを使[つか]えば、指先[ゆびさき]一[ひと]つで簡単[かんたん]に決済[けっさい]が完了[かんりょう]する。",
+        "translation": "Chỉ cần dùng ứng dụng điện thoại là có thể hoàn tất thanh toán dễ dàng trong tích tắc."
+      }
+    },
+    {
+      "id": 9,
+      "slide_number": 9,
+      "word": "配送状況",
+      "furigana": "はいそうじょうきょう",
+      "romaji": "haisou joukyou",
+      "han_viet": "PHỐI TỐNG TRẠNG HUỐNG",
+      "meaning_vn": "Tình trạng vận chuyển đơn hàng (tracking)",
+      "word_type": "Danh từ",
+      "tag": "Theo dõi đơn hàng",
+      "visual_diagram": "   📦 THEO DÕI HÀNH TRÌNH ĐƠN HÀNG:\n   [Xuất kho 🏭] ──▶ [Đang vận chuyển 🚚] ──▶ [Đang đi giao 🏃‍♂️] ──▶ [Đã nhận hàng 🏠]",
+      "diagram_caption": "Nhập mã vận đơn (お問合せ番号) lên web để xem kiện hàng đang nằm ở bưu cục nào",
+      "mnemonic": "PHỐI TỐNG (配送 - vận chuyển phân phát) + TRẠNG HUỐNG (状況 - tình hình, trạng thái).",
+      "collocations": [
+        {
+          "ja": "配送状況を確認する",
+          "furigana": "はいそうじょうきょうをかくにんする",
+          "vn": "Kiểm tra tiến độ đơn hàng"
+        },
+        {
+          "ja": "配送中",
+          "furigana": "はいそうちゅう",
+          "vn": "Hàng đang trên đường vận chuyển"
+        }
+      ],
+      "example": {
+        "sentence": "ネットで配送[はいそう]状況[じょうきょう]を追跡[ついせき]したら、今日[きょう]の午後[ごご]届[とど]く予定[よてい]だった。",
+        "translation": "Kiểm tra theo dõi tình trạng vận chuyển trên mạng, đơn hàng dự kiến sẽ đến vào chiều nay."
+      }
+    },
+    {
+      "id": 10,
+      "slide_number": 10,
+      "word": "品切れ",
+      "furigana": "しなぎれ",
+      "romaji": "shinagire",
+      "han_viet": "PHẨM THIẾT",
+      "meaning_vn": "Hết hàng, cháy hàng tạm thời",
+      "word_type": "Danh từ",
+      "tag": "Trạng thái kho",
+      "visual_diagram": "   🏷️ TRẠNG THÁI MUA HÀNG TRÊN MẠNG:\n   ├── ⭕ 在庫あり (ざいこあり - Còn hàng trong kho)\n   ├── ⚠️ 残りわずか (Chỉ còn lại vài cái cuối cùng)\n   └── ❌ 品切れ中 / 完売 (Hết hàng tạm thời / Bán sạch bách)",
+      "diagram_caption": "Khi hết hàng, bạn có thể đăng ký nhận thông báo khi có hàng lại (再入荷通知)",
+      "mnemonic": "PHẨM (品 - hàng phẩm) + THIẾT (切 - đứt đoạn, hết sạch). Hàng hóa đã đứt đoạn hết sạch trong kho.",
+      "collocations": [
+        {
+          "ja": "大人気で品切れになる",
+          "furigana": "だいにんきでしなぎれになる",
+          "vn": "Vì quá hot nên cháy hàng"
+        },
+        {
+          "ja": "品切れのお詫び",
+          "furigana": "しなぎれのおわび",
+          "vn": "Thư xin lỗi vì hết hàng"
+        }
+      ],
+      "example": {
+        "sentence": "買[か]おうと思[おも]っていた限定[げんてい]スニーカーは、残念[ざんねん]ながら品切[しなぎ]れだった。",
+        "translation": "Đôi giày sneaker bản giới hạn tôi định mua rất tiếc là đã hết hàng."
+      }
+    }
+  ]
+}

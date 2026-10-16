@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { PlusCircle, LogIn, LogOut, Menu, X, Layers, Sparkles } from 'lucide-react';
+import { PlusCircle, LogIn, LogOut, Menu, X, Layers, Sparkles, BookOpen } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 
 export const Navbar: React.FC = () => {
@@ -44,6 +44,18 @@ export const Navbar: React.FC = () => {
           >
             <Sparkles className="w-3.5 h-3.5 text-emerald-600" />
             <span>Flashcard Kanji N3</span>
+          </Link>
+
+          <Link
+            to="/vocab-slides"
+            className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-sm font-medium transition-colors ${
+              location.pathname.startsWith('/vocab-slides')
+                ? 'bg-indigo-50 text-indigo-800 font-semibold'
+                : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
+            }`}
+          >
+            <BookOpen className="w-3.5 h-3.5 text-indigo-600" />
+            <span>Slide Từ Vựng N3</span>
           </Link>
 
           {/* Admin / Quản lý link if logged in */}
@@ -154,6 +166,15 @@ export const Navbar: React.FC = () => {
           >
             <Sparkles className="w-4 h-4 text-emerald-600" />
             <span>Flashcard 370 Kanji N3</span>
+          </Link>
+
+          <Link
+            to="/vocab-slides"
+            onClick={() => setMobileMenuOpen(false)}
+            className="flex items-center gap-2 py-2 text-sm font-medium text-indigo-800"
+          >
+            <BookOpen className="w-4 h-4 text-indigo-600" />
+            <span>Slide 20 Chủ Đề Từ Vựng N3</span>
           </Link>
 
           {user ? (

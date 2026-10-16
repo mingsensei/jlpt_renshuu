@@ -1,0 +1,309 @@
+{
+  "topic_id": "topic_20_quan_ly_thoi_gian",
+  "title": "Chủ đề 20: Quản lý thời gian & Lập kế hoạch",
+  "japanese_title": "時間管理・スケジュール・計画性の語彙",
+  "description": "Kỹ năng quản lý thời gian đỉnh cao của người Nhật: sắp xếp thứ tự ưu tiên, loại bỏ trì hoãn và hoàn thành mục tiêu.",
+  "level": "N3",
+  "slides": [
+    {
+      "id": 1,
+      "slide_number": 1,
+      "word": "優先順位",
+      "furigana": "ゆうせんじゅんい",
+      "romaji": "yuusenjun'i",
+      "han_viet": "ƯU TIÊN THUẬN VỊ",
+      "meaning_vn": "Thứ tự ưu tiên (việc quan trọng khẩn cấp làm trước)",
+      "word_type": "Danh từ",
+      "tag": "Kỹ năng công việc",
+      "visual_diagram": "   📊 MA TRẬN QUẢN LÝ THỜI GIAN EISENHOWER:\n   ├── 1. 🚨 Quan trọng & Khẩn cấp ──▶ LÀM NGAY LẬP TỨC (Deadline hôm nay, sự cố sập web)\n   ├── 2. 🌟 Quan trọng & Không khẩn ──▶ LÊN LỊCH LÀM ĐỀU ĐẶN (Học N3, rèn luyện sức khỏe)\n   ├── 3. ⚡ Không quan trọng & Khẩn ──▶ Nhờ người khác ủy thác\n   └── 4. 🗑️ Không quan trọng & Không khẩn ──▶ VỨT BỎ (Lướt mạng vô bổ)",
+      "diagram_caption": "Bí quyết giúp người bận rộn xử lý khối lượng công việc khổng lồ mà không bị quá tải",
+      "mnemonic": "ƯU TIÊN (優先 - xếp lên trước) + THUẬN VỊ (順位 - thứ tự xếp hạng). Thứ bậc xếp theo mức độ ưu tiên.",
+      "collocations": [
+        {
+          "ja": "優先順位をつける / 決める",
+          "furigana": "ゆうせんじゅんいをつける / きめる",
+          "vn": "Xác định thứ tự việc nào làm trước việc nào sau"
+        },
+        {
+          "ja": "優先順位が高い仕事",
+          "furigana": "ゆうせんじゅんいがたかいしごと",
+          "vn": "Công việc có độ ưu tiên hàng đầu"
+        }
+      ],
+      "example": {
+        "sentence": "タスクに優先[ゆうせん]順位[じゅんい]をつけて、最も重要[じゅうよう]な仕事[しごと]から順[じゅん]に着手[ちゃくしゅ]する。",
+        "translation": "Đặt thứ tự ưu tiên cho các nhiệm vụ và bắt tay thực hiện lần lượt từ công việc quan trọng nhất."
+      }
+    },
+    {
+      "id": 2,
+      "slide_number": 2,
+      "word": "効率",
+      "furigana": "こうりつ",
+      "romaji": "kouritsu",
+      "han_viet": "HIỆU SUẤT",
+      "meaning_vn": "Hiệu suất, hiệu quả (tốn ít thời gian công sức mà kết quả tối đa)",
+      "word_type": "Danh từ",
+      "tag": "Năng suất",
+      "visual_diagram": "   ⏱️ CÙNG 1 MỤC TIÊU (Học 20 từ vựng N3):\n   ├── ❌ 効率が悪い (Kém hiệu quả): Ngồi chép phạt từ 3 tiếng, vừa học vừa xem Youtube\n   └── ⭕ 効率が良い (Hiệu quả cao): Học bằng slide hình ảnh trực quan 20 phút là thuộc lòng!",
+      "diagram_caption": "Người Nhật luôn tìm cách cải tiến quy trình để nâng cao tối đa hiệu suất 効率化",
+      "mnemonic": "HIỆU (効 - hiệu quả công hiệu) + SUẤT (率 - tỷ lệ). Tỷ lệ sinh ra công hiệu trên mỗi giờ bỏ ra.",
+      "collocations": [
+        {
+          "ja": "効率よく勉強する",
+          "furigana": "こうりつよくべんきょうする",
+          "vn": "Học tập một cách đầy hiệu suất thông minh"
+        },
+        {
+          "ja": "業務効率化",
+          "furigana": "ぎょうむこうりつか",
+          "vn": "Nâng cao hiệu suất hóa quy trình nghiệp vụ"
+        }
+      ],
+      "example": {
+        "sentence": "パソコンのショートカットキーを覚[おぼ]えると、作業[さぎょう]効率[こうりつ]が格段[かくだん]にアップする。",
+        "translation": "Khi ghi nhớ các phím tắt máy tính, hiệu suất làm việc sẽ tăng lên một cách vượt bậc."
+      }
+    },
+    {
+      "id": 3,
+      "slide_number": 3,
+      "word": "スケジュール",
+      "furigana": "スケジュール",
+      "romaji": "sukejuuru",
+      "han_viet": "LỊCH TRÌNH",
+      "meaning_vn": "Lịch trình, thời gian biểu công việc",
+      "word_type": "Danh từ",
+      "tag": "Thời gian biểu",
+      "visual_diagram": "   📓 CUỐN SỔ TAY LỊCH TRÌNH CỦA NGƯỜI NHẬT (手帳 - Techou):\n   ├── 📅 Khung giờ chia chi tiết từ 07:00 sáng đến 22:00 tối\n   ├── Ghi rõ địa điểm gặp đối tác và thời gian bắt tàu điện\n   └── Luôn trừ hao 15 phút đi sớm phòng tắc tàu",
+      "diagram_caption": "Bắt nguồn từ tiếng Anh Schedule",
+      "mnemonic": "Từ mượn Schedule (thời gian biểu kế hoạch).",
+      "collocations": [
+        {
+          "ja": "スケジュールを管理する",
+          "furigana": "スケジュールをかんりする",
+          "vn": "Quản lý lịch trình khoa học"
+        },
+        {
+          "ja": "スケジュールが過密だ",
+          "furigana": "スケジュールがかみつだ",
+          "vn": "Lịch trình dày đặc kín mít không có kẽ hở"
+        }
+      ],
+      "example": {
+        "sentence": "カレンダーアプリに予定[よてい]を入[い]れて、日々[ひび]のスケジュールをしっかり管理[かんり]している。",
+        "translation": "Tôi nhập dự định vào ứng dụng lịch để quản lý chặt chẽ lịch trình mỗi ngày."
+      }
+    },
+    {
+      "id": 4,
+      "slide_number": 4,
+      "word": "目標設定",
+      "furigana": "もくひょうせってい",
+      "romaji": "mokuhyou settei",
+      "han_viet": "MỤC TIÊU THIẾT ĐỊNH",
+      "meaning_vn": "Thiết lập mục tiêu cụ thể rõ ràng",
+      "word_type": "Danh từ / Động từ nhóm 3",
+      "tag": "Chiến lược",
+      "visual_diagram": "   🎯 NGUYÊN TẮC THIẾT LẬP MỤC TIÊU SMART:\n   ├── ❌ Mục tiêu mơ hồ: 'Tôi muốn giỏi tiếng Nhật'\n   └── ⭕ Mục tiêu rõ ràng: 'Đạt 130 điểm JLPT N3 vào kỳ thi tháng 7 tới, mỗi ngày học 20 từ vựng và 2 bài đọc!'",
+      "diagram_caption": "Có đích đến rõ ràng là ngọn hải đăng soi sáng cho mọi nỗ lực hàng ngày",
+      "mnemonic": "MỤC TIÊU (目標 - đích ngắm) + THIẾT ĐỊNH (設定 - dựng đặt). Dựng lên cái đích ngắm cụ thể để bắn trúng.",
+      "collocations": [
+        {
+          "ja": "明確な目標設定",
+          "furigana": "めいかくなもくひょうせってい",
+          "vn": "Thiết lập mục tiêu rõ ràng rành mạch"
+        },
+        {
+          "ja": "高い目標を掲げる",
+          "furigana": "たかいもくひょうをかかげる",
+          "vn": "Đề ra mục tiêu cao lớn đầy thử thách"
+        }
+      ],
+      "example": {
+        "sentence": "適切[てきせつ]な目標[もくひょう]設定[せってい]をすることが、モチベーションを保[たも]ち続[つづ]ける秘訣[ひけつ]だ。",
+        "translation": "Thiết lập mục tiêu phù hợp chính là bí quyết để duy trì động lực bền bỉ mỗi ngày."
+      }
+    },
+    {
+      "id": 5,
+      "slide_number": 5,
+      "word": "計画",
+      "furigana": "けいかく",
+      "romaji": "keikaku",
+      "han_viet": "KẾ HOẠCH",
+      "meaning_vn": "Kế hoạch từng bước thực hiện",
+      "word_type": "Danh từ / Động từ nhóm 3",
+      "tag": "Lộ trình",
+      "visual_diagram": "   🗺️ VÒNG LẶP PDCA NỔI TIẾNG:\n   1. 📝 Plan (計画 - Lập kế hoạch chi tiết)\n   2. 🏃 Do (実行 - Bắt tay vào hành động)\n   3. 🔍 Check (評価 - Đo lường kiểm tra kết quả)\n   4. 🚀 Action (改善 - Điều chỉnh cải tiến tốt hơn)",
+      "diagram_caption": "Kế hoạch không nằm trên giấy mà là kim chỉ nam cho hành động thực tế",
+      "mnemonic": "KẾ (計 - tính toán cân đo) + HOẠCH (画 - vẽ ra bức tranh). Cân đo tính toán vẽ ra lộ trình.",
+      "collocations": [
+        {
+          "ja": "計画を立てる",
+          "furigana": "けいかくをたてる",
+          "vn": "Lên kế hoạch lộ trình"
+        },
+        {
+          "ja": "計画通りに進む",
+          "furigana": "けいかくどおりにすすむ",
+          "vn": "Tiến triển đúng y hệt theo kế hoạch"
+        }
+      ],
+      "example": {
+        "sentence": "無理[むり]のない学習[がくしゅう]計画[けいかく]を立[た]てて、毎日[まいにち]コツコツと勉強[べんきょう]を重[かさ]ねる。",
+        "translation": "Lên một kế hoạch học tập hợp lý vừa sức và tích lũy học tập đều đặn mỗi ngày."
+      }
+    },
+    {
+      "id": 6,
+      "slide_number": 6,
+      "word": "先延ばし",
+      "furigana": "さきのばし",
+      "romaji": "sakinobashi",
+      "han_viet": "TIÊN DUYÊN",
+      "meaning_vn": "Thói quen trì hoãn, dời việc hôm nay lại ngày mai",
+      "word_type": "Danh từ / Động từ nhóm 3",
+      "tag": "Kẻ thù thời gian",
+      "visual_diagram": "   😈 THÓI TRÌ HOÃN (先延ばしの罠):\n   ├── Hôm nay: 'Thôi mệt quá để mai làm...'\n   ├── Ngày mai: 'Hôm nay bận quá để cuối tuần làm...'\n   └── Đến sát deadline: Cuống cuồng thức trắng đêm, làm ẩu, kết quả tồi tệ!",
+      "diagram_caption": "Kẻ cắp thời gian lớn nhất của con người. Quy tắc 5 giây: Đếm 5-4-3-2-1 là bật dậy làm ngay",
+      "mnemonic": "TIÊN (先 - phía trước sau này) + DUYÊN (延ばし - kéo dài ra). Kéo dài việc dời về phía tương lai.",
+      "collocations": [
+        {
+          "ja": "仕事を先延ばしにする",
+          "furigana": "しごとをさきのばしにする",
+          "vn": "Trì hoãn công việc lùi lại sau"
+        },
+        {
+          "ja": "先延ばし癖を直す",
+          "furigana": "さきのばしぐせをなおす",
+          "vn": "Sửa tật xấu hay trì hoãn công việc"
+        }
+      ],
+      "example": {
+        "sentence": "面倒[めんどう]な課題[かだい]を先延[さきの]ばしにしていると、後[あと]で自分[じぶん]が苦[くる]しむことになる。",
+        "translation": "Nếu cứ trì hoãn những bài tập phiền phức thì sau này chính bản thân mình sẽ phải chịu khổ sở."
+      }
+    },
+    {
+      "id": 7,
+      "slide_number": 7,
+      "word": "時間配分",
+      "furigana": "じかんはいぶん",
+      "romaji": "jikan haibun",
+      "han_viet": "THỜI GIAN PHỐI PHÂN",
+      "meaning_vn": "Phân bổ thời gian hợp lý (trong phòng thi JLPT)",
+      "word_type": "Danh từ",
+      "tag": "Kỹ năng làm bài thi",
+      "visual_diagram": "   ⏱️ CHIẾN LƯỢC PHÂN BỔ THỜI GIAN PHẦN THI ĐỌC HIỂU N3 (70 phút):\n   ├── 📄 Đoản văn 短文 (4 bài): 12 phút (3 phút/bài)\n   ├── 📑 Trung văn 中文 (2 bài): 18 phút (9 phút/bài)\n   ├── 📜 Trường văn 長文 (1 bài): 12 phút\n   ├── 🔍 Tìm kiếm thông tin 情報検索: 8 phút\n   └── ⏱️ Thời gian dư soát lại đáp án: 10 phút",
+      "diagram_caption": "Phân bổ thời gian chuẩn xác quyết định 50% khả năng đỗ trượt trong phòng thi",
+      "mnemonic": "THỜI GIAN + PHỐI (配 - phân chia) + PHÂN (分 - chia nhỏ). Chia nhỏ quỹ thời gian cho từng phần.",
+      "collocations": [
+        {
+          "ja": "試験の時間配分に気をつける",
+          "furigana": "しけんのじかんはいぶんにきをつける",
+          "vn": "Chú ý phân bổ thời gian hợp lý khi làm bài thi"
+        },
+        {
+          "ja": "適切な時間配分",
+          "furigana": "てきせつなじかんはいぶん",
+          "vn": "Sự phân chia thời gian thỏa đáng"
+        }
+      ],
+      "example": {
+        "sentence": "読解[どっかい]の試験[しけん]では、時間[じかん]配分[はいぶん]を誤[あやま]ると最後[さいご]の問題[もんだい]まで解[と]き切[き]れなくなる。",
+        "translation": "Trong bài thi đọc hiểu, nếu phân bổ thời gian sai lầm thì sẽ không kịp làm hết đến câu hỏi cuối cùng."
+      }
+    },
+    {
+      "id": 8,
+      "slide_number": 8,
+      "word": "余裕",
+      "furigana": "よゆう",
+      "romaji": "yoyuu",
+      "han_viet": "DƯ DỤ",
+      "meaning_vn": "Khoảng dư dả thong dong (thời gian, tiền bạc, tâm lý)",
+      "word_type": "Danh từ",
+      "tag": "Tâm lý thoải mái",
+      "visual_diagram": "   ⏱️ ĐI ĐẾN ĐIỂM HẸN:\n   ├── 🏃 Sát giờ mới đi: Tàu chỉ cần chậm 2 phút là trễ hẹn, tim đập thình thịch\n   └── 🚶 Xuất phát sớm 15 phút ──▶ 余裕を持つ (Có thời gian dư dả, tâm lý ung dung bình tĩnh)",
+      "diagram_caption": "Nguyên tắc '5分前行動' (Đến trước 5 phút) là chuẩn mực lịch sự tối thiểu của xã hội Nhật",
+      "mnemonic": "DƯ (余 - dư dả) + DỤ (裕 - rộng rãi thong dong). Trạng thái rộng rãi dư dả không bị gò bó.",
+      "collocations": [
+        {
+          "ja": "時間に余裕を持つ",
+          "furigana": "じかんによゆうをもつ",
+          "vn": "Dành ra khoảng thời gian dư dả thong dong"
+        },
+        {
+          "ja": "心に余裕がない",
+          "furigana": "こころによゆうがない",
+          "vn": "Tâm trí rối bời không còn chỗ trống để thảnh thơi"
+        }
+      ],
+      "example": {
+        "sentence": "電車[でんしゃ]の遅延[ちえん]があっても焦[あせ]らないように、余裕[よゆう]を持[も]って家[いえ]を出[で]る。",
+        "translation": "Để không bị cuống dù tàu điện có bị chậm chuyến, tôi luôn ra khỏi nhà với thời gian dư dả."
+      }
+    },
+    {
+      "id": 9,
+      "slide_number": 9,
+      "word": "達成",
+      "furigana": "たっせい",
+      "romaji": "tassei",
+      "han_viet": "ĐẠT THÀNH",
+      "meaning_vn": "Hoàn thành đạt được mục tiêu thành quả đề ra",
+      "word_type": "Danh từ / Động từ nhóm 3",
+      "tag": "Thành công",
+      "visual_diagram": "   🎯 目標: ĐỖ KỲ THI JLPT N3 ──▶ 📚 6 tháng kiên trì học tập mỗi ngày\n        │\n        └── 🏆 達成 (ĐẠT THÀNH VANG DỘI! 🎉):\n            ├── Cảm giác tự hào và tự tin vào chính mình\n            └── Bước đệm vững chắc mở ra cơ hội công việc mức lương cao",
+      "diagram_caption": "Cảm giác sung sướng tột cùng khi hái được quả ngọt sau những chuỗi ngày nỗ lực",
+      "mnemonic": "ĐẠT (達 - đi đến nơi) + THÀNH (成 - thành công trọn vẹn). Đi đến đích và thành công trọn vẹn.",
+      "collocations": [
+        {
+          "ja": "目標を達成する",
+          "furigana": "もくひょうをたっせいする",
+          "vn": "Đạt được mục tiêu đã đề ra"
+        },
+        {
+          "ja": "達成感を味わう",
+          "furigana": "たっせいかんをあじわう",
+          "vn": "Tận hưởng cảm giác thành tựu thỏa mãn"
+        }
+      ],
+      "example": {
+        "sentence": "毎日[まいにち]の地道[じみち]な努力[どりょく]が実[み]を結[むす]び、JLPT N3合格[ごうかく]の目標[もくひょう]を見事[みごと]に達成[たっせい]した。",
+        "translation": "Những nỗ lực bền bỉ mỗi ngày đã đơm hoa kết trái, tôi đã xuất sắc đạt được mục tiêu đỗ JLPT N3."
+      }
+    },
+    {
+      "id": 10,
+      "slide_number": 10,
+      "word": "振り返り",
+      "furigana": "ふりかえり",
+      "romaji": "furikaeri",
+      "han_viet": "CHẤN PHẢN",
+      "meaning_vn": "Nhìn nhận đánh giá lại quá trình, rút kinh nghiệm",
+      "word_type": "Danh từ / Động từ nhóm 1",
+      "tag": "Tổng kết phát triển",
+      "visual_diagram": "   📅 TỔNG KẾT CUỐI TUẦN (振り返り):\n   ├── ⭕ Những việc đã làm tốt: Duy trì học 2 tiếng/ngày ──▶ Tiếp tục phát huy\n   ├── ⚠️ Những việc chưa tốt: Còn lướt điện thoại nhiều sau 22h ──▶ Cần khắc phục\n   └── 🚀 Lên mục tiêu tuần tiếp theo tiến bộ hơn",
+      "diagram_caption": "Học tập không chỉ là cắm đầu chạy, mà cần biết dừng lại nhìn lại để đi đúng hướng hơn",
+      "mnemonic": "CHẤN (振 - ngoảnh lại) + PHẢN (返 - quay đầu). Ngoảnh đầu nhìn lại chặng đường đã qua.",
+      "collocations": [
+        {
+          "ja": "過去の失敗を振り返る",
+          "furigana": "かこのしっぱいをふりかえる",
+          "vn": "Nhìn lại những thất bại trong quá khứ để rút kinh nghiệm"
+        },
+        {
+          "ja": "一週間の振り返りを行う",
+          "furigana": "いっしゅうかんのふりかえりをおこなう",
+          "vn": "Tiến hành tổng kết đánh giá lại một tuần vừa qua"
+        }
+      ],
+      "example": {
+        "sentence": "模擬[もぎ]試験[しけん]を受[う]けた後[あと]は、間違[まちが]えた問題[もんだい]をしっかり振[ふ]り返[かえ]ることが大切[たいせつ]だ。",
+        "translation": "Sau khi thi thử, việc xem lại kỹ lưỡng các câu làm sai để rút kinh nghiệm là vô cùng quan trọng."
+      }
+    }
+  ]
+}

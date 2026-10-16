@@ -1,0 +1,349 @@
+{
+  "topic_id": "topic_01_tim_phong_chuyen_nha",
+  "title": "Chủ đề 01: Tìm phòng & Thuê nhà",
+  "japanese_title": "部屋探し・賃貸・引っ越しの語彙",
+  "description": "Bộ từ vựng và sơ đồ slide trực quan về chi phí ban đầu, hợp đồng thuê nhà và chuyển dọn chỗ ở tại Nhật.",
+  "level": "N3",
+  "slides": [
+    {
+      "id": 1,
+      "slide_number": 1,
+      "word": "敷金",
+      "furigana": "しききん",
+      "romaji": "shikikin",
+      "han_viet": "PHU KIM",
+      "meaning_vn": "Tiền cọc thuê nhà (được hoàn lại phần dư)",
+      "word_type": "Danh từ",
+      "tag": "Chi phí thuê nhà",
+      "visual_diagram": "         🏠 不動産契約 (Hợp đồng thuê nhà)\n                   │\n       ┌───────────┴───────────┐\n       ▼                       ▼\n   💰 敷金 (しききん)         🎁 礼金 (れいきん)\n     (được hoàn lại)         (mất trắng)",
+      "diagram_caption": "Sơ đồ phân biệt 2 khoản phí ban đầu quan trọng nhất khi thuê nhà ở Nhật",
+      "mnemonic": "Chữ PHU (敷) là 'trải ra làm nền'. Tiền cọc lót nền đảm bảo cho chủ nhà, trừ chi phí sửa chữa còn dư sẽ nhận lại.",
+      "collocations": [
+        {
+          "ja": "敷金を納める",
+          "furigana": "しききんをおさめる",
+          "vn": "Nộp tiền đặt cọc"
+        },
+        {
+          "ja": "敷金の返還",
+          "furigana": "しききんのへんかん",
+          "vn": "Hoàn trả lại tiền cọc"
+        },
+        {
+          "ja": "敷金ゼロ物件",
+          "furigana": "しききんゼロぶっけん",
+          "vn": "Nhà thuê không cần cọc"
+        }
+      ],
+      "example": {
+        "sentence": "退去[たいきょ]の際[さい]、部屋[へや]を綺麗[きれい]に使[つか]っていれば敷金[しききん]が返[かえ]ってくる。",
+        "translation": "Khi trả phòng, nếu giữ gìn phòng sạch sẽ thì tiền cọc sẽ được hoàn trả lại."
+      }
+    },
+    {
+      "id": 2,
+      "slide_number": 2,
+      "word": "礼金",
+      "furigana": "れいきん",
+      "romaji": "reikin",
+      "han_viet": "LỄ KIM",
+      "meaning_vn": "Tiền lễ cảm ơn chủ nhà (mất trắng không hoàn lại)",
+      "word_type": "Danh từ",
+      "tag": "Chi phí thuê nhà",
+      "visual_diagram": "   🙋‍♂️ 入居者 (Người thuê) ──🎁 礼金──▶ 👨‍💼 大家さん (Chủ nhà)\n                    │\n                    └──▶ (❌ 原則戻らない - Không bao giờ trả lại)",
+      "diagram_caption": "Tiền lễ là khoản biếu tặng cảm ơn chủ nhà cho thuê, mất trắng 100%",
+      "mnemonic": "LỄ (礼) trong 'lễ nghĩa, quà cảm ơn'. Đã là quà biếu chủ nhà thì không có chuyện đòi lại.",
+      "collocations": [
+        {
+          "ja": "礼金を支払う",
+          "furigana": "れいきんをしはらう",
+          "vn": "Thanh toán tiền lễ"
+        },
+        {
+          "ja": "礼金なし",
+          "furigana": "れいきんなし",
+          "vn": "Miễn tiền lễ"
+        },
+        {
+          "ja": "家賃の1ヶ月分",
+          "furigana": "やちんのいっかげつぶん",
+          "vn": "Tương đương 1 tháng tiền nhà"
+        }
+      ],
+      "example": {
+        "sentence": "最近[さいきん]は若者[わかもの]向[む]けに礼金[れいきん]が不要[ふよう]な物件[ぶっけん]も増[ふ]えている。",
+        "translation": "Gần đây những căn nhà không cần tiền lễ dành cho giới trẻ cũng đang tăng lên."
+      }
+    },
+    {
+      "id": 3,
+      "slide_number": 3,
+      "word": "間取り",
+      "furigana": "まどり",
+      "romaji": "madori",
+      "han_viet": "GIAN THỦ",
+      "meaning_vn": "Sơ đồ bố cục phòng (1R, 1K, 1DK, 1LDK)",
+      "word_type": "Danh từ",
+      "tag": "Chọn phòng",
+      "visual_diagram": "   [1R]:  🚪──▶ [🛏️ Phòng ngủ + 🍳 Bếp chung 1 không gian]\n   [1K]:  🚪──▶ [🍳 Bếp] ──cửa ngăn──▶ [🛏️ Phòng ngủ]\n   [1DK]: 🚪──▶ [🍽️ Bếp + Bàn ăn] ──▶ [🛏️ Phòng ngủ]\n   [1LDK]:🚪──▶ [🛋️ Phòng khách + Bếp rộng] ──▶ [🛏️]",
+      "diagram_caption": "Sự khác biệt các ký hiệu sơ đồ nhà trọ Nhật Bản: R = Room, K = Kitchen, D = Dining, L = Living",
+      "mnemonic": "間 (gian - không gian, phòng) + 取り (thủ - sắp đặt, bố trí) = Cách bố trí mặt bằng căn nhà.",
+      "collocations": [
+        {
+          "ja": "間取り図を確認する",
+          "furigana": "まどりずをかくにんする",
+          "vn": "Kiểm tra bản vẽ sơ đồ phòng"
+        },
+        {
+          "ja": "一人暮らし向けの間取り",
+          "furigana": "ひとりぐらしむけのまどり",
+          "vn": "Bố cục phòng phù hợp sống một mình"
+        },
+        {
+          "ja": "南向きの間取り",
+          "furigana": "みなみむきのまどり",
+          "vn": "Phòng hướng nam đón nắng"
+        }
+      ],
+      "example": {
+        "sentence": "不動産[ふどうさん]のサイトで自分[じぶん]の希望[きぼう]に合[あ]った間取[まど]りを探[さが]す。",
+        "translation": "Tìm sơ đồ phòng phù hợp với nguyện vọng của mình trên trang web bất động sản."
+      }
+    },
+    {
+      "id": 4,
+      "slide_number": 4,
+      "word": "徒歩",
+      "furigana": "とほ",
+      "romaji": "toho",
+      "han_viet": "ĐỒ BỘ",
+      "meaning_vn": "Đi bộ (quy ước: 80m = 1 phút đi bộ)",
+      "word_type": "Danh từ",
+      "tag": "Vị trí & Đi lại",
+      "visual_diagram": "   🚉 最寄り駅 (Ga gần nhất)\n      │\n      │ 🚶 徒歩5分 (~400m - Rất gần, giá cao)\n      │ 🚶 徒歩15分 (~1.2km - Đi bộ xa, giá rẻ hơn)\n      ▼\n   🏠 我が家 (Nhà mình)",
+      "diagram_caption": "Quy chuẩn bất động sản Nhật: Cứ 80 mét đường bằng = 1 phút đi bộ",
+      "mnemonic": "ĐỒ (徒 - người đi bộ) + BỘ (歩 - bước chân) = Đi bộ bằng chính đôi chân mình.",
+      "collocations": [
+        {
+          "ja": "駅から徒歩10分",
+          "furigana": "えきからとほじゅっぷん",
+          "vn": "Đi bộ 10 phút từ nhà ga"
+        },
+        {
+          "ja": "徒歩圏内",
+          "furigana": "とほけんない",
+          "vn": "Trong phạm vi đi bộ được"
+        },
+        {
+          "ja": "徒歩で通う",
+          "furigana": "とほでかよう",
+          "vn": "Đi bộ đi làm/đi học hàng ngày"
+        }
+      ],
+      "example": {
+        "sentence": "最寄[もよ]り駅[えき]から徒歩[とほ]５分[ごふん]の近[ちか]い物件[ぶっけん]を選[えら]んだ。",
+        "translation": "Tôi đã chọn một căn nhà gần ga nhất, chỉ mất 5 phút đi bộ."
+      }
+    },
+    {
+      "id": 5,
+      "slide_number": 5,
+      "word": "家賃",
+      "furigana": "やちん",
+      "romaji": "yachin",
+      "han_viet": "GIA THẢM",
+      "meaning_vn": "Tiền thuê nhà hàng tháng",
+      "word_type": "Danh từ",
+      "tag": "Chi phí thuê nhà",
+      "visual_diagram": "   📅 毎月末 (Cuối mỗi tháng)\n      │\n      └──💸 家賃 (Tiền thuê nhà) ──▶ 🏦 口座引き落とし (Trừ tự động)\n      └──🏢 管理費 (Phí quản lý chung)",
+      "diagram_caption": "Tiền nhà thường đóng vào ngày 25 hoặc cuối tháng qua trừ tài khoản ngân hàng",
+      "mnemonic": "GIA (家 - ngôi nhà) + THẢM/TIỀN (賃 - tiền công, tiền thuê) = Tiền trả để ở trong nhà.",
+      "collocations": [
+        {
+          "ja": "家賃を滞納する",
+          "furigana": "やちんをたいのうする",
+          "vn": "Chậm / nợ tiền nhà (rất kỵ ở Nhật)"
+        },
+        {
+          "ja": "家賃相場",
+          "furigana": "やちんそうば",
+          "vn": "Mức giá thuê trung bình của khu vực"
+        },
+        {
+          "ja": "手頃な家賃",
+          "furigana": "てごろなやちん",
+          "vn": "Mức tiền nhà vừa túi tiền"
+        }
+      ],
+      "example": {
+        "sentence": "毎月[まいつき]の家賃[やちん]は給料[きゅうりょう]の三分[さんぶん]の一[いち]以内[いない]に抑[おさ]えるべきだ。",
+        "translation": "Tiền nhà hàng tháng nên kiềm chế trong mức 1/3 tiền lương."
+      }
+    },
+    {
+      "id": 6,
+      "slide_number": 6,
+      "word": "仲介手数料",
+      "furigana": "ちゅうかいてすうりょう",
+      "romaji": "chuukai tesuuryou",
+      "han_viet": "TRỌNG GIỚI THỦ SỐ LIỆU",
+      "meaning_vn": "Phí môi giới (trả cho công ty bất động sản)",
+      "word_type": "Danh từ",
+      "tag": "Chi phí thuê nhà",
+      "visual_diagram": "   🙋‍♂️ Người thuê ───🤝─── 👨‍💼 Chủ nhà\n              ▲\n              │ 💼 不動産会社 (Công ty môi giới)\n              └──💵 仲介手数料 (Thường = 0.5 ~ 1 tháng nhà)",
+      "diagram_caption": "Phí trung gian kết nối giữa người thuê và chủ nhà cho bên môi giới",
+      "mnemonic": "TRỌNG GIỚI (仲介 - làm mối, trung gian) + THỦ TỤC LIỆU (手数料 - tiền công hoa hồng).",
+      "collocations": [
+        {
+          "ja": "仲介手数料を払う",
+          "furigana": "ちゅうかいてすうりょうをはらう",
+          "vn": "Thanh toán phí môi giới"
+        },
+        {
+          "ja": "仲介手数料半額",
+          "furigana": "ちゅうかいてすうりょうはんがく",
+          "vn": "Giảm nửa giá phí môi giới"
+        }
+      ],
+      "example": {
+        "sentence": "仲介[ちゅうかい]手数料[てすうりょう]として、家賃[やちん]一[いち]ヶ月[かげつ]分[ぶん]を不動産[ふどうさん]に支払[しはら]った。",
+        "translation": "Tôi đã trả 1 tháng tiền nhà làm phí môi giới cho công ty bất động sản."
+      }
+    },
+    {
+      "id": 7,
+      "slide_number": 7,
+      "word": "契約",
+      "furigana": "けいやく",
+      "romaji": "keiyaku",
+      "han_viet": "KHẾ ƯỚC",
+      "meaning_vn": "Hợp đồng, ký kết thỏa thuận pháp lý",
+      "word_type": "Danh từ / Động từ nhóm 3",
+      "tag": "Thủ tục giấy tờ",
+      "visual_diagram": "   📄 賃貸契約書 (Hợp đồng thuê)\n   ├── ✍️ 署名 (Ký tên)\n   ├── 🔴 捺印 (Đóng dấu cá nhân)\n   └── ⏱️ 契約期間: 2年間 (Thời hạn hợp đồng 2 năm)",
+      "diagram_caption": "Hợp đồng thuê nhà ở Nhật có giá trị pháp lý cao, thường có thời hạn 2 năm",
+      "mnemonic": "KHẾ (契 - ràng buộc chặt chẽ) + ƯỚC (約 - ước hẹn, giao kèo) = Hợp đồng cam kết thực hiện.",
+      "collocations": [
+        {
+          "ja": "契約を結ぶ",
+          "furigana": "けいやくをむすぶ",
+          "vn": "Ký kết hợp đồng"
+        },
+        {
+          "ja": "契約を解除する / 解約",
+          "furigana": "けいやくをかいじょする / かいやく",
+          "vn": "Hủy bỏ / thanh lý hợp đồng"
+        },
+        {
+          "ja": "契約違反",
+          "furigana": "けいやくいはん",
+          "vn": "Vi phạm điều khoản hợp đồng"
+        }
+      ],
+      "example": {
+        "sentence": "契約書[けいやくしょ]の内容[ないよう]を隅々[すみずみ]までよく読[よ]んでからサインする。",
+        "translation": "Đọc kỹ từng điều khoản trong bản hợp đồng rồi mới ký tên."
+      }
+    },
+    {
+      "id": 8,
+      "slide_number": 8,
+      "word": "更新料",
+      "furigana": "こうしんりょう",
+      "romaji": "koushinryou",
+      "han_viet": "CANH TÂN LIỆU",
+      "meaning_vn": "Phí gia hạn hợp đồng (sau mỗi 2 năm)",
+      "word_type": "Danh từ",
+      "tag": "Chi phí thuê nhà",
+      "visual_diagram": "   📅 Hết hạn 2 năm ──▶ Bạn muốn ở tiếp?\n                        ├── Có: 💵 Đóng 更新料 (1 tháng nhà)\n                        └── Không: 📦 Dọn nhà (退去)",
+      "diagram_caption": "Đặc trưng ở Tokyo/vùng Kanto: Khi hợp đồng 2 năm kết thúc, phải đóng phí để gia hạn",
+      "mnemonic": "CANH TÂN (更新 - làm mới lại hợp đồng) + LIỆU (料 - tiền phí) = Phí tiếp tục gia hạn hợp đồng.",
+      "collocations": [
+        {
+          "ja": "契約を更新する",
+          "furigana": "けいやくをこうしんする",
+          "vn": "Gia hạn hợp đồng"
+        },
+        {
+          "ja": "更新料の請求",
+          "furigana": "こうしんりょうのせいきゅう",
+          "vn": "Giấy yêu cầu đóng tiền gia hạn"
+        }
+      ],
+      "example": {
+        "sentence": "二年[にねん]ごとに家賃[やちん]一[いち]ヶ月[かげつ]分[ぶん]の更新料[こうしんりょう]がかかる。",
+        "translation": "Cứ mỗi 2 năm lại tốn một khoản phí gia hạn bằng một tháng tiền nhà."
+      }
+    },
+    {
+      "id": 9,
+      "slide_number": 9,
+      "word": "退去",
+      "furigana": "たいきょ",
+      "romaji": "taikyo",
+      "han_viet": "THOÁI KHỨ",
+      "meaning_vn": "Rời đi, trả phòng, chấm dứt thuê",
+      "word_type": "Danh từ / Động từ nhóm 3",
+      "tag": "Chuyển nhà",
+      "visual_diagram": "   🏃‍♂️ 退去 (Trả phòng)  ◀─── đối lập ───▶  🧳 入居 (Dọn vào ở)\n            │\n            ├── 📢 Thông báo trước 1 tháng (退去予告)\n            ├── 🧹 Dọn phòng sạch sẽ (原状回復)\n            └── 🔑 Trả lại chìa khóa (鍵の返却)",
+      "diagram_caption": "Quy trình trả phòng: Phải báo trước ít nhất 1 tháng và cùng chủ nhà nghiệm thu",
+      "mnemonic": "THOÁI (退 - rút lui) + KHỨ (去 - rời đi) = Rời khỏi căn phòng chuyển sang nơi khác.",
+      "collocations": [
+        {
+          "ja": "退去の手続き",
+          "furigana": "たいきょのてつづき",
+          "vn": "Thủ tục trả phòng"
+        },
+        {
+          "ja": "退去費用",
+          "furigana": "たいきょひよう",
+          "vn": "Chi phí dọn dẹp sửa chữa khi trả phòng"
+        },
+        {
+          "ja": "期日までに退去する",
+          "furigana": "きじつまでにあるたいきょする",
+          "vn": "Rời đi trước thời hạn quy định"
+        }
+      ],
+      "example": {
+        "sentence": "アパートを退去[たいきょ]する際[さい]は、一[いち]ヶ月[かげつ]前[まえ]に連絡[れんらく]しなければならない。",
+        "translation": "Khi muốn trả phòng căn hộ, bắt buộc phải liên lạc thông báo trước một tháng."
+      }
+    },
+    {
+      "id": 10,
+      "slide_number": 10,
+      "word": "物件",
+      "furigana": "ぶっけん",
+      "romaji": "bukken",
+      "han_viet": "VẬT KIỆN",
+      "meaning_vn": "Căn phòng, bất động sản cần cho thuê hoặc bán",
+      "word_type": "Danh từ",
+      "tag": "Tìm nhà",
+      "visual_diagram": "   🏢 物件 (Căn hộ / Bất động sản)\n   ├── 🌟 優良物件 (Căn hộ xịn xò, giá tốt)\n   ├── 📉 築年数 (Số năm tuổi của tòa nhà: 築浅 vs 築古)\n   └── 📐 専有面積 (Diện tích sử dụng riêng tính theo m² hoặc 畳)",
+      "diagram_caption": "Từ chuyên môn ngành BĐS chỉ căn phòng, ngôi nhà được đưa ra thị trường",
+      "mnemonic": "VẬT (物 - đồ vật) + KIỆN (件 - sự việc, hồ sơ) = Món tài sản nhà đất được niêm yết.",
+      "collocations": [
+        {
+          "ja": "条件に合う物件",
+          "furigana": "じょうけんにあうぶっけん",
+          "vn": "Căn nhà phù hợp với các tiêu chí"
+        },
+        {
+          "ja": "物件を下見する / 内見",
+          "furigana": "ぶっけんをしたみする / ないけん",
+          "vn": "Đi xem trực tiếp căn phòng trước khi thuê"
+        },
+        {
+          "ja": "人気物件",
+          "furigana": "にんきぶっけん",
+          "vn": "Căn phòng hot nhiều người tranh thuê"
+        }
+      ],
+      "example": {
+        "sentence": "ネットの写真[しゃしん]だけでなく、実際[じっさい]に物件[ぶっけん]を見[み]に行[い]って決[き]める。",
+        "translation": "Không chỉ nhìn ảnh trên mạng mà nên trực tiếp đến xem tận mắt căn phòng rồi mới quyết định."
+      }
+    }
+  ]
+}

@@ -1,0 +1,309 @@
+{
+  "topic_id": "topic_19_qua_tang_omiyage",
+  "title": "Chủ đề 19: Quà tặng & Phong tục Omiyage",
+  "japanese_title": "お土産・贈り物・お中元・お歳暮の語彙",
+  "description": "Văn hóa biếu quà tinh tế của người Nhật: quà lưu niệm chuyến đi Omiyage, quà tri ân hè - đông và phong tục đáp lễ.",
+  "level": "N3",
+  "slides": [
+    {
+      "id": 1,
+      "slide_number": 1,
+      "word": "お土産",
+      "furigana": "おみやげ",
+      "romaji": "omiyage",
+      "han_viet": "THỔ SẢN",
+      "meaning_vn": "Quà lưu niệm đặc sản mua về chia cho mọi người sau chuyến đi",
+      "word_type": "Danh từ",
+      "tag": "Văn hóa quà biếu",
+      "visual_diagram": "   🧳 ĐI DU LỊCH VỀ ──▶ 🎁 Mua hộp bánh Omiyage đến văn phòng:\n   ├── 🍪 Hộp chia sẵn từng gói nhỏ riêng biệt (個包装 - Tiện chia từng bàn)\n   ├── 🙇‍♂️ Nói lời cảm ơn: 「お休みをいただきありがとうございました」(Cảm ơn mọi người đã gánh việc hộ trong lúc tôi nghỉ)\n   └── Đặt lên bàn phòng trà cho đồng nghiệp cùng ăn",
+      "diagram_caption": "Nét văn hóa giao tiếp công sở không thể thiếu: Đi chơi về phải luôn có quà bánh cho cả phòng",
+      "mnemonic": "THỔ (土 - đất đai vùng miền) + SẢN (産 - sản vật). Sản vật được làm ra từ chính vùng đất bạn ghé thăm.",
+      "collocations": [
+        {
+          "ja": "お土産を買う",
+          "furigana": "おみやげをかう",
+          "vn": "Mua quà lưu niệm đặc sản"
+        },
+        {
+          "ja": "お土産話",
+          "furigana": "おみやげばなし",
+          "vn": "Những câu chuyện trải nghiệm thú vị kể lại sau chuyến đi"
+        }
+      ],
+      "example": {
+        "sentence": "旅行[りょこう]から戻[もど]った翌日[よくじつ]、会社[かいしゃ]の同僚[どうりょう]にお土産[みやげ]のお菓子[かし]を配[くば]った。",
+        "translation": "Ngày hôm sau sau khi đi du lịch về, tôi đã phát bánh quà lưu niệm cho các đồng nghiệp trong công ty."
+      }
+    },
+    {
+      "id": 2,
+      "slide_number": 2,
+      "word": "お中元・お歳暮",
+      "furigana": "おちゅうげん・おせいぼ",
+      "romaji": "ochuugen / oseibo",
+      "han_viet": "TRUNG NGUYÊN / TUẾ MỘ",
+      "meaning_vn": "Quà tri ân giữa năm (Tháng 7) / Quà tri ân cuối năm (Tháng 12)",
+      "word_type": "Danh từ",
+      "tag": "Nghi lễ truyền thống",
+      "visual_diagram": "   📅 2 MÙA TẶNG QUÀ TRI ÂN LỚN NHẤT TRONG NĂM TẠI NHẬT:\n   ├── 🌻 お中元 (Tháng 7 mùa hè: Tặng bia lạnh, nước ép hoa quả, mì Somen giải nhiệt)\n   └── ❄️ お歳暮 (Tháng 12 cuối năm: Tặng giăm bông, thịt bò, hải sản cảm ơn vì cả năm đã giúp đỡ)",
+      "diagram_caption": "Gửi tới đối tác kinh doanh, thầy cô giáo cũ hoặc cấp trên để thắt chặt tình nghĩa",
+      "mnemonic": "TRUNG NGUYÊN (tháng 7 âm) vs TUẾ MỘ (tuế = năm, mộ = chiều tối cuối cùng -> cuối năm).",
+      "collocations": [
+        {
+          "ja": "お中元を贈る",
+          "furigana": "おちゅうげんをおくる",
+          "vn": "Gửi quà tặng tri ân mùa hè"
+        },
+        {
+          "ja": "お歳暮の品を選ぶ",
+          "furigana": "おせいぼのしなをえらぶ",
+          "vn": "Lựa chọn món quà tri ân cuối năm ở trung tâm thương mại"
+        }
+      ],
+      "example": {
+        "sentence": "日頃[ひごろ]お世話[せわ]になっている恩師[おんし]に、感謝[かんしゃ]の気持ちを込[こ]めてお歳暮[せいぼ]を贈[おく]った。",
+        "translation": "Tôi đã gửi quà tri ân cuối năm gói trọn tấm lòng biết ơn tới người thầy đã luôn giúp đỡ tôi thường ngày."
+      }
+    },
+    {
+      "id": 3,
+      "slide_number": 3,
+      "word": "熨斗",
+      "furigana": "のし",
+      "romaji": "noshi",
+      "han_viet": "ỦY",
+      "meaning_vn": "Giấy dán trang trí trang trọng bọc bên ngoài hộp quà biếu",
+      "word_type": "Danh từ",
+      "tag": "Quy tắc gói quà",
+      "visual_diagram": "   🎁 PHÂN BIỆT DÂY BUỘC NƠ TRÊN GIẤY NOSHI (水引 - Mizuhiki):\n   ├── 🎀 Nơ cánh bướm (蝶結び - Cởi ra buộc lại dễ dàng): Dùng cho chuyện vui lặp lại (Sinh con, đỗ đại học)\n   └── 🎗️ Nơ thắt nút chặt (結び切り - Không bao giờ cởi ra): Dùng cho chuyện chỉ xảy ra 1 lần (Đám cưới, viếng tang)",
+      "diagram_caption": "Bẫy văn hóa nghiêm trọng: Dùng sai loại nơ thắt trong đám cưới sẽ bị coi là trù ẻo ly hôn!",
+      "mnemonic": "Tờ giấy trắng in hình dây nơ màu đỏ-trắng trang trọng dán trên hộp quà.",
+      "collocations": [
+        {
+          "ja": "熨斗紙をつける",
+          "furigana": "のしがみをつける",
+          "vn": "Dán giấy gói quà trang trọng Noshi"
+        },
+        {
+          "ja": "外のし・内のし",
+          "furigana": "そとのし / うちのし",
+          "vn": "Dán giấy Noshi bên ngoài hay bên trong lớp bọc"
+        }
+      ],
+      "example": {
+        "sentence": "結婚[けっこん]祝[いわ]いのプレゼントには、結[むす]び切[き]りの水引[みずひき]が描[えが]かれた熨斗[のし]紙[がみ]を使[つか]う。",
+        "translation": "Đối với quà mừng đám cưới, người ta sử dụng giấy dán Noshi vẽ hình nơ thắt nút chặt không tháo rời."
+      }
+    },
+    {
+      "id": 4,
+      "slide_number": 4,
+      "word": "包装",
+      "furigana": "ほうそう",
+      "romaji": "housou",
+      "han_viet": "BAO TRANG",
+      "meaning_vn": "Bọc gói hàng hóa, giấy gói quà",
+      "word_type": "Danh từ / Động từ nhóm 3",
+      "tag": "Nghệ thuật gói quà",
+      "visual_diagram": "   🎁 NGHỆ THUẬT GÓI HÀNG TẠI NHẬT (包装):\n   ├── Nhân viên quầy bách hóa gói hộp quà vuông vức chỉ trong 30 giây\n   ├── Không để lộ bất kỳ nếp gấp nhăn nhúm hay mép băng dính thừa\n   └── 「プレゼント用にお願いします」(Làm ơn gói giúp tôi thành quà tặng ạ)",
+      "diagram_caption": "Người Nhật coi trọng lớp vỏ bọc bên ngoài chu đáo không kém gì giá trị món quà bên trong",
+      "mnemonic": "BAO (包 - bao bọc) + TRANG (装 - trang hoàng làm đẹp). Bọc gói trang hoàng đẹp mắt.",
+      "collocations": [
+        {
+          "ja": "きれいに包装する",
+          "furigana": "きれいにほうそうする",
+          "vn": "Bọc gói quà thật đẹp đẽ"
+        },
+        {
+          "ja": "過剰包装",
+          "furigana": "かじょうほうそう",
+          "vn": "Bọc gói quá mức nhiều tầng lớp (gây lãng phí rác)"
+        }
+      ],
+      "example": {
+        "sentence": "デパートの店員[てんいん]さんが、手際[てぎわ]よくプレゼントを美[うつく]しい紙[かみ]で包装[ほうそう]してくれた。",
+        "translation": "Nhân viên trung tâm thương mại đã nhanh thoăn thoắt bọc món quà bằng giấy gói tuyệt đẹp."
+      }
+    },
+    {
+      "id": 5,
+      "slide_number": 5,
+      "word": "お返し",
+      "furigana": "おかえし",
+      "romaji": "okaeshi",
+      "han_viet": "QUÀ ĐÁP LỄ",
+      "meaning_vn": "Quà tặng đáp lễ lại cho người đã tặng quà cho mình",
+      "word_type": "Danh từ",
+      "tag": "Có qua có lại",
+      "visual_diagram": "   🎁 Người khác tặng quà cho bạn\n        │\n        └── 🤝 BẮT BUỘC ĐÁP LỄ (お返し):\n            ├── Tặng lại món quà có giá trị bằng khoảng 1/3 đến 1/2 món quà nhận được\n            └── Ví dụ: Ngày Valentine Trắng 14/3 con trai tặng lại bánh kẹo cho con gái",
+      "diagram_caption": "Nguyên tắc 'Có qua có lại' (半返し) khắc sâu trong tâm thức người Nhật để không mắc nợ ai",
+      "mnemonic": "Từ động từ 返す (かえす - trả lại). Món quà gửi trả lại để cảm ơn.",
+      "collocations": [
+        {
+          "ja": "お返しを贈る",
+          "furigana": "おかえしをおくる",
+          "vn": "Gửi quà đáp lễ"
+        },
+        {
+          "ja": "お返しの品",
+          "furigana": "おかえしのしな",
+          "vn": "Món đồ chọn để đáp lễ"
+        }
+      ],
+      "example": {
+        "sentence": "出産[しゅっさん]祝[いわ]いをいただいた親戚[しんせき]に、感謝[かんしゃ]を込[こ]めて内祝[うちいわ]いのお返[かえ]しを送[おく]った。",
+        "translation": "Đối với họ hàng đã gửi quà mừng sinh con, tôi đã gửi quà đáp lễ tạ ơn chan chứa sự cảm kích."
+      }
+    },
+    {
+      "id": 6,
+      "slide_number": 6,
+      "word": "遠慮なく",
+      "furigana": "えんりょなく",
+      "romaji": "enryonaku",
+      "han_viet": "XIN ĐỪNG KHÁCH KHÍ",
+      "meaning_vn": "Xin đừng khách sáo, hãy nhận lấy và tự nhiên",
+      "word_type": "Trạng từ",
+      "tag": "Lời mời ấm áp",
+      "visual_diagram": "   🎁「ほんの気持ちですから、どうぞ遠慮なくお受け取りください」\n   (Chỉ là chút tấm lòng của tôi, xin anh/chị đừng khách sáo mà hãy vui lòng nhận lấy ạ)",
+      "diagram_caption": "Câu nói kinh điển của chủ nhà khi trao tặng quà để người nhận không bị ngại",
+      "mnemonic": "VIỄN LỰ (遠慮 - khách khí) + KHÔNG (なく - không có). Hoàn toàn không cần phải giữ kẽ ngại ngùng.",
+      "collocations": [
+        {
+          "ja": "遠慮なくいただく",
+          "furigana": "えんりょなくいただく",
+          "vn": "Xin phép nhận lấy mà không khách sáo"
+        },
+        {
+          "ja": "遠慮なくおっしゃってください",
+          "furigana": "えんりょなくおっしゃってください",
+          "vn": "Xin cứ thoải mái nói đừng ngại ngùng"
+        }
+      ],
+      "example": {
+        "sentence": "「好物[こうぶつ]のフルーツですから、どうぞ遠慮[えんりょ]なく召[め]し上[あ]がってください」",
+        "translation": "'Đây là món trái cây khoái khẩu nên xin mời bác cứ ăn tự nhiên đừng khách sáo ạ.'"
+      }
+    },
+    {
+      "id": 7,
+      "slide_number": 7,
+      "word": "気持ち",
+      "furigana": "きもち",
+      "romaji": "kimochi",
+      "han_viet": "KHÍ TRÌ",
+      "meaning_vn": "Tấm lòng thơm thảo, chút thành ý",
+      "word_type": "Danh từ",
+      "tag": "Ý nghĩa quà tặng",
+      "visual_diagram": "   🍵 CÂU NÓI KHI TRAO QUÀ CỦA NGƯỜI NHẬT:\n   ├── ❌ Không khoe: 'Món này đắt tiền lắm đấy!'\n   └── ⭕ Luôn khiêm tốn: 「ほんの気持ちですが...」(Chỉ là chút lòng thành của em thôi ạ...)",
+      "diagram_caption": "Trọng ở tấm lòng người tặng chứ không đặt nặng giá trị vật chất phô trương",
+      "mnemonic": "KHÍ (気 - tâm trí, tinh thần) + TRÌ (持 - gìn giữ). Cảm xúc tấm lòng gìn giữ trong tim gửi gắm qua món quà.",
+      "collocations": [
+        {
+          "ja": "ほんの気持ちですが",
+          "furigana": "ほんのきもちですが",
+          "vn": "Chỉ là chút tấm lòng mọn của tôi nhưng..."
+        },
+        {
+          "ja": "感謝の気持ちを伝える",
+          "furigana": "かんしゃのきもちをつたえる",
+          "vn": "Bày tỏ truyền tải tấm lòng biết ơn"
+        }
+      ],
+      "example": {
+        "sentence": "つまらないものですが、日頃[ひごろ]の感謝[かんしゃ]の気持ち[きもち]ですのでお受[う]け取[と]りください。",
+        "translation": "Dù chỉ là món đồ mọn không đáng là bao, nhưng đây là tấm lòng biết ơn thường ngày nên xin người nhận giúp."
+      }
+    },
+    {
+      "id": 8,
+      "slide_number": 8,
+      "word": "礼儀",
+      "furigana": "れいぎ",
+      "romaji": "reigi",
+      "han_viet": "LỄ NGHI",
+      "meaning_vn": "Lễ phép, phép tắc lịch sự trong đối nhân xử thế",
+      "word_type": "Danh từ",
+      "tag": "Quy tắc xã hội",
+      "visual_diagram": "   🙇‍♂️ PHÉP TẮC KHI NHẬN QUÀ TẠI NHẬT (礼儀作法):\n   ├── 🤲 Luôn dùng cả HAI TAY để nhận quà (両手で受け取る)\n   ├── 🚫 Không tự ý xé giấy gói mở quà ngay trước mặt người tặng (trừ khi họ yêu cầu mở)\n   └── 💬 Cúi đầu cảm ơn chân thành ngay tại chỗ và nhắn tin cảm ơn lại lần nữa khi về nhà",
+      "diagram_caption": "Tuân thủ phép tắc lễ nghi giúp tạo dựng sự tin tưởng và thiện cảm lâu bền",
+      "mnemonic": "LỄ (礼 - lễ nghĩa cung kính) + NGHI (儀 - nghi thức tác phong). Phép tắc nghi lễ đoan trang.",
+      "collocations": [
+        {
+          "ja": "礼儀正しい",
+          "furigana": "れいぎただしい",
+          "vn": "Cực kỳ lễ phép, chuẩn mực phép tắc"
+        },
+        {
+          "ja": "礼儀をわきまえる",
+          "furigana": "れいぎをわきまえる",
+          "vn": "Thấu hiểu và hành xử đúng mực lễ nghĩa"
+        }
+      ],
+      "example": {
+        "sentence": "目上[めうえ]の人[ひと]から物[もの]をいただく際[さい]は、両手[りょうて]で受[う]け取[と]るのが日本[にほん]の礼儀[れいぎ]だ。",
+        "translation": "Khi nhận đồ từ người bề trên, dùng cả hai tay đỡ lấy chính là phép tắc lễ nghi của Nhật Bản."
+      }
+    },
+    {
+      "id": 9,
+      "slide_number": 9,
+      "word": "風習",
+      "furigana": "ふうしゅう",
+      "romaji": "fuushuu",
+      "han_viet": "PHONG TẬP",
+      "meaning_vn": "Phong tục tập quán văn hóa lâu đời",
+      "word_type": "Danh từ",
+      "tag": "Truyền thống",
+      "visual_diagram": "   🎎 CÁC PHONG TỤC TẬP QUÁN ĐỘC ĐÁO CỦA NHẬT (日本の風習):\n   ├── 🧧 お年玉 (Tiền lì xì đựng trong phong bao nhỏ cho trẻ con ngày Tết)\n   ├── 👹 節分 (Ném đậu đuổi quỷ, ăn cuộn sushi Ehomaki đầu xuân)\n   └── 🎁 お中元・お歳暮 (Tặng quà tri ân hè thu theo mùa)",
+      "diagram_caption": "Nét đẹp truyền thống được truyền từ đời này sang đời khác của người Nhật",
+      "mnemonic": "PHONG (風 - gió bay, phong tục) + TẬP (習 - tập quán thói quen). Thói quen tập tục lan tỏa như ngọn gió mát.",
+      "collocations": [
+        {
+          "ja": "昔からの風習が残る",
+          "furigana": "むかしからのふうしゅうがのこる",
+          "vn": "Vẫn còn lưu giữ phong tục tập quán từ ngàn xưa"
+        },
+        {
+          "ja": "地域の風習に従う",
+          "furigana": "ちいきのふうしゅうにしたがう",
+          "vn": "Tuân theo phong tục tập quán của địa phương"
+        }
+      ],
+      "example": {
+        "sentence": "お正月[しょうがつ]に子[こ]どもたちにお年玉[としだま]をあげるのは、日本[にほん]の古[ふる]くからの風習[ふうしゅう]だ。",
+        "translation": "Tặng tiền mừng tuổi lì xì cho trẻ nhỏ vào dịp Tết là một phong tục tập quán có từ lâu đời của Nhật Bản."
+      }
+    },
+    {
+      "id": 10,
+      "slide_number": 10,
+      "word": "お見舞い",
+      "furigana": "おみまい",
+      "romaji": "omimai",
+      "han_viet": "THĂM HỎI NGƯỜI BỆNH",
+      "meaning_vn": "Đi thăm người ốm, người nằm viện hoặc người gặp nạn",
+      "word_type": "Danh từ",
+      "tag": "Thăm hỏi",
+      "visual_diagram": "   🏥 ĐI THĂM BỆNH NHÂN NẰM VIỆN (お見舞い):\n   ├── 🚫 CẤM KỴ: Không tặng hoa có chậu trồng đất (鉢植え - ngụ ý bám rễ nằm viện mãi)\n   ├── 🚫 CẤM KỴ: Không tặng hoa màu trắng/hoa cúc (gợi tang tóc)\n   └── ⭕ NÊN TẶNG: Trái cây tươi ngon cắt sẵn hoặc phong bì tiền thăm bệnh (お見舞い金)",
+      "diagram_caption": "Kiêng kỵ văn hóa cực kỳ quan trọng khi đi thăm người ốm ở Nhật",
+      "mnemonic": "KIẾN (見 - nhìn ngắm) + VŨ (舞 - nhảy múa, lượn quanh). Đến tận nơi ngắm nhìn xem người bệnh thế nào.",
+      "collocations": [
+        {
+          "ja": "お見舞いに行く",
+          "furigana": "おみまいにいく",
+          "vn": "Đi đến bệnh viện thăm người ốm"
+        },
+        {
+          "ja": "お見舞い品",
+          "furigana": "おみまいひん",
+          "vn": "Món quà mang theo khi đi thăm bệnh"
+        }
+      ],
+      "example": {
+        "sentence": "入院[にゅういん]している友人[ゆうじん]のお見舞[みま]いに行[い]き、元気[げんき]づけた。",
+        "translation": "Tôi đã đến bệnh viện thăm người bạn đang nằm viện và động viên khích lệ anh ấy."
+      }
+    }
+  ]
+}

@@ -1,0 +1,309 @@
+{
+  "topic_id": "topic_10_clb_le_hoi_truong",
+  "title": "Chủ đề 10: Câu lạc bộ & Lễ hội trường",
+  "japanese_title": "サークル活動・学園祭・イベントの語彙",
+  "description": "Đời sống thanh xuân đại học tại Nhật: câu lạc bộ sinh viên, chuẩn bị lễ hội trường và các bữa tiệc giao lưu.",
+  "level": "N3",
+  "slides": [
+    {
+      "id": 1,
+      "slide_number": 1,
+      "word": "サークル",
+      "furigana": "サークル",
+      "romaji": "saakuru",
+      "han_viet": "CÂU LẠC BỘ",
+      "meaning_vn": "Câu lạc bộ sinh viên (thể thao, âm nhạc, văn hóa, giao lưu)",
+      "word_type": "Danh từ",
+      "tag": "Đời sống sinh viên",
+      "visual_diagram": "   🏫 HOẠT ĐỘNG ĐOÀN THỂ Ở TRƯỜNG ĐẠI HỌC NHẬT:\n   ├── 🥋 部活動 (ぶかつ - Câu lạc bộ thể thao chuyên nghiệp, kỷ luật thép, thi đấu giải)\n   └── 🎸 サークル (Câu lạc bộ theo sở thích, không khí vui vẻ, giao lưu kết bạn)",
+      "diagram_caption": "Bắt nguồn từ tiếng Anh 'Circle' (vòng tròn bạn bè). Nơi tốt nhất để kết bạn người Nhật",
+      "mnemonic": "Từ mượn Circle (vòng tròn bè bạn kết nối với nhau).",
+      "collocations": [
+        {
+          "ja": "サークルに入る / 加入する",
+          "furigana": "サークルにはいる / かにゅうする",
+          "vn": "Gia nhập câu lạc bộ"
+        },
+        {
+          "ja": "サークルの合宿",
+          "furigana": "サークルのがっしゅく",
+          "vn": "Chuyến đi cắm trại tập huấn hè của CLB"
+        }
+      ],
+      "example": {
+        "sentence": "日本語[にほんご]の会話[かいわ]力[りょく]を上[あ]げるために、国際[こくさい]交流[こうりゅう]サークルに入[はい]った。",
+        "translation": "Để nâng cao khả năng giao tiếp tiếng Nhật, tôi đã tham gia vào câu lạc bộ giao lưu quốc tế."
+      }
+    },
+    {
+      "id": 2,
+      "slide_number": 2,
+      "word": "学園祭",
+      "furigana": "がくえんさい",
+      "romaji": "gakuensai",
+      "han_viet": "HỌC VIÊN TẾ",
+      "meaning_vn": "Lễ hội trường thường niên (vào mùa thu tháng 10-11)",
+      "word_type": "Danh từ",
+      "tag": "Sự kiện văn hóa",
+      "visual_diagram": "   🎪 学園祭 (Lễ hội trường Nhật Bản):\n   ├── 🍢 Hàng chục quầy đồ ăn ngoài trời (屋台)\n   ├── 🎤 Sân khấu biểu diễn ca nhạc, nhảy múa (ステージ発表)\n   └── 🎈 Mở cửa tự do đón phụ huynh và người dân bên ngoài vào vui chơi",
+      "diagram_caption": "Sự kiện văn hóa sôi động và đáng nhớ nhất trong năm của sinh viên Nhật",
+      "mnemonic": "HỌC VIÊN (学園 - khuôn viên trường học) + TẾ (祭 - lễ hội tưng bừng). Lễ hội lớn của toàn trường.",
+      "collocations": [
+        {
+          "ja": "学園祭を開催する",
+          "furigana": "がくえんさいをかいさいする",
+          "vn": "Tổ chức lễ hội trường"
+        },
+        {
+          "ja": "大学祭",
+          "furigana": "だいがくさい",
+          "vn": "Tên gọi khác: Lễ hội đại học"
+        }
+      ],
+      "example": {
+        "sentence": "秋[あき]の学園祭[がくえんさい]には、地域[ちいき]の住民[じゅうみん]や高校生[こうこうせい]も大勢[おおぜい]訪[おとず]れる。",
+        "translation": "Vào lễ hội trường mùa thu, rất đông cư dân địa phương và học sinh cấp 3 cũng đến tham quan."
+      }
+    },
+    {
+      "id": 3,
+      "slide_number": 3,
+      "word": "屋台",
+      "furigana": "やたい",
+      "romaji": "yatai",
+      "han_viet": "ỐC THAI",
+      "meaning_vn": "Quầy hàng ăn, gian hàng lưu động bán đồ ăn ngoài trời",
+      "word_type": "Danh từ",
+      "tag": "Ẩm thực lễ hội",
+      "visual_diagram": "   🎪 QUẦY HÀNG ĂN LỄ HỘI (屋台):\n   ├── 🐙 たこ焼き (Bánh bạch tuộc nướng)\n   ├── 🥢 焼きそば (Mì xào thơm lừng)\n   ├── 🍡 団子・チョコバナナ (Bánh dango, chuối phủ chocolate)\n   └── 🇻🇳 Gian hàng sinh viên Việt Nam: Nem rán, Phở bò",
+      "diagram_caption": "Các câu lạc bộ tự phân công nấu nướng và bán hàng kiếm quỹ hoạt động",
+      "mnemonic": "ỐC (屋 - quán xá) + THAI (台 - cái kệ, bục dựng). Quầy sạp dựng tạm ngoài trời để buôn bán.",
+      "collocations": [
+        {
+          "ja": "屋台を出す / 出店する",
+          "furigana": "やたいをだす / しゅってんする",
+          "vn": "Mở quầy gian hàng bán đồ"
+        },
+        {
+          "ja": "屋台で焼きそばを買う",
+          "furigana": "やたいでやきそばをかう",
+          "vn": "Mua mì xào ở quầy ăn ngoài trời"
+        }
+      ],
+      "example": {
+        "sentence": "留学生[りゅうがくせい]サークルで屋台[やたい]を出[だ]して、母国[ぼこく]の伝統[でんとう]料理[りょうり]を販売[はんばい]した。",
+        "translation": "CLB du học sinh của chúng tôi đã mở một quầy hàng bán các món ăn truyền thống của quê hương."
+      }
+    },
+    {
+      "id": 4,
+      "slide_number": 4,
+      "word": "準備",
+      "furigana": "じゅんび",
+      "romaji": "jumbi",
+      "han_viet": "CHUẨN BỊ",
+      "meaning_vn": "Chuẩn bị, sắp đặt trước mọi việc chu tất",
+      "word_type": "Danh từ / Động từ nhóm 3",
+      "tag": "Tổ chức sự kiện",
+      "visual_diagram": "   🎯 準備 (Chuẩn bị kỹ lưỡng ── 80% thành công của sự kiện):\n   ├── 🎨 Vẽ áp phích quảng cáo (ポスター作り)\n   ├── 🛒 Đi siêu thị mua nguyên liệu làm món ăn\n   └── 🎪 Dựng lều bạt và kiểm tra bình gas an toàn",
+      "diagram_caption": "Khâu chuẩn bị kéo dài hàng tuần trước lễ hội gắn kết tình bạn sâu sắc",
+      "mnemonic": "CHUẨN (準 - tiêu chuẩn căn cứ) + BỊ (備 - sẵn sàng phòng bị). Chuẩn bị sẵn sàng theo đúng kế hoạch.",
+      "collocations": [
+        {
+          "ja": "準備を進める",
+          "furigana": "じゅんびをすすめる",
+          "vn": "Đẩy mạnh tiến độ chuẩn bị"
+        },
+        {
+          "ja": "準備万端",
+          "furigana": "じゅんびばんたん",
+          "vn": "Chuẩn bị chu đáo hoàn hảo mọi mặt"
+        }
+      ],
+      "example": {
+        "sentence": "学園祭[がくえんさい]の本番[ほんばん]に向けて、夜遅[よるおそ]くまで看板[かんばん]の準備[じゅんび]をした。",
+        "translation": "Hướng tới ngày chính thức của lễ hội trường, chúng tôi đã chuẩn bị biển hiệu đến tận đêm muộn."
+      }
+    },
+    {
+      "id": 5,
+      "slide_number": 5,
+      "word": "歓迎会",
+      "furigana": "かんげいかい",
+      "romaji": "kangeikai",
+      "han_viet": "HOAN NGHÊNH HỘI",
+      "meaning_vn": "Buổi tiệc chào đón thành viên mới gia nhập",
+      "word_type": "Danh từ",
+      "tag": "Tiệc giao lưu",
+      "visual_diagram": "   🎉 歓迎会 (Tiệc chào đón người mới vào tháng 4 đầu năm học)\n        vs\n   👋 送別会 (そうべつかい - Tiệc tiễn chia tay người rời đi vào tháng 3 cuối năm)",
+      "diagram_caption": "Hai bữa tiệc giao lưu quan trọng nhất đánh dấu khởi đầu và kết thúc một chu kỳ",
+      "mnemonic": "HOAN NGHÊNH (歓迎 - chào mừng nồng nhiệt) + HỘI (会 - buổi gặp mặt liên hoan).",
+      "collocations": [
+        {
+          "ja": "新入生歓迎会",
+          "furigana": "しんにゅうせいかんげいかい",
+          "vn": "Tiệc chào đón tân sinh viên khóa mới"
+        },
+        {
+          "ja": "歓迎会を開く",
+          "furigana": "かんげいかいをひらく",
+          "vn": "Mở tiệc chào đón"
+        }
+      ],
+      "example": {
+        "sentence": "サークルの新入生[しんにゅうせい]歓迎会[かんげいかい]で、たくさんの先輩[せんぱい]と話[はな]すことができた。",
+        "translation": "Tại buổi tiệc chào đón tân sinh viên của CLB, tôi đã có thể trò chuyện với rất nhiều anh chị tiền bối."
+      }
+    },
+    {
+      "id": 6,
+      "slide_number": 6,
+      "word": "打ち上げ",
+      "furigana": "うちあげ",
+      "romaji": "uchiage",
+      "han_viet": "ĐẢ THƯỢNG",
+      "meaning_vn": "Tiệc liên hoan ăn mừng tổng kết sau khi xong sự kiện/dự án",
+      "word_type": "Danh từ",
+      "tag": "Tiệc tùng",
+      "visual_diagram": "   🎪 Lễ hội kết thúc ──▶ 🧹 Thu dọn sạch sẽ rác rến\n        │\n        └── 🍻 打ち上げ (Tiệc tổng kết công sức):\n            ├── Cùng nhau nâng ly: 「かんぱーい！」(Cạn chén chúc mừng)\n            └── Khen ngợi nhau: 「お疲れ様でした！」(Ai cũng vất vả hết mình rồi)",
+      "diagram_caption": "Bữa tiệc giải tỏa mọi căng thẳng mệt nhọc sau những ngày dốc sức",
+      "mnemonic": "ĐẢ (打 - bắn lên) + THƯỢNG (上 - lên cao). Giống như bắn pháo hoa ăn mừng thành công trọn vẹn.",
+      "collocations": [
+        {
+          "ja": "打ち上げをする",
+          "furigana": "うちあげをする",
+          "vn": "Tổ chức tiệc liên hoan ăn mừng"
+        },
+        {
+          "ja": "打ち上げに参加する",
+          "furigana": "うちあげにさんかする",
+          "vn": "Tham gia tiệc ăn mừng tổng kết"
+        }
+      ],
+      "example": {
+        "sentence": "イベントが無事[ぶじ]に大成功[だいせいこう]で終[お]わったので、みんなで居酒屋[いざかや]で打ち上[うちあ]げをした。",
+        "translation": "Vì sự kiện đã kết thúc đại thành công suôn sẻ nên mọi người cùng đi quán nhậu ăn mừng."
+      }
+    },
+    {
+      "id": 7,
+      "slide_number": 7,
+      "word": "役割",
+      "furigana": "やくわり",
+      "romaji": "yakuwari",
+      "han_viet": "DỊCH CÁT",
+      "meaning_vn": "Vai trò, trách nhiệm được phân công",
+      "word_type": "Danh từ",
+      "tag": "Phân công tổ chức",
+      "visual_diagram": "   🤝 PHÂN CHIA TRÁCH NHIỆM TRONG NHÓM (役割分担):\n   ├── 👑 リーダー (Trưởng nhóm: Điều phối chung)\n   ├── 💰 会計 (Thủ quỹ: Quản lý tiền nong chi tiêu)\n   ├── 📢 広報 (Truyền thông: Đăng bài PR lên mạng xã hội)\n   └── 🍳 調理 (Hậu cần: Nấu nướng chế biến món ăn)",
+      "diagram_caption": "Tính tập thể của người Nhật: Mỗi người làm tốt vai trò của mình thì cả nhóm mới thành công",
+      "mnemonic": "DỊCH (役 - công việc đảm nhận) + CÁT (割 - chia phần). Chia phần công việc cho từng thành viên.",
+      "collocations": [
+        {
+          "ja": "役割を果たす",
+          "furigana": "やくわりをはたす",
+          "vn": "Hoàn thành trọn vẹn vai trò được giao"
+        },
+        {
+          "ja": "役割分担を決める",
+          "furigana": "やくわりぶんたんをきめる",
+          "vn": "Phân chia cụ thể nhiệm vụ của từng người"
+        }
+      ],
+      "example": {
+        "sentence": "チーム内[ない]でそれぞれ自分[じぶん]の役割[やくわり]をしっかり果[は]たした。",
+        "translation": "Mỗi người trong đội đều đã hoàn thành trọn vẹn vai trò nhiệm vụ của bản thân."
+      }
+    },
+    {
+      "id": 8,
+      "slide_number": 8,
+      "word": "交流",
+      "furigana": "こうりゅう",
+      "romaji": "kouryuu",
+      "han_viet": "GIAO LƯU",
+      "meaning_vn": "Giao lưu, trò chuyện kết nối và hiểu biết lẫn nhau",
+      "word_type": "Danh từ / Động từ nhóm 3",
+      "tag": "Mối quan hệ",
+      "visual_diagram": "   🇯🇵 Người bản xứ ◀──🤝 Giao lưu kết nối ──▶ 🌐 Bạn bè quốc tế\n   ├── Trao đổi văn hóa, ẩm thực, ngôn ngữ\n   └── Xóa bỏ định kiến, thắt chặt tình hữu nghị",
+      "diagram_caption": "Mục đích lớn nhất khi tham gia các hoạt động ngoại khóa tại Nhật",
+      "mnemonic": "GIAO (交 - giao cắt gặp gỡ) + LƯU (流 - dòng chảy). Dòng chảy tình cảm và tư tưởng giao thoa hòa quyện.",
+      "collocations": [
+        {
+          "ja": "異文化交流",
+          "furigana": "いぶんかこうりゅう",
+          "vn": "Giao lưu văn hóa đa quốc gia"
+        },
+        {
+          "ja": "交流を深める",
+          "furigana": "こうりゅうをふかめる",
+          "vn": "Làm sâu sắc thêm mối quan hệ giao lưu"
+        }
+      ],
+      "example": {
+        "sentence": "学園祭[がくえんさい]は、他[ほか]の学部[がくぶ]の学生[がくせい]や地域[ちいき]の人々と交流[こうりゅう]する絶好[ぜっこう]の機会[きかい]だ。",
+        "translation": "Lễ hội trường là cơ hội tuyệt hảo để giao lưu kết nối với sinh viên khoa khác và người dân địa phương."
+      }
+    },
+    {
+      "id": 9,
+      "slide_number": 9,
+      "word": "募集",
+      "furigana": "ぼしゅう",
+      "romaji": "boshuu",
+      "han_viet": "MỘ TẬP",
+      "meaning_vn": "Chiêu mộ, tuyển thành viên mới tham gia",
+      "word_type": "Danh từ / Động từ nhóm 3",
+      "tag": "Tuyển thành viên",
+      "visual_diagram": "   📢 新メンバー大募集 (TUYỂN THÀNH VIÊN MỚI!):\n   ├── 🌟 Không cần kinh nghiệm, người mới bắt đầu cũng OK!\n   ├── 📅 Thời gian hoạt động: Chiều thứ 4 hàng tuần\n   └── 💬 Hãy đến tham quan trải nghiệm thử (体験見学大歓迎)",
+      "diagram_caption": "Vào tháng 4 hàng năm, sân trường đại học Nhật ngập tràn các tờ rơi tuyển mộ thành viên",
+      "mnemonic": "MỘ (募 - kêu gọi chiêu mộ) + TẬP (集 - gom lại). Kêu gọi mọi người cùng tập hợp lại.",
+      "collocations": [
+        {
+          "ja": "ボランティアを募集する",
+          "furigana": "ボランティアをぼしゅうする",
+          "vn": "Tuyển tình nguyện viên"
+        },
+        {
+          "ja": "募集要項",
+          "furigana": "ぼしゅうようこう",
+          "vn": "Bản quy định điều kiện tuyển mộ"
+        }
+      ],
+      "example": {
+        "sentence": "ポスターを貼[は]って、学園祭[がくえんさい]の実行[じっこう]委員[いいん]スタッフを募集[ぼしゅう]した。",
+        "translation": "Chúng tôi đã dán áp phích để chiêu mộ nhân viên cho ban tổ chức lễ hội trường."
+      }
+    },
+    {
+      "id": 10,
+      "slide_number": 10,
+      "word": "記念",
+      "furigana": "きねん",
+      "romaji": "kinen",
+      "han_viet": "KỶ NIỆM",
+      "meaning_vn": "Kỷ niệm, lưu giữ khoảnh khắc đáng nhớ",
+      "word_type": "Danh từ / Mang tính bổ nghĩa",
+      "tag": "Ký ức",
+      "visual_diagram": "   📸 記念写真 (Ảnh kỷ niệm chụp chung toàn đội cuối ngày hội)\n        │\n        └── 💭 Nhìn lại sau này: Ký ức thanh xuân tươi đẹp thời sinh viên",
+      "diagram_caption": "Kỷ niệm đẹp sau những ngày cùng nhau nỗ lực vượt qua khó khăn",
+      "mnemonic": "KỶ (紀 - ghi chép kỷ cương) + NIỆM (念 - nghĩ ngợi tâm tưởng). Ghi khắc vào tâm trí để không quên.",
+      "collocations": [
+        {
+          "ja": "記念写真を撮る",
+          "furigana": "きねんしゃしんをとる",
+          "vn": "Chụp bức ảnh kỷ niệm"
+        },
+        {
+          "ja": "一生の記念になる",
+          "furigana": "いっしょうのきねんになる",
+          "vn": "Trở thành kỷ niệm suốt đời"
+        }
+      ],
+      "example": {
+        "sentence": "ステージ発表[はっぴょう]の最後[さいご]に、みんなで笑顔[えがお]で記念[きねん]撮影[さつえい]をした。",
+        "translation": "Vào phần cuối của buổi biểu diễn sân khấu, mọi người đã cùng nhau nở nụ cười chụp bức ảnh kỷ niệm."
+      }
+    }
+  ]
+}

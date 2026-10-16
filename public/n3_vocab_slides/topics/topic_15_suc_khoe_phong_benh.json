@@ -1,0 +1,309 @@
+{
+  "topic_id": "topic_15_suc_khoe_phong_benh",
+  "title": "Chủ đề 15: Sức khỏe & Thể dục & Phòng bệnh",
+  "japanese_title": "健康管理・予防・運動・生活習慣の語彙",
+  "description": "Bí quyết sống thọ của người Nhật: phòng chống bệnh tật, duy trì chế độ dinh dưỡng cân bằng và giải tỏa căng thẳng.",
+  "level": "N3",
+  "slides": [
+    {
+      "id": 1,
+      "slide_number": 1,
+      "word": "予防",
+      "furigana": "よぼう",
+      "romaji": "yobou",
+      "han_viet": "DỰ PHÒNG",
+      "meaning_vn": "Phòng ngừa, phòng bệnh hơn chữa bệnh",
+      "word_type": "Danh từ / Động từ nhóm 3",
+      "tag": "Y tế dự phòng",
+      "visual_diagram": "   🛡️ 予防 (Phòng bệnh ── Đơn giản và rẻ tiền hơn chữa bệnh rất nhiều!):\n   ├── 🧼 Rửa tay bằng xà phòng (手洗い)\n   ├── 🚰 Súc họng bằng nước muối (うがい)\n   ├── 😷 Đeo khẩu trang nơi đông người (マスク着用)\n   └── 💉 Tiêm vắc xin cúm mùa thu (インフルエンザ予防接種)",
+      "diagram_caption": "Khẩu hiệu quốc dân tại Nhật: 'Te-arai & Ugai' (Rửa tay và súc họng) ngay khi bước chân về nhà",
+      "mnemonic": "DỰ (予 - từ trước từ sớm) + PHÒNG (防 - phòng thủ ngăn ngừa). Ngăn chặn mầm mống từ sớm trước khi phát bệnh.",
+      "collocations": [
+        {
+          "ja": "病気を予防する",
+          "furigana": "びょうきをよぼうする",
+          "vn": "Phòng ngừa bệnh tật"
+        },
+        {
+          "ja": "予防接種を受ける",
+          "furigana": "よぼうせっしゅをうける",
+          "vn": "Đi tiêm phòng vắc-xin"
+        }
+      ],
+      "example": {
+        "sentence": "風邪[かぜ]の予防[よぼう]には、帰宅[きたく]後[ご]の手洗[てあら]いとうがいが最も効果的[こうかてき]だ。",
+        "translation": "Để phòng ngừa cảm cúm, rửa tay và súc họng sau khi về nhà là biện pháp hiệu quả nhất."
+      }
+    },
+    {
+      "id": 2,
+      "slide_number": 2,
+      "word": "免疫力",
+      "furigana": "めんえきりょく",
+      "romaji": "men'ekiryoku",
+      "han_viet": "MIỄN DỊCH LỰC",
+      "meaning_vn": "Khả năng miễn dịch, sức đề kháng chống lại mầm bệnh",
+      "word_type": "Danh từ",
+      "tag": "Sức khỏe sinh học",
+      "visual_diagram": "   🛡️ 免疫力 (LÁ CHẮN ĐỀ KHÁNG CỦA CƠ THỂ):\n   ├── 📈 Tăng sức đề kháng: Ngủ đủ 8h, ăn sữa chua/miso lên men, tập thể thao\n   └── 📉 Suy giảm đề kháng: Thức khuya, căng thẳng triền miên ──▶ Vi khuẩn tấn công ngã bệnh ngay!",
+      "diagram_caption": "Hệ miễn dịch khỏe mạnh giúp tiêu diệt virus từ khi mới chớm xâm nhập",
+      "mnemonic": "MIỄN (免 - miễn trừ) + DỊCH (疫 - dịch bệnh) + LỰC (力 - sức mạnh). Năng lực miễn trừ mọi dịch bệnh.",
+      "collocations": [
+        {
+          "ja": "免疫力を高める",
+          "furigana": "めんえきりょくをたかめる",
+          "vn": "Nâng cao sức đề kháng cơ thể"
+        },
+        {
+          "ja": "免疫力が低下する",
+          "furigana": "めんえきりょくがていかする",
+          "vn": "Hệ miễn dịch bị suy giảm sút"
+        }
+      ],
+      "example": {
+        "sentence": "栄養[えいよう]のある食事[しょくじ]と十分[じゅうぶん]な睡眠[すいみん]をとることで、免疫力[めんえきりょく]を高[たか]める。",
+        "translation": "Bằng việc ăn uống đủ chất dinh dưỡng và ngủ đủ giấc, chúng ta sẽ nâng cao được sức đề kháng."
+      }
+    },
+    {
+      "id": 3,
+      "slide_number": 3,
+      "word": "睡眠不足",
+      "furigana": "すいみんぶそく",
+      "romaji": "suimin busoku",
+      "han_viet": "THỤY MIÊN BẤT TÚC",
+      "meaning_vn": "Thiếu ngủ, ngủ không đủ giấc",
+      "word_type": "Danh từ",
+      "tag": "Thói quen xấu",
+      "visual_diagram": "   🥱 Ngủ dưới 5 tiếng/ngày (睡眠不足):\n   ├── 🧠 Đầu óc lờ đờ, không thể tập trung làm việc hay học hành\n   ├── 🤕 Hay đau đầu chóng mặt\n   └── 📉 Giảm hiệu suất lao động nghiêm trọng",
+      "diagram_caption": "Nhật Bản thuộc nhóm quốc gia có thời lượng ngủ trung bình thấp nhất thế giới do làm việc nhiều",
+      "mnemonic": "THỤY MIÊN (睡眠 - giấc ngủ ngon) + BẤT TÚC (不足 - không đầy đủ, thiếu hụt).",
+      "collocations": [
+        {
+          "ja": "睡眠不足が続く",
+          "furigana": "すいみんぶそくがつづく",
+          "vn": "Tình trạng thiếu ngủ kéo dài liên miên"
+        },
+        {
+          "ja": "睡眠不足を解消する",
+          "furigana": "すいみんぶそくをかいしょうする",
+          "vn": "Giải quyết tình trạng thiếu ngủ bằng giấc ngủ bù sâu"
+        }
+      ],
+      "example": {
+        "sentence": "連日[れんじつ]の残業[ざんぎょう]で睡眠[すいみん]不足[ぶそく]になり、電車[でんしゃ]の中[なか]で居眠[いねむ]りしてしまった。",
+        "translation": "Vì tăng ca nhiều ngày liên tiếp bị thiếu ngủ nên tôi đã ngủ gật luôn trên tàu điện."
+      }
+    },
+    {
+      "id": 4,
+      "slide_number": 4,
+      "word": "栄養バランス",
+      "furigana": "えいようバランス",
+      "romaji": "eiyou baransu",
+      "han_viet": "VINH DƯỠNG CÂN BẰNG",
+      "meaning_vn": "Cân bằng dinh dưỡng trong khẩu phần ăn",
+      "word_type": "Cụm danh từ",
+      "tag": "Dinh dưỡng",
+      "visual_diagram": "   🍱 BỮA CƠM CHUẨN NHẬT: 一汁三菜 (1 bát canh + 3 món ăn kèm):\n   ├── 🍚 Tinh bột: Cơm gạo lứt/gạo trắng (炭水化物)\n   ├── 🐟 Đạm: Cá hồi nướng / đậu phụ / thịt nạc (タンパク質)\n   ├── 🥗 Vitamin & Khoáng: Rau củ luộc, salad rong biển\n   └── 🍲 Canh Miso bổ sung lợi khuẩn đường ruột",
+      "diagram_caption": "Bí quyết giúp người Nhật Bản có tuổi thọ trung bình cao nhất thế giới",
+      "mnemonic": "VINH DƯỠNG (栄養) + BALANCE (cân bằng). Cân đối đầy đủ các nhóm chất.",
+      "collocations": [
+        {
+          "ja": "栄養バランスを考える",
+          "furigana": "えいようバランスをかんがえる",
+          "vn": "Cân nhắc cân đối dinh dưỡng khi nấu ăn"
+        },
+        {
+          "ja": "栄養が偏る",
+          "furigana": "えいようがかたよる",
+          "vn": "Dinh dưỡng bị lệch (chỉ ăn mì tôm, thiếu rau)"
+        }
+      ],
+      "example": {
+        "sentence": "外食[がいしょく]ばかりだと栄養[えいよう]バランスが崩[くず]れやすいので、自炊[じすい]を増[ふ]やしている。",
+        "translation": "Nếu chỉ toàn ăn ngoài thì rất dễ mất cân bằng dinh dưỡng nên tôi đang tăng cường tự nấu ăn ở nhà."
+      }
+    },
+    {
+      "id": 5,
+      "slide_number": 5,
+      "word": "運動不足",
+      "furigana": "うんどうぶそく",
+      "romaji": "undou busoku",
+      "han_viet": "VẬN ĐỘNG BẤT TÚC",
+      "meaning_vn": "Lười vận động, thiếu rèn luyện thể chất",
+      "word_type": "Danh từ",
+      "tag": "Thể chất",
+      "visual_diagram": "   🪑 Sáng ngồi văn phòng ── Chiều ngồi tàu ── Tối nằm xem điện thoại\n   ==▶ 運動不足 (Thiếu vận động) ──▶ Lên cân, đau mỏi lưng vai gáy\n   GIẢI PHÁP:\n   🚶 Đi bộ 8,000 bước mỗi ngày / Đi cầu thang bộ thay thang máy",
+      "diagram_caption": "Căn bệnh thời đại của dân văn phòng IT và học sinh thi cử",
+      "mnemonic": "VẬN ĐỘNG (運動 - thể dục thể thao) + BẤT TÚC (不足 - thiếu thốn).",
+      "collocations": [
+        {
+          "ja": "運動不足を解消する",
+          "furigana": "うんどうぶそくをかいしょうする",
+          "vn": "Giải tỏa tình trạng lười vận động bằng việc tập gym/chạy bộ"
+        },
+        {
+          "ja": "日頃の運動不足",
+          "furigana": "ひごろのうんどうぶそく",
+          "vn": "Sự thiếu vận động thường ngày"
+        }
+      ],
+      "example": {
+        "sentence": "最近[さいきん]太[ふと]ってきたのは、明[あき]らかに日頃[ひごろ]の運動[うんどう]不足[ぶそく]が原因[げんいん]だ。",
+        "translation": "Gần đây tôi bị béo lên rõ ràng là do nguyên nhân lười vận động thường ngày."
+      }
+    },
+    {
+      "id": 6,
+      "slide_number": 6,
+      "word": "疲労回復",
+      "furigana": "ひろうかいふく",
+      "romaji": "hirou kaifuku",
+      "han_viet": "BÌ LAO HỒI PHỤC",
+      "meaning_vn": "Hồi phục thể lực, giải tỏa mệt mỏi sau ngày dài",
+      "word_type": "Danh từ / Động từ nhóm 3",
+      "tag": "Phục hồi năng lượng",
+      "visual_diagram": "   🔋 THỂ LỰC CẠN KIỆT (0%) ──(PHỤC HỒI THỂ LỰC)──▶ ĐẦY PIN (100%)\n   ├── 🛁 Ngâm bồn nước ấm 40°C trong 15 phút (湯船に浸かる)\n   ├── 🍋 Bổ sung vitamin C và axit citric (nước chanh, mơ ngâm umeboshi)\n   └── 🛌 Đi ngủ sớm trước 23h trong phòng tối mát mẻ",
+      "diagram_caption": "Ngâm bồn nước ấm mỗi tối là cách người Nhật phục hồi thể lực sau ngày làm việc căng thẳng",
+      "mnemonic": "BÌ LAO (疲労 - mệt mỏi lao lực) + HỒI PHỤC (回復 - lấy lại trạng thái ban đầu).",
+      "collocations": [
+        {
+          "ja": "疲労回復に効果がある",
+          "furigana": "ひろうかいふくにこうかがある",
+          "vn": "Có hiệu quả hồi phục thể lực tốt"
+        },
+        {
+          "ja": "疲労が蓄積する",
+          "furigana": "ひろうがちくせきする",
+          "vn": "Mệt mỏi tích tụ dồn nén lâu ngày"
+        }
+      ],
+      "example": {
+        "sentence": "熱[あつ]いお風呂[ふろ]にゆっくり浸[つ]かることは、疲労[ひろう]回復[かいふく]にとても役立[やくだ]つ。",
+        "translation": "Ngâm mình thong thả trong bồn tắm nước ấm rất có ích cho việc hồi phục thể lực giải tỏa mệt mỏi."
+      }
+    },
+    {
+      "id": 7,
+      "slide_number": 7,
+      "word": "健康診断",
+      "furigana": "けんこうしんだん",
+      "romaji": "kenkou shindan",
+      "han_viet": "KIỆN KHANG CHẨN ĐOÁN",
+      "meaning_vn": "Khám sức khỏe tổng quát định kỳ (hàng năm)",
+      "word_type": "Danh từ",
+      "tag": "Kiểm tra định kỳ",
+      "visual_diagram": "   📋 CÁC HẠNG MỤC KHÁM SỨC KHỎE ĐỊNH KỲ TẠI NHẬT:\n   ├── 📏 Chiều cao, cân nặng, thị lực, thính lực\n   ├── 🩸 Xét nghiệm máu, nước tiểu (đường huyết, mỡ máu)\n   ├── 🩻 Chụp X-quang phổi (胸部レントゲン)\n   └── 💓 Đo huyết áp và điện tâm đồ",
+      "diagram_caption": "Theo luật lao động Nhật, mọi trường học và công ty bắt buộc phải tổ chức khám định kỳ 1 năm 1 lần",
+      "mnemonic": "KIỆN KHANG (健康 - sức khỏe an khang) + CHẨN ĐOÁN (診断 - khám xét đánh giá).",
+      "collocations": [
+        {
+          "ja": "定期健康診断を受ける",
+          "furigana": "ていきけんこうしんだんをうける",
+          "vn": "Tham gia khám sức khỏe định kỳ"
+        },
+        {
+          "ja": "健診結果",
+          "furigana": "けんしんけっか",
+          "vn": "Phiếu kết quả khám sức khỏe gửi về nhà"
+        }
+      ],
+      "example": {
+        "sentence": "会社[かいしゃ]の健康[けんこう]診断[しんだん]で血圧[けつあつ]が高[たか]いと指摘[してき]され、生活[せいかつ]を見直[みなお]した。",
+        "translation": "Trong đợt khám sức khỏe của công ty bị nhắc nhở là huyết áp cao nên tôi đã xem lại thói quen sinh hoạt."
+      }
+    },
+    {
+      "id": 8,
+      "slide_number": 8,
+      "word": "改善",
+      "furigana": "かいぜん",
+      "romaji": "kaizen",
+      "han_viet": "CẢI THIỆN",
+      "meaning_vn": "Cải thiện, làm cho tốt hơn (thói quen, quy trình, kết quả)",
+      "word_type": "Danh từ / Động từ nhóm 3",
+      "tag": "Phát triển",
+      "visual_diagram": "   ❌ Thói quen xấu: Ăn đêm, lười thể dục, thức khuya\n        │\n        └── 🚀 改善 (Cải thiện liên tục từng bước nhỏ mỗi ngày):\n            └── ⭕ Thói quen tốt: Ăn đúng bữa, đi bộ mỗi ngày, ngủ sớm dậy sớm",
+      "diagram_caption": "Triết lý 'KAIZEN' nổi tiếng toàn cầu của tập đoàn Toyota: Luôn cải tiến để tốt hơn mỗi ngày",
+      "mnemonic": "CẢI (改 - sửa đổi) + THIỆN (善 - tốt đẹp hơn). Sửa đổi cho ngày càng hướng đến điều tốt đẹp.",
+      "collocations": [
+        {
+          "ja": "生活習慣を改善する",
+          "furigana": "せいかつしゅうかんをかいぜんする",
+          "vn": "Cải thiện thói quen sinh hoạt hàng ngày"
+        },
+        {
+          "ja": "体質の改善",
+          "furigana": "たいしつのかいぜん",
+          "vn": "Cải thiện thể chất cơ địa"
+        }
+      ],
+      "example": {
+        "sentence": "食生活[しょくせいかつ]を改善[かいぜん]したところ、体調[たいちょう]が劇的[げきてき]に良[よ]くなった。",
+        "translation": "Sau khi cải thiện thói quen ăn uống, tình trạng sức khỏe của tôi đã tốt lên một cách rõ rệt."
+      }
+    },
+    {
+      "id": 9,
+      "slide_number": 9,
+      "word": "維持",
+      "furigana": "いじ",
+      "romaji": "iji",
+      "han_viet": "DUY TRÌ",
+      "meaning_vn": "Duy trì, giữ vững phong độ ổn định không để tụt dốc",
+      "word_type": "Danh từ / Động từ nhóm 3",
+      "tag": "Phong độ",
+      "visual_diagram": "   🏆 Đạt được vóc dáng chuẩn / Sức khỏe tốt (50kg)\n        │\n        └── 🔒 維持する (Duy trì đều đặn):\n            └── Ngày nào cũng ăn uống điều độ để giữ nguyên mức cân lý tưởng",
+      "diagram_caption": "Đạt được thành quả đã khó, nhưng duy trì giữ vững nó lâu dài còn đòi hỏi kỷ luật cao hơn",
+      "mnemonic": "DUY (維 - giềng mối dây buộc) + TRÌ (持 - giữ chặt). Buộc chặt giữ vững không để lung lay.",
+      "collocations": [
+        {
+          "ja": "健康を維持する",
+          "furigana": "けんこうをいじする",
+          "vn": "Duy trì giữ gìn sức khỏe dẻo dai"
+        },
+        {
+          "ja": "現状を維持する",
+          "furigana": "げんじょうをいじする",
+          "vn": "Duy trì hiện trạng ổn định"
+        }
+      ],
+      "example": {
+        "sentence": "年齢[ねんれい]を重[かさ]ねても若[わか]々しさを維持[いじ]するために、毎日[まいにち]の筋[きん]トレを欠[か]かさない。",
+        "translation": "Để duy trì sự trẻ trung dù tuổi tác tăng lên, tôi không bao giờ bỏ tập thể hình mỗi ngày."
+      }
+    },
+    {
+      "id": 10,
+      "slide_number": 10,
+      "word": "ストレス解消",
+      "furigana": "ストレスかいしょう",
+      "romaji": "sutoresu kaishou",
+      "han_viet": "XẢ STRESS / GIẢI TỎA CĂNG THẲNG",
+      "meaning_vn": "Giải tỏa căng thẳng áp lực tinh thần một cách lành mạnh",
+      "word_type": "Cụm danh từ / Động từ nhóm 3",
+      "tag": "Sức khỏe tinh thần",
+      "visual_diagram": "   🤯 STRESS TÍCH TỤ ĐẦY ĐẦU (ストレス蓄積):\n   ├── 🎤 Hát Karaoke hét thật to xả hơi (カラオケで熱唱)\n   ├── 🏃 Chạy bộ toát mồ hôi giải phóng endorphin\n   ├── 🌲 Đi dạo công viên hít thở không khí cây xanh\n   └── 🍰 Thưởng thức một món bánh ngọt yêu thích cuối tuần",
+      "diagram_caption": "Kỹ năng sống còn để cân bằng công việc và cuộc sống (Work-Life Balance) tại Nhật",
+      "mnemonic": "Stress (áp lực thần kinh) + GIẢI TIÊU (解消 - giải trừ làm biến mất).",
+      "collocations": [
+        {
+          "ja": "ストレスを発散する",
+          "furigana": "ストレスをはっさんする",
+          "vn": "Xả bỏ bung tỏa bớt căng thẳng"
+        },
+        {
+          "ja": "ストレスが溜まる",
+          "furigana": "ストレスがたまる",
+          "vn": "Căng thẳng áp lực bị dồn ứ lại trong người"
+        }
+      ],
+      "example": {
+        "sentence": "休[やす]みの日に趣味[しゅみ]のドライブに出[で]かけることが、最高[さいこう]のストレス解消[かいしょう]法[ほう]だ。",
+        "translation": "Vào ngày nghỉ được lái xe đi hóng gió theo sở thích chính là phương pháp giải tỏa stress tuyệt vời nhất của tôi."
+      }
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bg_topic_12" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#dcfce7"/>
+      <stop offset="100%" stop-color="#bbf7d0"/>
+    </linearGradient>
+    <filter id="shadow_topic_12" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="#15803d" flood-opacity="0.12"/>
+    </filter>
+  </defs>
+
+  <!-- Background Canvas -->
+  <rect width="800" height="450" rx="24" fill="url(#bg_topic_12)"/>
+
+  <!-- Subtle grid pattern dots -->
+  <g opacity="0.15" fill="#15803d">
+    <circle cx="40" cy="40" r="3"/><circle cx="100" cy="40" r="3"/><circle cx="160" cy="40" r="3"/><circle cx="700" cy="40" r="3"/><circle cx="760" cy="40" r="3"/>
+    <circle cx="40" cy="100" r="3"/><circle cx="760" cy="100" r="3"/><circle cx="40" cy="350" r="3"/><circle cx="760" cy="350" r="3"/>
+  </g>
+
+  <!-- Header Badge -->
+  <g transform="translate(40, 35)">
+    <rect width="110" height="32" rx="16" fill="#15803d"/>
+    <text x="55" y="21" font-family="'Plus Jakarta Sans', sans-serif" font-size="13" font-weight="800" fill="#ffffff" text-anchor="middle" letter-spacing="0.5">CHỦ ĐỀ 12</text>
+  </g>
+
+  <!-- Title typography -->
+  <text x="165" y="58" font-family="'Plus Jakarta Sans', sans-serif" font-size="20" font-weight="800" fill="#0f172a">Môi trường & Tái chế</text>
+  <text x="760" y="58" font-family="'Noto Sans JP', sans-serif" font-size="16" font-weight="700" fill="#15803d" text-anchor="end">環境問題・リサイクル</text>
+
+  <!-- Main Illustration Scene -->
+  
+            <!-- Green Planet Earth & Solar Panel -->
+            <circle cx="250" cy="210" r="85" fill="#22c55e" filter="drop-shadow(0 15px 25px rgba(21,128,61,0.2))"/>
+            <path d="M220 150 C240 170 260 160 280 180 C290 190 280 210 300 230 C270 250 250 230 230 250 Z" fill="#15803d"/>
+            <path d="M190 200 C200 220 210 210 200 230 C180 240 170 220 180 200 Z" fill="#15803d"/>
+            <!-- Eco bag & Solar -->
+            <g transform="translate(450, 130)">
+                <rect x="0" y="0" width="200" height="160" rx="16" fill="#ffffff" filter="drop-shadow(0 10px 20px rgba(0,0,0,0.06))"/>
+                <text x="100" y="65" font-size="44" text-anchor="middle">☀️</text>
+                <text x="100" y="115" font-size="18" font-family="sans-serif" font-weight="bold" fill="#15803d" text-anchor="middle">省エネ・脱炭素</text>
+            </g>
+        
+
+  <!-- Bottom Accent Stripe -->
+  <rect x="0" y="442" width="800" height="8" fill="#15803d"/>
+</svg>

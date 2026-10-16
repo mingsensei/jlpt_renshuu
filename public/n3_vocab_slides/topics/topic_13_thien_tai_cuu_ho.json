@@ -1,0 +1,309 @@
+{
+  "topic_id": "topic_13_thien_tai_cuu_ho",
+  "title": "Chủ đề 13: Thiên tai & Cứu hộ & Sơ tán",
+  "japanese_title": "自然災害・地震・防災・避難の語彙",
+  "description": "Các biện pháp ứng phó động đất, sóng thần, bão lũ và kỹ năng sinh tồn thiết yếu tại Nhật Bản.",
+  "level": "N3",
+  "slides": [
+    {
+      "id": 1,
+      "slide_number": 1,
+      "word": "地震",
+      "furigana": "じしん",
+      "romaji": "jishin",
+      "han_viet": "ĐỊA CHẤN",
+      "meaning_vn": "Động đất, rung chấn mặt đất",
+      "word_type": "Danh từ",
+      "tag": "Thiên tai",
+      "visual_diagram": "   🚨 KHI CÓ CHUÔNG BÁO ĐỘNG ĐẤT KHẨN CẤP (緊急地震速報):\n   ├── 1. 🪑 Chui ngay xuống gầm bàn chắc chắn, bảo vệ vùng đầu (頭を守る)\n   ├── 2. 🚪 Mở hé cửa ra vào để tránh cửa bị biến dạng kẹt không thoát được\n   └── 3. 🔥 Tắt bếp ga, ngắt cầu dao sau khi hết đợt rung lắc mạnh",
+      "diagram_caption": "3 thao tác sống còn người dân Nhật Bản được huấn luyện từ trường mẫu giáo",
+      "mnemonic": "ĐỊA (地 - mặt đất) + CHẤN (震 - rung chuyển sấm sét). Mặt đất rung chuyển dữ dội.",
+      "collocations": [
+        {
+          "ja": "地震が発生する",
+          "furigana": "じしんがはっせいする",
+          "vn": "Xảy ra một trận động đất"
+        },
+        {
+          "ja": "震度5強",
+          "furigana": "しんどごきょう",
+          "vn": "Cường độ rung chấn cấp 5 mạnh theo thang Nhật"
+        }
+      ],
+      "example": {
+        "sentence": "大[おお]きな地震[じしん]が起[お]きたら、まず頭[あたま]を守[まも]るために机[つくえ]の下[した]に入[はい]る。",
+        "translation": "Khi có trận động đất lớn xảy ra, trước hết hãy chui xuống gầm bàn để bảo vệ phần đầu."
+      }
+    },
+    {
+      "id": 2,
+      "slide_number": 2,
+      "word": "津波",
+      "furigana": "つなみ",
+      "romaji": "tsunami",
+      "han_viet": "TÂN BA",
+      "meaning_vn": "Sóng thần (do động đất dưới đáy biển tạo ra)",
+      "word_type": "Danh từ",
+      "tag": "Thiên tai",
+      "visual_diagram": "   🌊 QUY TẮC PHÒNG SÓNG THẦN:\n   [Động đất ven biển ──▶ Rung lắc lâu trên 1 phút]\n       │\n       └── 🏃‍♂️ Chạy NGAY LẬP TỨC lên vùng đồi cao (高台へ避難)\n           ├── ❌ Không đứng lại xem nước biển rút\n           └── ❌ Không quay lại lấy đồ đạc tài sản!",
+      "diagram_caption": "Từ gốc tiếng Nhật 'Tsunami' đã trở thành từ vựng quốc tế của toàn nhân loại",
+      "mnemonic": "TÂN (津 - bến cảng) + BA (波 - ngọn sóng lớn). Ngọn sóng khổng lồ ập thẳng vào cảng biển.",
+      "collocations": [
+        {
+          "ja": "大津波警報が発令される",
+          "furigana": "おおつなみけいほうにはつれいされる",
+          "vn": "Phát lệnh cảnh báo sóng thần khẩn cấp"
+        },
+        {
+          "ja": "津波避難ビル",
+          "furigana": "つなみひなんビル",
+          "vn": "Tòa nhà cao tầng kiên cố chỉ định tránh sóng thần"
+        }
+      ],
+      "example": {
+        "sentence": "海岸[かいがん]付近[ふきん]で強[つよ]い揺[ゆ]れを感[かん]じたら、津波[つなみ]を警戒[けいかい]して高台[たかだい]へ逃[に]げる。",
+        "translation": "Nếu cảm thấy rung lắc mạnh ở gần bờ biển, hãy đề phòng sóng thần và tháo chạy ngay lên đồi cao."
+      }
+    },
+    {
+      "id": 3,
+      "slide_number": 3,
+      "word": "避難所",
+      "furigana": "ひなんじょ",
+      "romaji": "hinanjo",
+      "han_viet": "TỴ NẠN SỞ",
+      "meaning_vn": "Nơi sơ tán khẩn cấp (thường là trường học, nhà thi đấu)",
+      "word_type": "Danh từ",
+      "tag": "Cứu nạn",
+      "visual_diagram": "   🏫 避難所 (Địa điểm sơ tán an toàn trong quận):\n   ├── 🏫 Nhà thi đấu trường tiểu học / cấp 2 (体育館)\n   ├── 🏛️ Nhà văn hóa cộng đồng (公民館)\n   └── Được cấp phát: Chăn ấm, nước uống, mì gói, sạc pin khẩn cấp",
+      "diagram_caption": "Mỗi người dân khi đến Nhật đều cần tra cứu bản đồ xem điểm sơ tán gần nhà mình nhất ở đâu",
+      "mnemonic": "TỴ (避 - lánh đi) + NẠN (難 - hoạn nạn) + SỞ (所 - địa điểm). Nơi tạm lánh hoạn nạn an toàn.",
+      "collocations": [
+        {
+          "ja": "避難所へ移動する",
+          "furigana": "ひなんじょへいどうする",
+          "vn": "Di chuyển đến nơi sơ tán"
+        },
+        {
+          "ja": "避難生活を送る",
+          "furigana": "ひなんせいかつをおくる",
+          "vn": "Tạm sống những ngày sơ tán ở nhà cộng đồng"
+        }
+      ],
+      "example": {
+        "sentence": "家[いえ]が倒壊[とうかい]する危険[きけん]があったため、近[ちか]くの小学校[しょうがっこう]の避難所[ひなんじょ]へ向[む]かった。",
+        "translation": "Vì có nguy cơ sập nhà nên tôi đã hướng đến nơi sơ tán là trường tiểu học gần đó."
+      }
+    },
+    {
+      "id": 4,
+      "slide_number": 4,
+      "word": "警戒",
+      "furigana": "けいかい",
+      "romaji": "keikai",
+      "han_viet": "CẢNH GIỚI",
+      "meaning_vn": "Cảnh giác, đề phòng, mức độ cảnh báo trước nguy hiểm",
+      "word_type": "Danh từ / Động từ nhóm 3",
+      "tag": "Cảnh báo an toàn",
+      "visual_diagram": "   ⚠️ 5 CẤP ĐỘ CẢNH BÁO THIÊN TAI (警戒レベル):\n   ├── Cấp 1: Nâng cao ý thức (早期注意)\n   ├── Cấp 2: Kiểm tra đường sơ tán (注意報)\n   ├── Cấp 3: Người già sơ tán trước (高齢者等避難)\n   ├── Cấp 4: Toàn dân sơ tán ngay (全員避難 - Rất nguy cấp!)\n   └── Cấp 5: Thảm họa khẩn cấp, bảo toàn tính mạng bằng mọi giá (緊急安全確保)",
+      "diagram_caption": "Khi điện thoại hú vang báo '警戒レベル4' có nghĩa là bắt buộc phải rời nhà ngay lập tức",
+      "mnemonic": "CẢNH (警 - cảnh báo) + GIỚI (戒 - răn đe, phòng ngừa). Luôn ở trạng thái đề phòng nghiêm ngặt.",
+      "collocations": [
+        {
+          "ja": "土砂崩れを警戒する",
+          "furigana": "どしゃくずれをけいかいする",
+          "vn": "Cảnh giác cao độ trước nguy cơ sạt lở đất"
+        },
+        {
+          "ja": "警戒態勢に入る",
+          "furigana": "けいかいたいせいにはいる",
+          "vn": "Bước vào trạng thái báo động khẩn cấp"
+        }
+      ],
+      "example": {
+        "sentence": "大型[おおがた]の台風[たいふう]が近[ちか]づいているため、河川[かせん]の氾濫[はんらん]に厳重[げんじゅう]な警戒[けいかい]が必要[ひつよう]だ。",
+        "translation": "Vì cơn bão lớn đang tới gần nên cần phải cảnh giác cao độ trước nguy cơ ngập lụt sông ngòi."
+      }
+    },
+    {
+      "id": 5,
+      "slide_number": 5,
+      "word": "停電・断水",
+      "furigana": "ていでん・だんすい",
+      "romaji": "teiden / dansui",
+      "han_viet": "ĐÌNH ĐIỆN / ĐOẠN THỦY",
+      "meaning_vn": "Mất điện sinh hoạt / Mất nước máy sinh hoạt",
+      "word_type": "Danh từ / Động từ nhóm 3",
+      "tag": "Sự cố cơ sở hạ tầng",
+      "visual_diagram": "   🌪️ KHI BÃO LỚN HOẶC ĐỘNG ĐẤT:\n   ├── 🔌 停電 (Đình điện): Cúp điện, tủ lạnh không chạy, bóng đèn tắt ngóm\n   └── 🚰 断水 (Đoạn thủy): Cúp nước máy, bồn cầu không xả được, không có nước nấu ăn\n         ▲\n         └── 🔦 Cần sẵn: Đèn pin + 20 lít nước sạch tích trữ trong nhà tắm",
+      "diagram_caption": "Hai sự cố hạ tầng phổ biến nhất sau thảm họa thiên tai",
+      "mnemonic": "ĐÌNH (停 - dừng lại) + ĐIỆN. ĐOẠN (断 - cắt đứt) + THỦY. Điện dừng nước đứt.",
+      "collocations": [
+        {
+          "ja": "停電が復旧する",
+          "furigana": "ていでんがふっきゅうする",
+          "vn": "Điện sinh hoạt được khôi phục lại"
+        },
+        {
+          "ja": "断水に備えて水を汲む",
+          "furigana": "だんすいにそなえてみずをくむ",
+          "vn": "Hứng sẵn nước đề phòng mất nước"
+        }
+      ],
+      "example": {
+        "sentence": "地震[じしん]の直後[ちょくご]に停電[ていでん]と断水[だんすい]が発生[はっせい]し、生活[せいかつ]が極[きわ]めて不便[ふべん]になった。",
+        "translation": "Ngay sau động đất đã xảy ra tình trạng mất điện và mất nước khiến sinh hoạt trở nên vô cùng bất tiện."
+      }
+    },
+    {
+      "id": 6,
+      "slide_number": 6,
+      "word": "非常食",
+      "furigana": "ひじょうしょく",
+      "romaji": "hijoushoku",
+      "han_viet": "PHI THƯỜNG THỰC",
+      "meaning_vn": "Lương thực thực phẩm khẩn cấp trữ phòng nạn (để được 3-5 năm)",
+      "word_type": "Danh từ",
+      "tag": "Dự trữ sinh tồn",
+      "visual_diagram": "   🥫 THỰC PHẨM CỨU NẠN TIÊU CHUẨN CẦN ĐỦ CHO 3 NGÀY:\n   ├── 💧 Nước lọc đóng chai hạn 5 năm (3 lít/người/ngày)\n   ├── 🍚 Cơm sấy khô Alpha (Chỉ cần đổ nước nóng hoặc nước nguội là ăn được)\n   ├── 🥫 Thịt cá đóng hộp nắp giật (bò hầm, cá thu sốt miso)\n   └── 🍫 Bánh quy khô calo cao, kẹo ngậm",
+      "diagram_caption": "Người Nhật có văn hóa 'Rolling Stock' - ăn đồ cũ gần hết hạn rồi mua bổ sung đồ mới liên tục",
+      "mnemonic": "PHI THƯỜNG (非常 - lúc khẩn cấp dị thường) + THỰC (食 - đồ ăn). Đồ ăn dành riêng cho lúc nguy nan.",
+      "collocations": [
+        {
+          "ja": "非常食を備蓄する",
+          "furigana": "ひじょうしょくをびちくする",
+          "vn": "Tích trữ lương khô khẩn cấp"
+        },
+        {
+          "ja": "賞味期限が長い非常食",
+          "furigana": "しょうみきげんがながいひじょうしょく",
+          "vn": "Thực phẩm cứu nạn có hạn dùng nhiều năm"
+        }
+      ],
+      "example": {
+        "sentence": "万一[まんいつ]の災害[さいがい]に備[そな]えて、家族[かぞく]三人[さんにん]分[ぶん]の非常食[ひじょうしょく]を倉庫[そうこ]に用意[ようい]した。",
+        "translation": "Đề phòng thảm họa bất trắc, tôi đã chuẩn bị sẵn lượng lương khô khẩn cấp đủ cho 3 người trong gia đình."
+      }
+    },
+    {
+      "id": 7,
+      "slide_number": 7,
+      "word": "防災グッズ",
+      "furigana": "ぼうさいグッズ",
+      "romaji": "bousai guzzu",
+      "han_viet": "PHÒNG TAI ĐỒ DÙNG",
+      "meaning_vn": "Balo / Bộ đồ nghề phòng chống thiên tai",
+      "word_type": "Danh từ",
+      "tag": "Dụng cụ cứu hộ",
+      "visual_diagram": "   🎒 BALO PHÒNG CHỐNG THIÊN TAI (防災リュック):\n   ├── 🔦 Đèn pin và pin tiểu dự phòng\n   ├── 📻 Radio quay tay bắt sóng dự báo thời tiết khẩn\n   ├── 🧻 Giấy vệ sinh khẩn cấp và túi đựng chất thải\n   ├── 🩹 Hộp băng gạc y tế sơ cứu mini\n   └── 🧤 Găng tay len dày và còi cứu hộ thổi khi bị kẹt",
+      "diagram_caption": "Nên đặt chiếc balo này ở ngay cạnh cửa ra vào để xách chạy bất cứ lúc nào",
+      "mnemonic": "PHÒNG TAI (防災 - phòng chống tai họa thiên nhiên) + GOODS (dụng cụ đồ đạc).",
+      "collocations": [
+        {
+          "ja": "防災リュック",
+          "furigana": "ぼうさいリュック",
+          "vn": "Balo phòng chống thiên tai đặt sẵn góc nhà"
+        },
+        {
+          "ja": "防災訓練",
+          "furigana": "ぼうさいくんれん",
+          "vn": "Buổi diễn tập phòng chống thảm họa tại trường/cty"
+        }
+      ],
+      "example": {
+        "sentence": "玄関[げんかん]の近[ちか]くに防災[ぼうさい]グッズをまとめたリュックを置[お]いてある。",
+        "translation": "Tôi đặt sẵn chiếc balo đựng dụng cụ phòng chống thiên tai ở ngay gần cửa ra vào."
+      }
+    },
+    {
+      "id": 8,
+      "slide_number": 8,
+      "word": "余震",
+      "furigana": "よしん",
+      "romaji": "yoshin",
+      "han_viet": "DƯ CHẤN",
+      "meaning_vn": "Dư chấn, các đợt rung chấn nhỏ tiếp sau trận động đất chính",
+      "word_type": "Danh từ",
+      "tag": "Hiện tượng địa chất",
+      "visual_diagram": "   💥 本震 (Đợt rung chấn chính: Mạnh nhất, gây đổ sập nhà)\n        │\n        └── 〰️〰️ 余震 (Các đợt dư chấn kéo dài hàng tuần sau đó):\n             ├── Có thể làm những bức tường đã nứt sập hẳn\n             └── Tuyệt đối không được chủ quan quay lại nhà nguy hiểm",
+      "diagram_caption": "Sau trận động đất lớn, nguy cơ xuất hiện dư chấn mạnh trong vòng 1 tuần là cực cao",
+      "mnemonic": "DƯ (余 - phần dư sót lại) + CHẤN (震 - rung lắc). Đợt rung lắc còn sót lại.",
+      "collocations": [
+        {
+          "ja": "余震が続く",
+          "furigana": "よしんがつづく",
+          "vn": "Các đợt dư chấn liên tục tiếp diễn"
+        },
+        {
+          "ja": "余震への警戒",
+          "furigana": "よしんへのけいかい",
+          "vn": "Cảnh giác cao trước các đợt dư chấn tiếp theo"
+        }
+      ],
+      "example": {
+        "sentence": "大[おお]きな本震[ほんしん]の後[あと]も、何日[なんにち]にもわたって大[おお]きな余震[よしん]が続[つづ]いた。",
+        "translation": "Ngay cả sau trận động đất chính lớn, những đợt dư chấn mạnh vẫn tiếp tục kéo dài suốt nhiều ngày."
+      }
+    },
+    {
+      "id": 9,
+      "slide_number": 9,
+      "word": "救助",
+      "furigana": "きゅうじょ",
+      "romaji": "kyuujo",
+      "han_viet": "CỨU TRỢ",
+      "meaning_vn": "Giải cứu, cứu hộ người gặp nạn",
+      "word_type": "Danh từ / Động từ nhóm 3",
+      "tag": "Cứu hộ cứu nạn",
+      "visual_diagram": "   🏚️ Nhà sập, ngập lụt chia cắt ──▶ Người dân mắc kẹt kêu cứu\n        │\n        └── 🚒 救助隊 (Đội cứu hộ, lính cứu hỏa, lực lượng phòng vệ SDF)\n            ├── 🚁 Trực thăng thả dây cứu người từ nóc nhà\n            └── 🐕 Chó nghiệp vụ đánh hơi tìm người dưới đống đổ nát",
+      "diagram_caption": "Số điện thoại cứu hộ khẩn cấp ở Nhật: 119 (Cứu hỏa/Cấp cứu), 118 (Cứu hộ trên biển)",
+      "mnemonic": "CỨU (救 - giải cứu, cứu mạng) + TRỢ (助 - giúp đỡ). Ra tay ứng cứu giúp đỡ người nguy nan.",
+      "collocations": [
+        {
+          "ja": "救助活動を行う",
+          "furigana": "きゅうじょかつどうをおこなう",
+          "vn": "Tiến hành hoạt động tìm kiếm cứu hộ"
+        },
+        {
+          "ja": "倒壊した建物から救助される",
+          "furigana": "とうかいしたたてものからきゅうじょされる",
+          "vn": "Được cứu thoát ra từ tòa nhà đổ sập"
+        }
+      ],
+      "example": {
+        "sentence": "自衛隊[じえいたい]や消防[しょうぼう]が全力[ぜんりょく]で被災者[ひさいしゃ]の救助[きゅうじょ]に当[あ]たった。",
+        "translation": "Lực lượng phòng vệ và lính cứu hỏa đã dốc toàn lực thực hiện công tác cứu hộ những người bị nạn."
+      }
+    },
+    {
+      "id": 10,
+      "slide_number": 10,
+      "word": "安否確認",
+      "furigana": "あんぴかくにん",
+      "romaji": "anpi kakunin",
+      "han_viet": "AN PHỦ XÁC NHẬN",
+      "meaning_vn": "Xác nhận tình trạng an toàn của người thân sau thiên tai",
+      "word_type": "Danh từ / Động từ nhóm 3",
+      "tag": "An toàn sinh mạng",
+      "visual_diagram": "   📱 HỘP THƯ TIN NHẮN KHẨN KHI ĐIỆN THOẠI NGHẼN MẠNG:\n   ├── ☎️ Bấm 171 (災害用伝言ダイヤル): Ghi âm giọng nói báo 'Tôi vẫn bình an'\n   └── 🌐 Web171: Nhập số điện thoại để người nhà tra cứu biết mình an toàn",
+      "diagram_caption": "Phương tiện truyền tin sống còn khi toàn bộ mạng di động bị nghẽn sau thảm họa",
+      "mnemonic": "AN PHỦ (安否 - bình an hay có chuyện gì) + XÁC NHẬN (確認 - kiểm tra cho rõ). Xác minh sự an toàn.",
+      "collocations": [
+        {
+          "ja": "家族の安否を確認する",
+          "furigana": "かぞくのあんぴをかくにんする",
+          "vn": "Xác minh người nhà có bình an không"
+        },
+        {
+          "ja": "安否情報",
+          "furigana": "あんぴじょうほう",
+          "vn": "Thông tin về sự an nguy của các nạn nhân"
+        }
+      ],
+      "example": {
+        "sentence": "災害[さいがい]用[よう]の伝言[でんごん]ダイヤルを利用[りよう]して、遠[とお]く離[はな]れた家族[かぞく]の安否[あんぴ]を確認[かくにん]した。",
+        "translation": "Tôi đã sử dụng hộp thư thoại cứu nạn thiên tai để xác nhận tình trạng an toàn của gia đình ở nơi xa."
+      }
+    }
+  ]
+}

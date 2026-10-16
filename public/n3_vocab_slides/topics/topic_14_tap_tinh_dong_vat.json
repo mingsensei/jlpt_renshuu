@@ -1,0 +1,309 @@
+{
+  "topic_id": "topic_14_tap_tinh_dong_vat",
+  "title": "Chủ đề 14: Động vật & Sinh thái thiên nhiên",
+  "japanese_title": "動物の生態・自然・習性の語彙",
+  "description": "Thế giới hoang dã, tập tính sinh tồn, chuỗi thức ăn và các loài sinh vật thích nghi với môi trường sống khắc nghiệt.",
+  "level": "N3",
+  "slides": [
+    {
+      "id": 1,
+      "slide_number": 1,
+      "word": "生態",
+      "furigana": "せいたい",
+      "romaji": "seitai",
+      "han_viet": "SINH THÁI",
+      "meaning_vn": "Tập tính sinh hoạt và cách sinh tồn của sinh vật",
+      "word_type": "Danh từ",
+      "tag": "Sinh thái học",
+      "visual_diagram": "   🌿 HỆ SINH THÁI (生態系 - Ecosystem):\n   ☀️ Ánh sáng mặt trời ──▶ 🌾 Thực vật (Sản xuất)\n                              │\n                              ▼\n   🦌 Thú ăn cỏ ──────────▶ 🐺 Thú săn mồi (Tiêu thụ)\n                              │\n                              ▼\n   🍄 Nấm & Vi sinh vật phân hủy chất thải trở về với đất mẹ",
+      "diagram_caption": "Bài đọc N3 thường giải thích tập tính kỳ lạ của một loài chim hay côn trùng",
+      "mnemonic": "SINH (生 - sự sống sinh tồn) + THÁI (態 - hình thái, dáng vẻ). Dáng vẻ sinh tồn của muôn loài.",
+      "collocations": [
+        {
+          "ja": "野生動物の生態を研究する",
+          "furigana": "やせいどうぶつのせいたいをけんきゅうする",
+          "vn": "Nghiên cứu tập tính sinh thái của động vật hoang dã"
+        },
+        {
+          "ja": "生態系を乱す",
+          "furigana": "せいたいけいをみだす",
+          "vn": "Làm rối loạn cán cân hệ sinh thái"
+        }
+      ],
+      "example": {
+        "sentence": "深海[しんかい]に生息[せいそく]する珍[めずら]しい生物[せいぶつ]の生態[せいたい]は、まだ多[おお]くが謎[なぞ]に包[つつ]まれている。",
+        "translation": "Tập tính sinh thái của các sinh vật quý hiếm sống ở biển sâu phần lớn vẫn còn chìm trong bức màn bí ẩn."
+      }
+    },
+    {
+      "id": 2,
+      "slide_number": 2,
+      "word": "繁殖",
+      "furigana": "はんしょく",
+      "romaji": "hanshoku",
+      "han_viet": "PHỒN THỰC",
+      "meaning_vn": "Sinh sản, duy trì và phát triển nòi giống",
+      "word_type": "Danh từ / Động từ nhóm 3",
+      "tag": "Sinh sản",
+      "visual_diagram": "   🌸 Mùa xuân ấm áp (春) ──▶ MÙA SINH SẢN (繁殖期):\n   ├── 🐦 Chim hót khoe mẽ, tìm bạn đời (求愛行動)\n   ├── 🪺 Đẻ trứng và ấp con trong tổ an toàn\n   └── 🐣 Nuôi con non khôn lớn tiếp nối thế hệ",
+      "diagram_caption": "Bản năng mạnh mẽ nhất của mọi sinh vật trên Trái đất",
+      "mnemonic": "PHỒN (繁 - phồn thịnh dồi dào) + THỰC (殖 - sinh sôi nảy nở). Sinh sôi nảy nở ngày càng đông đúc.",
+      "collocations": [
+        {
+          "ja": "繁殖期を迎える",
+          "furigana": "はんしょくきをむかえる",
+          "vn": "Bước vào mùa sinh sản"
+        },
+        {
+          "ja": "細菌が繁殖する",
+          "furigana": "さいきんがはんしょくする",
+          "vn": "Vi khuẩn sinh sôi nảy nở (trong điều kiện ẩm mốc)"
+        }
+      ],
+      "example": {
+        "sentence": "渡[わた]り鳥[どり]たちは暖[あたた]かい春[はる]になると、繁殖[はんしょく]のために北[きた]へ飛[と]び立[た]つ。",
+        "translation": "Những đàn chim di cư khi mùa xuân ấm áp đến sẽ bay về phương bắc để sinh sản."
+      }
+    },
+    {
+      "id": 3,
+      "slide_number": 3,
+      "word": "絶滅",
+      "furigana": "ぜつめつ",
+      "romaji": "zetsumetsu",
+      "han_viet": "TUYỆT DIỆT",
+      "meaning_vn": "Tuyệt chủng, bị xóa sổ hoàn toàn khỏi Trái Đất",
+      "word_type": "Danh từ / Động từ nhóm 3",
+      "tag": "Bảo tồn",
+      "visual_diagram": "   🦖 KHỦNG LONG (恐竜) ──(Thiên thạch va chạm ☄️)──▶ 絶滅 (Tuyệt diệt)\n   📉 NGUY CƠ HIỆN NAY:\n   ├── 🐼 Gấu trúc, Hổ Siberia, Rùa biển\n   └── ⚠️ 絶滅危惧種 (Loài có nguy cơ tuyệt chủng trong Sách Đỏ)",
+      "diagram_caption": "Tác động của con người đang làm tốc độ tuyệt chủng tăng gấp hàng trăm lần bình thường",
+      "mnemonic": "TUYỆT (絶 - dứt tuyệt đoạn hẳn) + DIỆT (滅 - tiêu diệt tan biến). Dứt tuyệt không còn một cá thể nào.",
+      "collocations": [
+        {
+          "ja": "絶滅の危機に瀕している",
+          "furigana": "ぜつめつのききにひんしている",
+          "vn": "Đang đứng trước bờ vực tuyệt chủng"
+        },
+        {
+          "ja": "絶滅危惧種",
+          "furigana": "ぜつめつきぐしゅ",
+          "vn": "Loài sinh vật quý hiếm có nguy cơ tuyệt chủng"
+        }
+      ],
+      "example": {
+        "sentence": "森林[しんりん]伐採[ばっさい]による生息[せいそく]地[ち]の減少[げんしょう]が、多[おお]くの野生[やせい]動物[どうぶつ]を絶滅[ぜつめつ]へと追[お]い込[こ]んでいる。",
+        "translation": "Môi trường sống bị thu hẹp do chặt phá rừng đang đẩy nhiều loài động vật hoang dã đến bờ vực tuyệt chủng."
+      }
+    },
+    {
+      "id": 4,
+      "slide_number": 4,
+      "word": "獲物",
+      "furigana": "えもの",
+      "romaji": "emono",
+      "han_viet": "HOẠCH VẬT",
+      "meaning_vn": "Con mồi bị săn bắt",
+      "word_type": "Danh từ",
+      "tag": "Chuỗi thức ăn",
+      "visual_diagram": "   🦁 THÚ SĂN MỒI (捕食者) ────── Đuổi bắt ──────▶ 🦌 獲物 (Con mồi)\n        │                                           │\n        └── Răng nanh, móng vuốt nhọn               └── Chạy nhanh, ngụy trang giấu mình",
+      "diagram_caption": "Cuộc rượt đuổi sinh tồn không hồi kết trong tự nhiên",
+      "mnemonic": "HOẠCH (獲 - săn bắt được, thu hoạch) + VẬT (物 - con vật). Con vật bị bắt được.",
+      "collocations": [
+        {
+          "ja": "獲物を狙う",
+          "furigana": "えものをねらう",
+          "vn": "Rình rập nhắm vào con mồi"
+        },
+        {
+          "ja": "獲物を捕らえる",
+          "furigana": "えものをつかまえる",
+          "vn": "Vồ bắt trọn con mồi"
+        }
+      ],
+      "example": {
+        "sentence": "ライオンは草[くさ]むらに隠[かく]れ、静[しず]かに獲物[えもの]に近[ちか]づいていった。",
+        "translation": "Con sư tử ẩn mình trong lùm cỏ, lặng lẽ tiến lại gần con mồi."
+      }
+    },
+    {
+      "id": 5,
+      "slide_number": 5,
+      "word": "捕食",
+      "furigana": "ほしょく",
+      "romaji": "hoshoku",
+      "han_viet": "BỘ THỰC",
+      "meaning_vn": "Săn bắt và ăn thịt con mồi",
+      "word_type": "Danh từ / Động từ nhóm 3",
+      "tag": "Hành vi săn mồi",
+      "visual_diagram": "   🦉 Cú mèo ──(Bắt và xơi tái con chuột 🐭)──▶ Hành vi này gọi là 捕食 (ほしょく)",
+      "diagram_caption": "Giúp kiểm soát số lượng các loài bên dưới, giữ cân bằng sinh thái",
+      "mnemonic": "BỘ (捕 - bắt giữ) + THỰC (食 - ăn thịt). Bắt lấy rồi ăn thịt.",
+      "collocations": [
+        {
+          "ja": "小魚を捕食する",
+          "furigana": "こざかなをほしょくする",
+          "vn": "Săn bắt cá nhỏ làm thức ăn"
+        },
+        {
+          "ja": "捕食動物",
+          "furigana": "ほしょくどうぶつ",
+          "vn": "Động vật ăn thịt săn mồi"
+        }
+      ],
+      "example": {
+        "sentence": "猛禽[もうきん]類[るい]のワシは、上空[じょうくう]から地表[ちひょう]の小[ちい]さな動物[どうぶつ]を見[み]つけて捕食[ほしょく]する。",
+        "translation": "Loài chim săn mồi đại bàng phát hiện động vật nhỏ trên mặt đất từ trên cao rồi lao xuống bắt ăn thịt."
+      }
+    },
+    {
+      "id": 6,
+      "slide_number": 6,
+      "word": "縄張り",
+      "furigana": "なわばり",
+      "romaji": "nawabari",
+      "han_viet": "THẰNG TRƯƠNG",
+      "meaning_vn": "Lãnh thổ riêng, địa bàn con vật đánh dấu để bảo vệ",
+      "word_type": "Danh từ",
+      "tag": "Hành vi động vật",
+      "visual_diagram": "   🐾 ĐÁNH DẤU LÃNH THỔ (縄張り):\n   ├── 🐕 Chó mèo: Đi tiểu hoặc cọ mùi cơ thể lên góc cây (マーキング)\n   ├── 🐅 Hổ báo: Cào móng lên thân cây to để dọa đối thủ\n   └── ⛔ Kẻ lạ xâm phạm ──▶ Tấn công quyết liệt bảo vệ địa bàn!",
+      "diagram_caption": "Cũng dùng trong đời sống con người nghĩa bóng: 'Địa bàn hoạt động của một băng nhóm/cửa hàng'",
+      "mnemonic": "THẰNG (縄 - dây thừng) + TRƯƠNG (張 - chăng ra). Như giăng dây thừng khoanh vùng đất cấm.",
+      "collocations": [
+        {
+          "ja": "縄張りを主張する",
+          "furigana": "なわばりをしゅちょうする",
+          "vn": "Tuyên bố chủ quyền lãnh thổ"
+        },
+        {
+          "ja": "縄張りを争う",
+          "furigana": "なわばりをあらそう",
+          "vn": "Tranh giành địa bàn lãnh thổ"
+        }
+      ],
+      "example": {
+        "sentence": "オス猫[ねこ]は自分[じぶん]の縄張[なわば]りを守[まも]るために、周囲[しゅうい]の壁[かべ]ににおいを残[のこ]す。",
+        "translation": "Mèo đực đánh dấu mùi hương lên các bức tường xung quanh để bảo vệ lãnh thổ của mình."
+      }
+    },
+    {
+      "id": 7,
+      "slide_number": 7,
+      "word": "越冬",
+      "furigana": "えっとう",
+      "romaji": "ettou",
+      "han_viet": "VIỆT ĐÔNG",
+      "meaning_vn": "Trú đông, vượt qua mùa đông giá rét (ngủ đông hoặc di cư)",
+      "word_type": "Danh từ / Động từ nhóm 3",
+      "tag": "Thích nghi thời tiết",
+      "visual_diagram": "   ❄️ MÙA ĐÔNG GIÁ LẠNH KHẮC NGHIỆT:\n   ├── 🐻 冬眠 (とうみん - Gấu ngủ đông trong hang suốt 4 tháng không ăn)\n   └── 🦆 渡り鳥 (わたりどり - Đàn vịt trời bay về phương Nam ấm áp trú đông)",
+      "diagram_caption": "Chiến lược sinh tồn phi thường của muôn loài trước cái lạnh âm độ",
+      "mnemonic": "VIỆT (越 - vượt qua) + ĐÔNG (冬 - mùa đông). Vượt qua mùa đông lạnh giá an toàn.",
+      "collocations": [
+        {
+          "ja": "南の島で越冬する",
+          "furigana": "みなみのしまでえっとうする",
+          "vn": "Tránh rét qua mùa đông tại đảo phương nam"
+        },
+        {
+          "ja": "越冬用の食料",
+          "furigana": "えっとうようのしょくりょう",
+          "vn": "Lương thực tích trữ để ăn qua mùa đông"
+        }
+      ],
+      "example": {
+        "sentence": "クマは秋[あき]のうちに木[き]の実[み]を大量[たいりょう]に食[た]べて脂肪[しぼう]を蓄[たくわ]え、洞窟[どうくつ]で越冬[えっとう]する。",
+        "translation": "Loài gấu vào mùa thu ăn lượng lớn quả hạch để tích mỡ, rồi chui vào hang trú đông."
+      }
+    },
+    {
+      "id": 8,
+      "slide_number": 8,
+      "word": "飼育",
+      "furigana": "しいく",
+      "romaji": "shiiku",
+      "han_viet": "TỰ DỤC",
+      "meaning_vn": "Chăm sóc, nuôi dưỡng động vật (thú cưng, vật nuôi, sở thú)",
+      "word_type": "Danh từ / Động từ nhóm 3",
+      "tag": "Nuôi dưỡng",
+      "visual_diagram": "   🏠 NUÔI DƯỠNG (飼育):\n   ├── 🐶 Nuôi chó mèo cưng trong nhà (ペットの飼育)\n   └── 🦒 Chăm sóc thú trong sở thú (動物園の飼育員さん: Cho ăn, dọn chuồng, chữa bệnh)",
+      "diagram_caption": "Tại Nhật Bản muốn nuôi chó mèo phải đăng ký mã chip điện tử gắn dưới da",
+      "mnemonic": "TỰ (飼 - cho ăn, chăn nuôi) + DỤC (育 - nuôi nấng dạy dỗ). Chăm sóc cho ăn và nuôi khôn lớn.",
+      "collocations": [
+        {
+          "ja": "動物園の飼育員",
+          "furigana": "どうぶつえんのしいくいん",
+          "vn": "Nhân viên chăm sóc động vật ở sở thú"
+        },
+        {
+          "ja": "ペットの正しい飼育方法",
+          "furigana": "ペットのただしいしいくほうほう",
+          "vn": "Phương pháp nuôi thú cưng đúng cách"
+        }
+      ],
+      "example": {
+        "sentence": "このマンションでは、近隣[きんりん]への配慮[はいりょ]から大型[おおがた]ペットの飼育[しいく]が禁止[きんし]されている。",
+        "translation": "Tại chung cư này, để tránh làm phiền hàng xóm xung quanh, việc nuôi thú cưng kích thước lớn bị nghiêm cấm."
+      }
+    },
+    {
+      "id": 9,
+      "slide_number": 9,
+      "word": "野生",
+      "furigana": "やせい",
+      "romaji": "yasei",
+      "han_viet": "DÃ SINH",
+      "meaning_vn": "Hoang dã, tự nhiên (không được thuần hóa)",
+      "word_type": "Danh từ / Mang tính bổ nghĩa",
+      "tag": "Tự nhiên",
+      "visual_diagram": "   🌲 野生 (Hoang dã ngoài rừng)    vs    🏠 飼育 (Được nuôi nhốt trong nhà)\n   ├── Tự kiếm ăn độc lập              ├── Được con người cho ăn đồ hộp\n   └── Bản năng sinh tồn nhạy bén      └── Mất dần khả năng săn mồi",
+      "diagram_caption": "Động vật hoang dã Nhật Bản như khỉ tuyết onsen hay hươu Nara rất nổi tiếng",
+      "mnemonic": "DÃ (野 - đồng hoang ngoài đồng) + SINH (生 - sinh sôi). Sinh trưởng tự do ngoài chốn đồng hoang dã.",
+      "collocations": [
+        {
+          "ja": "野生動物",
+          "furigana": "やせいどうぶつ",
+          "vn": "Động vật hoang dã"
+        },
+        {
+          "ja": "野生に戻す",
+          "furigana": "やせいにもどす",
+          "vn": "Thả động vật sau khi cứu chữa về lại tự nhiên hoang dã"
+        }
+      ],
+      "example": {
+        "sentence": "長野県[ながのけん]の山奥[やまおく]では、温泉[おんせん]に浸[つ]かる野生[やせい]のサルを観察[かんさつ]できる。",
+        "translation": "Sâu trong núi rừng tỉnh Nagano, bạn có thể quan sát đàn khỉ hoang dã ngâm mình trong suối nước nóng."
+      }
+    },
+    {
+      "id": 10,
+      "slide_number": 10,
+      "word": "習性",
+      "furigana": "しゅうせい",
+      "romaji": "shuusei",
+      "han_viet": "TẬP TÍNH",
+      "meaning_vn": "Thói quen bản năng tự nhiên theo loài",
+      "word_type": "Danh từ",
+      "tag": "Bản năng",
+      "visual_diagram": "   💡 VÍ DỤ TẬP TÍNH BẢN NĂNG (習性):\n   ├── 🐱 Mèo có tập tính thích chui vào hộp giấy chật hẹp\n   ├── 🦇 Dơi có tập tính treo ngược thân mình ngủ ban ngày\n   └── 🐝 Ong có tập tính múa vòng số 8 để báo vị trí hoa mật",
+      "diagram_caption": "Không cần ai dạy, sinh ra đã có sẵn trong gen di truyền của loài",
+      "mnemonic": "TẬP (習 - lặp đi lặp lại thành thói quen) + TÍNH (性 - tính chất bẩm sinh). Tính nết bản năng tự nhiên.",
+      "collocations": [
+        {
+          "ja": "動物の習性を利用する",
+          "furigana": "どうぶつのしゅうせいをりようする",
+          "vn": "Vận dụng tập tính bản năng của con vật"
+        },
+        {
+          "ja": "夜行性の習性",
+          "furigana": "やこうせいのしゅうせい",
+          "vn": "Tập tính hoạt động săn mồi về đêm"
+        }
+      ],
+      "example": {
+        "sentence": "鳥[とり]が太陽[たいよう]や星座[せいざ]の位置[いち]を手[て]がかりに飛[と]ぶのは、生[う]まれ持[も]った習性[しゅうせい]である。",
+        "translation": "Việc loài chim dựa vào vị trí mặt trời và các chòm sao để định hướng bay là tập tính bản năng bẩm sinh."
+      }
+    }
+  ]
+}

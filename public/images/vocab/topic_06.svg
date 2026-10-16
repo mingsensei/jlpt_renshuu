@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bg_topic_06" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f1f5f9"/>
+      <stop offset="100%" stop-color="#e2e8f0"/>
+    </linearGradient>
+    <filter id="shadow_topic_06" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="#475569" flood-opacity="0.12"/>
+    </filter>
+  </defs>
+
+  <!-- Background Canvas -->
+  <rect width="800" height="450" rx="24" fill="url(#bg_topic_06)"/>
+
+  <!-- Subtle grid pattern dots -->
+  <g opacity="0.15" fill="#475569">
+    <circle cx="40" cy="40" r="3"/><circle cx="100" cy="40" r="3"/><circle cx="160" cy="40" r="3"/><circle cx="700" cy="40" r="3"/><circle cx="760" cy="40" r="3"/>
+    <circle cx="40" cy="100" r="3"/><circle cx="760" cy="100" r="3"/><circle cx="40" cy="350" r="3"/><circle cx="760" cy="350" r="3"/>
+  </g>
+
+  <!-- Header Badge -->
+  <g transform="translate(40, 35)">
+    <rect width="110" height="32" rx="16" fill="#475569"/>
+    <text x="55" y="21" font-family="'Plus Jakarta Sans', sans-serif" font-size="13" font-weight="800" fill="#ffffff" text-anchor="middle" letter-spacing="0.5">CHỦ ĐỀ 06</text>
+  </g>
+
+  <!-- Title typography -->
+  <text x="165" y="58" font-family="'Plus Jakarta Sans', sans-serif" font-size="20" font-weight="800" fill="#0f172a">Thủ tục hành chính & Giấy tờ quận</text>
+  <text x="760" y="58" font-family="'Noto Sans JP', sans-serif" font-size="16" font-weight="700" fill="#475569" text-anchor="end">行政手続き・市役所</text>
+
+  <!-- Main Illustration Scene -->
+  
+            <!-- City Hall & Resident Card -->
+            <rect x="120" y="120" width="240" height="210" rx="16" fill="#ffffff" filter="drop-shadow(0 10px 20px rgba(0,0,0,0.06))"/>
+            <polygon points="240,75 110,135 370,135" fill="#475569"/>
+            <rect x="155" y="160" width="35" height="50" fill="#cbd5e1"/>
+            <rect x="220" y="160" width="40" height="50" fill="#cbd5e1"/>
+            <rect x="290" y="160" width="35" height="50" fill="#cbd5e1"/>
+            <rect x="220" y="250" width="40" height="80" fill="#334155"/>
+            <!-- Hanko Stamp & Resident Certificate -->
+            <g transform="translate(420, 130)">
+                <rect x="0" y="0" width="250" height="160" rx="14" fill="#ffffff" filter="drop-shadow(0 10px 20px rgba(0,0,0,0.06))"/>
+                <text x="125" y="40" font-size="18" font-family="'Noto Sans JP', sans-serif" font-weight="bold" fill="#1e293b" text-anchor="middle">住 民 票</text>
+                <path d="M30 65 H220 M30 95 H180 M30 125 H200" stroke="#e2e8f0" stroke-width="4" stroke-linecap="round"/>
+                <!-- Red Stamp -->
+                <circle cx="200" cy="115" r="22" fill="#fee2e2" stroke="#dc2626" stroke-width="3"/>
+                <text x="200" y="122" font-size="15" font-family="'Noto Sans JP', sans-serif" font-weight="bold" fill="#dc2626" text-anchor="middle">印</text>
+            </g>
+        
+
+  <!-- Bottom Accent Stripe -->
+  <rect x="0" y="442" width="800" height="8" fill="#475569"/>
+</svg>

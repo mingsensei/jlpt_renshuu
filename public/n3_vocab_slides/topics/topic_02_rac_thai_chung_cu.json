@@ -1,0 +1,314 @@
+{
+  "topic_id": "topic_02_rac_thai_chung_cu",
+  "title": "Chủ đề 02: Rác thải sinh hoạt & Chung cư",
+  "japanese_title": "ゴミ分別・マンション生活の語彙",
+  "description": "Các quy tắc phân loại rác khắt khe tại Nhật Bản và phép lịch sự trong đời sống tập thể chung cư.",
+  "level": "N3",
+  "slides": [
+    {
+      "id": 1,
+      "slide_number": 1,
+      "word": "燃えるゴミ",
+      "furigana": "もえるごみ",
+      "romaji": "moeru gomi",
+      "han_viet": "NHIÊN TRẦN",
+      "meaning_vn": "Rác cháy được (rác thực phẩm, giấy vụn, lá cây)",
+      "word_type": "Danh từ",
+      "tag": "Phân loại rác",
+      "visual_diagram": "   🔥 燃えるゴミ (Cháy được)    vs    ❄️ 燃えないゴミ (Không cháy)\n   ┌──────────────────────┐          ┌──────────────────────┐\n   │ 🍌 Thức ăn thừa       │          │ 🔨 Kim loại, chảo cũ │\n   │ 🧻 Giấy lau, vỏ hộp  │          │ 🏺 Thủy tinh vỡ, gốm │\n   │ 🍂 Lá cây, cành nhỏ  │          │ 💡 Bóng đèn huỳnh quang│\n   └──────────────────────┘          └──────────────────────┘",
+      "diagram_caption": "Hai nhóm rác cơ bản nhất tại mọi gia đình Nhật, lịch vứt khác nhau",
+      "mnemonic": "NHIÊN (燃) = LỬA (火) + NHIÊN (然). Đốt lên cháy thành tro là 燃えるゴミ.",
+      "collocations": [
+        {
+          "ja": "燃えるゴミの日",
+          "furigana": "もえるごみのひ",
+          "vn": "Ngày thu gom rác cháy được (thường tuần 2 lần)"
+        },
+        {
+          "ja": "生ゴミ",
+          "furigana": "なまごみ",
+          "vn": "Rác nhà bếp / đồ tươi sống"
+        },
+        {
+          "ja": "ゴミ袋に入れる",
+          "furigana": "ごみぶくろにいれる",
+          "vn": "Bỏ vào túi đựng rác chỉ định của quận"
+        }
+      ],
+      "example": {
+        "sentence": "火曜日[かようび]と金曜日[きんようび]の朝[あさ]八時[はちじ]までに燃[も]えるゴミを出[だ]してください。",
+        "translation": "Xin hãy vứt rác cháy được trước 8 giờ sáng vào các ngày thứ Ba và thứ Sáu."
+      }
+    },
+    {
+      "id": 2,
+      "slide_number": 2,
+      "word": "燃えないゴミ",
+      "furigana": "もえないごみ",
+      "romaji": "moenai gomi",
+      "han_viet": "BẤT NHIÊN TRẦN",
+      "meaning_vn": "Rác không cháy được (kim loại, gốm sứ, đồ điện nhỏ)",
+      "word_type": "Danh từ",
+      "tag": "Phân loại rác",
+      "visual_diagram": "   🚫 Không cháy được (不燃ゴミ・燃えないゴミ)\n   ├── 🍽️ Đĩa sành vỡ ── gói giấy báo và dán chữ: 「キケン」(Nguy hiểm)\n   ├── 🔋 Pin, ắc quy ── bỏ thùng gom riêng tại cửa hàng tiện lợi / ga\n   └── 🍳 Chảo cũ, dao kéo ── mang ra đúng ngày quy định",
+      "diagram_caption": "Rác nguy hiểm như dao, thủy tinh phải bọc giấy báo cẩn thận để tránh làm nhân viên vệ sinh bị thương",
+      "mnemonic": "Thêm phủ định ない: 燃えない = Không thể đốt cháy được bằng nhiệt độ lò thiêu thường.",
+      "collocations": [
+        {
+          "ja": "不燃ゴミ",
+          "furigana": "ふねんごみ",
+          "vn": "Từ Hán Việt đồng nghĩa: Bất nhiên trần"
+        },
+        {
+          "ja": "月二回回収",
+          "furigana": "つきにかいかいしゅう",
+          "vn": "Thu gom 2 lần mỗi tháng"
+        }
+      ],
+      "example": {
+        "sentence": "割[わ]れたコップは新聞紙[しんぶんし]に包[つつ]んで、燃[も]えないゴミとして出[だ]す。",
+        "translation": "Cốc bị vỡ thì hãy bọc trong giấy báo rồi mới vứt như rác không cháy được."
+      }
+    },
+    {
+      "id": 3,
+      "slide_number": 3,
+      "word": "粗大ゴミ",
+      "furigana": "そだいごみ",
+      "romaji": "sodai gomi",
+      "han_viet": "THÔ ĐẠI TRẦN",
+      "meaning_vn": "Rác khổ lớn (bàn ghế, đệm, xe đạp - phải mua tem dán)",
+      "word_type": "Danh từ",
+      "tag": "Phân loại rác",
+      "visual_diagram": "   🛋️ 粗大ゴミ (Rác cồng kềnh dài > 30cm)\n   ├── 1. 📞 Gọi điện / Đăng ký qua web Ủy ban quận (粗大ゴミ受付センター)\n   ├── 2. 🏪 Mua tem dán tại Konbini (粗大ゴミ処理券: ~400円 - 2000円)\n   └── 3. 🏷️ Dán tem lên đồ và đặt trước cửa đúng ngày hẹn",
+      "diagram_caption": "Không được tự ý vứt rác to ra bãi rác, bắt buộc phải trả phí xử lý và hẹn ngày",
+      "mnemonic": "THÔ (粗 - thô ráp, to) + ĐẠI (大 - lớn). Bất kỳ đồ vật nào có cạnh dài hơn 30cm đều là Thô Đại rác.",
+      "collocations": [
+        {
+          "ja": "粗大ゴミを申し込む",
+          "furigana": "そだいごみをもうしこむ",
+          "vn": "Đăng ký xử lý rác cồng kềnh"
+        },
+        {
+          "ja": "処理手数料券",
+          "furigana": "しょりてすうりょうけん",
+          "vn": "Tem phí xử lý rác cồng kềnh"
+        }
+      ],
+      "example": {
+        "sentence": "引[ひ]っ越[こ]しで不要[ふよう]になった机[つくえ]を粗大[そだい]ゴミとして処分[しょぶん]した。",
+        "translation": "Tôi đã vứt chiếc bàn học không dùng nữa do chuyển nhà theo diện rác cồng kềnh."
+      }
+    },
+    {
+      "id": 4,
+      "slide_number": 4,
+      "word": "資源ゴミ",
+      "furigana": "しげんごみ",
+      "romaji": "shigen gomi",
+      "han_viet": "TƯ NGUYÊN TRẦN",
+      "meaning_vn": "Rác tái chế (chai nhựa PET, lon, chai thủy tinh, giấy báo)",
+      "word_type": "Danh từ",
+      "tag": "Phân loại rác",
+      "visual_diagram": "   ♻️ 資源ゴミ (Rác tái chế) ── Quy tắc 3 bước với chai nhựa:\n   1. 🏷️ Bóc màng bọc nilon (ラベルをはがす)\n   2. 🔘 Tháo nắp nhựa (キャップをはずす)\n   3. 💧 Rửa sạch nước bên trong & Giẫm bẹp (中を洗って潰す)",
+      "diagram_caption": "Quy tắc vứt chai nước khoáng PET chuẩn mực tại Nhật Bản",
+      "mnemonic": "TƯ NGUYÊN (資源) là tài nguyên. Rác nhưng là nguồn tài nguyên tái chế được.",
+      "collocations": [
+        {
+          "ja": "資源ゴミを分別する",
+          "furigana": "しげんごみをぶんべつする",
+          "vn": "Phân loại rác tái chế"
+        },
+        {
+          "ja": "ペットボトルと缶",
+          "furigana": "ペットボトルとかん",
+          "vn": "Chai nhựa PET và lon nhôm/thiếc"
+        }
+      ],
+      "example": {
+        "sentence": "ペットボトルは中[なか]を水[みず]で洗[あら]ってから、資源[しげん]ゴミの箱[はこ]に入[い]れてください。",
+        "translation": "Chai nhựa PET hãy tráng sạch bên trong bằng nước rồi mới bỏ vào thùng rác tái chế."
+      }
+    },
+    {
+      "id": 5,
+      "slide_number": 5,
+      "word": "分別",
+      "furigana": "ぶんべつ",
+      "romaji": "bunbetsu",
+      "han_viet": "PHÂN BIỆT",
+      "meaning_vn": "Phân loại rác đúng chủng loại",
+      "word_type": "Danh từ / Động từ nhóm 3",
+      "tag": "Hành động",
+      "visual_diagram": "   🗑️ ゴミ (Rác tổng hợp)\n       ├── 🔴 燃える (Cháy)\n       ├── 🔵 燃えない (Không cháy)\n       └── 🟢 資源 (Tái chế)\n       ==▶ Phân loại chính xác = 分別 (ぶんべつ)",
+      "diagram_caption": "Phân loại rác là nét văn hóa bắt buộc thể hiện ý thức công dân tại Nhật Bản",
+      "mnemonic": "PHÂN (分 - chia nhỏ) + BIỆT (別 - riêng biệt) = Tách riêng từng nhóm rác ra.",
+      "collocations": [
+        {
+          "ja": "ゴミを正しく分別する",
+          "furigana": "ごみをただしくぶんべつする",
+          "vn": "Phân loại rác chính xác"
+        },
+        {
+          "ja": "分別のルールを守る",
+          "furigana": "ぶんべつのルールをまもる",
+          "vn": "Tuân thủ quy định phân loại rác"
+        }
+      ],
+      "example": {
+        "sentence": "日本[にほん]では地域[ちいき]によってゴミの分別[ぶんべつ]方法[ほうほう]が異[こと]なる。",
+        "translation": "Tại Nhật Bản, tùy vào từng khu vực mà cách phân loại rác sẽ khác nhau."
+      }
+    },
+    {
+      "id": 6,
+      "slide_number": 6,
+      "word": "収集日",
+      "furigana": "しゅうしゅうび",
+      "romaji": "shuushuubi",
+      "han_viet": "THU TẬP NHẬT",
+      "meaning_vn": "Ngày thu gom rác theo lịch của phường",
+      "word_type": "Danh từ",
+      "tag": "Lịch sinh hoạt",
+      "visual_diagram": "   📅 ゴミ収集カレンダー (Lịch thu rác):\n   ├── Thứ 2: 🥫 Lon, chai thủy tinh (缶・ビン)\n   ├── Thứ 3: 🔥 Rác cháy được (可燃ゴミ)\n   ├── Thứ 4: 📦 Bìa carton, giấy báo (古紙)\n   └── Thứ 6: 🔥 Rác cháy được (可燃ゴミ)",
+      "diagram_caption": "Chỉ được đem rác ra bãi tập kết vào sáng sớm đúng ngày thu gom (trước 8:00)",
+      "mnemonic": "THU (収 - thu vào) + TẬP (集 - gom lại) + NHẬT (日 - ngày). Ngày xe gom rác tới lấy.",
+      "collocations": [
+        {
+          "ja": "収集日を守る",
+          "furigana": "しゅうしゅうびをまもる",
+          "vn": "Tuân thủ ngày thu gom rác"
+        },
+        {
+          "ja": "指定の収集場所",
+          "furigana": "していのしゅうしゅうばしょ",
+          "vn": "Điểm tập kết rác được chỉ định"
+        }
+      ],
+      "example": {
+        "sentence": "収集日[しゅうしゅうび]以外[いがい]の曜日[ようび]にゴミを出[だ]してはいけません。",
+        "translation": "Tuyệt đối không được vứt rác vào những ngày khác ngoài ngày thu gom quy định."
+      }
+    },
+    {
+      "id": 7,
+      "slide_number": 7,
+      "word": "管理人",
+      "furigana": "かんりにん",
+      "romaji": "kanrinin",
+      "han_viet": "QUẢN LÝ NHÂN",
+      "meaning_vn": "Người quản lý tòa nhà chung cư",
+      "word_type": "Danh từ",
+      "tag": "Người phụ trách",
+      "visual_diagram": "   🏢 マンション (Chung cư)\n        │\n        └── 👨‍🦳 管理人さん (Bác quản lý)\n            ├── 🧹 Dọn dẹp hành lang, khu để xe\n            ├── 📬 Quản lý hòm thư & bưu phẩm thất lạc\n            └── ⚠️ Nhắc nhở nếu cư dân làm ồn / vứt sai rác",
+      "diagram_caption": "Khi gặp rắc rối thiết bị hỏng hay thắc mắc về tòa nhà, hãy tìm gặp bác quản lý",
+      "mnemonic": "QUẢN (管 - trông nom) + LÝ (理 - xử lý công việc) + NHÂN (人 - con người).",
+      "collocations": [
+        {
+          "ja": "管理人に相談する",
+          "furigana": "かんりにんにそうだんする",
+          "vn": "Thảo luận / hỏi ý kiến người quản lý"
+        },
+        {
+          "ja": "管理費を納める",
+          "furigana": "かんりひをおさめる",
+          "vn": "Đóng phí quản lý chung cư"
+        }
+      ],
+      "example": {
+        "sentence": "鍵[かぎ]をなくした時[とき]は、すぐにアパートの管理人[かんりにん]に連絡[れんらく]した。",
+        "translation": "Khi bị mất chìa khóa, tôi đã liên lạc ngay lập tức cho bác quản lý căn hộ."
+      }
+    },
+    {
+      "id": 8,
+      "slide_number": 8,
+      "word": "騒音",
+      "furigana": "そうおん",
+      "romaji": "souon",
+      "han_viet": "TAO ÂM",
+      "meaning_vn": "Tiếng ồn gây khó chịu, phiền toái",
+      "word_type": "Danh từ",
+      "tag": "Đời sống chung cư",
+      "visual_diagram": "   🔊 騒音 (Tiếng ồn phiền hà) ── Bị hàng xóm phàn nàn (苦情):\n   ├── 👣 Giậm chân thình thịch đêm khuya\n   ├── 📺 Bật tivi / loa đài quá lớn\n   └── 🍻 Tụ tập nhậu nhẹt cười đùa ồn ào sau 22h",
+      "diagram_caption": "Nguyên nhân hàng đầu dẫn đến xích mích giữa cư dân chung cư tại Nhật",
+      "mnemonic": "TAO (騒 - náo động, tao loạn) + ÂM (音 - âm thanh). Tiếng kêu làm náo động không gian.",
+      "collocations": [
+        {
+          "ja": "騒音トラブル",
+          "furigana": "そうおんトラブル",
+          "vn": "Xích mích rắc rối vì tiếng ồn"
+        },
+        {
+          "ja": "近所に迷惑をかける",
+          "furigana": "きんじょにめいわくをかける",
+          "vn": "Gây phiền toái cho hàng xóm láng giềng"
+        }
+      ],
+      "example": {
+        "sentence": "夜遅[よるおそ]くの洗濯[せんたく]や掃除[そうじ]は、騒音[そうおん]の原因[げんいん]になるので控[ひか]える。",
+        "translation": "Giặt giũ hay hút bụi vào đêm muộn là nguyên nhân gây tiếng ồn nên hãy hạn chế."
+      }
+    },
+    {
+      "id": 9,
+      "slide_number": 9,
+      "word": "共同",
+      "furigana": "きょうどう",
+      "romaji": "kyoudou",
+      "han_viet": "CỘNG ĐỒNG",
+      "meaning_vn": "Dùng chung, cùng nhau (khu vực công cộng)",
+      "word_type": "Danh từ / Mang tính bổ nghĩa",
+      "tag": "Không gian sinh hoạt",
+      "visual_diagram": "   🏢 Không gian trong chung cư:\n   ├── 🚪 専有部分 (Không gian riêng trong phòng bạn: tùy ý sinh hoạt)\n   └── 🌿 共同部分 (Không gian chung: hành lang, cầu thang, sân phơi)\n         ▲\n         └── 🚫 Không để giày dép rác bừa bãi ra lối đi chung",
+      "diagram_caption": "CỘNG ĐỒNG trong tiếng Nhật nghĩa là dùng chung tài sản hoặc tiện ích tập thể",
+      "mnemonic": "CỘNG (共 - cùng chung) + ĐỒNG (同 - giống nhau) = Cùng chung quyền sử dụng.",
+      "collocations": [
+        {
+          "ja": "共同玄関",
+          "furigana": "きょうどうげんかん",
+          "vn": "Sảnh vào dùng chung"
+        },
+        {
+          "ja": "共同生活",
+          "furigana": "きょうどうせいかつ",
+          "vn": "Đời sống tập thể / sống chung"
+        }
+      ],
+      "example": {
+        "sentence": "共同[きょうどう]スペースの廊下[ろうか]には私物[しぶつ]を置[お]かないでください。",
+        "translation": "Xin đừng để đồ đạc cá nhân ở hành lang là không gian dùng chung."
+      }
+    },
+    {
+      "id": 10,
+      "slide_number": 10,
+      "word": "苦情",
+      "furigana": "くじょう",
+      "romaji": "kujou",
+      "han_viet": "KHỔ TÌNH",
+      "meaning_vn": "Lời phàn nàn, khiếu nại bức xúc",
+      "word_type": "Danh từ",
+      "tag": "Giao tiếp xã hội",
+      "visual_diagram": "   😠 Hàng xóm ── bức xúc ──▶ 📝 苦情 (Khiếu nại) ──▶ 👨‍💼 Quản lý tòa nhà\n                                                    │\n                                                    ▼ Gửi thư cảnh cáo\n                                              🙇‍♂️ Người gây ồn",
+      "diagram_caption": "Người Nhật hiếm khi gõ cửa cãi nhau trực tiếp mà thường báo lên quản lý để gửi thư phàn nàn",
+      "mnemonic": "KHỔ (苦 - đau khổ, bức bối) + TÌNH (情 - cảm xúc, sự tình) = Bày tỏ bức xúc vì bị làm phiền.",
+      "collocations": [
+        {
+          "ja": "苦情が来る / 苦情が入る",
+          "furigana": "くじょうがくる / くじょうがはいる",
+          "vn": "Bị nhận lời phàn nàn khiếu nại"
+        },
+        {
+          "ja": "苦情を言う",
+          "furigana": "くじょうをいう",
+          "vn": "Đưa ra lời khiếu nại"
+        }
+      ],
+      "example": {
+        "sentence": "夜中[よなか]に音楽[おんがく]を大[おお]きな音[おと]で鳴[な]らしていたら、隣[となり]から苦情[くじょう]が来[き]た。",
+        "translation": "Bật nhạc to giữa đêm nên tôi đã bị phòng bên cạnh khiếu nại phàn nàn."
+      }
+    }
+  ]
+}

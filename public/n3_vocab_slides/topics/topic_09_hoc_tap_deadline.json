@@ -1,0 +1,309 @@
+{
+  "topic_id": "topic_09_hoc_tap_deadline",
+  "title": "Chủ đề 09: Học tập & Thi cử & Deadline báo cáo",
+  "japanese_title": "学校・授業・レポート・締め切りの語彙",
+  "description": "Cuộc sống giảng đường đại học/trường tiếng Nhật: bài tập, tín chỉ, chạy deadline và phương pháp ôn thi hiệu quả.",
+  "level": "N3",
+  "slides": [
+    {
+      "id": 1,
+      "slide_number": 1,
+      "word": "課題",
+      "furigana": "かだい",
+      "romaji": "kadai",
+      "han_viet": "KHÓA ĐỀ",
+      "meaning_vn": "Bài tập về nhà, đề tài nghiên cứu được giao",
+      "word_type": "Danh từ",
+      "tag": "Học tập",
+      "visual_diagram": "   👨‍🏫 Giảng viên giao ──▶ 📚 課題 (Khóa đề / Bài tập lớn)\n                              ├── Làm bài tập ngữ pháp, bài đọc\n                              ├── Viết báo cáo nghiên cứu (レポート)\n                              └── Thuyết trình nhóm (プレゼン)",
+      "diagram_caption": "Tại các trường Nhật, hoàn thành đầy đủ 課題 quyết định 40-50% điểm tổng kết môn",
+      "mnemonic": "KHÓA (課 - bài khóa, nhiệm vụ) + ĐỀ (題 - chủ đề câu hỏi). Nhiệm vụ học tập được giao phó.",
+      "collocations": [
+        {
+          "ja": "課題に取り組む",
+          "furigana": "かだいにとりくむ",
+          "vn": "Bắt tay vào thực hiện bài tập"
+        },
+        {
+          "ja": "山のような課題",
+          "furigana": "やまのようなかだい",
+          "vn": "Bài tập nhiều chất đống như núi"
+        }
+      ],
+      "example": {
+        "sentence": "週末[しゅうまつ]は先生[せんせい]から出[だ]された大量[たいりょう]の課題[かだい]を片付[かたづ]けた。",
+        "translation": "Cuối tuần tôi đã giải quyết xong lượng bài tập khổng lồ mà thầy giáo giao."
+      }
+    },
+    {
+      "id": 2,
+      "slide_number": 2,
+      "word": "提出",
+      "furigana": "ていしゅつ",
+      "romaji": "teishutsu",
+      "han_viet": "ĐỀ XUẤT",
+      "meaning_vn": "Nộp bài, trình nộp giấy tờ hồ sơ",
+      "word_type": "Danh từ / Động từ nhóm 3",
+      "tag": "Học vụ",
+      "visual_diagram": "   👨‍🎓 Sinh viên làm xong bài ──(提出 - Nộp bài)──▶ 👨‍🏫 Giáo viên chấm điểm\n   ├── Nộp trực tiếp trên lớp (窓口・教室)\n   └── Nộp online qua hệ thống trường (オンライン提出)",
+      "diagram_caption": "Nộp bài đúng giờ là đức tính được rèn luyện khắt khe từ bậc tiểu học ở Nhật",
+      "mnemonic": "ĐỀ (提 - giơ lên, đưa ra) + XUẤT (出 - đưa ra ngoài). Đưa bài tập nộp ra cho thầy cô.",
+      "collocations": [
+        {
+          "ja": "期限までに提出する",
+          "furigana": "きげんまでにていしゅつする",
+          "vn": "Nộp bài trước thời hạn quy định"
+        },
+        {
+          "ja": "提出物",
+          "furigana": "ていしゅつぶつ",
+          "vn": "Vật/bài cần phải nộp"
+        }
+      ],
+      "example": {
+        "sentence": "レポートの提出[ていしゅつ]期限[きげん]は、金曜日[きんようび]の夕方[ゆうがた]五時[ごじ]までだ。",
+        "translation": "Hạn nộp báo cáo là trước 5 giờ chiều ngày thứ Sáu."
+      }
+    },
+    {
+      "id": 3,
+      "slide_number": 3,
+      "word": "締め切り",
+      "furigana": "しめきり",
+      "romaji": "shimekiri",
+      "han_viet": "ĐẾ THIẾT",
+      "meaning_vn": "Hạn chót, ngày giờ cuối cùng được phép nộp (Deadline)",
+      "word_type": "Danh từ",
+      "tag": "Thời hạn",
+      "visual_diagram": "   ⏰ 締め切り: 23:59:59\n   ├── 23:59:58 ──⭕ Nộp kịp ──▶ Được chấm điểm bình thường\n   └── 00:00:01 ──❌ Quá hạn (遅れ) ──▶ Nhận 0 điểm, hệ thống khóa nộp",
+      "diagram_caption": "Một giây trôi qua sau hạn chót cũng bị coi là quá hạn và không được chấp nhận",
+      "mnemonic": "ĐẾ (締 - siết chặt, thắt nút) + THIẾT (切 - cắt đứt). Siết chặt cánh cửa cắt đứt quyền nộp.",
+      "collocations": [
+        {
+          "ja": "締め切りに追われる",
+          "furigana": "しめきりにおわれる",
+          "vn": "Bị deadline đuổi sát nút (rất căng thẳng)"
+        },
+        {
+          "ja": "締め切りを守る",
+          "furigana": "しめきりをまもる",
+          "vn": "Tuân thủ đúng hạn chót"
+        }
+      ],
+      "example": {
+        "sentence": "締め切り[しめきり]直前[ちょくぜん]になって慌[あわ]てないよう、計画的[けいかくてき]に進[すす]める。",
+        "translation": "Hãy tiến hành có kế hoạch để không bị cuống cuồng vào sát giờ hạn chót."
+      }
+    },
+    {
+      "id": 4,
+      "slide_number": 4,
+      "word": "延期",
+      "furigana": "えんき",
+      "romaji": "enki",
+      "han_viet": "DUYÊN KỲ",
+      "meaning_vn": "Hoãn lại, dời ngày hẹn sang một dịp khác",
+      "word_type": "Danh từ / Động từ nhóm 3",
+      "tag": "Điều chỉnh thời gian",
+      "visual_diagram": "   📅 Ngày hẹn cũ: Thứ Tư (10/10) ──(Có bão lớn 🌀)──▶ Dời sang: Tuần sau (17/10)\n   ==▶ Hành động dời ngày này gọi là 延期 (えんき)",
+      "diagram_caption": "Khác với 中止 (hủy hẳn bỏ cuộc), 延期 là hoãn lại để làm vào một ngày khác",
+      "mnemonic": "DUYÊN (延 - kéo dài ra) + KỲ (期 - kỳ hạn). Kéo dài kỳ hạn dời về phía sau.",
+      "collocations": [
+        {
+          "ja": "試験の日程を延期する",
+          "furigana": "しけんのにっていをえんきする",
+          "vn": "Dời ngày thi sang hôm khác"
+        },
+        {
+          "ja": "雨天延期",
+          "furigana": "うてんえんき",
+          "vn": "Trời mưa nên hoãn lại"
+        }
+      ],
+      "example": {
+        "sentence": "台風[たいふう]の接近[せっきん]により、明日[あす]の期末[きまつ]試験[しけん]は来週[らいしゅう]に延期[えんき]された。",
+        "translation": "Do bão áp sát, kỳ thi cuối kỳ ngày mai đã được hoãn lại sang tuần sau."
+      }
+    },
+    {
+      "id": 5,
+      "slide_number": 5,
+      "word": "単位",
+      "furigana": "たんい",
+      "romaji": "tani",
+      "han_viet": "ĐƠN VỊ",
+      "meaning_vn": "Tín chỉ học phần đại học / Đơn vị đo lường",
+      "word_type": "Danh từ",
+      "tag": "Học phần",
+      "visual_diagram": "   🎓 ĐỦ ĐIỀU KIỆN TỐT NGHIỆP:\n   ├── Cần tích lũy: 124 単位 (Tín chỉ)\n   ├── ⭕ 単位を取る / 修得する (Qua môn, đỗ tín chỉ)\n   └── ❌ 単位を落とす (Rớt môn, trượt tín chỉ - Nỗi ác mộng sinh viên)",
+      "diagram_caption": "Sinh viên nghỉ học quá 1/3 số buổi sẽ bị đánh trượt tín chỉ không được thi",
+      "mnemonic": "ĐƠN VỊ (単位) là đơn vị cân đo, trong trường học là đơn vị tích lũy môn học.",
+      "collocations": [
+        {
+          "ja": "単位を落とす",
+          "furigana": "たんいをおとす",
+          "vn": "Trượt môn / rớt tín chỉ"
+        },
+        {
+          "ja": "必要な単位数を満たす",
+          "furigana": "ひつようなたんいすうをみたす",
+          "vn": "Tích lũy đủ số tín chỉ quy định"
+        }
+      ],
+      "example": {
+        "sentence": "毎日[まいにち]真面目[まじめ]に出席[しゅっせき]したおかげで、全[すべ]ての単位[たんい]を取得[しゅとく]できた。",
+        "translation": "Nhờ ngày nào cũng đi học chăm chỉ, tôi đã đạt được toàn bộ số tín chỉ."
+      }
+    },
+    {
+      "id": 6,
+      "slide_number": 6,
+      "word": "履修",
+      "furigana": "りしゅう",
+      "romaji": "rishuu",
+      "han_viet": "LÝ TU",
+      "meaning_vn": "Đăng ký học môn học, theo học môn",
+      "word_type": "Danh từ / Động từ nhóm 3",
+      "tag": "Đăng ký môn",
+      "visual_diagram": "   💻 ĐẦU KỲ HỌC MỚI:\n   ├── Xem sổ tay môn học (シラバス - Syllabus)\n   ├── Chọn môn phù hợp chuyên ngành & thời gian biểu\n   └── Đăng ký trực tuyến ──▶ 履修登録 (Đăng ký tín chỉ)",
+      "diagram_caption": "Việc lựa chọn môn học đầu kỳ quyết định trực tiếp đến lịch thi và thời gian đi làm thêm",
+      "mnemonic": "LÝ (履 - trải qua theo đuổi) + TU (修 - rèn luyện tu học). Theo học một môn.",
+      "collocations": [
+        {
+          "ja": "履修登録",
+          "furigana": "りしゅうとうろく",
+          "vn": "Đăng ký môn học đầu kỳ"
+        },
+        {
+          "ja": "必修科目",
+          "furigana": "ひっしゅうかもく",
+          "vn": "Môn học bắt buộc phải học"
+        }
+      ],
+      "example": {
+        "sentence": "卒業[そつぎょう]要件[ようけん]を確認[かくにん]しながら、来学期[らいがっき]の履修[りしゅう]登録[とうろく]を行[おこな]う。",
+        "translation": "Vừa đối chiếu các điều kiện tốt nghiệp, tôi vừa tiến hành đăng ký môn học cho kỳ tới."
+      }
+    },
+    {
+      "id": 7,
+      "slide_number": 7,
+      "word": "奨学金",
+      "furigana": "しょうがくきん",
+      "romaji": "shougakukin",
+      "han_viet": "TƯỞNG HỌC KIM",
+      "meaning_vn": "Học bổng hỗ trợ học tập",
+      "word_type": "Danh từ",
+      "tag": "Hỗ trợ tài chính",
+      "visual_diagram": "   💰 PHÂN BIỆT 2 LOẠI HỌC BỔNG Ở NHẬT:\n   ├── 🎁 給付型 (きゅうふがた - Học bổng cho đứt: Không phải hoàn trả lại tiền!)\n   └── 🏦 貸与型 (たいよがた - Học bổng cho vay ưu đãi: Tốt nghiệp đi làm phải trả nợ dần)",
+      "diagram_caption": "Sinh viên quốc tế tại Nhật có nhiều cơ hội xin học bổng JASSO hoặc các quỹ doanh nghiệp",
+      "mnemonic": "TƯỞNG (奨 - khích lệ khen ngợi) + HỌC (学 - học tập) + KIM (金 - tiền). Tiền thưởng khích lệ tinh thần học tập.",
+      "collocations": [
+        {
+          "ja": "奨学金に応募する",
+          "furigana": "しょうがくきんにおうぼする",
+          "vn": "Nộp đơn ứng tuyển học bổng"
+        },
+        {
+          "ja": "奨学金をもらう / 受給する",
+          "furigana": "しょうがくきんをもらう / じゅきゅうする",
+          "vn": "Nhận tiền học bổng hàng tháng"
+        }
+      ],
+      "example": {
+        "sentence": "成績[せいせき]優秀[ゆうしゅう]者[しゃ]として認[みと]められ、毎月[まいつき]五万円[ごまんえん]の奨学金[しょうがくきん]を受給[じゅきゅう]している。",
+        "translation": "Được công nhận là sinh viên có thành tích xuất sắc, tôi nhận học bổng 50,000 yên mỗi tháng."
+      }
+    },
+    {
+      "id": 8,
+      "slide_number": 8,
+      "word": "復習・予習",
+      "furigana": "ふくしゅう・よしゅう",
+      "romaji": "fukushuu / yoshuu",
+      "han_viet": "PHỤC TẬP / DỰ TẬP",
+      "meaning_vn": "Ôn lại bài cũ sau buổi học / Chuẩn bị bài mới trước buổi học",
+      "word_type": "Danh từ / Động từ nhóm 3",
+      "tag": "Phương pháp học",
+      "visual_diagram": "   ⏰ TRÌNH TỰ HỌC TẬP HIỆU QUẢ:\n   [🏠 Trước khi lên lớp] ──▶ 📖 予習 (Dự tập: Đọc trước bài, tra từ mới)\n            │\n   [🏫 Trong giờ học]    ──▶ 👨‍🏫 Nghe giảng, hỏi điều chưa hiểu\n            │\n   [🏠 Sau khi về nhà]   ──▶ ✍️ 復習 (Phục tập: Làm lại bài tập, ghi nhớ sâu)",
+      "diagram_caption": "Hai bước quan trọng nhất để đạt điểm cao trong mọi kỳ thi tiếng Nhật",
+      "mnemonic": "DỰ (予 - chuẩn bị sẵn từ trước) vs PHỤC (復 - lặp lại xem lại lần nữa).",
+      "collocations": [
+        {
+          "ja": "予習と復習を怠らない",
+          "furigana": "よしゅうとふくしゅうをおこたらない",
+          "vn": "Không lơ là việc soạn bài và ôn bài"
+        },
+        {
+          "ja": "授業の復習をする",
+          "furigana": "じゅぎょうのふくしゅうをする",
+          "vn": "Ôn lại bài học trên lớp"
+        }
+      ],
+      "example": {
+        "sentence": "授業[じゅぎょう]の内容[ないよう]をしっかり身[み]につけるには、その日[ひ]のうちの復習[ふくしゅう]が効果的[こうかてき]だ。",
+        "translation": "Để nắm vững chắc nội dung bài học, ôn tập lại ngay trong ngày là cách hiệu quả nhất."
+      }
+    },
+    {
+      "id": 9,
+      "slide_number": 9,
+      "word": "徹夜",
+      "furigana": "てつや",
+      "romaji": "tetsuya",
+      "han_viet": "TRIỆT DẠ",
+      "meaning_vn": "Thức trắng cả đêm không ngủ (chạy deadline, ôn thi)",
+      "word_type": "Danh từ / Động từ nhóm 3",
+      "tag": "Sinh hoạt",
+      "visual_diagram": "   🌙 22:00 ──▶ ☕ Uống cà phê / Bò húc tăng lực\n   ⏰ 03:00 ──▶ 💻 Mắt díp lại nhưng tay vẫn gõ phím\n   🌅 06:00 ──▶ 🥱 Trời sáng bảnh mắt, hoàn thành bài\n   ==▶ Trải qua một đêm thức trắng = 徹夜 (てつや)",
+      "diagram_caption": "Thức đêm chạy bài dù hoàn thành được việc nhưng rất hại cho sức khỏe và trí nhớ",
+      "mnemonic": "TRIỆT (徹 - thấu suốt từ đầu đến cuối) + DẠ (夜 - ban đêm). Thức xuyên suốt cả màn đêm.",
+      "collocations": [
+        {
+          "ja": "徹夜で勉強する",
+          "furigana": "てつやでべんきょうする",
+          "vn": "Thức trắng đêm để học bài"
+        },
+        {
+          "ja": "徹夜明け",
+          "furigana": "てつやあけ",
+          "vn": "Buổi sáng sau đêm thức trắng (rất phờ phạc)"
+        }
+      ],
+      "example": {
+        "sentence": "試験[しけん]の前日[ぜんじつ]に徹夜[てつや]をしたため、本番[ほんばん]で頭[あたま]が働[はたら]かなかった。",
+        "translation": "Vì đã thức trắng đêm trước ngày thi nên vào phòng thi đầu óc tôi chẳng hoạt động nổi."
+      }
+    },
+    {
+      "id": 10,
+      "slide_number": 10,
+      "word": "集中",
+      "furigana": "しゅうちゅう",
+      "romaji": "shuuchuu",
+      "han_viet": "TẬP TRUNG",
+      "meaning_vn": "Dồn toàn bộ sự chú ý và tinh lực vào một việc",
+      "word_type": "Danh từ / Động từ nhóm 3",
+      "tag": "Kỹ năng học tập",
+      "visual_diagram": "   📱 Cất điện thoại vào ngăn kéo\n   🎧 Đeo tai nghe chống ồn\n   📖 Mắt chỉ nhìn vào trang sách\n   ==▶ 🧠 集中力 (Khả năng tập trung cao độ tạo ra hiệu suất gấp 3 lần)",
+      "diagram_caption": "Bí quyết học 1 tiếng hiệu quả bằng 5 tiếng ngồi lướt mạng xã hội",
+      "mnemonic": "TẬP (集 - thu gom lại) + TRUNG (中 - vào điểm chính giữa). Gom toàn bộ tinh thần vào một tâm điểm.",
+      "collocations": [
+        {
+          "ja": "集中力を高める",
+          "furigana": "しゅうちゅうりょくをたかめる",
+          "vn": "Nâng cao năng lực tập trung"
+        },
+        {
+          "ja": "勉強に集中する",
+          "furigana": "べんきょうにしゅうちゅうする",
+          "vn": "Dồn hết tâm trí vào việc học"
+        }
+      ],
+      "example": {
+        "sentence": "静[しず]かな図書館[としょかん]に行[い]くと、周[まわ]りの雑音[ざつおん]を気[き]にせず勉強[べんきょう]に集中[しゅうちゅう]できる。",
+        "translation": "Khi đến thư viện yên tĩnh, tôi có thể dồn hết tâm trí học tập mà không bị tiếng ồn xung quanh làm phiền."
+      }
+    }
+  ]
+}
